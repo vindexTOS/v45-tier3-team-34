@@ -14,6 +14,6 @@ you like the best.
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | First idea | Fitness app |[WeigtLoss](https://docs.google.com/document/d/1GBcLu1EVeEJUIH11DrwKgtWo3c2uw_70Mg244mHYkjA/edit?usp=sharing) | | | | | [Healthcare](https://docs.google.com/document/d/1bM_Wrv6lfu0ZeJWGYyExbnXUombqptxEurHC_6gEedc/edit?usp=sharing)|
 | Second idea | CMSPortfolio
- | |[CustomPortf](https://docs.google.com/document/d/1RdeY8O2Lkmj7zS_cgdAdInVHq7JVuuK8PAC3khPLogg/edit?usp=sharing) | | | | [DevConnect](https://docs.google.com/document/d/1jcTaGwmHtQTaqTdtOuoTjtC3XWgP6KKnKpzeAVvgRrE/edit?usp=sharing)|
+ | | | | | | [DevConnect](https://docs.google.com/document/d/1jcTaGwmHtQTaqTdtOuoTjtC3XWgP6KKnKpzeAVvgRrE/edit?usp=sharing)|
 | ... | Description | | | | | | |
 | Last idea | Description | | | | | | |
