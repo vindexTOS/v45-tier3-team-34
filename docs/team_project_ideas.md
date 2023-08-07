@@ -10,9 +10,9 @@ sentences.
 Each team member should Place an 'X' under their name to vote for the ideas 
 you like the best.
 
-| Project Idea | Description | teammate name | teammate name | teammate name | teammate name | teammate name | Ali Mora |
+| Project Idea | Description | vindex | teammate name | teammate name | teammate name | teammate name | Ali Mora |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| First idea | Description | | | | | | [Healthcare](https://docs.google.com/document/d/1bM_Wrv6lfu0ZeJWGYyExbnXUombqptxEurHC_6gEedc/edit?usp=sharing)|
+| First idea | Fitness app |[WeigtLoss](https://docs.google.com/document/d/1GBcLu1EVeEJUIH11DrwKgtWo3c2uw_70Mg244mHYkjA/edit?usp=sharing) | | | | | [Healthcare](https://docs.google.com/document/d/1bM_Wrv6lfu0ZeJWGYyExbnXUombqptxEurHC_6gEedc/edit?usp=sharing)|
 | Second idea | Description | | | | | | [DevConnect](https://docs.google.com/document/d/1jcTaGwmHtQTaqTdtOuoTjtC3XWgP6KKnKpzeAVvgRrE/edit?usp=sharing)|
 | ... | Description | | | | | | |
 | Last idea | Description | | | | | | |
