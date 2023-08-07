@@ -13,6 +13,6 @@ you like the best.
 | Project Idea | Description | teammate name | teammate name | teammate name | teammate name | teammate name | Ali Mora |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | First idea | Description | | | | | | [Healthcare](https://docs.google.com/document/d/1bM_Wrv6lfu0ZeJWGYyExbnXUombqptxEurHC_6gEedc/edit?usp=sharing)|
-| Second idea | Description | | | | | | |
+| Second idea | Description | | | | | | [DevConnect](https://docs.google.com/document/d/1jcTaGwmHtQTaqTdtOuoTjtC3XWgP6KKnKpzeAVvgRrE/edit?usp=sharing)|
 | ... | Description | | | | | | |
 | Last idea | Description | | | | | | |
