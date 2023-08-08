@@ -8,36 +8,36 @@ To set this up add each teammates name in the `teammate name` column. Each
 team member should Place an 'X' under their name to vote for the ideas 
 you like the best.
 
-| No. | Question/Option | Robert | Ali Mora | Henok | Vindex | Teammate 5 |
+| No. | Question/Option | Robert | Ali Mora | Henok | Vindex | Edris |
 | :--- | :--- | :--- | :--- |  :--- |  :--- |  :--- | 
 | 1 | Team meeting schedule | | | | | |
-|   |	- Sprint Planning Sunday@9:00 a.m. CST | | |x| | |
+|   |	- Sprint Planning Sunday@3:00 PM GMT | | |x| |✅|
 |   |	- Knowledge Xfer as needed | | | | | |
-|   |	- Working Session Thursday@4:00 p.m. CST | | | No, this is midnight for me | | |
+|   |	- Working Session Thursday@4:00 PM GMT | | |  | |✅|
 | 2	| Project Backlog Tool | | | | | |
-|   |	- Notion | |x|x| | |
+|   |	- Notion | |x|x| |✅|
 |   |	- Jira | | | | | |
 | 3	| Technical Stack (vote by adding your pref. in the cell under your name) | | | | | |
-|   |	- BE Language |x |x| | JS/TS,PHP| |
-|   |	- FE Language | x|x|JS/TS| | |
-|   |	- FE Framework |x |x|Next.js | | |
+|   |	- BE Language |x |x| | JS/TS,PHP|JS/TS|
+|   |	- FE Language | x|x|JS/TS| |JS/TS|
+|   |	- FE Framework |x |x|Next.js | |React|
 |   |	- ML Framework | | | | | |
 |   |	- Visualization/Graphics package (if required, e.g. D3, Nivo, etc.) | | | | | |
 | 4	| Where to host the app? | | | | | |
 |   |	- Heroku (suitable for FE, BE, & Postgres) | | | | | |
-|   |	- Netlify (suitable only for FE) | |x|x|x | |
-|   |	- Vercel (suitable only for FE) | x| |x| | |
-|   |	- Mongo Atlas (suitable only for MongoDB) |x | |x|x | |
+|   |	- Netlify (suitable only for FE) | |x|x|x |x|
+|   |	- Vercel (suitable only for FE) | x| |x| |x|
+|   |	- Mongo Atlas (suitable only for MongoDB) |x | |x|x |x|
 | 5	| BE/FE repos organization | | | | | |
 |   |	- Separate GitHub repos for each | | | | | |
-|   |	- Single GitHub repo for both | x|x|x| | |
+|   |	- Single GitHub repo for both | x|x|x| |x|
 | 6	| Wireframing tool | | | | | |
-|   |	- Paper & pencil | | | | | |
+|   |	- Paper & pencil | | | | |x|
 |   |	- Adobe XD | |x| | | |
 |   |	- Balsamiq | | | | | |
 |   |	- Figma | x|x|x| | |
 | 7	| Who works in which part of the app? | | | | | |
-|   | - BE (not applicable for Tier 1 teams) |x |x| |x | |
+|   | - BE (not applicable for Tier 1 teams) |x |x| |x |x|
 |   |	- FE |x |x|x|X | |
 | 8	| ... | | | | | |
 | n | ... | | | | | |
