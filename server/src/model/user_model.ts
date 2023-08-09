@@ -5,7 +5,7 @@ const User_model = new mongoose.Schema({
     type: String,
     required: [true, 'user name is requried'],
   },
-  emaiL: {
+  email: {
     type: String,
     required: [true, 'email is requried'],
   },
