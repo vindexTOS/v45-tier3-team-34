@@ -17,7 +17,9 @@ app.use(
 app.use(compression())
 app.use(cookieParser())
 app.use(bodyParser.json())
-
+app.get('/', (req, res) => {
+  return res.json({ msg: 'hi' })
+})
 const port = 8080 || process.env.ENV_PORT
 
 const start = async () => {
