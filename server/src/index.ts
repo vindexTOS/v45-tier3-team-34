@@ -5,7 +5,6 @@ import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import { config } from 'dotenv'
 import connectDB from './db/connectDB'
-
 config()
 const app = express()
 
@@ -20,6 +19,7 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => {
   return res.json({ msg: 'hi' })
 })
+
 const port = 3000 || process.env.ENV_PORT
 
 const start = async () => {

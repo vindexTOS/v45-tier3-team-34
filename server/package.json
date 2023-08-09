@@ -2,12 +2,10 @@
   "name": "connect-dev",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "node",
-    "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf build && npm i && tsc"
+    "start": "nodemon index.ts"
   },
   "keywords": [],
   "author": "",
@@ -37,5 +35,8 @@
     "jsonwebtoken": "^9.0.1",
     "mongodb": "^5.7.0",
     "mongoose": "^7.4.2"
+  },
+  "engines": {
+    "node": ">=14 <15"
   }
 }
