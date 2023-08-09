@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => {
   return res.json({ msg: 'hi' })
 })
-const port = 8080 || process.env.ENV_PORT
+const port = 3000 || process.env.ENV_PORT
 
 const start = async () => {
   try {
