@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-esm index.ts"
-  },
+    "start": "node",
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },,
   "keywords": [],
   "author": "",
   "license": "ISC",
