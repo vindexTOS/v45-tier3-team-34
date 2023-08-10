@@ -59,7 +59,8 @@ We connect junior developers with clients seeking affordable software solutions,
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+![Before](/client/public/assets/img/epics-1.png)
+![Before](/client/public/assets/img/epics-2.png)
 ## Features
 
 - [ ] Sign Up | Sign In
@@ -94,4 +95,4 @@ We connect junior developers with clients seeking affordable software solutions,
 <br>
 
 ## Acknowledgements
-- Jim Medlock - [chingo.io](https://www.linkedin.com/in/daurius-ali-swarts-1b151420b/)
+- Jim Medlock - [chingo.io](https://www.chingu.io/)
