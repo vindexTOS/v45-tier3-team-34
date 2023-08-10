@@ -17,6 +17,12 @@ app.use(compression())
 app.use(cookieParser())
 app.use(express.json())
 app.use('/', userRouter)
+
+// catch all
+
+app.use((req, res) => {
+  res.status(404).json({ msg: 'Page not found' })
+})
 const port = 8080 || process.env.ENV_PORT
 
 const start = async () => {
