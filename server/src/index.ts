@@ -2,9 +2,9 @@ import express from 'express'
 import cors from 'cors'
 import compression from 'compression'
 import cookieParser from 'cookie-parser'
-import bodyParser from 'body-parser'
 import { config } from 'dotenv'
 import connectDB from './db/connectDB'
+import userRouter from './routes/user-routes'
 config()
 const app = express()
 
@@ -15,12 +15,9 @@ app.use(
 )
 app.use(compression())
 app.use(cookieParser())
-app.use(bodyParser.json())
-app.get('/', (req, res) => {
-  return res.json({ msg: 'hi' })
-})
-
-const port = 3000 || process.env.ENV_PORT
+app.use(express.json())
+app.use('/', userRouter)
+const port = 8080 || process.env.ENV_PORT
 
 const start = async () => {
   try {
