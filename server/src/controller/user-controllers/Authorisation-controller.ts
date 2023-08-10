@@ -1,10 +1,10 @@
 import bcrypt from 'bcryptjs'
-import { Request, Response } from 'express'
 import User_model from '../../model/user_model'
 import jwt from 'jsonwebtoken'
 import { tryCatch } from '../../middleware/tryCatch'
+import { Request, Response, NextFunction } from 'express'
 
-export const Register = tryCatch(async (req: any, res: any) => {
+export const Register = tryCatch(async (req: Request, res: any) => {
   const { password, confirmPassword, email, userName, avatar, role } = req.body
   console.log(req.body)
   let user = {}
@@ -39,7 +39,7 @@ export const Register = tryCatch(async (req: any, res: any) => {
   }
 })
 
-export const Login = tryCatch(async (req: any, res: any) => {
+export const Login = tryCatch(async (req: Request, res: any) => {
   const { email, password } = req.body
   console.log(req.body)
 
