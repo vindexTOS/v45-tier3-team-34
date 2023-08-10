@@ -78,3 +78,12 @@ We connect junior developers with clients seeking affordable software solutions,
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
+
+
+### Contact
+Ali Mora - [LinkedIn](https://www.linkedin.com/in/daurius-ali-swarts-1b151420b/)
+
+
+
+## Acknowledgements
+[chingo.io](https://www.linkedin.com/in/daurius-ali-swarts-1b151420b/)
