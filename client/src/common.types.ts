@@ -1,7 +1,7 @@
 export type RegisterFormType = {
-    full_name?: string,
-    email: string,
-    password: string,
-    password_confirm?: string,
-    image?:string
+  userName?: string
+  email: string
+  password: string
+  confirmPassword?: string
+  image?: string
 }

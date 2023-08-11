@@ -17,9 +17,8 @@ export const Register = tryCatch(async (req: Request, res: any) => {
   if (password !== confirmPassword) {
     return res.status(400).json({ msg: 'Password does not match' })
   }
-
   const hashedPassword = await bcrypt.hash(password, 10)
-  user = { password: hashedPassword, email, userName, avatar, role }
+  user = { password: hashedPassword, email, userName }
 
   if (password && email && userName) {
     await User_model.create(user)
@@ -29,14 +28,18 @@ export const Register = tryCatch(async (req: Request, res: any) => {
 
   const userFromDb = await User_model.findOne({ email: email })
   userFromDb.password = null
+  console.log(userFromDb)
+
   const token = jwt.sign({ user: userFromDb }, process.env.JWT_STRING, {
     expiresIn: '1h',
   })
-  if (token) {
+
+  if (userFromDb) {
     return res.status(201).json({ token })
-  } else if (!token) {
-    return res.status(201).send({ message: 'Try to sign in' })
+  } else if (!userFromDb) {
+    return res.status(201).send({ msg: 'Try To Sign In' })
   }
+  return res.status(200).json({ msg: 'User Registered' })
 })
 
 export const Login = tryCatch(async (req: Request, res: any) => {
