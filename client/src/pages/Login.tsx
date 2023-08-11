@@ -30,7 +30,7 @@ const Login = () => {
     <main className="w-full flex flex-col md:flex-row  place-content-center">
       <section className="w-full md:w-[50%] lg:w-[40%] flex flex-col   py-4 px-2 sm:px-12 ">
         {/* kinda logo */}
-        <article className="flex justify-between mb-8 sm:mb-20">
+        <article className="flex justify-between mb-8 sm:mb-auto">
           <a
             href="/"
             className="text-2xl md:text-4xl font-extrabold text-gray-800"
@@ -41,7 +41,7 @@ const Login = () => {
         </article>
 
         {/* title */}
-        <article className="my-6 sm:my-24 mb-20 md:mb-auto">
+        <article className="sm:my-6 my-24 mb-20 md:mb-32">
           <h1 className="text-3xl md:text-2xl font-light md:font-semibold">
             Welcome back 😁
           </h1>
@@ -78,7 +78,7 @@ const Login = () => {
           </a>
         </article>
       </section>
-      <section className=" flex-1 md:block  min-h-[500px] bg-[url('assets/img/bg-temp.jpg')] bg-cover bg-no-repeat bg-center">
+      <section className=" flex-1 md:block  min-h-[500px] md:min-h-screen bg-[url('assets/img/bg-temp.jpg')] bg-cover bg-no-repeat bg-center">
         {/* image or samething else */}
         <article className="bg-gradient-to-b min-h-full from-slate-800 to-transparent p-4">
           <h1 className="text-4xl font-extrabold text-white ">
