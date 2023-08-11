@@ -11,7 +11,7 @@
     <a href="https://dev-connect-057y.onrender.com/" target="_blank">Live Site</a>
     ·
     <a href="https://github.com/chingu-voyages/v45-tier3-team-34/issues" target="_blank">Report Bug</a>
-    ·
+    
   </p>
 </div>
     <br />
@@ -69,8 +69,8 @@ We connect junior developers with clients seeking affordable software solutions,
 - [ ] Search open Projects
 - [ ] Apply for Projects
 - [ ] Complete and Submit Projects
-- [ ] Video Call
 - [ ] Chatbot integration
+- [ ] Video Call
 
 ## Goals
 
