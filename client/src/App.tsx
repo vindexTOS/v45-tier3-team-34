@@ -5,9 +5,9 @@ import Profile from './pages/Profile'
 import Home from './pages/Home'
 import Layout from './layout'
 import Register from './pages/Register'
-
+import { Route, Routes } from 'react-router-dom'
 //routes
-const router = createBrowserRouter([
+const router = [
   {
     path: '/',
     element: <Home />,
@@ -25,10 +25,20 @@ const router = createBrowserRouter([
     path: '/profile',
     element: <Profile />,
   },
-])
-
+]
+type ReactRouteType = {
+  path: string
+  element: JSX.Element
+}
 const App = () => {
-  return <RouterProvider router={router} />
+  return (
+    <Routes>g
+      {router.map((route: ReactRouteType) => {
+        const { path, element } = route
+        return <Route key={path} path={path} element={element} />
+      })}
+    </Routes>
+  )
 }
 
 export default App

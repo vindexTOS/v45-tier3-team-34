@@ -32,7 +32,7 @@ const Profile = () => {
   } else {
     return (
       <div>
-        please <Link to="/login">log in </Link>or{' '}
+        please <Link to="/login">log in </Link>or
         <Link to="/register">register </Link>
       </div>
     )

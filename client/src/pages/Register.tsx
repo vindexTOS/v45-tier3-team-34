@@ -7,7 +7,7 @@ import { UseMainContext } from '../context'
 import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
-  const { hanldeAuth } = UseMainContext()
+  const { hanldeAuth, ImgState } = UseMainContext()
   const navigate = useNavigate()
   const [formData, setFormData] = useState<RegisterFormType>({
     email: '',
@@ -18,6 +18,7 @@ const Register = () => {
 
   //submit data
   async function handleSubmit() {
+    // avatar:ImgState.imgUrl
     const { email, userName, password, confirmPassword } = formData
     try {
       hanldeAuth({ email, userName, password, confirmPassword }, 'register')
