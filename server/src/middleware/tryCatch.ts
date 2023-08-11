@@ -6,6 +6,6 @@ export const tryCatch = (
   try {
     await controller(req, res)
   } catch (error) {
-    return next(error)
+    next(error)
   }
 }
