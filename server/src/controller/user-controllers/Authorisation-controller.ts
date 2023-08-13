@@ -6,7 +6,6 @@ import { Request, Response, NextFunction } from 'express'
 
 export const Register = tryCatch(async (req: Request, res: any) => {
   const { password, confirmPassword, email, userName, avatar, role } = req.body
-  console.log(req.body)
   let user = {}
 
   const userExist = await User_model.findOne({ email: email })
@@ -17,9 +16,8 @@ export const Register = tryCatch(async (req: Request, res: any) => {
   if (password !== confirmPassword) {
     return res.status(400).json({ msg: 'Password does not match' })
   }
-
   const hashedPassword = await bcrypt.hash(password, 10)
-  user = { password: hashedPassword, email, userName, avatar, role }
+  user = { password: hashedPassword, email, userName }
 
   if (password && email && userName) {
     await User_model.create(user)
@@ -29,26 +27,27 @@ export const Register = tryCatch(async (req: Request, res: any) => {
 
   const userFromDb = await User_model.findOne({ email: email })
   userFromDb.password = null
+  // console.log(userFromDb)
+
   const token = jwt.sign({ user: userFromDb }, process.env.JWT_STRING, {
     expiresIn: '1h',
   })
-  if (token) {
+
+  if (userFromDb) {
     return res.status(201).json({ token })
-  } else if (!token) {
-    return res.status(201).send({ message: 'Try to sign in' })
+  } else if (!userFromDb) {
+    return res.status(201).send({ msg: 'Try To Sign In' })
   }
+  return res.status(200).json({ msg: 'User Registered' })
 })
 
 export const Login = tryCatch(async (req: Request, res: any) => {
   const { email, password } = req.body
-  console.log(req.body)
 
   const user = await User_model.findOne({ email: email })
   if (!user) {
     return res.status(401).json({ msg: 'User not found' })
   }
-
-  console.log(password, user.password)
 
   const isPasswordCorrect = await bcrypt.compare(password, user.password)
 
