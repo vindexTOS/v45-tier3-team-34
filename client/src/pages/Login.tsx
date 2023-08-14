@@ -2,7 +2,7 @@ import { useState } from 'react'
 import InputField from '../components/Forms/InputField'
 import { RegisterFormType } from '../common.types'
 import { UseMainContext } from '../context'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const Login = () => {
   const { hanldeAuth } = UseMainContext()
@@ -70,12 +70,12 @@ const Login = () => {
           >
             Login
           </button>
-          <a
+          <Link
             className="font-light text-end text-[13px] text-gray-700"
-            href="/register"
+            to="/register"
           >
             Don't have an account
-          </a>
+          </Link>
         </article>
       </section>
       <section className=" flex-1 md:block  min-h-[500px] md:min-h-screen bg-[url('assets/img/bg-temp.jpg')] bg-cover bg-no-repeat bg-center">
