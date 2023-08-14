@@ -78,7 +78,7 @@ const Login = () => {
           </Link>
         </article>
       </section>
-      <section className=" flex-1 md:block  min-h-[500px] md:min-h-screen bg-[url('assets/img/bg-temp.jpg')] bg-cover bg-no-repeat bg-center">
+      <section className=" flex-1 md:block  min-h-[500px] md:min-h-screen bg-[url('./assets/img/bg-temp.jpg')] bg-cover bg-no-repeat bg-center">
         {/* image or samething else */}
         <article className="bg-gradient-to-b min-h-full from-slate-800 to-transparent p-4">
           <h1 className="text-4xl font-extrabold text-white ">

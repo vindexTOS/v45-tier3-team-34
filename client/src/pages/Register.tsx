@@ -4,7 +4,7 @@ import { RegisterFormType } from '../common.types'
 import ImgUpload from '../components/Profile_photo_upload'
 
 import { UseMainContext } from '../context'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Register = () => {
   const { hanldeAuth, ImgState } = UseMainContext()
@@ -94,16 +94,16 @@ const Register = () => {
           >
             create account
           </button>
-          <a
+          <Link
             className="font-light text-end text-[13px] text-gray-700"
-            href="/login"
+            to="/login"
           >
             Already have an account
-          </a>
+          </Link>
         </article>
       </section>
       {/* was hidden */}
-      <section className=" flex-1 md:block   md:min-h-screen bg-[url('assets/img/bg-temp.jpg')] bg-cover bg-no-repeat bg-center">
+      <section className=" flex-1 md:block   md:min-h-screen bg-[url('./assets/img/bg-temp.jpg')] bg-cover bg-no-repeat bg-center">
         {/* image or samething else */}
         <article className="bg-gradient-to-b h-[400px] md:min-h-full from-slate-800 to-transparent p-4">
           <h1 className="text-4xl font-extrabold text-white ">
