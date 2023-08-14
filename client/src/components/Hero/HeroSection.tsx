@@ -14,7 +14,7 @@ const HeroSection = () => {
                   {/* actions */}
                   <div className="flex gap-x-10 gap-y-2 sm:gap-14 w-full sm:w-max flex-wrap">  
                       <HeroCTAButton title="Hire developers" color="red"/>
-                      <HeroCTAButton title="Explorer services" color="white"/>
+                      <HeroCTAButton title="Explore services" color="white"/>
                   </div>
               </div>
               <div className="flex flex-col gap-4">
