@@ -10,14 +10,14 @@ export const Register = tryCatch(async (req: Request, res: any) => {
 
   const userExist = await User_model.findOne({ email: email })
   if (userExist) {
-    return res.status(409).json({ msg: 'User with this email already exist' })
+    return res.status(409).json({ msg: 'User with this email already exists' })
   }
 
   if (password !== confirmPassword) {
     return res.status(400).json({ msg: 'Password does not match' })
   }
   const hashedPassword = await bcrypt.hash(password, 10)
-  user = { password: hashedPassword, email, userName }
+  user = { password: hashedPassword, email, userName, avatar }
 
   if (password && email && userName) {
     await User_model.create(user)
@@ -34,11 +34,10 @@ export const Register = tryCatch(async (req: Request, res: any) => {
   })
 
   if (userFromDb) {
-    return res.status(201).json({ token })
+    return res.status(201).json({ token, msg: 'Registered successfully' })
   } else if (!userFromDb) {
     return res.status(201).send({ msg: 'Try To Sign In' })
   }
-  return res.status(200).json({ msg: 'User Registered' })
 })
 
 export const Login = tryCatch(async (req: Request, res: any) => {
@@ -61,5 +60,7 @@ export const Login = tryCatch(async (req: Request, res: any) => {
     expiresIn: '1h',
   })
 
-  return res.status(200).json({ token })
+  return res
+    .status(200)
+    .json({ token, msg: 'You have been signed in successfully' })
 })

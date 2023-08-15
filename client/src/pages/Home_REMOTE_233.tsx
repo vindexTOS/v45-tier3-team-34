@@ -1,16 +1,12 @@
-import { Link } from 'react-router-dom'
-import HeroSection from '../components/Hero/HeroSection'
+import Hero from "../components/Home/Hero";
 
 const Home = () => {
   return (
     <div>
       {/* NavBr */}
-      <Link
-        className="bg-red-500 text-white hover:bg-red-600 rounded-[5px] p-2"
-        to="/login"
-      >Login</Link>
+      <a href="/login">Login</a>
       {/* Hero */}
-      <HeroSection />
+      <Hero />
       {/* About */}
       <p className="p-2 text-4xl">About</p>
       {/* Info */}

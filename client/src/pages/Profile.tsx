@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { UseMainContext } from '../context'
 import { Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
+import Succsess from '../components/Status/Success'
 const Profile = () => {
   const cookies = new Cookies()
 
@@ -9,13 +10,15 @@ const Profile = () => {
     cookies.remove('jwt_authorization')
     window.location.reload()
   }
-  const { UserState } = UseMainContext()
+  const { UserState, statusState } = UseMainContext()
   if (UserState.userData.user && UserState.userData.user.email) {
     const { avatar, date, email, role, userName, _id } = UserState.userData.user
 
     //_id should not be accsasable on UI, _id will be used to create chat,update user infomration, post new projects etc
     return (
       <div className="flex  flex-col gap-2 p-2 items-center justify-center">
+        <Succsess success={statusState.success} />
+
         <h1>{userName}</h1>
         <h1>{email}</h1>
         <h1>{role}</h1>
