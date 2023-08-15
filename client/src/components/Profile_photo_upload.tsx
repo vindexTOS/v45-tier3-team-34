@@ -6,7 +6,7 @@ import { MdCameraEnhance } from 'react-icons/md'
 import { storage } from '../firebase/firebase'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import Loading from './Status/Loading'
-const ImgUpload = () => {
+const ImgUpload = ({ avatar }: { avatar: string }) => {
   const { ImgState, ImgDispatch } = UseMainContext()
   const imgUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!ImgState.image) {
@@ -99,14 +99,16 @@ const ImgUpload = () => {
         htmlFor="photo"
       >
         {hover && (
-          <div className="w-[250px] h-[250px] absolute   backdrop-blur-sm  bg-[#655c70]/40"></div>
+          <div className=" absolute  w-[200px] h-[200px] outline outline-2 p-2 rounded-[50%]  backdrop-blur-sm  bg-[#655c70]/40"></div>
         )}
         <img
-          className={` w-[250px] h-[250px]  `}
-          src={ImgState.imgUrl ? ImgState.imgUrl : userDefault}
+          className={`  w-[200px]  h-[200px]  outline outline-2 p-2 rounded-[50%]  `}
+          src={
+            ImgState.imgUrl ? ImgState.imgUrl : avatar ? avatar : userDefault
+          }
         />
         <MdCameraEnhance
-          className={`text-[4rem] absolute top-[30%] right-[45%]   ${
+          className={`text-[4rem] absolute top-[30%] right-[35%]   ${
             hover ? `text-[#fd5564]/70` : `text-[#fd5564]/40`
           }`}
         />
