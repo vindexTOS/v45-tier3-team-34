@@ -2,11 +2,11 @@ import { useState } from 'react'
 import InputField from '../components/Forms/InputField'
 import { RegisterFormType } from '../common.types'
 import { UseMainContext } from '../context'
-import { useNavigate, Link } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
+import Error from '../components/Status/Error'
+import Loading from '../components/Status/Loading'
 const Login = () => {
-  const { hanldeAuth } = UseMainContext()
-  const navigate = useNavigate()
+  const { hanldeAuth, statusState, Authloading } = UseMainContext()
 
   const [formData, setFormData] = useState<RegisterFormType>({
     email: '',
@@ -16,18 +16,14 @@ const Login = () => {
   //submit data
   async function handleSubmit() {
     const { email, password } = formData
-    try {
-      hanldeAuth({ email, password }, 'login')
 
-      navigate('/profile')
-    } catch (error) {
-      // catch error in state later
-      console.log(error)
-    }
+    hanldeAuth({ email, password }, 'login')
   }
 
   return (
     <main className="w-full flex flex-col md:flex-row  place-content-center">
+      <Error error={statusState.error} />
+      <Loading loading={Authloading} />
       <section className="w-full md:w-[50%] lg:w-[40%] flex flex-col   py-4 px-2 sm:px-12 ">
         {/* kinda logo */}
         <article className="flex justify-between mb-8 sm:mb-auto">

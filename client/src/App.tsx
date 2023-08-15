@@ -30,7 +30,7 @@ type ReactRouteType = {
 }
 const App = () => {
   return (
-    <Routes>g
+    <Routes>
       {router.map((route: ReactRouteType) => {
         const { path, element } = route
         return <Route key={path} path={path} element={element} />

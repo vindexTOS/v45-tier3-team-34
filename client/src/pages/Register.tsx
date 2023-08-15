@@ -5,10 +5,11 @@ import ImgUpload from '../components/Profile_photo_upload'
 
 import { UseMainContext } from '../context'
 import { Link, useNavigate } from 'react-router-dom'
-
+import Error from '../components/Status/Error'
+import Loading from '../components/Status/Loading'
 const Register = () => {
-  const { hanldeAuth, ImgState } = UseMainContext()
-  const navigate = useNavigate()
+  const { hanldeAuth, ImgState, statusState, Authloading } = UseMainContext()
+
   const [formData, setFormData] = useState<RegisterFormType>({
     email: '',
     userName: '',
@@ -20,17 +21,18 @@ const Register = () => {
   async function handleSubmit() {
     // avatar:ImgState.imgUrl
     const { email, userName, password, confirmPassword } = formData
-    try {
-      hanldeAuth({ email, userName, password, confirmPassword }, 'register')
-      navigate('/profile')
-    } catch (error) {
-      // catch error in state later
-      console.log(error)
-    }
+
+    hanldeAuth(
+      { email, userName, password, confirmPassword, avatar: ImgState.imgUrl },
+      'register',
+    )
   }
 
   return (
     <main className="w-full flex flex-col md:flex-row place-content-center ">
+      <Error error={statusState.error} />
+      <Loading loading={Authloading} />
+      <button onClick={() => console.log(ImgState.imgUrl)}>CLIC</button>
       <section className="w-full md:w-[50%] lg:w-[40%] flex flex-col   py-4 px-2 sm:px-12 ">
         {/* kinda logo */}
         <article className="flex justify-between mb-4 sm:mb-20">
@@ -52,9 +54,9 @@ const Register = () => {
         {/* form here  */}
         <article className="flex flex-col gap-y-2 xl:mr-20">
           {/* upload image need more style improvement */}
-          {/* <div className="">
-                      <ImgUpload/>
-                  </div> */}
+          <div className="">
+            <ImgUpload />
+          </div>
 
           <InputField
             data={formData}
