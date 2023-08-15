@@ -11,7 +11,7 @@
     <a href="https://dev-connect-057y.onrender.com/" target="_blank">Live Site</a>
     ·
     <a href="https://github.com/chingu-voyages/v45-tier3-team-34/issues" target="_blank">Report Bug</a>
-    ·
+    
   </p>
 </div>
     <br />
@@ -20,7 +20,9 @@
 
 We connect junior developers with clients seeking affordable software solutions, promoting growth through real-world projects and practical learning. Our platform empowers both developers and clients in a symbiotic partnership.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 <br>
+
 
 ### Technology Stack
 ##### Front-End
@@ -55,18 +57,20 @@ We connect junior developers with clients seeking affordable software solutions,
 </p>
 <br/>  
 
----
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+![Before](/client/public/assets/img/epics-1.png)
+![Before](/client/public/assets/img/epics-2.png)
 ## Features
 
-- [ ] Sign Up, Login users
+- [ ] Sign Up | Sign In
 - [ ] Demo login Developer/Client
 - [ ] Edit user profiles
 - [ ] Search open Projects
 - [ ] Apply for Projects
 - [ ] Complete and Submit Projects
-- [ ] Video Call
 - [ ] Chatbot integration
+- [ ] Video Call
 
 ## Goals
 
@@ -78,3 +82,17 @@ We connect junior developers with clients seeking affordable software solutions,
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
+
+<br>
+<br>
+
+### Contact
+- Ali Mora - [LinkedIn](https://www.linkedin.com/in/daurius-ali-swarts-1b151420b/)
+- Mohamed Edris - [LinkedIn](https://www.linkedin.com/in/edriso)
+- Giorgi Kutateladze - [LinkedIn](https://www.linkedin.com/in/giorgi-kutateladze-65a83919a/)
+
+<br>
+<br>
+
+## Acknowledgements
+- Jim Medlock - [chingo.io](https://www.chingu.io/)

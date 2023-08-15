@@ -17,6 +17,7 @@ const SkillsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
   skills: [SkillSchema],
 })
 
