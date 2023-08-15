@@ -1,7 +1,14 @@
 import React, { FC, useReducer, useState } from 'react'
 import { UserCardType, GeneralActionType } from '../../common.types'
 import { BsFillPlusCircleFill } from 'react-icons/bs'
+import axios from 'axios'
 import ImgUpload from '../Profile_photo_upload'
+import { globalUrl } from '../../global-vars/Api-url'
+import useStatusMessages from '../../hooks/Status_hook'
+import { UseMainContext } from '../../context'
+import Error from '../Status/Error'
+import Succsess from '../Status/Success'
+import Loading from '../Status/Loading'
 type UpdateUserSateType = {
   UpdatedAvatar: string
   UpdatedDate: string
@@ -15,10 +22,42 @@ type UpdateInputType = {
   info: string
   state: string
   type: string
+  userUpdateDispatch: React.Dispatch<GeneralActionType>
+  userUpdateState: UpdateUserSateType
+}
+
+const UpdateInput: FC<UpdateInputType> = ({
+  title,
+  info,
+  state,
+  type,
+  userUpdateDispatch,
+  userUpdateState,
+}) => {
+  const { UserState } = UseMainContext()
+  return (
+    <div className="flex gap-2">
+      <label htmlFor={title}>{title}:</label>
+      {UserState.updateUser ? (
+        <input
+          type="text"
+          id={title}
+          className="w-[150px] text-green-400 outline-2 outline outline-green-300 p-1 rounded-[8px]"
+          value={userUpdateState[state as keyof UpdateUserSateType]}
+          onChange={(e) =>
+            userUpdateDispatch({ type: type, payload: e.target.value })
+          }
+        />
+      ) : (
+        <h1 className="p-1">{info}</h1>
+      )}
+    </div>
+  )
 }
 
 const User_profile_card = ({ data }: { data: UserCardType }): JSX.Element => {
   const { avatar, date, email, role, userName, _id } = data
+  const { ImgState, UserState, UserDispatch } = UseMainContext()
   const style = {
     mainDiv: `flex flex-col w-[500px] items-center justify-around  gap-2 bg-white px-10 py-4 shadow-md rounded-[9px] text-gray-400 `,
     img: `  h-[200px] outline outline-2 p-2 rounded-[50%]`,
@@ -62,28 +101,37 @@ const User_profile_card = ({ data }: { data: UserCardType }): JSX.Element => {
     initialUserState,
   )
 
-  const [updateUser, setUpdateUser] = useState(false)
-
-  const UpdateInput: FC<UpdateInputType> = ({ title, info, state, type }) => {
-    return (
-      <div className="flex gap-2">
-        <label htmlFor={title}>{title}:</label>
-        {updateUser ? (
-          <input
-            id={title}
-            className="w-[150px] text-green-400 outline-2 outline outline-green-300 p-1 rounded-[8px]"
-            value={state}
-          />
-        ) : (
-          <h1 className="p-1">{info}</h1>
-        )}
-      </div>
-    )
+  const [updateProfilePhoto, setUpdateProfilePhoto] = useState(false)
+  const [updateLoading, setUpdateLoading] = useState(false)
+  const { statusState, setError, setSuccess } = useStatusMessages({
+    error: '',
+    success: '',
+  })
+  const UpdateUserProfile = async () => {
+    let sendObj = {
+      userName: userUpdateState.UpdatedUserName,
+      avatar: ImgState.imgUrl ? ImgState.imgUrl : userUpdateState.UpdatedAvatar,
+      email: userUpdateState.UpdatedEmail,
+      role: userUpdateState.UpdatedRole,
+    }
+    setUpdateLoading(true)
+    try {
+      const response = await axios.patch(`${globalUrl}/crud/${_id}`, sendObj)
+      const data = response.data
+      setSuccess(data.msg)
+      setUpdateLoading(false)
+    } catch (error) {
+      const err: any = error
+      setError(err.message)
+      setUpdateLoading(false)
+    }
   }
 
-  const [updateProfilePhoto, setUpdateProfilePhoto] = useState(false)
   return (
     <div className={style.mainDiv}>
+      <Error error={statusState.error} />
+      <Succsess success={statusState.success} />
+      <Loading loading={updateLoading} />
       <div className="relative">
         {updateProfilePhoto ? (
           <ImgUpload avatar={avatar} />
@@ -93,7 +141,10 @@ const User_profile_card = ({ data }: { data: UserCardType }): JSX.Element => {
         <BsFillPlusCircleFill
           onClick={() => {
             setUpdateProfilePhoto(!updateProfilePhoto),
-              setUpdateUser(!updateUser)
+              UserDispatch({
+                type: 'user-update',
+                payload: !UserState.updateUser,
+              })
           }}
           className={style.plusIcon}
         />
@@ -102,20 +153,26 @@ const User_profile_card = ({ data }: { data: UserCardType }): JSX.Element => {
         <UpdateInput
           title="User Name"
           info={userName}
-          state={userUpdateState.UpdatedUserName}
+          state="UpdatedUserName"
           type="SET-NAME"
+          userUpdateDispatch={userUpdateDispatch}
+          userUpdateState={userUpdateState}
         />
         <UpdateInput
           title="Email"
           info={email}
-          state={userUpdateState.UpdatedEmail}
+          state="UpdatedEmail"
           type="SET-EMAIL"
+          userUpdateDispatch={userUpdateDispatch}
+          userUpdateState={userUpdateState}
         />
         <UpdateInput
           title="Role"
           info={role}
-          state={userUpdateState.UpdatedRole}
+          state="UpdatedRole"
           type="SET-ROLE"
+          userUpdateDispatch={userUpdateDispatch}
+          userUpdateState={userUpdateState}
         />
 
         <h1>
@@ -124,22 +181,28 @@ const User_profile_card = ({ data }: { data: UserCardType }): JSX.Element => {
         </h1>
       </div>
 
-      {updateUser ? (
+      {UserState.updateUser ? (
         <div className={style.btnWrapper}>
           <button
             className={style.cancelBtn}
             onClick={() => {
-              setUpdateUser(false), setUpdateProfilePhoto(!updateProfilePhoto)
+              UserDispatch({ type: 'user-update', payload: false }),
+                setUpdateProfilePhoto(!updateProfilePhoto)
             }}
           >
             Cancel
           </button>
-          <button className={style.saveBtn}>Save Update</button>
+          <button className={style.saveBtn} onClick={UpdateUserProfile}>
+            Save Update
+          </button>
         </div>
       ) : (
         <button
           onClick={() => {
-            setUpdateUser(!updateUser),
+            UserDispatch({
+              type: 'user-update',
+              payload: !UserState.updateUser,
+            }),
               setUpdateProfilePhoto(!updateProfilePhoto)
           }}
           className={style.btn}

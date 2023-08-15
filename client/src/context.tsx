@@ -31,6 +31,7 @@ type ImgAction = {
 type UserState = {
   userData: any
   token: string
+  updateUser: boolean
 }
 
 type UserAction = {
@@ -99,6 +100,7 @@ export const ContextProvider = ({
   const initialUserState: UserState = {
     userData: {},
     token: '',
+    updateUser: false,
   }
   const UserReducer = (state: UserState, action: UserAction): UserState => {
     switch (action.type) {
@@ -106,7 +108,8 @@ export const ContextProvider = ({
         return { ...state, token: state.token = action.payload }
       case 'decod-user':
         return { ...state, userData: state.userData = action.payload }
-
+      case 'user-update':
+        return { ...state, updateUser: state.updateUser = action.payload }
       default:
         return state
     }
@@ -160,6 +163,9 @@ export const ContextProvider = ({
       UserDispatch({ type: 'decod-user', payload: decoded })
     }
   }, [UserState.token])
+
+  // user update
+
   return (
     <Context.Provider
       value={{
