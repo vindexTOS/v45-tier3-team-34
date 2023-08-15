@@ -29,6 +29,7 @@ type ImgAction = {
 // user types
 
 type UserState = {
+  userTokenData: any
   userData: any
   token: string
   updateUser: boolean
@@ -52,6 +53,7 @@ type Cell = {
   hanldeAuth: (authObj: RegisterFormType, url: string) => void
   statusState: StatusState
   Authloading: boolean
+  GetUserData: () => void
 }
 
 const Context = createContext<Cell | null>(null)
@@ -98,7 +100,9 @@ export const ContextProvider = ({
   /// user state managment //////////////////// token decoding
 
   const initialUserState: UserState = {
+    userTokenData: {},
     userData: {},
+
     token: '',
     updateUser: false,
   }
@@ -107,9 +111,12 @@ export const ContextProvider = ({
       case 'get-token':
         return { ...state, token: state.token = action.payload }
       case 'decod-user':
+        return { ...state, userTokenData: state.userTokenData = action.payload }
+      case 'user-data':
         return { ...state, userData: state.userData = action.payload }
       case 'user-update':
         return { ...state, updateUser: state.updateUser = action.payload }
+
       default:
         return state
     }
@@ -153,7 +160,7 @@ export const ContextProvider = ({
     }
   }
 
-  // getting token cookie from browser cookies and setting headers and UserState.UserData state
+  // getting token cookie from browser cookies and setting headers and UserState.userTokenData state
   const token = cookies.get('jwt_authorization')
   useEffect(() => {
     if (token) {
@@ -166,6 +173,23 @@ export const ContextProvider = ({
 
   // user update
 
+  // get updated user data or specifice user data when clicked on user
+  const GetUserData = async () => {
+    try {
+      const response = await axios.get(
+        `${globalUrl}/user/${UserState.userTokenData.user._id}`,
+      )
+      const data = response.data
+      UserDispatch({ type: 'user-data', payload: data })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
+      GetUserData()
+    }
+  }, [UserState.userTokenData.user, UserState.updateUser])
   return (
     <Context.Provider
       value={{
@@ -176,6 +200,7 @@ export const ContextProvider = ({
         hanldeAuth,
         statusState,
         Authloading,
+        GetUserData,
       }}
     >
       {children}

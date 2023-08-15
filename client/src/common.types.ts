@@ -12,7 +12,7 @@ export type UserCardType = {
   email: string
   role: string
   userName: string
-  _id?: string
+  _id: string
 }
 
 export type GeneralActionType = {
