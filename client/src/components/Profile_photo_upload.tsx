@@ -101,17 +101,19 @@ const ImgUpload = ({ avatar }: { avatar: string }) => {
         {hover && (
           <div className=" absolute  w-[200px] h-[200px] outline outline-2 p-2 rounded-[50%]  backdrop-blur-sm  bg-[#655c70]/40"></div>
         )}
-        <img
-          className={`  w-[200px]  h-[200px]  outline outline-2 p-2 rounded-[50%]  `}
-          src={
-            ImgState.imgUrl ? ImgState.imgUrl : avatar ? avatar : userDefault
-          }
-        />
-        <MdCameraEnhance
-          className={`text-[4rem] absolute top-[30%] right-[42%]   ${
-            hover ? `text-[#fd5564]/70` : `text-[#fd5564]/40`
-          }`}
-        />
+        <div className="flex items-center justify-center">
+          <img
+            className={`  w-[200px]  h-[200px]  outline outline-2 p-2 rounded-[50%]  `}
+            src={
+              ImgState.imgUrl ? ImgState.imgUrl : avatar ? avatar : userDefault
+            }
+          />
+          <MdCameraEnhance
+            className={`text-[4rem] absolute     ${
+              hover ? `text-[#fd5564]/70` : `text-[#fd5564]/40`
+            }`}
+          />
+        </div>
         <input
           placeholder="Photo"
           onChange={(e) => imgUpload(e)}
