@@ -25,7 +25,7 @@ const User_model = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['Developer', 'Company/Startup', 'HR'],
+
     default: 'Developer',
   },
   skill_id: {

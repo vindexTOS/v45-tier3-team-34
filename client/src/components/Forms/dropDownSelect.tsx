@@ -43,22 +43,20 @@ const dropDownSelect: FC<Proptypes> = ({ label, type, field, setData }) => {
         <div>{dropDown ? <TiArrowSortedDown /> : <TiArrowSortedUp />}</div>
       </div>
       {dropDown && (
-        <div className="w-full h-[110px] flex flex-col p-2 text-gray-400  bg-white shadow-md rounded-[2px] absolute">
-          {new Array('Developer', 'Company/Startup', 'HR').map(
-            (val: string) => (
-              <p
-                className="hover:bg-gray-200 p-1 cursor-pointer hover:text-white"
-                onClick={() => {
-                  handleChange({ field, value: val }),
-                    setLocalState(val),
-                    setDropDown(false)
-                }}
-                key={val}
-              >
-                {val}
-              </p>
-            ),
-          )}
+        <div className="w-full h-[90px] flex flex-col p-2 text-gray-400  bg-white shadow-md rounded-[2px] absolute">
+          {new Array('Developer', 'Company/Startup').map((val: string) => (
+            <p
+              className="hover:bg-gray-200 p-1 cursor-pointer hover:text-white"
+              onClick={() => {
+                handleChange({ field, value: val }),
+                  setLocalState(val),
+                  setDropDown(false)
+              }}
+              key={val}
+            >
+              {val}
+            </p>
+          ))}
         </div>
       )}
     </div>
