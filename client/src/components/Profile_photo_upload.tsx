@@ -108,7 +108,7 @@ const ImgUpload = ({ avatar }: { avatar: string }) => {
           }
         />
         <MdCameraEnhance
-          className={`text-[4rem] absolute top-[30%] right-[35%]   ${
+          className={`text-[4rem] absolute top-[30%] right-[42%]   ${
             hover ? `text-[#fd5564]/70` : `text-[#fd5564]/40`
           }`}
         />
