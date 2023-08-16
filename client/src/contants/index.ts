@@ -19,3 +19,22 @@ export const companies = [
     },
     
 ]
+
+export const footer_links = [
+    {
+        title: "Terms of Service",
+        link: "/"
+    },
+    {
+        title: "Privacy Policy",
+        link: "/"
+    },
+    {
+        title: "Cookie Settings",
+        link: "/"
+    },
+    {
+        title: "Accessibility",
+        link: "/"
+    },
+]
