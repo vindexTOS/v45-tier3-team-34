@@ -1,12 +1,18 @@
-import {ReactElement} from 'react'
-const Layout = ({ children }: { children: ReactElement }) => {
+import { ReactElement } from "react";
+import Footer from "./components/Home/Footer";
+import NavBar from "./components/Home/NavBar";
+const Layout = ({
+  children,
+}: {
+  children: ReactElement;
+}) => {
   return (
     <div>
-        <nav>here the nav</nav>
-          {children}
-        <footer>footer here</footer>
+      <NavBar />
+      {children}
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

@@ -16,24 +16,22 @@ const Home = () => {
       >
         Login
       </Link>
-      <ThemeToggle/>
+      <ThemeToggle />
       {/* Hero */}
       <HeroSection />
       {/* brwose by category */}
       <Categories />
       {/* About */}
-      
+
       <p className="p-2 text-4xl">About</p>
       {/* Info */}
       <p className="p-2 text-4xl">More Info</p>
       {/* enterprise suite */}
       <EnterpriseSuite />
       {/* find client */}
-      <FindClient/>
+      <FindClient />
       {/* Contact */}
       <p className="p-2 text-4xl">Contact</p>
-      {/* Footer */}
-      <Footer/>
     </div>
   );
 };
