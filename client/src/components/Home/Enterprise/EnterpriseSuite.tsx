@@ -26,7 +26,7 @@ const EnterpriseSuite = () => {
                   className='bg-red-600 dark:bg-red-100 text-white dark:text-red-600 px-6 py-3 rounded-full flex align-middle items-start max-w-fit font-normal text-lg hover:shadow-red-300 hover:dark:shadow-red-400 hover:shadow-md '
                   to={'/'}>learn more</Link>
       </article>
-          <article className="hidden lg:block bg-[url('./assets/img/enteprise-img.png')]  bg-gray-800 min-w-[500px] bg-no-repeat bg-cover sm:rounded-r-lg">
+          <article className="hidden lg:block bg-[url('/assets/img/enteprise-img.png')]  bg-gray-800 min-w-[500px] bg-no-repeat bg-cover sm:rounded-r-lg">
               
       </article>
     </section>
