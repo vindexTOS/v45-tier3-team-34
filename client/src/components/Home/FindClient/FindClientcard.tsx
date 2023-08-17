@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { HiArrowRight } from "react-icons/hi";
 
 const FindClientcard = ({ title, sub_title, link }: {
     title: string,
@@ -13,9 +14,10 @@ const FindClientcard = ({ title, sub_title, link }: {
           >
               <p className='text-center align-middle hover:underline p-0'>{sub_title}&trade;</p>
               {/* must be replaced with custom icons */}
-              <img
-                  className='text-gray-900'
-                  src="./assets/icons/arrow-right.svg" alt="arrow right" />
+              
+            <p className='text-center flex justify-center items-center'>
+              <HiArrowRight />
+            </p>
           </Link>
     </div>
   )
