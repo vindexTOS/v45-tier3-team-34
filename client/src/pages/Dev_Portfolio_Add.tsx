@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import Portfolio_layout from '../components/Dev_Portfolio/Portfolio_layout'
 const Dev_Portfolio_Add = () => {
   const style = {
-    mainDiv: `bg-gray-200 w-[100vw] h-[100vh] gap-4 flex items-start  justify-center py-20 px-80 max_xl:px-0 `,
+    mainDiv: `bg-gray-200 w-[100vw] h-[100%] gap-4 flex items-start  justify-center py-20 px-80 max_xl:px-0 `,
   }
 
   return (
