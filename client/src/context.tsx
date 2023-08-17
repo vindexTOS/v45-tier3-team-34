@@ -10,7 +10,7 @@ import jwt from 'jwt-decode'
 import Cookies from 'universal-cookie'
 import { globalUrl } from './global-vars/Api-url'
 import { RegisterFormType } from './common.types'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useStatusMessages from './hooks/Status_hook'
 // img types
 type ImgState = {
@@ -29,8 +29,10 @@ type ImgAction = {
 // user types
 
 type UserState = {
+  userTokenData: any
   userData: any
   token: string
+  updateUser: boolean
 }
 
 type UserAction = {
@@ -42,7 +44,22 @@ type StatusState = {
   error: string
   success: string
 }
-
+// user portfolio project types
+type PortfolioState = {
+  title: string
+  date: DateConstructor
+  role: string
+  description: string
+  video?: string
+  github?: string
+  liveLink?: string
+  skill: string
+  technologies: string[]
+}
+type PortfolioAction = {
+  payload: any
+  type: string
+}
 type Cell = {
   ImgState: ImgState
   ImgDispatch: React.Dispatch<ImgAction>
@@ -51,6 +68,9 @@ type Cell = {
   hanldeAuth: (authObj: RegisterFormType, url: string) => void
   statusState: StatusState
   Authloading: boolean
+  GetUserData: () => void
+  PortfolioState: PortfolioState
+  PortfolioDispatch: React.Dispatch<PortfolioAction>
 }
 
 const Context = createContext<Cell | null>(null)
@@ -61,7 +81,7 @@ export const ContextProvider = ({
   children: React.ReactNode
 }) => {
   const navigate = useNavigate()
-
+  const routeLocation = useLocation()
   const cookies = new Cookies()
 
   // uploading photo  to fire base /////// sending all the information to data base //////////////////// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,15 +117,22 @@ export const ContextProvider = ({
   /// user state managment //////////////////// token decoding
 
   const initialUserState: UserState = {
+    userTokenData: {},
     userData: {},
+
     token: '',
+    updateUser: false,
   }
   const UserReducer = (state: UserState, action: UserAction): UserState => {
     switch (action.type) {
       case 'get-token':
         return { ...state, token: state.token = action.payload }
       case 'decod-user':
+        return { ...state, userTokenData: state.userTokenData = action.payload }
+      case 'user-data':
         return { ...state, userData: state.userData = action.payload }
+      case 'user-update':
+        return { ...state, updateUser: state.updateUser = action.payload }
 
       default:
         return state
@@ -140,7 +167,13 @@ export const ContextProvider = ({
         expires: new Date(decoded.exp * 1000),
       })
       setAuthLoading(false)
-      navigate('/profile')
+      if (url === 'register') {
+        if (UserState.userTokenData && UserState.userTokenData.user) {
+          navigate(`/dev_project_add/title`)
+        }
+      } else if (url === 'login') {
+        navigate('/profile')
+      }
       return data
     } catch (error) {
       let err: any = error
@@ -150,7 +183,7 @@ export const ContextProvider = ({
     }
   }
 
-  // getting token cookie from browser cookies and setting headers and UserState.UserData state
+  // getting token cookie from browser cookies and setting headers and UserState.userTokenData state
   const token = cookies.get('jwt_authorization')
   useEffect(() => {
     if (token) {
@@ -160,6 +193,78 @@ export const ContextProvider = ({
       UserDispatch({ type: 'decod-user', payload: decoded })
     }
   }, [UserState.token])
+
+  // user update
+
+  // get updated user data or specifice user data when clicked on user
+  const GetUserData = async () => {
+    try {
+      const response = await axios.get(
+        `${globalUrl}/user/${UserState.userTokenData.user._id}`,
+      )
+      const data = response.data
+      UserDispatch({ type: 'user-data', payload: data })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
+      GetUserData()
+    }
+  }, [UserState.userTokenData.user, UserState.updateUser])
+
+  // portfolio project posting
+
+  const initialStatePortfolio = {
+    title: '',
+    date: new Date(),
+    role: '',
+    description: '',
+    video: '',
+    github: '',
+    liveLink: '',
+    skill: '',
+    technologies: [],
+  }
+
+  const PortfolioRediuser = (
+    state: PortfolioState,
+    action: PortfolioAction,
+  ) => {
+    switch (action.type) {
+      case 'title':
+        return { ...state, title: state.title = action.payload }
+      case 'date':
+        return { ...state, date: state.date = action.payload }
+      case 'role':
+        return { ...state, role: state.role = action.payload }
+      case 'description':
+        return { ...state, description: state.description = action.payload }
+      case 'video':
+        return { ...state, video: state.video = action.payload }
+      case 'github':
+        return { ...state, github: state.github = action.payload }
+      case 'liveLink':
+        return { ...state, liveLink: state.liveLink = action.payload }
+      case 'skill':
+        return { ...state, skill: state.skill = action.payload }
+      case 'technologies':
+        return {
+          ...state,
+          technologies: [...state.technologies, action.payload],
+        }
+      case 'technologies-removed':
+        return { ...state, technologies: action.payload }
+      default:
+        return state
+    }
+  }
+  const [PortfolioState, PortfolioDispatch] = useReducer(
+    PortfolioRediuser,
+    initialStatePortfolio,
+  )
+
   return (
     <Context.Provider
       value={{
@@ -170,6 +275,9 @@ export const ContextProvider = ({
         hanldeAuth,
         statusState,
         Authloading,
+        GetUserData,
+        PortfolioState,
+        PortfolioDispatch,
       }}
     >
       {children}

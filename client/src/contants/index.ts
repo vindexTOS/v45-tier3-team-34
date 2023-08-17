@@ -19,3 +19,67 @@ export const companies = [
     },
     
 ]
+
+export const footer_links = [
+    {
+        title: "Terms of Service",
+        link: "/"
+    },
+    {
+        title: "Privacy Policy",
+        link: "/"
+    },
+    {
+        title: "Cookie Settings",
+        link: "/"
+    },
+    {
+        title: "Accessibility",
+        link: "/"
+    },
+]
+
+
+export const categories_temp = [
+    {
+        title: "Development & IT",
+        rating: 4.85,
+        skills:508,
+    },
+    {
+        title: "Graphic Design & Creative Stuff",
+        rating: 4.91,
+        skills:968,
+    },
+    {
+        title: "Sales & Marketing",
+        rating: 4.77,
+        skills:392,
+    },
+    {
+        title: "Copy Writing & Translation",
+        rating: 4.92,
+        skills:505,
+    },
+    {
+        title: "Admin & Customer Support",
+        rating: 4.66,
+        skills:508,
+    },
+    {
+        title: "Finance & Accounting",
+        rating: 4.77,
+        skills:214,
+    },
+    {
+        title: "Engineer & Architecture",
+        rating: 4.13,
+        skills:756,
+    },
+    {
+        title: "Legal",
+        rating: 4.85,
+        skills:145,
+    },
+    
+]
