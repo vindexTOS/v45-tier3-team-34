@@ -4,6 +4,7 @@ import Footer from "../components/Home/Footer";
 import FindClient from "../components/Home/FindClient/FindClient";
 import Categories from "../components/Home/CategoryBrowse/Categories";
 import EnterpriseSuite from "../components/Home/Enterprise/EnterpriseSuite";
+import ThemeToggle from "../components/Buttons/ThemeTogglerBtn";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       >
         Login
       </Link>
+      <ThemeToggle/>
       {/* Hero */}
       <HeroSection />
       {/* brwose by category */}
