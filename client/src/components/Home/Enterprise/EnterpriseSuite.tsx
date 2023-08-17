@@ -3,7 +3,7 @@ import { LiaPencilRulerSolid,LiaToolboxSolid,LiaHeadsetSolid } from "react-icons
 const EnterpriseSuite = () => {
   return (
     <section className='flex sm:bg-gray-300 dark:bg-gray-900 dark:text-white sm:rounded-3xl my-0 sm:my-6 '>
-    <article className='flex-1 p-2 sm:p-8 dark:bg-gray-800 sm:rounded-l-lg'>
+    <article className='flex-1 p-2 sm:p-8 dark:bg-gray-800  sm:rounded-l-lg'>
               <h2 className='font-thin text-lg sm:mb-10'>Enterprise Suite</h2>
               <h1 className='text-5xl md:text-6xl font-bold '>This is How{" "}
                   <span className='text-red-600 dark:text-red-300'>
