@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 import { LiaPencilRulerSolid,LiaToolboxSolid,LiaHeadsetSolid } from "react-icons/lia";
 const EnterpriseSuite = () => {
   return (
-    <section className='flex sm:bg-gray-300 dark:bg-gray-900 dark:text-white sm:rounded-lg my-0 sm:my-6 '>
-    <article className='flex-1 p-2 sm:p-8'>
+    <section className='flex sm:bg-gray-300 dark:bg-gray-900 dark:text-white sm:rounded-3xl my-0 sm:my-6 '>
+    <article className='flex-1 p-2 sm:p-8 dark:bg-gray-800 sm:rounded-l-lg'>
               <h2 className='font-thin text-lg sm:mb-10'>Enterprise Suite</h2>
               <h1 className='text-5xl md:text-6xl font-bold '>This is How{" "}
                   <span className='text-red-600 dark:text-red-300'>
@@ -23,7 +23,7 @@ const EnterpriseSuite = () => {
 
               {/* link to more, must be changed (and style too) */}
               <Link
-                  className='bg-red-600 dark:bg-red-100 text-white dark:text-red-600 px-6 py-3 rounded-full flex align-middle items-start max-w-fit font-normal text-lg hover:shadow-red-300 hover:dark:shadow-red-100 hover:shadow-md '
+                  className='bg-red-600 dark:bg-red-100 text-white dark:text-red-600 px-6 py-3 rounded-full flex align-middle items-start max-w-fit font-normal text-lg hover:shadow-red-300 hover:dark:shadow-red-400 hover:shadow-md '
                   to={'/'}>learn more</Link>
       </article>
           <article className="hidden lg:block bg-[url('./assets/img/enteprise-img.png')]  bg-gray-800 min-w-[500px] bg-no-repeat bg-cover sm:rounded-r-lg">
