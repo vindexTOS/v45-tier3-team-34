@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { footer_links } from "../../contants";
 
 export default function Footer() {
-  return <footer className=" bg-gray-900 text-gray-400 px-12 py-2 md:rounded-lg">
+  return <footer className=" bg-gray-300 text-gray-900 dark:bg-gray-800 dark:text-gray-400 px-12 py-2 md:rounded-lg">
     <section className="h-10"></section>
     <section className="flex justify-between flex-col-reverse md:flex-row items-center border-t-2 border-t-gray-700 py-1 gap-y-2">
       <article className="border-t border-t-gray-800 w-full sm:w-fit text-center md:border-none">
