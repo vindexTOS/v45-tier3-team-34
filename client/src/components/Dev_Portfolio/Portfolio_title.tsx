@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import InputFieldGeneral from '../Forms/InputFieldGeneral'
 import DatePicker from 'react-datepicker'
 import Portfolio_Buttons from './Portfolio_Buttons'
 import 'react-datepicker/dist/react-datepicker.css'
+import { UseMainContext } from '../../context'
 
 const Portfolio_title = () => {
-  const [startDate, setStartDate] = useState(new Date())
+  const { PortfolioState, PortfolioDispatch } = UseMainContext()
   const style = {
     section: `flex flex-col items-start justify-around h-[500px] max_850:w-[100%]`,
     mainHeader: `text-[1.2rem] font-bold text-gray-700`,
@@ -17,6 +18,10 @@ const Portfolio_title = () => {
       <InputFieldGeneral
         label={`Project Title`}
         placeholder="Enter a brief but descriptive title"
+        dispatch={PortfolioDispatch}
+        state={PortfolioState}
+        dispatchType="title"
+        stateType="title"
       />
 
       <div className="text-gray-600 w-[50%] max_850:w-[100%] px-5 text-[14px]">
@@ -34,8 +39,10 @@ const Portfolio_title = () => {
         </p>
         <DatePicker
           className={style.DatePicker}
-          selected={startDate}
-          onChange={(date: React.SetStateAction<Date>) => setStartDate(date)}
+          selected={PortfolioState.date}
+          onChange={(date: React.SetStateAction<Date>) =>
+            PortfolioDispatch({ type: 'date', payload: date })
+          }
         />
       </div>
       <Portfolio_Buttons

@@ -44,7 +44,22 @@ type StatusState = {
   error: string
   success: string
 }
-
+// user portfolio project types
+type PortfolioState = {
+  title: string
+  date: DateConstructor
+  role: string
+  description: string
+  video?: string
+  github?: string
+  liveLink?: string
+  skill: string
+  technologies: string[]
+}
+type PortfolioAction = {
+  payload: any
+  type: string
+}
 type Cell = {
   ImgState: ImgState
   ImgDispatch: React.Dispatch<ImgAction>
@@ -54,6 +69,8 @@ type Cell = {
   statusState: StatusState
   Authloading: boolean
   GetUserData: () => void
+  PortfolioState: PortfolioState
+  PortfolioDispatch: React.Dispatch<PortfolioAction>
 }
 
 const Context = createContext<Cell | null>(null)
@@ -196,6 +213,58 @@ export const ContextProvider = ({
       GetUserData()
     }
   }, [UserState.userTokenData.user, UserState.updateUser])
+
+  // portfolio project posting
+
+  const initialStatePortfolio = {
+    title: '',
+    date: new Date(),
+    role: '',
+    description: '',
+    video: '',
+    github: '',
+    liveLink: '',
+    skill: '',
+    technologies: [],
+  }
+
+  const PortfolioRediuser = (
+    state: PortfolioState,
+    action: PortfolioAction,
+  ) => {
+    switch (action.type) {
+      case 'title':
+        return { ...state, title: state.title = action.payload }
+      case 'date':
+        return { ...state, date: state.date = action.payload }
+      case 'role':
+        return { ...state, role: state.role = action.payload }
+      case 'description':
+        return { ...state, description: state.description = action.payload }
+      case 'video':
+        return { ...state, video: state.video = action.payload }
+      case 'github':
+        return { ...state, github: state.github = action.payload }
+      case 'liveLink':
+        return { ...state, liveLink: state.liveLink = action.payload }
+      case 'skill':
+        return { ...state, skill: state.skill = action.payload }
+      case 'technologies':
+        return {
+          ...state,
+          technologies: [...state.technologies, action.payload],
+        }
+      case 'technologies-removed':
+        return { ...state, technologies: action.payload }
+      default:
+        return state
+    }
+  }
+  const [PortfolioState, PortfolioDispatch] = useReducer(
+    PortfolioRediuser,
+    initialStatePortfolio,
+  )
+
   return (
     <Context.Provider
       value={{
@@ -207,6 +276,8 @@ export const ContextProvider = ({
         statusState,
         Authloading,
         GetUserData,
+        PortfolioState,
+        PortfolioDispatch,
       }}
     >
       {children}
