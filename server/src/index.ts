@@ -6,6 +6,7 @@ import { config } from 'dotenv';
 import connectDB from './db/connectDB';
 import userRouter from './routes/user-routes';
 import projectRouter from './routes/project-routes';
+import companyProjectRouter from './routes/company-project-routes';
 config();
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use('/', userRouter);
 app.use('/projects', projectRouter);
+app.use('/companies/projects', companyProjectRouter);
 
 // catch all
 
