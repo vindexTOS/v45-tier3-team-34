@@ -10,7 +10,7 @@ import jwt from 'jwt-decode'
 import Cookies from 'universal-cookie'
 import { globalUrl } from './global-vars/Api-url'
 import { RegisterFormType } from './common.types'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useStatusMessages from './hooks/Status_hook'
 // img types
 type ImgState = {
@@ -29,8 +29,10 @@ type ImgAction = {
 // user types
 
 type UserState = {
+  userTokenData: any
   userData: any
   token: string
+  updateUser: boolean
 }
 
 type UserAction = {
@@ -51,6 +53,7 @@ type Cell = {
   hanldeAuth: (authObj: RegisterFormType, url: string) => void
   statusState: StatusState
   Authloading: boolean
+  GetUserData: () => void
 }
 
 const Context = createContext<Cell | null>(null)
@@ -61,7 +64,7 @@ export const ContextProvider = ({
   children: React.ReactNode
 }) => {
   const navigate = useNavigate()
-
+  const routeLocation = useLocation()
   const cookies = new Cookies()
 
   // uploading photo  to fire base /////// sending all the information to data base //////////////////// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,15 +100,22 @@ export const ContextProvider = ({
   /// user state managment //////////////////// token decoding
 
   const initialUserState: UserState = {
+    userTokenData: {},
     userData: {},
+
     token: '',
+    updateUser: false,
   }
   const UserReducer = (state: UserState, action: UserAction): UserState => {
     switch (action.type) {
       case 'get-token':
         return { ...state, token: state.token = action.payload }
       case 'decod-user':
+        return { ...state, userTokenData: state.userTokenData = action.payload }
+      case 'user-data':
         return { ...state, userData: state.userData = action.payload }
+      case 'user-update':
+        return { ...state, updateUser: state.updateUser = action.payload }
 
       default:
         return state
@@ -140,7 +150,13 @@ export const ContextProvider = ({
         expires: new Date(decoded.exp * 1000),
       })
       setAuthLoading(false)
-      navigate('/profile')
+      if (url === 'register') {
+        if (UserState.userTokenData && UserState.userTokenData.user) {
+          navigate(`/dev_project_add/title`)
+        }
+      } else if (url === 'login') {
+        navigate('/profile')
+      }
       return data
     } catch (error) {
       let err: any = error
@@ -150,7 +166,7 @@ export const ContextProvider = ({
     }
   }
 
-  // getting token cookie from browser cookies and setting headers and UserState.UserData state
+  // getting token cookie from browser cookies and setting headers and UserState.userTokenData state
   const token = cookies.get('jwt_authorization')
   useEffect(() => {
     if (token) {
@@ -160,6 +176,26 @@ export const ContextProvider = ({
       UserDispatch({ type: 'decod-user', payload: decoded })
     }
   }, [UserState.token])
+
+  // user update
+
+  // get updated user data or specifice user data when clicked on user
+  const GetUserData = async () => {
+    try {
+      const response = await axios.get(
+        `${globalUrl}/user/${UserState.userTokenData.user._id}`,
+      )
+      const data = response.data
+      UserDispatch({ type: 'user-data', payload: data })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
+      GetUserData()
+    }
+  }, [UserState.userTokenData.user, UserState.updateUser])
   return (
     <Context.Provider
       value={{
@@ -170,6 +206,7 @@ export const ContextProvider = ({
         hanldeAuth,
         statusState,
         Authloading,
+        GetUserData,
       }}
     >
       {children}

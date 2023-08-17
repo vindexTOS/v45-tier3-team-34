@@ -6,7 +6,6 @@ import { Request, Response, NextFunction } from 'express'
 
 export const Register = tryCatch(async (req: Request, res: any) => {
   const { password, confirmPassword, email, userName, avatar, role } = req.body
-  console.log(req.body)
   let user = {}
 
   const userExist = await User_model.findOne({ email: email })
@@ -18,7 +17,7 @@ export const Register = tryCatch(async (req: Request, res: any) => {
     return res.status(400).json({ msg: 'Password does not match' })
   }
   const hashedPassword = await bcrypt.hash(password, 10)
-  user = { password: hashedPassword, email, userName, avatar }
+  user = { password: hashedPassword, email, userName, avatar, role }
 
   if (password && email && userName) {
     await User_model.create(user)
@@ -28,7 +27,7 @@ export const Register = tryCatch(async (req: Request, res: any) => {
 
   const userFromDb = await User_model.findOne({ email: email })
   userFromDb.password = null
-  console.log(userFromDb)
+  // console.log(userFromDb)
 
   const token = jwt.sign({ user: userFromDb }, process.env.JWT_STRING, {
     expiresIn: '1h',
@@ -43,14 +42,11 @@ export const Register = tryCatch(async (req: Request, res: any) => {
 
 export const Login = tryCatch(async (req: Request, res: any) => {
   const { email, password } = req.body
-  console.log(req.body)
 
   const user = await User_model.findOne({ email: email })
   if (!user) {
     return res.status(401).json({ msg: 'User not found' })
   }
-
-  console.log(password, user.password)
 
   const isPasswordCorrect = await bcrypt.compare(password, user.password)
 

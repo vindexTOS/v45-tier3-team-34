@@ -2,28 +2,42 @@ import { useState, useEffect } from 'react'
 import InputField from '../components/Forms/InputField'
 import { RegisterFormType } from '../common.types'
 import ImgUpload from '../components/Profile_photo_upload'
-
+import DropDownSelect from '../components/Forms/dropDownSelect'
 import { UseMainContext } from '../context'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import Error from '../components/Status/Error'
 import Loading from '../components/Status/Loading'
 const Register = () => {
-  const { hanldeAuth, ImgState, statusState, Authloading } = UseMainContext()
+  const {
+    hanldeAuth,
+    ImgState,
+    statusState,
+    Authloading,
+    UserState,
+  } = UseMainContext()
 
   const [formData, setFormData] = useState<RegisterFormType>({
     email: '',
     userName: '',
     password: '',
     confirmPassword: '',
+    role: '',
   })
 
   //submit data
   async function handleSubmit() {
     // avatar:ImgState.imgUrl
-    const { email, userName, password, confirmPassword } = formData
+    const { email, userName, password, confirmPassword, role } = formData
 
     hanldeAuth(
-      { email, userName, password, confirmPassword, avatar: ImgState.imgUrl },
+      {
+        email,
+        userName,
+        password,
+        confirmPassword,
+        avatar: ImgState.imgUrl,
+        role,
+      },
       'register',
     )
   }
@@ -32,7 +46,7 @@ const Register = () => {
     <main className="w-full flex flex-col md:flex-row place-content-center ">
       <Error error={statusState.error} />
       <Loading loading={Authloading} />
-      <button onClick={() => console.log(ImgState.imgUrl)}>CLIC</button>
+      {/* <button onClick={() => console.log(ImgState.imgUrl)}>CLIC</button> */}
       <section className="w-full md:w-[50%] lg:w-[40%] flex flex-col   py-4 px-2 sm:px-12 ">
         {/* kinda logo */}
         <article className="flex justify-between mb-4 sm:mb-20">
@@ -54,8 +68,8 @@ const Register = () => {
         {/* form here  */}
         <article className="flex flex-col gap-y-2 xl:mr-20">
           {/* upload image need more style improvement */}
-          <div className="">
-            <ImgUpload />
+          <div className="relative">
+            <ImgUpload avatar="" />
           </div>
 
           <InputField
@@ -64,6 +78,12 @@ const Register = () => {
             type="text"
             field="full_name"
             label="Full Name"
+          />
+          <DropDownSelect
+            setData={setFormData}
+            type="text"
+            field="role"
+            label="Who are you ?"
           />
           <InputField
             data={formData}
