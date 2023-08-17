@@ -7,7 +7,7 @@ const Layout = ({
   children: ReactElement;
 }) => {
   return (
-    <div>
+    <div className="sm:px-1 md:px-8 md:py-2 bg-gray-100 dark:bg-gray-900">
       <NavBar />
       {children}
       <Footer />

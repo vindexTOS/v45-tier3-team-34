@@ -8,7 +8,7 @@ import ThemeToggle from "../components/Buttons/ThemeTogglerBtn";
 
 const Home = () => {
   return (
-    <div className="sm:px-1 md:px-8 md:py-2 bg-gray-100 dark:bg-gray-900">
+    <div className="">
       {/* NavBr */}
       <Link
         className="bg-red-500 text-white hover:bg-red-600 rounded-[5px] p-2"
