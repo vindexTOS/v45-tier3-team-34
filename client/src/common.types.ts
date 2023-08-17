@@ -4,7 +4,7 @@ export type RegisterFormType = {
   password: string
   confirmPassword?: string
   avatar?: string
-  role: string
+  role?: string
 }
 
 export type UserCardType = {

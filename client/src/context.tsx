@@ -10,7 +10,7 @@ import jwt from 'jwt-decode'
 import Cookies from 'universal-cookie'
 import { globalUrl } from './global-vars/Api-url'
 import { RegisterFormType } from './common.types'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useStatusMessages from './hooks/Status_hook'
 // img types
 type ImgState = {
@@ -64,7 +64,7 @@ export const ContextProvider = ({
   children: React.ReactNode
 }) => {
   const navigate = useNavigate()
-
+  const routeLocation = useLocation()
   const cookies = new Cookies()
 
   // uploading photo  to fire base /////// sending all the information to data base //////////////////// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -150,7 +150,13 @@ export const ContextProvider = ({
         expires: new Date(decoded.exp * 1000),
       })
       setAuthLoading(false)
-      navigate('/profile')
+      if (url === 'register') {
+        if (UserState.userTokenData && UserState.userTokenData.user) {
+          navigate(`/dev_project_add/title`)
+        }
+      } else if (url === 'login') {
+        navigate('/profile')
+      }
       return data
     } catch (error) {
       let err: any = error

@@ -4,11 +4,17 @@ import { RegisterFormType } from '../common.types'
 import ImgUpload from '../components/Profile_photo_upload'
 import DropDownSelect from '../components/Forms/dropDownSelect'
 import { UseMainContext } from '../context'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import Error from '../components/Status/Error'
 import Loading from '../components/Status/Loading'
 const Register = () => {
-  const { hanldeAuth, ImgState, statusState, Authloading } = UseMainContext()
+  const {
+    hanldeAuth,
+    ImgState,
+    statusState,
+    Authloading,
+    UserState,
+  } = UseMainContext()
 
   const [formData, setFormData] = useState<RegisterFormType>({
     email: '',
