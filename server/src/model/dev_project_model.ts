@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
-const Project_model = new mongoose.Schema({
+const Dev_Project_model = new mongoose.Schema({
   user_id: {
     type: String,
     required: true,
@@ -39,6 +39,6 @@ const Project_model = new mongoose.Schema({
       },
     },
   ],
-})
+});
 
-export default mongoose.model('connect_dev_user_projects', Project_model)
+export default mongoose.model('connect_dev_user_projects', Dev_Project_model);
