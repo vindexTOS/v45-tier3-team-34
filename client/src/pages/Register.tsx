@@ -1,12 +1,16 @@
-import { useState, useEffect } from 'react'
-import InputField from '../components/Forms/InputField'
-import { RegisterFormType } from '../common.types'
-import ImgUpload from '../components/Profile_photo_upload'
-import DropDownSelect from '../components/Forms/dropDownSelect'
-import { UseMainContext } from '../context'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-import Error from '../components/Status/Error'
-import Loading from '../components/Status/Loading'
+import { useState, useEffect } from "react";
+import InputField from "../components/Forms/InputField";
+import { RegisterFormType } from "../common.types";
+import ImgUpload from "../components/Profile_photo_upload";
+import DropDownSelect from "../components/Forms/dropDownSelect";
+import { UseMainContext } from "../context";
+import {
+  Link,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
+import Error from "../components/Status/Error";
+import Loading from "../components/Status/Loading";
 const Register = () => {
   const {
     hanldeAuth,
@@ -14,20 +18,27 @@ const Register = () => {
     statusState,
     Authloading,
     UserState,
-  } = UseMainContext()
+  } = UseMainContext();
 
-  const [formData, setFormData] = useState<RegisterFormType>({
-    email: '',
-    userName: '',
-    password: '',
-    confirmPassword: '',
-    role: '',
-  })
+  const [formData, setFormData] =
+    useState<RegisterFormType>({
+      email: "",
+      userName: "",
+      password: "",
+      confirmPassword: "",
+      role: "",
+    });
 
   //submit data
   async function handleSubmit() {
     // avatar:ImgState.imgUrl
-    const { email, userName, password, confirmPassword, role } = formData
+    const {
+      email,
+      userName,
+      password,
+      confirmPassword,
+      role,
+    } = formData;
 
     hanldeAuth(
       {
@@ -38,8 +49,8 @@ const Register = () => {
         avatar: ImgState.imgUrl,
         role,
       },
-      'register',
-    )
+      "register"
+    );
   }
 
   return (
@@ -47,16 +58,18 @@ const Register = () => {
       <Error error={statusState.error} />
       <Loading loading={Authloading} />
       {/* <button onClick={() => console.log(ImgState.imgUrl)}>CLIC</button> */}
-      <section className="w-full md:w-[50%] lg:w-[40%] flex flex-col   py-4 px-2 sm:px-12 ">
+      <section className="w-full md:w-[50%] lg:w-[40%] flex flex-col text-center py-4 px-2 sm:px-12 ">
         {/* kinda logo */}
-        <article className="flex justify-between mb-4 sm:mb-20">
+        <article className="mb-4 sm:mb-20">
           <a
             href="/"
             className="text-xg md:text-2xl font-extrabold text-gray-800"
           >
             devConnect
           </a>
-          <h1 className="text-sm text-gray-800 font-extralight">went</h1>
+          <h1 className="text-sm text-gray-800 font-extralight">
+            Description goes here
+          </h1>
         </article>
 
         {/* title */}
@@ -132,13 +145,15 @@ const Register = () => {
             Add samething here ...
           </h1>
           <p className="text-lg text-white font-light">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-            ullam odio deserunt ipsum, modi, soluta nulla
+            Lorem, ipsum dolor sit amet
+            consectetur adipisicing elit. Nesciunt
+            ullam odio deserunt ipsum, modi,
+            soluta nulla
           </p>
         </article>
       </section>
     </main>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
