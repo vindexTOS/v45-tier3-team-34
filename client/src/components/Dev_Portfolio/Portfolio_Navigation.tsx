@@ -19,10 +19,7 @@ const Portfolio_Navigation = () => {
   }
 
   return (
-    <nav
-      onClick={() => console.log(routerLocation.pathname)}
-      className={style.nav}
-    >
+    <nav className={style.nav}>
       {navArray.map((val: navArrayType) => (
         <div
           className={` ${
@@ -32,7 +29,7 @@ const Portfolio_Navigation = () => {
           }    p-2 px-10 rounded-[9px] text-start  `}
           key={val.title}
         >
-          <Link to={val.link}> {val.title}</Link>
+          {val.title}
         </div>
       ))}
     </nav>

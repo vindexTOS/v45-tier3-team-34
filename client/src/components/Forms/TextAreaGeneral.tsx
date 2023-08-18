@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { PortfolioState } from '../../context'
 type InputFieldPropTypes = {
   label: string
   placeholder: string
