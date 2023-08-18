@@ -4,11 +4,14 @@ import ThemeToggle from '../Buttons/ThemeTogglerBtn'
 import Search from '../Buttons/Search'
 import { Dialog } from '@headlessui/react'
 import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { UseMainContext } from '../../context'
 
 export default function NavBar() {
+  const { UserState } = UseMainContext()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
   return (
     <>
       <header
@@ -203,22 +206,33 @@ export default function NavBar() {
             <div className="flex items-center space-x-4">
               <ThemeToggle />
               <Search />
-              <div className="hidden lg:flex lg:flex-1 lg:justify-end ml-10">
-                <Link to={'/login'}>
-                  <button
-                    type="button"
-                    className="text-sm text-gray-700 dark:text-gray-300 py-2"
+              {UserState.userData &&
+              UserState.userData.user &&
+              UserState.userData.user.avatar ? (
+                <div onClick={() => navigate('/profile')}>
+                  <img
+                    className="w-[50px] h-[50px] rounded-[50%]"
+                    src={UserState.userData.user.avatar}
+                  />
+                </div>
+              ) : (
+                <div className="hidden lg:flex lg:flex-1 lg:justify-end ml-10">
+                  <Link to={'/login'}>
+                    <button
+                      type="button"
+                      className="text-sm text-gray-700 dark:text-gray-300 py-2"
+                    >
+                      Log in
+                    </button>
+                  </Link>
+                  <Link
+                    className="rounded-lg py-2 px-4 ml-5 text-sm text-white bg-green-600"
+                    to="/register"
                   >
-                    Log in
-                  </button>
-                </Link>
-                <Link
-                  className="rounded-lg py-2 px-4 ml-5 text-sm text-white bg-green-600"
-                  to="/register"
-                >
-                  SignUp
-                </Link>
-              </div>
+                    SignUp
+                  </Link>
+                </div>
+              )}
 
               {/* Mobile menu button */}
               <div className="flex lg:hidden">
