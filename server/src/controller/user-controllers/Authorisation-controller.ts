@@ -17,7 +17,7 @@ export const Register = tryCatch(async (req: Request, res: any) => {
     return res.status(400).json({ msg: 'Password does not match' })
   }
   const hashedPassword = await bcrypt.hash(password, 10)
-  user = { password: hashedPassword, email, userName, avatar }
+  user = { password: hashedPassword, email, userName, avatar, role }
 
   if (password && email && userName) {
     await User_model.create(user)

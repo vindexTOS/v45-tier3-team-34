@@ -11,7 +11,8 @@
     <a href="https://dev-connect-057y.onrender.com/" target="_blank">Live Site</a>
     ·
     <a href="https://github.com/chingu-voyages/v45-tier3-team-34/issues" target="_blank">Report Bug</a>
-    
+       ·
+    <a href="https://www.figma.com/proto/zv2fwT27yaOl2pBM6nA3dm/Recreate---Upwork---DevConnect?type=design&node-id=16-1407&t=FWVDL1zbjnJbkPSs-0&scaling=scale-down-width&page-id=0%3A1&starting-point-node-id=16%3A1407" target="_blank">Figma</a>
   </p>
 </div>
     <br />

@@ -1,5 +1,5 @@
 import { UseMainContext } from '../context'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 import Succsess from '../components/Status/Success'
 import User_profile_card from '../components/User/User_profile_card'
@@ -9,7 +9,7 @@ import { globalUrl } from '../global-vars/Api-url'
 
 const Profile = () => {
   const { UserState, statusState, UserDispatch } = UseMainContext()
-
+  const navigate = useNavigate()
   const cookies = new Cookies()
 
   const logOut = () => {
@@ -30,6 +30,9 @@ const Profile = () => {
           className="bg-red-500 shadow-md text-white p-4  rounded-[6px]"
         >
           LOG OUT
+        </button>
+        <button onClick={() => navigate('/dev_project_add/title')}>
+          Portfolio add
         </button>
       </div>
     )

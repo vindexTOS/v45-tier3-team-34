@@ -26,7 +26,7 @@ const statusReducer = (
 
 const useStatusMessages = (
   initialState: StatusState,
-  timeout: number = 3000,
+  timeout = 3000,
 ) => {
   const [statusState, dispatch] = useReducer(statusReducer, initialState)
 
