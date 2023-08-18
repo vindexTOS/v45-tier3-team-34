@@ -5,7 +5,7 @@ import EnterpriseSuite from "../components/Home/Enterprise/EnterpriseSuite";
 
 const Home = () => {
   return (
-    <div className="sm:px-1 md:px-8 md:py-2 bg-gray-100 dark:bg-gray-900">
+    <div className="">
       {/* NavBr */}
 
       {/* Hero */}
