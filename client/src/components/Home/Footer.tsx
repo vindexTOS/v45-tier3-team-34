@@ -5,22 +5,15 @@ export default function Footer() {
   const location = useLocation();
   return (
     <footer
-<<<<<<< HEAD
-      className={`    bg-gray-300 text-gray-900 dark:bg-gray-800 dark:text-gray-400 px-12 py-2 md:rounded-lg ${
+      className={` bg-gray-300 text-gray-900 dark:bg-slate-800 dark:text-gray-400 px-12 py-2 md:rounded-lg sm:mt-4 ${
         location.pathname === '/login' || location.pathname === '/register'
           ? 'hidden'
           : ''
-=======
-      className={`bg-[#011E01] text-[#9fa69f] shadow-lg dark:bg-gray-800 dark:text-gray-400 text-sm px-4 sm:px-12 py-10 my-10 rounded-lg mx-5 ${
-        location.pathname === "/login" ||
-        location.pathname === "/register"
-          ? "hidden"
-          : ""
->>>>>>> f52d16324a55bf3c239b72a62d9743fff8a3f702
+
       }`}
     >
       <section className="py-6 lg:py-10">
-        <div className="flex flex-col lg:flex-row lg:justify-evenly lg:max-w-screen-2xl mx-auto">
+        <div className="flex flex-col flex-wrap lg:flex-row lg:justify-evenly lg:max-w-screen-2xl mx-auto">
           <div className="mb-6 lg:mb-0 flex-grow">
             <h3 className="text-lg font-semibold">
               For Developer
@@ -59,7 +52,7 @@ export default function Footer() {
             </h2>
           </a>
         </article>
-        <article className="flex flex-col w-full sm:flex-row sm:items-start justify-start gap-4 p-2 ml-6 font-thin">
+        <article className="flex flex-col w-full sm:flex-row sm:items-start justify-start gap-4 py-2 sm:ml-6 font-thin">
           {footer_links.map(({ title, link }) => (
             <Link
               key={title}

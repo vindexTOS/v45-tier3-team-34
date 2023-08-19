@@ -29,7 +29,7 @@ const Login = () => {
         <article className="flex justify-between mb-8 sm:mb-auto">
           <a
             href="/"
-            className="text-2xl md:text-4xl font-extrabold text-gray-800"
+            className="text-2xl md:text-4xl font-extrabold text-gray-800 dark:text-gray-200"
           >
             devConnect
           </a>
@@ -37,7 +37,7 @@ const Login = () => {
         </article>
 
         {/* title */}
-        <article className="sm:my-6 my-24 mb-20 md:mb-32">
+        <article className="sm:my-6 my-12 mb-10 md:mb-16">
           <h1 className="text-3xl md:text-2xl font-light md:font-semibold">
             Welcome back 😁
           </h1>

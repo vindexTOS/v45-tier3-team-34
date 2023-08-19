@@ -58,23 +58,23 @@ const Register = () => {
       <Error error={statusState.error} />
       <Loading loading={Authloading} />
       {/* <button onClick={() => console.log(ImgState.imgUrl)}>CLIC</button> */}
-      <section className="w-full md:w-[50%] lg:w-[40%] flex flex-col text-center py-4 px-2 sm:px-12 ">
+      <section className="w-full md:w-[50%] lg:w-[40%] flex flex-col  py-4 px-2 sm:px-12 ">
         {/* kinda logo */}
-        <article className="mb-4 sm:mb-20">
+        <article className="text-gray-800 dark:text-gray-400">
           <a
             href="/"
-            className="text-xg md:text-2xl font-extrabold text-gray-800"
+            className="text-xg md:text-2xl font-extrabold "
           >
             devConnect
           </a>
-          <h1 className="text-sm text-gray-800 font-extralight">
+          <h1 className="text-sm  font-extralight">
             Description goes here
           </h1>
         </article>
 
         {/* title */}
-        <article className="my-6 sm:my-24">
-          <h1 className="text-3xl md:text-2xl font-light md:font-semibold">
+        <article className="my-6 sm:my-8">
+          <h1 className="text-3xl md:text-2xl dark:text-gray-400 font-light md:font-semibold">
             Create a free account
           </h1>
         </article>
