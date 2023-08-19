@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 const FindTalent = () => {
   return (
       <section className="flex ">
-          <article className="bg-[url('assets/img/find_client.png')] flex-1 bg-no-repeat bg-cover bg-center rounded-l-lg">
+          <article className="bg-[url('/assets/img/find_client.png')] flex-1 bg-no-repeat bg-cover bg-center rounded-l-lg">
           </article>
           {/* right section */}
           <article className="bg-blue-600 dark:bg-slate-800 sm:rounded-r-lg  text-white p-4 sm:p-8 flex flex-col gap-12 sm:gap-24 min-h-[550px]">
