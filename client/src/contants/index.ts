@@ -83,3 +83,19 @@ export const categories_temp = [
     },
     
 ]
+
+
+export const why_us = [
+    {
+        title: "Proof of quality",
+        description:"Check any pro’s work samples, client reviews, and identity verification"
+    },
+    {
+        title: "No cost until you hire",
+        description:"            Interview potential fits for your job, negotiate rates, and only pay for work you approve."
+    },
+    {
+        title: "Safe and secure",
+        description:"Focus on your work knowing we help protect your data and privacy. We’re here with 24/7 support if you need it."
+    },
+]

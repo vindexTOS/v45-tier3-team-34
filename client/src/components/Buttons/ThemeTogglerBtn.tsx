@@ -22,16 +22,14 @@ const ThemeToggle = () => {
   }, [theme]);
   return (
     <button
-      className={`bg-green-800 p-2 rounded-md text-white text-sm ${
-        theme === "dark" ? "bg-blue-800" : ""
-      }`}
+      className={`bg-slate-400 dark:bg-slate-800 p-2 rounded-full text-white text-sm transition-colors delay-300`}
       onClick={() =>
         setTheme((prevTheme) =>
           prevTheme === "dark" ? "light" : "dark"
         )
       }
     >
-      {theme === "dark" ? "Light" : "Dark"}
+      {theme !== "dark" ? "🌙" : "🌞"}
     </button>
   );
 };
