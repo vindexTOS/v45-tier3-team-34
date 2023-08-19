@@ -45,7 +45,7 @@ type StatusState = {
   success: string
 }
 // user portfolio project types
-type PortfolioState = {
+export type PortfolioState = {
   title: string
   date: DateConstructor
   role: string
@@ -55,6 +55,7 @@ type PortfolioState = {
   liveLink?: string
   skill: string
   technologies: string[]
+  error: string
 }
 type PortfolioAction = {
   payload: any
@@ -226,6 +227,7 @@ export const ContextProvider = ({
     liveLink: '',
     skill: '',
     technologies: [],
+    error: '',
   }
 
   const PortfolioRediuser = (
@@ -256,6 +258,9 @@ export const ContextProvider = ({
         }
       case 'technologies-removed':
         return { ...state, technologies: action.payload }
+      case 'portfolio-error':
+        return { ...state, error: action.payload }
+
       default:
         return state
     }

@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker'
 import Portfolio_Buttons from './Portfolio_Buttons'
 import 'react-datepicker/dist/react-datepicker.css'
 import { UseMainContext } from '../../context'
-
+import Error from '../Status/Error'
 const Portfolio_title = () => {
   const { PortfolioState, PortfolioDispatch } = UseMainContext()
   const style = {
@@ -14,6 +14,7 @@ const Portfolio_title = () => {
   }
   return (
     <section className={style.section}>
+      <Error error={PortfolioState.error} />
       <h1 className={style.mainHeader}>Add porfolio project</h1>
       <InputFieldGeneral
         label={`Project Title`}

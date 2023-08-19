@@ -5,18 +5,11 @@ export default function Footer() {
   const location = useLocation();
   return (
     <footer
-<<<<<<< HEAD
-      className={`  bg-gray-300 text-gray-900 dark:bg-slate-800 dark:text-gray-400 px-12 py-2 md:rounded-lg ${
+      className={`    bg-gray-300 text-gray-900 dark:bg-gray-800 dark:text-gray-400 px-12 py-2 md:rounded-lg ${
         location.pathname === '/login' || location.pathname === '/register'
           ? 'hidden'
           : ''
-=======
-      className={`bg-[#011E01] text-[#9fa69f] shadow-lg dark:bg-gray-800 dark:text-gray-400 text-sm px-4 sm:px-12 py-10 my-10 rounded-lg mx-5 ${
-        location.pathname === "/login" ||
-        location.pathname === "/register"
-          ? "hidden"
-          : ""
->>>>>>> 3325d948c3fa66589ac3e8a0c6431b11046fe8ee
+
       }`}
     >
       <section className="py-6 lg:py-10">

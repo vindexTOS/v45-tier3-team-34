@@ -5,6 +5,7 @@ import TextAreaGeneral from '../Forms/TextAreaGeneral'
 import { UseMainContext } from '../../context'
 import SkillSelection from '../Forms/SkillSelection'
 import DropeZone from '../Forms/DropeZone'
+import Error from '../Status/Error'
 const Portfolio_details = () => {
   const { PortfolioDispatch, PortfolioState } = UseMainContext()
   const style = {
@@ -13,6 +14,7 @@ const Portfolio_details = () => {
   }
   return (
     <section className={style.section}>
+      <Error error={PortfolioState.error} />
       <h1 className={style.mainHeader}>Add porfolio project</h1>
       <InputFieldGeneral
         label={`Role`}

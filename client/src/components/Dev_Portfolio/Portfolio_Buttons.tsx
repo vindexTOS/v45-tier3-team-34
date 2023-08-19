@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { UseMainContext } from '../../context'
 
 const Portfolio_Buttons = ({
   nextbtn,
@@ -11,8 +12,8 @@ const Portfolio_Buttons = ({
   link: string
   cancelToken: string
 }) => {
+  const { PortfolioState, PortfolioDispatch } = UseMainContext()
   const navigate = useNavigate()
-
   const goBackOrCancel = (cancelToken: string) => {
     if (cancelToken === 'cancel') {
       navigate('/profile')
@@ -20,6 +21,39 @@ const Portfolio_Buttons = ({
       navigate('/dev_project_add/title')
     } else if (cancelToken === 'back-to-detail') {
       navigate('/dev_project_add/details')
+    }
+  }
+
+  const nextPage = (link: string) => {
+    if (link === '/dev_project_add/title') {
+      navigate('/dev_project_add/title')
+    } else if (link === '/dev_project_add/details') {
+      if (PortfolioState.title) {
+        navigate('/dev_project_add/details')
+      } else {
+        PortfolioDispatch({ type: 'portfolio-error', payload: 'Input Title' })
+        setTimeout(() => {
+          PortfolioDispatch({
+            type: 'portfolio-error',
+            payload: '',
+          })
+        }, 3000)
+      }
+    } else if (link === '/dev_project_add/preview') {
+      if (PortfolioState.description && PortfolioState.role) {
+        navigate('/dev_project_add/preview')
+      } else {
+        PortfolioDispatch({
+          type: 'portfolio-error',
+          payload: 'Input all non optional fields',
+        })
+        setTimeout(() => {
+          PortfolioDispatch({
+            type: 'portfolio-error',
+            payload: '',
+          })
+        }, 3000)
+      }
     }
   }
 
@@ -33,7 +67,7 @@ const Portfolio_Buttons = ({
       </button>
       <button
         className="  rounded-[20px] p-2 px-8 bg-red-600 text-white "
-        onClick={() => navigate(link)}
+        onClick={() => nextPage(link)}
       >
         {nextbtn}
       </button>
