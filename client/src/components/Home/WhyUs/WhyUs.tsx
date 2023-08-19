@@ -6,13 +6,13 @@ import { why_us } from "../../../contants"
 const WhyUs = () => {
   return (
     <section className="flex flex-col lg:flex-row justify-between gap-x-3 sm:mt-8 sm:mb-4">
-          <article className="bg-green-100 dark:bg-slate-800 text-green-900 dark:text-green-200 p-8 rounded-b-none lg:rounded-b-lg rounded-lg flex gap-2 flex-col ">
-            <h1 className="text-4xl md:text-8xl font-bold dark:text-green-300">Why businesess turn to devConnect</h1>
+          <article className="bg-green-50 dark:bg-slate-800 text-green-500 dark:text-green-200 p-8 rounded-b-none lg:rounded-b-lg rounded-lg flex gap-2 flex-col ">
+            <h1 className="text-4xl md:text-8xl font-bold text-green-700 dark:text-green-300">Why businesess turn to devConnect</h1>
             <div className="flex flex-col gap-y-4">
                 {
                     why_us.map(({ title, description }) => (
                         <div key={title}>
-                            <h1 className="text-2xl font-semibold flex gap-2 items-center dark:text-gray-300">
+                            <h1 className="text-2xl font-semibold flex gap-2 items-center text-green-800 dark:text-gray-300">
                                 <span className="text-xl">
                                     <MdStars/>
                                 </span>
