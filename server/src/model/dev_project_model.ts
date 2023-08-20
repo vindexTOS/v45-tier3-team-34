@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const Dev_Project_model = new mongoose.Schema({
   user_id: {
@@ -13,6 +13,9 @@ const Dev_Project_model = new mongoose.Schema({
     type: String,
     required: [true, 'description is required'],
   },
+  date: {
+    type: String,
+  },
   photo: {
     type: String,
     required: [true, 'photo is reuqired'],
@@ -26,19 +29,7 @@ const Dev_Project_model = new mongoose.Schema({
   videoLink: {
     type: String,
   },
-  skills_used: [
-    {
-      _id: mongoose.Schema.Types.ObjectId,
-      title: {
-        type: String,
-        required: true,
-      },
-      icon: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
-});
+  skills_used: [],
+})
 
-export default mongoose.model('connect_dev_user_projects', Dev_Project_model);
+export default mongoose.model('connect_dev_user_projects', Dev_Project_model)

@@ -169,9 +169,7 @@ export const ContextProvider = ({
       })
       setAuthLoading(false)
       if (url === 'register') {
-        if (UserState.userTokenData && UserState.userTokenData.user) {
-          navigate(`/dev_project_add/title`)
-        }
+        navigate(`/dev_project_add/title`)
       } else if (url === 'login') {
         navigate('/profile')
       }
