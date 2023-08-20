@@ -5,7 +5,8 @@ import userDefault from '../assets/photos/defaultPhoto.jpg'
 import { MdCameraEnhance } from 'react-icons/md'
 import { storage } from '../firebase/firebase'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-const ImgUpload = () => {
+import Loading from './Status/Loading'
+const ImgUpload = ({ avatar }: { avatar: string }) => {
   const { ImgState, ImgDispatch } = UseMainContext()
   const imgUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!ImgState.image) {
@@ -45,7 +46,7 @@ const ImgUpload = () => {
         ImgDispatch({ type: 'set-img-loading', payload: false })
 
         console.log('succsess')
-
+        console.log(downloadURL)
         removeImgFromHtml()
       } catch (error) {
         console.log(error)
@@ -86,7 +87,8 @@ const ImgUpload = () => {
     setHover(false)
   }
   return (
-    <div className="flex max_smm:w-[100%]  relative items-center justify-center max_md2:w-[40%] border-[2px] rounded-[4px] cursor-pointer">
+    <div className="flex max_smm:w-[100%]   relative items-center justify-center max_md2:w-[40%]  rounded-[4px] cursor-pointer">
+      <Loading loading={ImgState.imgLoading} />
       <label
         onDragLeave={(e) => handleDragLeave(e)}
         onDragOver={(e) => handleDragOver(e)}
@@ -97,17 +99,21 @@ const ImgUpload = () => {
         htmlFor="photo"
       >
         {hover && (
-          <div className="w-[250px] h-[250px] absolute top-0 right-0 backdrop-blur-sm  bg-[#655c70]/40"></div>
+          <div className=" absolute  w-[200px] h-[200px] outline outline-2 p-2 rounded-[50%]  backdrop-blur-sm  bg-[#655c70]/40"></div>
         )}
-        <img
-          className={` w-[250px] h-[250px]  `}
-          src={ImgState.imgUrl ? ImgState.imgUrl : userDefault}
-        />
-        <MdCameraEnhance
-          className={`text-[4rem] absolute top-[30%] right-[38%]   ${
-            hover ? `text-[#fd5564]/70` : `text-[#fd5564]/40`
-          }`}
-        />
+        <div className="flex items-center justify-center">
+          <img
+            className={`  w-[200px]  h-[200px]  outline outline-2 p-2 rounded-[50%]  `}
+            src={
+              ImgState.imgUrl ? ImgState.imgUrl : avatar ? avatar : userDefault
+            }
+          />
+          <MdCameraEnhance
+            className={`text-[4rem] absolute     ${
+              hover ? `text-[#fd5564]/70` : `text-[#fd5564]/40`
+            }`}
+          />
+        </div>
         <input
           placeholder="Photo"
           onChange={(e) => imgUpload(e)}

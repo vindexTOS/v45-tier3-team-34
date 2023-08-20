@@ -39,7 +39,7 @@ const InputField = ({ label, setData, type, field }: Proptypes) => {
         onChange={(e) => {
           handleChange({ field, value: e.target.value })
         }}
-        className="border border-gray-400 outline-green-700 outline-1 w-full py-2 px-4 rounded-sm font-light text-lg"
+        className="border border-gray-400 dark:bg-transparent dark:text-gray-200 outline-green-700 outline-1 w-full py-2 px-4 rounded-sm font-light text-lg"
         type={type}
         placeholder={label}
       />

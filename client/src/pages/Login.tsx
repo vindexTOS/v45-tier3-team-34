@@ -2,11 +2,11 @@ import { useState } from 'react'
 import InputField from '../components/Forms/InputField'
 import { RegisterFormType } from '../common.types'
 import { UseMainContext } from '../context'
-import { useNavigate } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
+import Error from '../components/Status/Error'
+import Loading from '../components/Status/Loading'
 const Login = () => {
-  const { hanldeAuth } = UseMainContext()
-  const navigate = useNavigate()
+  const { hanldeAuth, statusState, Authloading } = UseMainContext()
 
   const [formData, setFormData] = useState<RegisterFormType>({
     email: '',
@@ -16,24 +16,20 @@ const Login = () => {
   //submit data
   async function handleSubmit() {
     const { email, password } = formData
-    try {
-      hanldeAuth({ email, password }, 'login')
 
-      navigate('/profile')
-    } catch (error) {
-      // catch error in state later
-      console.log(error)
-    }
+    hanldeAuth({ email, password }, 'login')
   }
 
   return (
     <main className="w-full flex flex-col md:flex-row  place-content-center">
+      <Error error={statusState.error} />
+      <Loading loading={Authloading} />
       <section className="w-full md:w-[50%] lg:w-[40%] flex flex-col   py-4 px-2 sm:px-12 ">
         {/* kinda logo */}
         <article className="flex justify-between mb-8 sm:mb-auto">
           <a
             href="/"
-            className="text-2xl md:text-4xl font-extrabold text-gray-800"
+            className="text-2xl md:text-4xl font-extrabold text-gray-800 dark:text-gray-200"
           >
             devConnect
           </a>
@@ -41,7 +37,7 @@ const Login = () => {
         </article>
 
         {/* title */}
-        <article className="sm:my-6 my-24 mb-20 md:mb-32">
+        <article className="sm:my-6 my-12 mb-10 md:mb-16">
           <h1 className="text-3xl md:text-2xl font-light md:font-semibold">
             Welcome back 😁
           </h1>
@@ -70,15 +66,15 @@ const Login = () => {
           >
             Login
           </button>
-          <a
+          <Link
             className="font-light text-end text-[13px] text-gray-700"
-            href="/register"
+            to="/register"
           >
             Don't have an account
-          </a>
+          </Link>
         </article>
       </section>
-      <section className=" flex-1 md:block  min-h-[500px] md:min-h-screen bg-[url('assets/img/bg-temp.jpg')] bg-cover bg-no-repeat bg-center">
+      <section className=" flex-1 md:block  min-h-[500px] md:min-h-screen bg-[url('/assets/img/bg-temp.jpg')] bg-cover bg-no-repeat bg-center">
         {/* image or samething else */}
         <article className="bg-gradient-to-b min-h-full from-slate-800 to-transparent p-4">
           <h1 className="text-4xl font-extrabold text-white ">
