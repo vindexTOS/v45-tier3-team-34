@@ -12,17 +12,21 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { UseMainContext } from "../../context";
+import FindCompanyMenu from "../NavBar/FindCompanyMenu";
 
 export default function NavBar() {
   const { UserState } = UseMainContext();
   const [mobileMenuOpen, setMobileMenuOpen] =
     useState(false);
+  const [isHovered, setIsHovered] =
+    useState(false);
+
   const location = useLocation();
   const navigate = useNavigate();
   return (
     <>
       <header
-        className={`${
+        className={`container ${
           location.pathname === "/login" ||
           location.pathname === "/register"
             ? "hidden"
@@ -49,25 +53,14 @@ export default function NavBar() {
                 id="navbar-multi-level"
               >
                 <ul className="flex flex-col font-medium text-sm p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-white dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700">
-                  <li>
-                    <button
-                      id="dropdownNavbarLink"
-                      data-dropdown-toggle="dropdownNavbar"
-                      className="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-green-700 lg:p-0 lg:w-auto dark:text-white lg:dark:hover:text-green-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent"
-                    >
-                      Find Company{" "}
-                      <svg
-                        className="w-2.5 h-2.5 ml-2.5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 10 6"
-                      >
-                        Find Developer
-                      </svg>
-                    </button>
-                  </li>
-                  <li>
+                  <li
+                    onMouseEnter={() =>
+                      setIsHovered(true)
+                    }
+                    onMouseLeave={() =>
+                      setIsHovered(false)
+                    }
+                  >
                     <button
                       id="dropdownNavbarLink"
                       data-dropdown-toggle="dropdownNavbar"
@@ -75,6 +68,61 @@ export default function NavBar() {
                     >
                       Find Company
                     </button>
+                    {/* Dropdown */}
+                    {isHovered && (
+                      <FindCompanyMenu />
+                    )}
+                  </li>
+                  <li>
+                    <button
+                      id="dropdownNavbarLink"
+                      data-dropdown-toggle="dropdownNavbar"
+                      className="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-green-700 lg:p-0 lg:w-auto dark:text-white lg:dark:hover:text-green-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent"
+                    >
+                      Find Developer
+                    </button>
+                    {/* Dropdown */}
+                    <div className="hidden absolute z-10 left-0 mt-2 bg-white rounded-lg shadow-lg w-72 dark:bg-gray-700 lg:dark:bg-transparent lg:left-auto lg:mt-0 lg:rounded-none lg:shadow-none lg:w-auto group-hover:block">
+                      <div className="p-4">
+                        <h3 className="mb-2 font-semibold">
+                          Skills
+                        </h3>
+                        <ul className="space-y-2">
+                          <li>
+                            <a
+                              href="#"
+                              className="text-gray-800 hover:text-green-700 dark:text-gray-400 dark:hover:text-green-500"
+                            >
+                              Skill 1
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              className="text-gray-800 hover:text-green-700 dark:text-gray-400 dark:hover:text-green-500"
+                            >
+                              Skill 2
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              className="text-gray-800 hover:text-green-700 dark:text-gray-400 dark:hover:text-green-500"
+                            >
+                              Skill 3
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              className="text-gray-800 hover:text-green-700 dark:text-gray-400 dark:hover:text-green-500"
+                            >
+                              Skill 4
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                   </li>
                   <li>
                     <a
