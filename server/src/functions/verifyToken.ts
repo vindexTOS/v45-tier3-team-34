@@ -7,9 +7,9 @@ export const verifyToken = async (token: string) => {
     const decoded: any = jwt.verify(token, process.env.JWT_STRING)
 
     // Extract the user ID from the decoded token
-    const userId = decoded
+    const user_id = decoded
     // Find the user in the database
-    const user = await user_model.findById(userId.user._id)
+    const user = await user_model.findById(user_id.user._id)
 
     // Check if the user exists
 
