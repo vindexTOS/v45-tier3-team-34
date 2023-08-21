@@ -12,15 +12,11 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { UseMainContext } from "../../context";
-import FindCompanyMenu from "../NavBar/FindCompanyMenu";
-import FindDeveloperMenu from "../NavBar/FindDeveloperMenu";
-import WhyDevConMenu from "../NavBar/WhyDevConMenu";
+import MenuItem from "../NavBar/MenuItem";
 
 export default function NavBar() {
   const { UserState } = UseMainContext();
   const [mobileMenuOpen, setMobileMenuOpen] =
-    useState(false);
-  const [isHovered, setIsHovered] =
     useState(false);
 
   const location = useLocation();
@@ -35,7 +31,7 @@ export default function NavBar() {
             : ""
         }`}
       >
-        <nav className="bg-white border-gray-200 rounded-lg mb-5 shadow-lg dark:bg-gray-900 dark:border-gray-700 transition-colors delay-100 ease-out">
+        <nav className="bg-white border-gray-200 rounded-lg my-5 shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-200 ease-in-out">
           <div className="max-w-screen-2xl flex items-center justify-between mx-auto p-4 lg:p-6">
             <div className="flex items-center space-x-10">
               <div>
@@ -50,69 +46,7 @@ export default function NavBar() {
               </div>
 
               {/* Navigation links */}
-              <div
-                className="hidden lg:flex lg:space-x-8"
-                id="navbar-multi-level"
-              >
-                <ul className="flex flex-col font-medium text-sm p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-white dark:bg-gray-800 lg:dark:bg-gray-900 dark:border-gray-700">
-                  <li
-                    onMouseEnter={() =>
-                      setIsHovered(true)
-                    }
-                    onMouseLeave={() =>
-                      setIsHovered(false)
-                    }
-                  >
-                    <button
-                      id="dropdownNavbarLink"
-                      data-dropdown-toggle="dropdownNavbar"
-                      className="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-green-700 lg:p-0 lg:w-auto dark:text-white lg:dark:hover:text-green-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent"
-                    >
-                      Find Company
-                    </button>
-                    {/* Dropdown */}
-                    {isHovered && (
-                      <FindCompanyMenu />
-                    )}
-                  </li>
-                  <li
-                    onMouseEnter={() =>
-                      setIsHovered(true)
-                    }
-                    onMouseLeave={() =>
-                      setIsHovered(false)
-                    }
-                  >
-                    <button
-                      id="dropdownNavbarLink"
-                      data-dropdown-toggle="dropdownNavbar"
-                      className="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-green-700 lg:p-0 lg:w-auto dark:text-white lg:dark:hover:text-green-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 lg:dark:hover:bg-transparent"
-                    >
-                      Find Developer
-                    </button>
-                    {/* Dropdown */}
-                    {isHovered && (
-                      <FindDeveloperMenu />
-                    )}
-                  </li>
-                  <li
-                    onMouseEnter={() =>
-                      setIsHovered(true)
-                    }
-                    onMouseLeave={() =>
-                      setIsHovered(false)
-                    }
-                  >
-                    <button className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-green-700 lg:p-0 dark:text-white lg:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent">
-                      Why DevConnect
-                    </button>
-                    {/* Dropdown */}
-                    {isHovered && (
-                      <WhyDevConMenu />
-                    )}
-                  </li>
-                </ul>
-              </div>
+              <MenuItem />
             </div>
             <div className="flex items-center space-x-4">
               <ThemeToggle />
