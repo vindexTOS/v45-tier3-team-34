@@ -7,12 +7,18 @@ import SkillSelection from '../components/Forms/SkillSelection'
 import axios from 'axios'
 import { globalUrl } from '../global-vars/Api-url'
 import { useNavigate } from 'react-router-dom'
+import Error from '../components/Status/Error'
+import Succsess from '../components/Status/Success'
+import LoadingComponent from '../components/Status/Loading'
 export default function User_info_form() {
   const {
     UserInfoState,
     UserInfoDispatct,
     PortfolioState,
     UserState,
+    setError,
+    setSuccess,
+    statusState,
   } = UseMainContext()
   const style = {
     mainDiv: ` w-[100vw] gap-3 max_xl:w-[100%] py-60 flex flex-col  items-center `,
@@ -45,9 +51,11 @@ export default function User_info_form() {
             skills: PortfolioState.technologies,
           },
         )
-        console.log(data.data)
+        console.log(data)
+        setSuccess(data.data.msg)
       } catch (error) {
-        console.log(error)
+        const err: any = error
+        setError(err.response.data.msg)
       }
     }
   }
@@ -59,7 +67,7 @@ export default function User_info_form() {
       <p className={style.header}>
         you can{' '}
         <span className={style.skip} onClick={() => navigate('/profile')}>
-          skip{' '}
+          skip
         </span>
         this part and fill out later
       </p>
@@ -131,6 +139,8 @@ export default function User_info_form() {
           </div>
         </section>
       </Portfolio_layout>
+      <Error error={statusState.error} />
+      <Succsess success={statusState.success} />
     </div>
   )
 }

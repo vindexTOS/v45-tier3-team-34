@@ -16,7 +16,6 @@ const Profile = () => {
     cookies.remove('jwt_authorization')
     window.location.reload()
   }
-  const [project, setProject] = useState()
   const getAllDevProjects = async () => {
     if (UserState.userData && UserState.userData.user) {
       try {

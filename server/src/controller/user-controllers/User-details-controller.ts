@@ -9,7 +9,11 @@ export const update_user_detail_info = tryCatch(
     if (!userExists) {
       return res.status(403).json({ msg: 'User Does not have info' })
     }
-    await user_info_model.findByIdAndUpdate(userExists._id, req.body)
+    console.log(userExists)
+    await user_info_model.findByIdAndUpdate(userExists._id, req.body, {
+      new: true,
+      runValidators: true,
+    })
 
     return res.status(200).json({ msg: 'info has been updated' })
   },
