@@ -10,7 +10,7 @@ import jwt from 'jwt-decode'
 import Cookies from 'universal-cookie'
 import { globalUrl } from './global-vars/Api-url'
 import { RegisterFormType } from './common.types'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useStatusMessages from './hooks/Status_hook'
 // img types
 type ImgState = {
@@ -45,6 +45,41 @@ type StatusState = {
   success: string
 }
 
+// user info types
+type UserInfoState = {
+  title: string
+  summary: string
+  user_id: string
+  github: string
+  linkedin: string
+  website: string
+  hrPay: number
+}
+
+type UserInfoAction = {
+  payload: any | string
+  type: string
+}
+
+// user portfolio project types
+export type PortfolioState = {
+  title: string
+  date: DateConstructor
+  role: string
+  description: string
+  video?: string
+  github?: string
+  liveLink?: string
+  skill: string
+  technologies: string[]
+  error: string
+  loading: boolean
+}
+type PortfolioAction = {
+  payload: any
+  type: string
+}
+
 type Cell = {
   ImgState: ImgState
   ImgDispatch: React.Dispatch<ImgAction>
@@ -54,6 +89,14 @@ type Cell = {
   statusState: StatusState
   Authloading: boolean
   GetUserData: () => void
+  PortfolioState: PortfolioState
+  PortfolioDispatch: React.Dispatch<PortfolioAction>
+
+  UserInfoState: UserInfoState
+  UserInfoDispatct: React.Dispatch<UserInfoAction>
+
+  setError: (message: string) => void
+  setSuccess: (message: string) => void
 }
 
 const Context = createContext<Cell | null>(null)
@@ -64,7 +107,7 @@ export const ContextProvider = ({
   children: React.ReactNode
 }) => {
   const navigate = useNavigate()
-
+  const routeLocation = useLocation()
   const cookies = new Cookies()
 
   // uploading photo  to fire base /////// sending all the information to data base //////////////////// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -123,6 +166,48 @@ export const ContextProvider = ({
   }
   const [UserState, UserDispatch] = useReducer(UserReducer, initialUserState)
 
+  // user information states..................................................................
+
+  const UserInfoReducer = (
+    state: UserInfoState,
+    action: UserInfoAction,
+  ): UserInfoState => {
+    switch (action.type) {
+      case 'title':
+        return { ...state, title: action.payload }
+      case 'summary':
+        return { ...state, summary: action.payload }
+      case 'user_id':
+        return { ...state, user_id: action.payload }
+      case 'github':
+        return { ...state, github: action.payload }
+      case 'linkedin':
+        return { ...state, linkedin: action.payload }
+      case 'website':
+        return { ...state, website: action.payload }
+
+      case 'hrPay':
+        return { ...state, hrPay: action.payload }
+
+      default:
+        return state
+    }
+  }
+  const initialUserInfoState: UserInfoState = {
+    title: '',
+    summary: '',
+    user_id: '',
+    github: '',
+    linkedin: '',
+    website: '',
+    hrPay: 0,
+  }
+
+  const [UserInfoState, UserInfoDispatct] = useReducer(
+    UserInfoReducer,
+    initialUserInfoState,
+  )
+
   // handle registration and login
 
   // this is custome hook
@@ -150,13 +235,16 @@ export const ContextProvider = ({
         expires: new Date(decoded.exp * 1000),
       })
       setAuthLoading(false)
-      navigate('/profile')
+      if (url === 'register') {
+        navigate(`/dev_project_add/title`)
+      } else if (url === 'login') {
+        navigate('/profile')
+      }
       return data
     } catch (error) {
       let err: any = error
       setError(err.response.data.msg)
       setAuthLoading(false)
-      throw error
     }
   }
 
@@ -190,6 +278,65 @@ export const ContextProvider = ({
       GetUserData()
     }
   }, [UserState.userTokenData.user, UserState.updateUser])
+
+  // portfolio project posting
+
+  const initialStatePortfolio = {
+    title: '',
+    date: new Date(),
+    role: '',
+    description: '',
+    video: '',
+    github: '',
+    liveLink: '',
+    skill: '',
+    technologies: [],
+    error: '',
+    loading: false,
+  }
+
+  const PortfolioRediuser = (
+    state: PortfolioState,
+    action: PortfolioAction,
+  ) => {
+    switch (action.type) {
+      case 'title':
+        return { ...state, title: state.title = action.payload }
+      case 'date':
+        return { ...state, date: state.date = action.payload }
+      case 'role':
+        return { ...state, role: state.role = action.payload }
+      case 'description':
+        return { ...state, description: state.description = action.payload }
+      case 'video':
+        return { ...state, video: state.video = action.payload }
+      case 'github':
+        return { ...state, github: state.github = action.payload }
+      case 'liveLink':
+        return { ...state, liveLink: state.liveLink = action.payload }
+      case 'skill':
+        return { ...state, skill: state.skill = action.payload }
+      case 'technologies':
+        return {
+          ...state,
+          technologies: [...state.technologies, action.payload],
+        }
+      case 'technologies-removed':
+        return { ...state, technologies: action.payload }
+      case 'portfolio-error':
+        return { ...state, error: action.payload }
+      case 'loading':
+        return { ...state, loading: action.payload }
+      default:
+        return state
+    }
+  }
+
+  const [PortfolioState, PortfolioDispatch] = useReducer(
+    PortfolioRediuser,
+    initialStatePortfolio,
+  )
+
   return (
     <Context.Provider
       value={{
@@ -199,8 +346,14 @@ export const ContextProvider = ({
         UserDispatch,
         hanldeAuth,
         statusState,
+        setError,
+        setSuccess,
         Authloading,
         GetUserData,
+        PortfolioState,
+        PortfolioDispatch,
+        UserInfoState,
+        UserInfoDispatct,
       }}
     >
       {children}

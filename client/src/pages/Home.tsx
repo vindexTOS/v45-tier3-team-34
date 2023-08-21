@@ -1,26 +1,25 @@
-import { Link } from "react-router-dom";
 import HeroSection from "../components/Home/Hero/HeroSection";
+import FindClient from "../components/Home/FindClient/FindClient";
+import Categories from "../components/Home/CategoryBrowse/Categories";
+import EnterpriseSuite from "../components/Home/Enterprise/EnterpriseSuite";
+import WhyUs from "../components/Home/WhyUs/WhyUs";
+import FindTalent from "../components/Home/FindTalent/FindTalent";
 
 const Home = () => {
   return (
-    <div>
-      {/* NavBr */}
-      <Link
-        className="bg-red-500 text-white hover:bg-red-600 rounded-[5px] p-2"
-        to="/login"
-      >
-        Login
-      </Link>
+    <div className="transition-colors delay-100 space-y-24 my-10 max-w-7xl mx-auto">
       {/* Hero */}
       <HeroSection />
-      {/* About */}
-      <p className="p-2 text-4xl">About</p>
-      {/* Info */}
-      <p className="p-2 text-4xl">More Info</p>
-      {/* Contact */}
-      <p className="p-2 text-4xl">Contact</p>
-      {/* Footer */}
-      <p className="p-2 text-4xl">Footer</p>
+      {/* browse by category */}
+      <Categories />
+      {/* enterprise suite */}
+      <EnterpriseSuite />
+      {/* find client */}
+      <FindClient />
+      {/* why us */}
+      <WhyUs />
+      {/* find talent */}
+      <FindTalent />
     </div>
   );
 };
