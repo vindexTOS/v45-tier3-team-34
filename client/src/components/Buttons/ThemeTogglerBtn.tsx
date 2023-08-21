@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { HiMoon, HiSun } from "react-icons/hi";
 
 const ThemeToggle = () => {
   const temp = localStorage.getItem(
@@ -22,14 +23,14 @@ const ThemeToggle = () => {
   }, [theme]);
   return (
     <button
-      className={`bg-slate-400 dark:bg-slate-800 p-2 rounded-full text-white text-sm transition-colors delay-300`}
+      className={`bg-slate-800 dark:bg-slate-600 p-2 rounded-full text-white text-sm transition-colors delay-300`}
       onClick={() =>
         setTheme((prevTheme) =>
           prevTheme === "dark" ? "light" : "dark"
         )
       }
     >
-      {theme !== "dark" ? "🌙" : "🌞"}
+      {theme !== "dark" ? <HiMoon /> : <HiSun />}
     </button>
   );
 };
