@@ -7,7 +7,7 @@ const MenuItem = () => {
   >(null);
 
   return (
-    <div className="group relative">
+    <div className="group relative hidden lg:block">
       <div className="flex">
         {menuItems.map((menu, index) => (
           <div className="" key={index}>
@@ -20,7 +20,7 @@ const MenuItem = () => {
                 setHoveredMenu(null)
               }
             >
-              <button className="p-3 text-sm text-green-900 dark:text-slate-400">
+              <button className="p-3 text-sm text-green-900 dark:text-slate-400 hover:text-green-700 dark:hover:text-green-500">
                 {menu.name}
               </button>
               <div className="group relative">
