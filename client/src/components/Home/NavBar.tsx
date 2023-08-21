@@ -12,16 +12,11 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { UseMainContext } from "../../context";
-import FindCompanyMenu from "../NavBar/FindCompanyMenu";
-import FindDeveloperMenu from "../NavBar/FindDeveloperMenu";
-import WhyDevConMenu from "../NavBar/WhyDevConMenu";
 import MenuItem from "../NavBar/MenuItem";
 
 export default function NavBar() {
   const { UserState } = UseMainContext();
   const [mobileMenuOpen, setMobileMenuOpen] =
-    useState(false);
-  const [isHovered, setIsHovered] =
     useState(false);
 
   const location = useLocation();
@@ -36,7 +31,7 @@ export default function NavBar() {
             : ""
         }`}
       >
-        <nav className="bg-white border-gray-200 rounded-lg my-5 shadow-lg dark:bg-gray-900 dark:border-gray-700 transition-colors delay-100 ease-out">
+        <nav className="bg-white border-gray-200 rounded-lg my-5 shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-200 ease-in-out">
           <div className="max-w-screen-2xl flex items-center justify-between mx-auto p-4 lg:p-6">
             <div className="flex items-center space-x-10">
               <div>

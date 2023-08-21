@@ -23,7 +23,7 @@ const ThemeToggle = () => {
   }, [theme]);
   return (
     <button
-      className={`bg-slate-800 dark:bg-slate-600 p-2 rounded-full text-white text-sm transition-colors delay-300`}
+      className={`bg-slate-800 dark:bg-slate-600 p-2 rounded-full text-white text-sm transform scale-100 transition-all duration-700 delay-300`}
       onClick={() =>
         setTheme((prevTheme) =>
           prevTheme === "dark" ? "light" : "dark"
