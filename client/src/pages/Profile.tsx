@@ -52,6 +52,7 @@ const Profile = () => {
         <button onClick={() => navigate('/dev_project_add/title')}>
           Portfolio add
         </button>
+        <button onClick={() => navigate('/user_info')}>user info</button>
       </div>
     )
   } else {

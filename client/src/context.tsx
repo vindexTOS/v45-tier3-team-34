@@ -44,6 +44,23 @@ type StatusState = {
   error: string
   success: string
 }
+
+// user info types
+type UserInfoState = {
+  title: string
+  summary: string
+  user_id: string
+  github: string
+  linkedin: string
+  website: string
+  hrPay: number
+}
+
+type UserInfoAction = {
+  payload: any | string
+  type: string
+}
+
 // user portfolio project types
 export type PortfolioState = {
   title: string
@@ -56,11 +73,13 @@ export type PortfolioState = {
   skill: string
   technologies: string[]
   error: string
+  loading: boolean
 }
 type PortfolioAction = {
   payload: any
   type: string
 }
+
 type Cell = {
   ImgState: ImgState
   ImgDispatch: React.Dispatch<ImgAction>
@@ -72,6 +91,12 @@ type Cell = {
   GetUserData: () => void
   PortfolioState: PortfolioState
   PortfolioDispatch: React.Dispatch<PortfolioAction>
+
+  UserInfoState: UserInfoState
+  UserInfoDispatct: React.Dispatch<UserInfoAction>
+
+  setError: (message: string) => void
+  setSuccess: (message: string) => void
 }
 
 const Context = createContext<Cell | null>(null)
@@ -141,6 +166,48 @@ export const ContextProvider = ({
   }
   const [UserState, UserDispatch] = useReducer(UserReducer, initialUserState)
 
+  // user information states..................................................................
+
+  const UserInfoReducer = (
+    state: UserInfoState,
+    action: UserInfoAction,
+  ): UserInfoState => {
+    switch (action.type) {
+      case 'title':
+        return { ...state, title: action.payload }
+      case 'summary':
+        return { ...state, summary: action.payload }
+      case 'user_id':
+        return { ...state, user_id: action.payload }
+      case 'github':
+        return { ...state, github: action.payload }
+      case 'linkedin':
+        return { ...state, linkedin: action.payload }
+      case 'website':
+        return { ...state, website: action.payload }
+
+      case 'hrPay':
+        return { ...state, hrPay: action.payload }
+
+      default:
+        return state
+    }
+  }
+  const initialUserInfoState: UserInfoState = {
+    title: '',
+    summary: '',
+    user_id: '',
+    github: '',
+    linkedin: '',
+    website: '',
+    hrPay: 0,
+  }
+
+  const [UserInfoState, UserInfoDispatct] = useReducer(
+    UserInfoReducer,
+    initialUserInfoState,
+  )
+
   // handle registration and login
 
   // this is custome hook
@@ -178,7 +245,6 @@ export const ContextProvider = ({
       let err: any = error
       setError(err.response.data.msg)
       setAuthLoading(false)
-      throw error
     }
   }
 
@@ -226,6 +292,7 @@ export const ContextProvider = ({
     skill: '',
     technologies: [],
     error: '',
+    loading: false,
   }
 
   const PortfolioRediuser = (
@@ -258,11 +325,13 @@ export const ContextProvider = ({
         return { ...state, technologies: action.payload }
       case 'portfolio-error':
         return { ...state, error: action.payload }
-
+      case 'loading':
+        return { ...state, loading: action.payload }
       default:
         return state
     }
   }
+
   const [PortfolioState, PortfolioDispatch] = useReducer(
     PortfolioRediuser,
     initialStatePortfolio,
@@ -277,10 +346,14 @@ export const ContextProvider = ({
         UserDispatch,
         hanldeAuth,
         statusState,
+        setError,
+        setSuccess,
         Authloading,
         GetUserData,
         PortfolioState,
         PortfolioDispatch,
+        UserInfoState,
+        UserInfoDispatct,
       }}
     >
       {children}

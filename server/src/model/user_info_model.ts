@@ -1,6 +1,10 @@
 import mongoose from 'mongoose'
 
 const user_info_model = new mongoose.Schema({
+  title: {
+    type: String,
+    default: '',
+  },
   summary: {
     type: String,
     default: '',
@@ -21,6 +25,13 @@ const user_info_model = new mongoose.Schema({
     type: String,
     default: '',
   },
+  hrPay: {
+    type: {
+      type: String,
+      default: 5,
+    },
+  },
+
   skills: [],
 })
 
