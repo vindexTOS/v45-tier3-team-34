@@ -20,14 +20,14 @@ const MenuItem = () => {
                 setHoveredMenu(null)
               }
             >
-              <button className="p-3 text-sm">
+              <button className="p-3 text-sm text-green-900 dark:text-slate-400">
                 {menu.name}
               </button>
               <div className="group relative">
                 {menu.subMenus &&
                   menu.subMenus.length > 0 &&
                   hoveredMenu === menu.name && (
-                    <div className="absolute top-0 -left-10 transition-opacity group-hover:opacity-100 opacity-0 invisible group-hover:visible duration-500 ease-in-out z-0 min-w-[500px]">
+                    <div className="absolute -top-6 -left-10 transition group-hover:translate-y-5 translate-y-0 opacity-0 group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 min-w-[500px] transform">
                       <div className="relative p-6 bg-[#F3F4F6] rounded-xl shadow-xl">
                         <div className="w-10 h-10 bg-[#F3F4F6] transform rotate-45 absolute top-0 -z-10 translate-x-0 transition-transform group-hover:translate-x-[3rem] duration-500 ease-in-out rounded-sm"></div>
                         <ul className="space-y-2">
