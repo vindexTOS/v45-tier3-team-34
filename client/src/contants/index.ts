@@ -99,3 +99,31 @@ export const why_us = [
         description:"Focus on your work knowing we help protect your data and privacy. We’re here with 24/7 support if you need it."
     },
 ]
+
+export const footerMenuItems = [
+    {
+      name: "Find Company",
+      subMenus: [
+        {
+          title: "List All Developers",
+          description: "See a comprehensive list of all our junior developers",
+          link: "#"
+        },
+        {
+          title: "Post a New Project",
+          description: "Follow these easy steps to get started",
+          link: "#"
+        },
+        {
+          title: "View/Buy Completed Projects",
+          description: "Browse our list of all Completed Projects",
+          link: "#"
+        },
+        {
+          title: "Need Help",
+          description: "Feel free to contact us for more info",
+          link: "#"
+        } 
+      ]
+    },
+]
