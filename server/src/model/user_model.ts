@@ -5,7 +5,7 @@ const User_model = new mongoose.Schema({
     type: String,
     required: [true, 'user name is requried'],
   },
-  emaiL: {
+  email: {
     type: String,
     required: [true, 'email is requried'],
   },
@@ -25,8 +25,8 @@ const User_model = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['developer', 'startup', 'company', 'HR'],
-    default: 'developer',
+
+    default: 'Developer',
   },
   skill_id: {
     type: String,
