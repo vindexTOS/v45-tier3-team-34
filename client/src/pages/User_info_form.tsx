@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Portfolio_layout from '../components/Dev_Portfolio/Portfolio_layout'
 import InputFieldGeneral from '../components/Forms/InputFieldGeneral'
 import TextAreaGeneral from '../components/Forms/TextAreaGeneral'
@@ -26,10 +26,14 @@ export default function User_info_form() {
     skip: `flex text-white text-[1.5rem] max_xml:text-[14px] items-center bg-blue-500 hover:bg-blue-400 cursor-pointer px-7 rounded-[1.5rem] text-ceneter`,
     btnWrapper: `w-[100%] flex justify-around py-4`,
   }
+
+  const [loading, setLoading] = useState<boolean>(false)
+
   const {
     title,
     summary,
-
+    lastName,
+    firstName,
     github,
     linkedin,
     website,
@@ -37,13 +41,15 @@ export default function User_info_form() {
   } = UserInfoState
   const handleUpdateUserInfo = async () => {
     if (UserState.userData.user && UserState.userData.user._id) {
+      setLoading(true)
       try {
         const data = await axios.patch(
           `${globalUrl}/user/info/${UserState.userData.user._id}`,
           {
+            lastName,
+            firstName,
             title,
             summary,
-
             github,
             linkedin,
             website,
@@ -51,11 +57,14 @@ export default function User_info_form() {
             skills: PortfolioState.technologies,
           },
         )
-        console.log(data)
         setSuccess(data.data.msg)
+        setLoading(false)
+        navigate('/dev_project_add/title')
       } catch (error) {
         const err: any = error
+
         setError(err.response.data.msg)
+        setLoading(false)
       }
     }
   }
@@ -73,6 +82,22 @@ export default function User_info_form() {
       </p>
       <Portfolio_layout>
         <section className="w-[100%]">
+          <InputFieldGeneral
+            label={`First Name`}
+            placeholder="Ex. Jon"
+            dispatch={UserInfoDispatct}
+            state={UserInfoState}
+            dispatchType="firstName"
+            stateType="firstName"
+          />
+          <InputFieldGeneral
+            label={`Last Name`}
+            placeholder="Ex. Doe"
+            dispatch={UserInfoDispatct}
+            state={UserInfoState}
+            dispatchType="lastName"
+            stateType="lastName"
+          />
           <InputFieldGeneral
             label={`Who are you?`}
             placeholder="Ex. Full-Stack web developer"
@@ -141,6 +166,7 @@ export default function User_info_form() {
       </Portfolio_layout>
       <Error error={statusState.error} />
       <Succsess success={statusState.success} />
+      <LoadingComponent loading={loading} />
     </div>
   )
 }

@@ -6,7 +6,8 @@ import User_profile_card from '../components/User/User_profile_card'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { globalUrl } from '../global-vars/Api-url'
-
+import User_layout from '../components/User/User_layout'
+import User_Top from '../components/User/User_Top'
 const Profile = () => {
   const { UserState, statusState, UserDispatch } = UseMainContext()
   const navigate = useNavigate()
@@ -38,21 +39,24 @@ const Profile = () => {
     //_id should not be accsasable on UI, _id will be used to create chat,update user infomration, post new projects etc
 
     return (
-      <div className="flex  flex-col gap-2 p-2 items-center justify-center">
-        <Succsess success={statusState.success} />
+      <User_layout>
+        <div className="flex  flex-col gap-2 p-2 items-center justify-center">
+          <User_Top />
+          <Succsess success={statusState.success} />
 
-        <User_profile_card data={UserState.userData.user} />
-        <button
-          onClick={() => logOut()}
-          className="bg-red-500 shadow-md text-white p-4  rounded-[6px]"
-        >
-          LOG OUT
-        </button>
-        <button onClick={() => navigate('/dev_project_add/title')}>
-          Portfolio add
-        </button>
-        <button onClick={() => navigate('/user_info')}>user info</button>
-      </div>
+          {/* <User_profile_card data={UserState.userData.user} /> */}
+          {/* <button
+            onClick={() => logOut()}
+            className="bg-red-500 shadow-md text-white p-4  rounded-[6px]"
+          >
+            LOG OUT
+          </button>
+          <button onClick={() => navigate('/dev_project_add/title')}>
+            Portfolio add
+          </button>
+          <button onClick={() => navigate('/user_info')}>user info</button> */}
+        </div>
+      </User_layout>
     )
   } else {
     return (

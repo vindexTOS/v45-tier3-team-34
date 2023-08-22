@@ -9,7 +9,7 @@ import React, {
 import jwt from 'jwt-decode'
 import Cookies from 'universal-cookie'
 import { globalUrl } from './global-vars/Api-url'
-import { RegisterFormType } from './common.types'
+import { RegisterFormType, UserType } from './common.types'
 import { useLocation, useNavigate } from 'react-router-dom'
 import useStatusMessages from './hooks/Status_hook'
 // img types
@@ -29,8 +29,9 @@ type ImgAction = {
 // user types
 
 type UserState = {
-  userTokenData: any
-  userData: any
+  userTokenData: { user?: UserType }
+  userData: { user?: UserType }
+  full_user_info: any
   token: string
   updateUser: boolean
 }
@@ -47,6 +48,8 @@ type StatusState = {
 
 // user info types
 type UserInfoState = {
+  firstName: string
+  lastName: string
   title: string
   summary: string
   user_id: string
@@ -110,6 +113,12 @@ export const ContextProvider = ({
   const routeLocation = useLocation()
   const cookies = new Cookies()
 
+  // this is custome hook
+  const { statusState, setError, setSuccess } = useStatusMessages({
+    error: '',
+    success: '',
+  })
+
   // uploading photo  to fire base /////// sending all the information to data base //////////////////// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const initialImgState = {
@@ -145,7 +154,7 @@ export const ContextProvider = ({
   const initialUserState: UserState = {
     userTokenData: {},
     userData: {},
-
+    full_user_info: {},
     token: '',
     updateUser: false,
   }
@@ -159,7 +168,8 @@ export const ContextProvider = ({
         return { ...state, userData: state.userData = action.payload }
       case 'user-update':
         return { ...state, updateUser: state.updateUser = action.payload }
-
+      case 'full-user-info':
+        return { ...state, full_user_info: action.payload }
       default:
         return state
     }
@@ -173,6 +183,10 @@ export const ContextProvider = ({
     action: UserInfoAction,
   ): UserInfoState => {
     switch (action.type) {
+      case 'firstName':
+        return { ...state, firstName: action.payload }
+      case 'lastName':
+        return { ...state, lastName: action.payload }
       case 'title':
         return { ...state, title: action.payload }
       case 'summary':
@@ -194,6 +208,8 @@ export const ContextProvider = ({
     }
   }
   const initialUserInfoState: UserInfoState = {
+    firstName: '',
+    lastName: '',
     title: '',
     summary: '',
     user_id: '',
@@ -208,13 +224,27 @@ export const ContextProvider = ({
     initialUserInfoState,
   )
 
+  useEffect(() => {
+    const GetUserInfo = async () => {
+      if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
+        try {
+          const res = await axios.get(
+            `${globalUrl}/user/info/${UserState.userTokenData.user._id}`,
+          )
+          UserDispatch({ type: 'full-user-info', payload: res.data })
+
+          setSuccess(res.data.msg)
+        } catch (error) {
+          const err: any = error
+          setError(err.message)
+        }
+      }
+    }
+    GetUserInfo()
+  }, [UserState.userData])
+
   // handle registration and login
 
-  // this is custome hook
-  const { statusState, setError, setSuccess } = useStatusMessages({
-    error: '',
-    success: '',
-  })
   const [Authloading, setAuthLoading] = useState(false) // loading state
 
   const hanldeAuth = async (authObj: RegisterFormType, url: string) => {
@@ -235,6 +265,8 @@ export const ContextProvider = ({
         expires: new Date(decoded.exp * 1000),
       })
       setAuthLoading(false)
+      ImgDispatch({ type: 'set-img-url', payload: '' })
+
       if (url === 'register') {
         navigate(`/dev_project_add/title`)
       } else if (url === 'login') {
@@ -244,6 +276,8 @@ export const ContextProvider = ({
     } catch (error) {
       let err: any = error
       setError(err.response.data.msg)
+      ImgDispatch({ type: 'set-img-url', payload: '' })
+
       setAuthLoading(false)
     }
   }
@@ -263,14 +297,16 @@ export const ContextProvider = ({
 
   // get updated user data or specifice user data when clicked on user
   const GetUserData = async () => {
-    try {
-      const response = await axios.get(
-        `${globalUrl}/user/${UserState.userTokenData.user._id}`,
-      )
-      const data = response.data
-      UserDispatch({ type: 'user-data', payload: data })
-    } catch (error) {
-      console.log(error)
+    if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
+      try {
+        const response = await axios.get(
+          `${globalUrl}/user/${UserState.userTokenData.user._id}`,
+        )
+        const data = response.data
+        UserDispatch({ type: 'user-data', payload: data })
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
   useEffect(() => {

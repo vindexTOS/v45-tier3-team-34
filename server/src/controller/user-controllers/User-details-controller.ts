@@ -6,6 +6,7 @@ export const update_user_detail_info = tryCatch(
   async (req: Request, res: any) => {
     const { user_id } = req.params
     const userExists = await user_info_model.findOne({ user_id })
+    console.log(user_id)
     if (!userExists) {
       return res.status(403).json({ msg: 'User Does not have info' })
     }
@@ -22,7 +23,7 @@ export const update_user_detail_info = tryCatch(
 export const get_user_detail_info = tryCatch(async (req: Request, res: any) => {
   const { user_id } = req.params
 
-  const user_info = await user_info_model.findById(user_id)
+  const user_info = await user_info_model.findOne({ user_id })
 
   return res.status(200).json({ user_info })
 })
