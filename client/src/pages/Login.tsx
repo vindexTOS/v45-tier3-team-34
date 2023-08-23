@@ -24,15 +24,15 @@ const Login = () => {
   }
 
   return (
-    <main className="flex items-center justify-center">
+    <main className="flex items-center justify-center relative">
       <Error error={statusState.error} />
       <Loading loading={Authloading} />
-      <section className="w-full lg:w-[30%] flex flex-col py-10 px-5 sm:px-12 text-center border border-slate-500/50 bg-white rounded-2xl">
+      <section className="w-full lg:w-[30%] flex flex-col py-10 px-5 sm:px-12 text-center border border-slate-500/50 dark:border-green-500/50 bg-white rounded-2xl dark:bg-slate-800">
         {/* Kinda logo */}
         <article className="pb-20 sm:mb-auto">
           <a
             href="/"
-            className="text-2xl font-extrabold text-green-700 dark:text-gray-200"
+            className="text-2xl font-extrabold text-green-700 dark:text-green-500"
           >
             DevConnect
           </a>
@@ -40,7 +40,7 @@ const Login = () => {
 
         {/* Title */}
         <article className="sm:my-6 my-12 mb-10 md:mb-16">
-          <h1 className="text-xl font-normal">
+          <h1 className="text-xl font-normal dark:text-gray-300">
             Log in to DevConnect
           </h1>
         </article>
@@ -65,12 +65,16 @@ const Login = () => {
           </div>
           {/* Create account button */}
 
-          <Link
-            className="font-light text-[13px] text-gray-700 my-8 text-center"
-            to="/register"
-          >
-            Don't have an account?
-          </Link>
+          <div className="my-8 text-center flex items-center justify-center">
+            <div className="border-t border-gray-200 flex-grow"></div>
+            <Link
+              className="font-light text-[13px] text-gray-500 dark:text-gray-300 mx-2 p-2"
+              to="/register"
+            >
+              Don't have an account?
+            </Link>
+            <div className="border-t border-gray-200 flex-grow"></div>
+          </div>
 
           <button
             onClick={handleSubmit}
@@ -80,6 +84,9 @@ const Login = () => {
           </button>
         </article>
       </section>
+      <span className="absolute -bottom-10 left-0 right-0 whitespace-nowrap text-xs text-slate-500 text-center justify-center">
+        © 2023 DevConnect
+      </span>
     </main>
   );
 };
