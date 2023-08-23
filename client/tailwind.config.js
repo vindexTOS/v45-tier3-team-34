@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
@@ -10,8 +11,14 @@ export default {
     },
 
     extend: {
-      // colors: {
-      // },
+      colors: {
+        green: colors.green,
+        white: colors.white,
+        gray: colors.gray,
+        black: colors.black,
+        slate: colors.slate,
+        blue: colors.blue,
+      },
     },
     screens: {
       // heights
