@@ -4,7 +4,7 @@ import HeroCompany from "./HeroCompany";
 
 const HeroSection = () => {
   return (
-    <section className="bg-gray-100 dark:bg-slate-900 rounded-lg w-full flex flex-col sm:flex-row  transition-all duration-500 delay-100 ease-in-out mt-24">
+    <section className="bg-gray-100 dark:bg-slate-900 rounded-lg w-full flex flex-col sm:flex-row  transition-all duration-500 delay-100 ease-in-out">
       <article className="flex-1 flex flex-col items-start justify-center gap-20 p-5 lg:px-20">
         <div className="flex flex-col gap-2 lg:gap-4">
           <h1 className="text-3xl lg:text-6xl capitalize font-bold text-slate-800 dark:text-slate-300">
