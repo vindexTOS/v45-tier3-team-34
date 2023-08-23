@@ -24,15 +24,15 @@ const Login = () => {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center">
+    <main className="flex items-center justify-center">
       <Error error={statusState.error} />
       <Loading loading={Authloading} />
-      <section className="w-full lg:w-[30%] flex flex-col py-10 px-5 sm:px-12 text-center bg-white rounded-2xl">
+      <section className="w-full lg:w-[30%] flex flex-col py-10 px-5 sm:px-12 text-center border border-slate-500/50 bg-white rounded-2xl">
         {/* Kinda logo */}
         <article className="pb-20 sm:mb-auto">
           <a
             href="/"
-            className="text-2xl font-extrabold text-gray-800 dark:text-gray-200"
+            className="text-2xl font-extrabold text-green-700 dark:text-gray-200"
           >
             DevConnect
           </a>
@@ -40,7 +40,7 @@ const Login = () => {
 
         {/* Title */}
         <article className="sm:my-6 my-12 mb-10 md:mb-16">
-          <h1 className="text-2xl font-normal">
+          <h1 className="text-xl font-normal">
             Log in to DevConnect
           </h1>
         </article>
@@ -66,7 +66,7 @@ const Login = () => {
           {/* Create account button */}
 
           <Link
-            className="font-light text-[13px] text-gray-700 mt-2 text-center"
+            className="font-light text-[13px] text-gray-700 my-8 text-center"
             to="/register"
           >
             Don't have an account?
@@ -74,7 +74,7 @@ const Login = () => {
 
           <button
             onClick={handleSubmit}
-            className="mt-2 mx-auto py-2 px-10 border border-green-700 rounded-2xl font-semibold text-base text-green-700 hover:bg-green-800 hover:text-white hover:border-green-600 transition-all duration-300"
+            className="mt-2 mx-auto py-2 px-16 border-2 border-green-700 rounded-2xl font-semibold text-base text-green-700 hover:bg-green-400/30  hover:border-green-600 transition-all duration-300"
           >
             Login
           </button>
