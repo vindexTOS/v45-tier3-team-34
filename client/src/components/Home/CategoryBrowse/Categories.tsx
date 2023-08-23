@@ -4,7 +4,7 @@ import CategoryCard from './CategoryCard'
 
 const Categories = () => {
   return (
-    <section className='bg-gray-100 dark:bg-gray-900 dark:text-gray-300 flex flex-col gap-y-4 sm:gap-y-12 p-2 md:p-0'>
+    <section className='bg-gray-100 dark:bg-gray-900 dark:text-gray-300 flex flex-col gap-y-4 sm:gap-y-12 p-2 md:p-8 rounded-lg'>
         <article className='flex flex-col gap-y-0'>
               <h1 className='text-3xl md:text-5xl font-semibold'>Browse talent by category</h1>
               <p className='text-lg font-light'>
