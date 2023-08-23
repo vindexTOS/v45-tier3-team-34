@@ -91,6 +91,7 @@ We connect junior developers with clients seeking affordable software solutions,
 - Ali Mora - [LinkedIn](https://www.linkedin.com/in/daurius-ali-swarts-1b151420b/)
 - Mohamed Edris - [LinkedIn](https://www.linkedin.com/in/edriso)
 - Giorgi Kutateladze - [LinkedIn](https://www.linkedin.com/in/giorgi-kutateladze-65a83919a/)
+- Robert varchodi - [LinkedIn](https://www.linkedin.com/in/robert-varchodi-633515217)
 
 <br>
 <br>
