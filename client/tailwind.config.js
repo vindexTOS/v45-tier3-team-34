@@ -3,6 +3,12 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
+    button: {
+      base: 'py-2 px-4 rounded',
+      primary: 'bg-primary text-white',
+      secondary: 'bg-secondary text-white',
+    },
+
     extend: {
       // colors: {
       // },

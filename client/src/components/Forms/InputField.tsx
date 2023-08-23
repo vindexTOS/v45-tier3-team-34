@@ -33,7 +33,7 @@ const InputField = ({ label, setData, type, field }: Proptypes) => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <h1 className="mb-1">{label}</h1>
       <input
         onChange={(e) => {

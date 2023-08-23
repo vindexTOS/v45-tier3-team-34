@@ -52,7 +52,7 @@ type UserInfoState = {
   lastName: string
   title: string
   summary: string
-  user_id: string
+  user_id?: string
   github: string
   linkedin: string
   website: string
@@ -66,6 +66,7 @@ type UserInfoAction = {
 
 // user portfolio project types
 export type PortfolioState = {
+  userProjects: any
   title: string
   date: DateConstructor
   role: string
@@ -100,6 +101,9 @@ type Cell = {
 
   setError: (message: string) => void
   setSuccess: (message: string) => void
+
+  UserStateUpdate: UserInfoState
+  UserStateUpdateDispatch: React.Dispatch<UserInfoAction>
 }
 
 const Context = createContext<Cell | null>(null)
@@ -329,6 +333,7 @@ export const ContextProvider = ({
     technologies: [],
     error: '',
     loading: false,
+    userProjects: [],
   }
 
   const PortfolioRediuser = (
@@ -363,6 +368,8 @@ export const ContextProvider = ({
         return { ...state, error: action.payload }
       case 'loading':
         return { ...state, loading: action.payload }
+      case 'get-user-projects':
+        return { ...state, userProjects: action.payload }
       default:
         return state
     }
@@ -373,6 +380,77 @@ export const ContextProvider = ({
     initialStatePortfolio,
   )
 
+  // update user information
+
+  const UserStateUpdateInitial = {
+    firstName: UserState.full_user_info?.user_info?.firstName || '',
+    lastName: UserState.full_user_info?.user_info?.lastName || '',
+    title: UserState.full_user_info?.user_info?.title || '',
+    summary: UserState.full_user_info?.user_info?.summary || '',
+
+    github: UserState.full_user_info?.user_info?.github || '',
+    linkedin: UserState.full_user_info?.user_info?.linkedin || '',
+    website: UserState.full_user_info?.user_info?.website || '',
+    hrPay: UserState.full_user_info?.user_info?.hrPay || 0,
+  }
+
+  const UserStateReducer = (
+    state: UserInfoState,
+    action: UserInfoAction,
+  ): UserInfoState => {
+    switch (action.type) {
+      case 'firstName':
+        return { ...state, firstName: action.payload }
+      case 'lastName':
+        return { ...state, lastName: action.payload }
+      case 'title':
+        return { ...state, title: action.payload }
+      case 'summary':
+        return { ...state, summary: action.payload }
+      case 'user_id':
+        return { ...state, user_id: action.payload }
+      case 'github':
+        return { ...state, github: action.payload }
+      case 'linkedin':
+        return { ...state, linkedin: action.payload }
+      case 'website':
+        return { ...state, website: action.payload }
+
+      case 'hrPay':
+        return { ...state, hrPay: action.payload }
+
+      default:
+        return state
+    }
+  }
+  const [UserStateUpdate, UserStateUpdateDispatch] = useReducer(
+    UserStateReducer,
+    UserStateUpdateInitial,
+  )
+
+  const getAllDevProjects = async () => {
+    if (UserState.userData && UserState.userData.user) {
+      PortfolioDispatch({ type: 'loading', payload: true })
+      try {
+        const res = await axios.get(
+          `${globalUrl}/projects/${UserState.userData.user._id}`,
+        )
+        const data = res.data
+        console.log
+        PortfolioDispatch({ type: 'get-user-projects', payload: data })
+        setSuccess(data.msg)
+        PortfolioDispatch({ type: 'loading', payload: false })
+      } catch (error) {
+        const err: any = error
+        setError(err.message)
+        PortfolioDispatch({ type: 'loading', payload: false })
+      }
+    }
+  }
+
+  useEffect(() => {
+    getAllDevProjects()
+  }, [UserState.userData])
   return (
     <Context.Provider
       value={{
@@ -390,6 +468,8 @@ export const ContextProvider = ({
         PortfolioDispatch,
         UserInfoState,
         UserInfoDispatct,
+        UserStateUpdate,
+        UserStateUpdateDispatch,
       }}
     >
       {children}

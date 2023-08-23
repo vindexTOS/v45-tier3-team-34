@@ -8,7 +8,7 @@ import { MdModeEdit } from 'react-icons/md'
 const User_Top = () => {
   const { UserState } = UseMainContext()
   const style = {
-    section: `flex items-start justify-start w-[100%] px-2 py-5`,
+    section: `flex items-start justify-start w-[100%] px-2 py-5 border-b-[1px] border-gray-300 `,
     img: `h-[80px] w-[80px] rounded-[50%]`,
     imgDiv: `flex gap-1 items-start justify-around `,
     nameHeader: `text-gray-800 text-[1.6rem] font-bold`,
