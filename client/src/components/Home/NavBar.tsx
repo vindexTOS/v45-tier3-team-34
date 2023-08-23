@@ -24,15 +24,15 @@ export default function NavBar() {
   return (
     <>
       <header
-        className={`container ${
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-center ${
           location.pathname === "/login" ||
           location.pathname === "/register"
             ? "hidden"
             : ""
         }`}
       >
-        <nav className="bg-white border-gray-200 rounded-lg my-5 shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-100 ease-in-out">
-          <div className="max-w-screen-2xl flex items-center justify-between mx-auto p-4 lg:p-6">
+        <nav className="w-[95%] bg-white border-gray-200 rounded-lg my-5 bg-opacity-90 border-b backdrop-blur shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-100 ease-in-out">
+          <div className="flex items-center justify-between mx-auto p-4 lg:px-20 lg:py-5">
             <div className="flex items-center space-x-10">
               <div>
                 <a
