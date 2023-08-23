@@ -25,7 +25,7 @@ const Profile = () => {
 
     return (
       <User_layout>
-        <div className="flex  flex-col gap-2 p-2 items-center justify-center">
+        <div className="flex  flex-col gap-2 p-2 items-center justify-center ">
           <User_Top />
           <section className="flex w-[100%]">
             <User_Side />

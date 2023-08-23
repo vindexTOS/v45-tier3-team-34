@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { UseMainContext } from '../../context'
 import User_portfolio from './User_portfolio'
 import User_skills from './User_skills'
 import { MdModeEdit } from 'react-icons/md'
 const User_main = () => {
-  const { UserState } = UseMainContext()
+  const [titleEdit, setTitleEdit] = useState<boolean>(false)
+  const [summaryEdit, setsummary] = useState<boolean>(false)
+  const [HrPayEdit, setHrPay] = useState<boolean>(false)
+
+  const { UserState, UserStateUpdate } = UseMainContext()
   const style = {
     mainDiv: `w-[75%] h-[1000px]`,
     headerDiv: `flex  justify-around text-gray-700 text-[1.3rem] font-bold py-3`,
@@ -16,7 +20,7 @@ const User_main = () => {
     UserState.full_user_info.user_info
   ) {
     // const { avatar, date, email, role, userName } = UserState.userData.user
-    const { title, summary, skills, hrPay } = UserState.full_user_info.user_info
+    const { title, summary, hrPay } = UserState.full_user_info.user_info
     return (
       <div className={style.mainDiv}>
         <section className={style.topSection}>
