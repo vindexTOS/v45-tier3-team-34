@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { UseMainContext } from '../../context'
 import { DateTime } from 'luxon'
 import { FaMapMarkerAlt } from 'react-icons/fa'
@@ -6,7 +6,9 @@ import { MdModeEdit } from 'react-icons/md'
 // Assuming you have retrieved user data including their timezone from the database
 
 const User_Top = () => {
-  const { UserState } = UseMainContext()
+  const { UserState, UserStateUpdate } = UseMainContext()
+
+  const [editName, setEditName] = useState(false)
   const style = {
     section: `flex items-start justify-start w-[100%] px-2 py-5 border-b-[1px] border-gray-300 `,
     img: `h-[80px] w-[80px] rounded-[50%]`,
@@ -38,6 +40,8 @@ const User_Top = () => {
       return currentTime
     }
     const currentTime = getUserTimezone()
+    const userNameUpdate = async () => {}
+
     return (
       <section className={style.section}>
         <div className={style.imgDiv}>
@@ -52,11 +56,15 @@ const User_Top = () => {
             />
           </div>
           <div className={style.timeZone}>
-            <h1 className={style.nameHeader}>
-              {firstName && lastName
-                ? `${firstName} ${lastName.slice(0, 1)}.`
-                : userName}
-            </h1>
+            {!editName ? (
+              <h1 className={style.nameHeader}>
+                {firstName && lastName
+                  ? `${firstName} ${lastName.slice(0, 1)}.`
+                  : userName}
+              </h1>
+            ) : (
+              <input />
+            )}
             <div className="flex gap-1 text-gray-500 items-center justify-center">
               <FaMapMarkerAlt />
               <p>{userTimeZone}</p>-

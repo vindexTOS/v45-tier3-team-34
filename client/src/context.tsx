@@ -57,6 +57,7 @@ type UserInfoState = {
   linkedin: string
   website: string
   hrPay: number
+  loading: boolean
 }
 
 type UserInfoAction = {
@@ -104,6 +105,7 @@ type Cell = {
 
   UserStateUpdate: UserInfoState
   UserStateUpdateDispatch: React.Dispatch<UserInfoAction>
+  UpdateUserInfo: (obj: any) => void
 }
 
 const Context = createContext<Cell | null>(null)
@@ -123,6 +125,7 @@ export const ContextProvider = ({
     success: '',
   })
 
+  const [isUpdate, setIsUpdate] = useState<boolean>(false)
   // uploading photo  to fire base /////// sending all the information to data base //////////////////// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   const initialImgState = {
@@ -221,6 +224,7 @@ export const ContextProvider = ({
     linkedin: '',
     website: '',
     hrPay: 0,
+    loading: false,
   }
 
   const [UserInfoState, UserInfoDispatct] = useReducer(
@@ -313,11 +317,102 @@ export const ContextProvider = ({
       }
     }
   }
+
+  // update user information
+
+  const UserStateUpdateInitial = {
+    firstName: '',
+    lastName: '',
+    title: '',
+    summary: '',
+    github: '',
+    linkedin: '',
+    website: '',
+    hrPay: 0,
+    loading: false,
+  }
+
+  const UserStateReducer = (
+    state: UserInfoState,
+    action: UserInfoAction,
+  ): UserInfoState => {
+    switch (action.type) {
+      case 'firstName':
+        return { ...state, firstName: action.payload }
+      case 'lastName':
+        return { ...state, lastName: action.payload }
+      case 'title':
+        return { ...state, title: action.payload }
+      case 'summary':
+        return { ...state, summary: action.payload }
+      case 'user_id':
+        return { ...state, user_id: action.payload }
+      case 'github':
+        return { ...state, github: action.payload }
+      case 'linkedin':
+        return { ...state, linkedin: action.payload }
+      case 'website':
+        return { ...state, website: action.payload }
+
+      case 'hrPay':
+        return { ...state, hrPay: action.payload }
+
+      case 'loading':
+        return { ...state, loading: state.loading = action.payload }
+
+      default:
+        return state
+    }
+  }
+  const [UserStateUpdate, UserStateUpdateDispatch] = useReducer(
+    UserStateReducer,
+    UserStateUpdateInitial,
+  )
+
+  useEffect(() => {
+    if (UserState.full_user_info && UserState.full_user_info?.user_info) {
+      const { user_info } = UserState.full_user_info
+      UserStateUpdateDispatch({
+        type: 'firstName',
+        payload: user_info.firstName,
+      })
+      UserStateUpdateDispatch({ type: 'lastName', payload: user_info.lastName })
+      UserStateUpdateDispatch({ type: 'title', payload: user_info.title })
+      UserStateUpdateDispatch({ type: 'summary', payload: user_info.summary })
+      UserStateUpdateDispatch({ type: 'github', payload: user_info.github })
+      UserStateUpdateDispatch({ type: 'linkedin', payload: user_info.linkedin })
+      UserStateUpdateDispatch({ type: 'website', payload: user_info.website })
+      UserStateUpdateDispatch({ type: 'hrPay', payload: user_info.hrPay })
+    }
+  }, [UserState.full_user_info])
+
+  const UpdateUserInfo = async (obj: any) => {
+    UserStateUpdateDispatch({ type: 'loading', payload: true })
+    if (UserState.userData.user && UserState.userData.user?._id) {
+      try {
+        const res = await axios.patch(
+          `${globalUrl}/user/info/${UserState.userData.user?._id}`,
+          obj,
+        )
+        UserStateUpdateDispatch({ type: 'loading', payload: false })
+
+        setSuccess(res.data.msg)
+        setIsUpdate(!isUpdate)
+      } catch (error) {
+        const err: any = error
+        UserStateUpdateDispatch({ type: 'loading', payload: false })
+
+        setError(err.message)
+      }
+    }
+  }
+
   useEffect(() => {
     if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
       GetUserData()
+      console.log('hi')
     }
-  }, [UserState.userTokenData.user, UserState.updateUser])
+  }, [UserState.userTokenData.user, UserState.updateUser, isUpdate])
 
   // portfolio project posting
 
@@ -380,54 +475,6 @@ export const ContextProvider = ({
     initialStatePortfolio,
   )
 
-  // update user information
-
-  const UserStateUpdateInitial = {
-    firstName: UserState.full_user_info?.user_info?.firstName || '',
-    lastName: UserState.full_user_info?.user_info?.lastName || '',
-    title: UserState.full_user_info?.user_info?.title || '',
-    summary: UserState.full_user_info?.user_info?.summary || '',
-
-    github: UserState.full_user_info?.user_info?.github || '',
-    linkedin: UserState.full_user_info?.user_info?.linkedin || '',
-    website: UserState.full_user_info?.user_info?.website || '',
-    hrPay: UserState.full_user_info?.user_info?.hrPay || 0,
-  }
-
-  const UserStateReducer = (
-    state: UserInfoState,
-    action: UserInfoAction,
-  ): UserInfoState => {
-    switch (action.type) {
-      case 'firstName':
-        return { ...state, firstName: action.payload }
-      case 'lastName':
-        return { ...state, lastName: action.payload }
-      case 'title':
-        return { ...state, title: action.payload }
-      case 'summary':
-        return { ...state, summary: action.payload }
-      case 'user_id':
-        return { ...state, user_id: action.payload }
-      case 'github':
-        return { ...state, github: action.payload }
-      case 'linkedin':
-        return { ...state, linkedin: action.payload }
-      case 'website':
-        return { ...state, website: action.payload }
-
-      case 'hrPay':
-        return { ...state, hrPay: action.payload }
-
-      default:
-        return state
-    }
-  }
-  const [UserStateUpdate, UserStateUpdateDispatch] = useReducer(
-    UserStateReducer,
-    UserStateUpdateInitial,
-  )
-
   const getAllDevProjects = async () => {
     if (UserState.userData && UserState.userData.user) {
       PortfolioDispatch({ type: 'loading', payload: true })
@@ -470,6 +517,7 @@ export const ContextProvider = ({
         UserInfoDispatct,
         UserStateUpdate,
         UserStateUpdateDispatch,
+        UpdateUserInfo,
       }}
     >
       {children}
