@@ -22,6 +22,9 @@ export default {
           text: colors.slate[400],
         },
       },
+      transition: {
+        custom: "all 500ms ease-in-out 400ms",
+      },
     },
 
     variants: {
