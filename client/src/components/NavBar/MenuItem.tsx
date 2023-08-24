@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { menuItems } from "../../assets/front-end-data/menu_items";
 import { useState } from "react";
 
@@ -40,8 +41,8 @@ const MenuItem = () => {
                                 key={subIndex}
                                 className="p-2 hover:bg-white rounded-md relative group"
                               >
-                                <a
-                                  href={
+                                <Link
+                                  to={
                                     submenu.link
                                   }
                                   className="relative group"
@@ -72,7 +73,7 @@ const MenuItem = () => {
                                       />
                                     </svg>
                                   </div>
-                                </a>
+                                </Link>
                               </li>
                             )
                           )}
