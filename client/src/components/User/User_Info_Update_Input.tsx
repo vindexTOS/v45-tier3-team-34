@@ -9,6 +9,7 @@ interface EditableFieldProps {
   obj: any
   newValue: any
   style?: string
+  textArea?: boolean
 }
 
 const EditableField: React.FC<EditableFieldProps> = ({
@@ -17,6 +18,7 @@ const EditableField: React.FC<EditableFieldProps> = ({
   obj,
   newValue,
   style,
+  textArea,
 }) => {
   const {
     UserStateUpdateDispatch,
@@ -37,13 +39,23 @@ const EditableField: React.FC<EditableFieldProps> = ({
         <h1>{initialValue}</h1>
       ) : (
         <div className="flex items-center justify-center gap-1">
-          <input
-            className={`${style}`}
-            value={newValue}
-            onChange={(e) =>
-              UserStateUpdateDispatch({ type: type, payload: e.target.value })
-            }
-          />
+          {textArea ? (
+            <textarea
+              className={`${style}`}
+              value={newValue}
+              onChange={(e) =>
+                UserStateUpdateDispatch({ type: type, payload: e.target.value })
+              }
+            ></textarea>
+          ) : (
+            <input
+              className={`${style}`}
+              value={newValue}
+              onChange={(e) =>
+                UserStateUpdateDispatch({ type: type, payload: e.target.value })
+              }
+            />
+          )}
           <GiSaveArrow
             className="text-green-400 mt-1 cursor-pointer"
             onClick={handleSave}
@@ -56,7 +68,7 @@ const EditableField: React.FC<EditableFieldProps> = ({
       )}
       <div
         className={`text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 ${
-          !editing && 'hidden'
+          editing && 'hidden'
         }`}
       >
         <MdModeEdit onClick={() => setEditing(!editing)} />

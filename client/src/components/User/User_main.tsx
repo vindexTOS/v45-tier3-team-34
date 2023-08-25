@@ -5,7 +5,7 @@ import User_skills from './User_skills'
 import { MdModeEdit, MdOutlineCancel } from 'react-icons/md'
 import { GiSaveArrow } from 'react-icons/gi'
 import LoadingComponent from '../Status/Loading'
-
+import User_info_Update_input from './User_Info_Update_Input'
 const User_main = () => {
   const [titleEdit, setTitleEdit] = useState<boolean>(false)
   const [summaryEdit, setsummary] = useState<boolean>(false)
@@ -36,85 +36,35 @@ const User_main = () => {
         <LoadingComponent loading={UserStateUpdate.loading} />
         <section className={style.topSection}>
           <div className={style.headerDiv}>
-            <div className="flex gap-2 items-center justify-center ">
-              {!titleEdit ? (
-                <h1>{title}</h1>
-              ) : (
-                <div className="flex  itesm-center jsutify-center gap-1">
-                  <input
-                    value={UserStateUpdate.title}
-                    onChange={(e) =>
-                      UserStateUpdateDispatch({
-                        type: 'title',
-                        payload: e.target.value,
-                      })
-                    }
-                  />
-                  <GiSaveArrow
-                    className="text-green-400 mt-1 "
-                    onClick={() => {
-                      UpdateUserInfo({ title: UserStateUpdate.title }),
-                        setTitleEdit(false)
-                    }}
-                  />
-                  <MdOutlineCancel
-                    className="text-red-400 mt-1 cursor-pointer"
-                    onClick={() => setTitleEdit(false)}
-                  />
-                </div>
-              )}
-              <div
-                className={`  text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 ${
-                  titleEdit && 'hidden'
-                } `}
-              >
-                <MdModeEdit onClick={() => setTitleEdit(!titleEdit)} />
-              </div>
-            </div>
-            <div className="flex gap-2 items-center justify-center ">
-              {!summaryEdit ? (
-                <h1>${hrPay}.00/hr</h1>
-              ) : (
-                <div className="flex  itesm-center jsutify-center gap-1">
-                  <input
-                    className="w-[50px]"
-                    value={UserStateUpdate.hrPay}
-                    onChange={(e) =>
-                      UserStateUpdateDispatch({
-                        type: 'hrPay',
-                        payload: e.target.value,
-                      })
-                    }
-                  />
-                  <GiSaveArrow
-                    className="text-green-400 mt-1 "
-                    onClick={() => {
-                      UpdateUserInfo({ title: UserStateUpdate.title }),
-                        setsummary(false)
-                    }}
-                  />
-                  <MdOutlineCancel
-                    className="text-red-400 mt-1 cursor-pointer"
-                    onClick={() => setsummary(false)}
-                  />
-                </div>
-              )}
-              <div
-                className={`  text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 ${
-                  summaryEdit && 'hidden'
-                } `}
-              >
-                <MdModeEdit onClick={() => setsummary(!summaryEdit)} />
-              </div>
-            </div>
+            <User_info_Update_input
+              initialValue={title}
+              type="title"
+              obj={{ title: UserStateUpdate.title }}
+              newValue={UserStateUpdate.title}
+            />
+            <User_info_Update_input
+              initialValue={`$${hrPay}.00/hr`}
+              type="hrPay"
+              obj={{ hrPay: UserStateUpdate.hrPay }}
+              newValue={UserStateUpdate.hrPay}
+              style="w-[4rem]"
+            />
           </div>
           <div>
-            <div className="flex gap-2 items-start justify-start ">
+            <User_info_Update_input
+              initialValue={summary}
+              type="summary"
+              obj={{ summary: UserStateUpdate.summary }}
+              newValue={UserStateUpdate.summary}
+              textArea={true}
+              style=" w-[600px] h-[300px]"
+            />
+            {/* <div className="flex gap-2 items-start justify-start ">
               <p className="break-normal 	">{summary}</p>
               <div className="  text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300  ">
                 <MdModeEdit />
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
         <User_portfolio />
