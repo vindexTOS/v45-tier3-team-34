@@ -1,16 +1,28 @@
-import './index.css'
-import Login from './pages/Login'
-import Profile from './pages/Profile'
-import Home from './pages/Home'
-import Register from './pages/Register'
-import { Route, Routes } from 'react-router-dom'
-import Dev_Add_Personal_Project from './pages/Dev_Portfolio_Add'
-import Portfolio_title from './components/Dev_Portfolio/Portfolio_title'
-import Portfolio_details from './components/Dev_Portfolio/Portfolio_details'
-import Portfolio_Preview from './components/Dev_Portfolio/Portfolio_Preview'
-import Layout from './layout'
-import User_info_form from './pages/User_info_form'
-import { JSX } from 'react/jsx-runtime'
+import "./index.css";
+import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import { Route, Routes } from "react-router-dom";
+import Dev_Add_Personal_Project from "./pages/Dev_Portfolio_Add";
+import Portfolio_title from "./components/Dev_Portfolio/Portfolio_title";
+import Portfolio_details from "./components/Dev_Portfolio/Portfolio_details";
+import Portfolio_Preview from "./components/Dev_Portfolio/Portfolio_Preview";
+
+import Layout from "./layout";
+
+import ListDevelopers from "./pages/MainMenu/FindCompany/ListDevelopers";
+import PostProject from "./pages/MainMenu/FindCompany/PostProject";
+import ViewProjects from "./pages/MainMenu/FindCompany/ViewProjects";
+import NeedHelp from "./pages/MainMenu/FindCompany/NeedHelp";
+import NeedHelpDev from "./pages/MainMenu/FindDeveloper/NeedHelpDev";
+import MyProjects from "./pages/MainMenu/FindDeveloper/MyProjects";
+import ResourceTools from "./pages/MainMenu/FindDeveloper/ResourceTools";
+import ListProjects from "./pages/MainMenu/FindDeveloper/ListProjects";
+import FAQs from "./pages/MainMenu/WhyDevConnect/FAQs";
+import SuccessStories from "./pages/MainMenu/WhyDevConnect/SuccessStories";
+import AboutUs from "./pages/MainMenu/WhyDevConnect/AboutUs";
+import CategoryPage from "./pages/CategoryPage";
 //routes
 const router = [
   {
@@ -52,7 +64,14 @@ const router = [
     path: '/profile',
     element: <Profile />,
   },
-]
+
+  //category dynamic route
+  {
+    //temporary, may be changed if needed
+    path: "/category/:categoryType",
+    element: < CategoryPage/>,
+  },
+];
 type ReactRouteType = {
   path: string
   element: JSX.Element

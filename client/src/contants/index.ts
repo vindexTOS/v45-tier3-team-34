@@ -77,7 +77,7 @@ export const categories_temp = [
         skills:756,
     },
     {
-        title: "Legal",
+        title: "Legal & Policy",
         rating: 4.85,
         skills:145,
     },
