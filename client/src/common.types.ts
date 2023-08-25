@@ -20,8 +20,7 @@ export type GeneralActionType = {
   payload: string
   type: string
 }
-
-
+ 
 export type ProjectCardType = {
   id: string,
     title: string,
@@ -29,5 +28,16 @@ export type ProjectCardType = {
     price: number,
     description: string,
     stars: number,
-    img: string,
+    img: string,}
+ 
+export type UserType = {
+  avatar: string
+  date: string
+  email: string
+  password: null
+  role: string
+  userName: string
+  _id: string
+  __v?: number
+ 
 }

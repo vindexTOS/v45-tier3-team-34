@@ -6,8 +6,9 @@ import { UseMainContext } from '../../context'
 import SkillSelection from '../Forms/SkillSelection'
 import DropeZone from '../Forms/DropeZone'
 import Error from '../Status/Error'
+import LoadingComponent from '../Status/Loading'
 const Portfolio_details = () => {
-  const { PortfolioDispatch, PortfolioState } = UseMainContext()
+  const { PortfolioDispatch, PortfolioState , ImgState} = UseMainContext()
   const style = {
     section: `flex flex-col items-start justify-around  gap-2  w-[100%]     `,
     mainHeader: `text-[1.2rem] font-bold text-gray-700`,
@@ -33,6 +34,7 @@ const Portfolio_details = () => {
         stateType="description"
       />
       <DropeZone />
+      <LoadingComponent loading={ImgState.imgLoading}/>
       <InputFieldGeneral
         label={`Video Url(optional)`}
         placeholder="Ex. Demo video"
