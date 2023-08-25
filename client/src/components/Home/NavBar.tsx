@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ThemeToggle from "../Buttons/ThemeTogglerBtn";
 import Search from "../Buttons/Search";
 import { Dialog } from "@headlessui/react";
@@ -13,14 +13,22 @@ import {
 } from "react-router-dom";
 import { UseMainContext } from "../../context";
 import MenuItem from "../NavBar/MenuItem";
-
+import useOutClick from "../../hooks/useOutClick";
+import User_drop_down from "../User/User_drop_down";
 export default function NavBar() {
   const { UserState } = UseMainContext();
   const [mobileMenuOpen, setMobileMenuOpen] =
     useState(false);
-
+  const [dropDown, setDropDown] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const dropDownRef =
+    useRef<HTMLDivElement | null>(null);
+  const closeDropDown = () => {
+    setDropDown(false);
+  };
+
+  useOutClick(dropDownRef, closeDropDown);
   return (
     <>
       <header
@@ -54,17 +62,23 @@ export default function NavBar() {
               {UserState.userData &&
               UserState.userData.user ? (
                 <div
+                  ref={dropDownRef}
+                  className="relative "
                   onClick={() =>
-                    navigate("/profile")
+                    setDropDown(!dropDown)
                   }
                 >
                   <img
-                    className="w-[50px] h-[50px] rounded-[50%]"
+                    onClick={() =>
+                      navigate("/profile")
+                    }
+                    className="w-[50px] h-[50px] rounded-[50%] cursor-pointer"
                     src={
                       UserState.userData.user
                         .avatar
                     }
                   />
+                  {dropDown && <User_drop_down />}
                 </div>
               ) : (
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end ml-10">

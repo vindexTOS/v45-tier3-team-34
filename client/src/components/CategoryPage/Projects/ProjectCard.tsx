@@ -5,7 +5,7 @@ import RatesStars from './RatesStars'
 import { AiTwotoneHeart } from "react-icons/ai";
 
 const ProjectCard = ({ data }: { data: ProjectCardType }) => {
-    const [isLinked, setIsLinked] = useState(true);
+    const [isLinked, setIsLinked] = useState(false);
   return (
       <article
           className='max-w-md border bg-white border-gray-300 dark:border-slate-900 dark:bg-slate-800 rounded-lg p-2 flex flex-col shadow-md hover:shadow-xl'

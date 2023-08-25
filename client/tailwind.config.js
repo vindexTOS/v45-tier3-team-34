@@ -10,6 +10,11 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      button: {
+        base: "py-2 px-4 rounded",
+        primary: "bg-primary text-white",
+        secondary: "bg-secondary text-white",
+      },
       colors: {
         light: {
           primary: colors.red[100],
