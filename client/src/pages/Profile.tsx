@@ -19,6 +19,26 @@ const Profile = () => {
     cookies.remove('jwt_authorization')
     window.location.reload()
   }
+  const [project, setProject] = useState()
+  const getAllDevProjects = async () => {
+    if (UserState.userData && UserState.userData.user) {
+      try {
+        const res = await axios.get(
+          `${import.meta.env.VITE_GLOBAL_URL}/projects/${
+            UserState.userData.user._id
+          }`,
+        )
+        const data = res.data
+        console.log(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  useEffect(() => {
+    getAllDevProjects()
+  }, [UserState.userData])
 
   if (UserState.userData.user && UserState.userData.user.email) {
     //_id should not be accsasable on UI, _id will be used to create chat,update user infomration, post new projects etc

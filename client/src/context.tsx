@@ -258,7 +258,10 @@ export const ContextProvider = ({
   const hanldeAuth = async (authObj: RegisterFormType, url: string) => {
     setAuthLoading(true)
     try {
-      const response = await axios.post(`${globalUrl}/${url}`, authObj)
+      const response = await axios.post(
+        `${import.meta.env.VITE_GLOBAL_URL}/${url}`,
+        authObj,
+      )
       const data = response.data
 
       setSuccess(data.msg)
@@ -305,16 +308,16 @@ export const ContextProvider = ({
 
   // get updated user data or specifice user data when clicked on user
   const GetUserData = async () => {
-    if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
-      try {
-        const response = await axios.get(
-          `${globalUrl}/user/${UserState.userTokenData.user._id}`,
-        )
-        const data = response.data
-        UserDispatch({ type: 'user-data', payload: data })
-      } catch (error) {
-        console.log(error)
-      }
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_GLOBAL_URL}/user/${
+          UserState.userTokenData.user._id
+        }`,
+      )
+      const data = response.data
+      UserDispatch({ type: 'user-data', payload: data })
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -480,7 +483,9 @@ export const ContextProvider = ({
       PortfolioDispatch({ type: 'loading', payload: true })
       try {
         const res = await axios.get(
-          `${globalUrl}/projects/${UserState.userData.user._id}`,
+          `${import.meta.env.VITE_GLOBAL_URL}/projects/${
+            UserState.userData.user._id
+          }`,
         )
         const data = res.data
         console.log
