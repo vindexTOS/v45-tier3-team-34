@@ -132,22 +132,22 @@ export const footerMenuItems = [
         {
           title: "List All Projects",
           description: "See a list of all available Projects",
-          link: "#"
+          link: "/FindDeveloper/ListProjects"
         },
         {
           title: "Resource Tools",
           description: "Follow these easy steps to get started",
-          link: "#"
+          link: "/FindDeveloper/ResourceTools"
         },
         {
           title: "View my Projects",
           description: "Browse our list of all Active/Completed Projects",
-          link: "#"
+          link: "/FindDeveloper/MyProjects"
         },
         {
           title: "Need Help",
           description: "Feel free to contact us for more info",
-          link: "#"
+          link: "/FindDeveloper/NeedHelpDev"
         } 
       ]
     },
@@ -157,17 +157,17 @@ export const footerMenuItems = [
         {
           title: "About us",
           description: "Read more about the project vision and team info",
-          link: "#"
+          link: "WhyDevConnect/AboutUs"
         },
         {
           title: "Success Stories",
           description: "Read on successfully completed projects",
-          link: "#"
+          link: "WhyDevConnect/SuccessStories"
         },
         {
           title: "FAQs",
           description: "Browse our list of Frequently Asked Questions",
-          link: "#"
+          link: "WhyDevConnect/FAQs"
         }
       ]
     },
