@@ -258,7 +258,10 @@ export const ContextProvider = ({
   const hanldeAuth = async (authObj: RegisterFormType, url: string) => {
     setAuthLoading(true)
     try {
-      const response = await axios.post(`${globalUrl}/${url}`, authObj)
+      const response = await axios.post(
+        `${import.meta.env.VITE_GLOBAL_URL}/${url}`,
+        authObj,
+      )
       const data = response.data
 
       setSuccess(data.msg)
@@ -305,6 +308,18 @@ export const ContextProvider = ({
 
   // get updated user data or specifice user data when clicked on user
   const GetUserData = async () => {
+<<<<<<< HEAD
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_GLOBAL_URL}/user/${
+          UserState.userTokenData.user._id
+        }`,
+      )
+      const data = response.data
+      UserDispatch({ type: 'user-data', payload: data })
+    } catch (error) {
+      console.log(error)
+=======
     if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
       try {
         const response = await axios.get(
@@ -315,6 +330,7 @@ export const ContextProvider = ({
       } catch (error) {
         console.log(error)
       }
+>>>>>>> 5af41ca93bf6ab44df3b0f38c7080148f4ae6cc7
     }
   }
 
