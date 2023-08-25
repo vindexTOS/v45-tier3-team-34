@@ -46,24 +46,19 @@ const Profile = () => {
     return (
       <User_layout>
         <div className="flex  flex-col gap-2 p-2 items-center justify-center ">
-          <User_Top />
+          <User_Top
+            isUser={false}
+            userData={UserState.userData}
+            userInfo={UserState.full_user_info.user_info}
+          />
           <section className="flex w-[100%]">
-            <User_Side />
-            <User_main />
+            <User_Side userInfo={UserState.full_user_info} />
+            <User_main
+              userData={UserState.userData}
+              userInfo={UserState.full_user_info.user_info}
+            />
           </section>
           <Succsess success={statusState.success} />
-
-          {/* <User_profile_card data={UserState.userData.user} /> */}
-          {/* <button
-            onClick={() => logOut()}
-            className="bg-red-500 shadow-md text-white p-4  rounded-[6px]"
-          >
-            LOG OUT
-          </button>
-          <button onClick={() => navigate('/dev_project_add/title')}>
-            Portfolio add
-          </button>
-          <button onClick={() => navigate('/user_info')}>user info</button> */}
         </div>
       </User_layout>
     )

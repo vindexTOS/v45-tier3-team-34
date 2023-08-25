@@ -1,3 +1,4 @@
+
 import "./index.css";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
@@ -9,7 +10,9 @@ import Portfolio_title from "./components/Dev_Portfolio/Portfolio_title";
 import Portfolio_details from "./components/Dev_Portfolio/Portfolio_details";
 import Portfolio_Preview from "./components/Dev_Portfolio/Portfolio_Preview";
 
-import Layout from "./layout";
+
+import Layout from './layout'
+
 
 import ListDevelopers from "./pages/MainMenu/FindCompany/ListDevelopers";
 import PostProject from "./pages/MainMenu/FindCompany/PostProject";
@@ -26,6 +29,7 @@ import CategoryPage from "./pages/CategoryPage";
 
 import User_info_form from "./pages/User_info_form";
 import { JSX } from "react/jsx-runtime";
+
 
 //routes
 const router = [
@@ -110,18 +114,28 @@ const router = [
     element: <Login />,
   },
   {
-    //can make it protected or not
-    path: "/profile",
+
+    path: '/profile',
     element: <Profile />,
   },
 
-  //category dynamic route
   {
-    //temporary, may be changed if needed
-    path: "/category/:categoryType",
-    element: <CategoryPage />,
+
+    path: '/Developer/:dev_id',
+    element: <Single_User_Page />,
   },
-];
+  {
+    path: '/FindCompany',
+    element: <FindCompanyMain />,
+    outlet: [
+      {
+        path: 'ListDevelopers',
+        element: <Developer_list />,
+      },
+    ],
+  },
+]
+
 
 type ReactRouteType = {
   path: string;

@@ -10,6 +10,7 @@ interface EditableFieldProps {
   newValue: any
   style?: string
   textArea?: boolean
+  isUser?: boolean
 }
 
 const EditableField: React.FC<EditableFieldProps> = ({
@@ -19,6 +20,7 @@ const EditableField: React.FC<EditableFieldProps> = ({
   newValue,
   style,
   textArea,
+  isUser,
 }) => {
   const {
     UserStateUpdateDispatch,
@@ -69,7 +71,7 @@ const EditableField: React.FC<EditableFieldProps> = ({
       <div
         className={`text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 ${
           editing && 'hidden'
-        }`}
+        } ${isUser && 'hidden'}`}
       >
         <MdModeEdit onClick={() => setEditing(!editing)} />
       </div>

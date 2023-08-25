@@ -1,16 +1,12 @@
-import { useState, useEffect } from "react";
-import InputField from "../components/Forms/InputField";
-import { RegisterFormType } from "../common.types";
-import ImgUpload from "../components/Profile_photo_upload";
-import DropDownSelect from "../components/Forms/dropDownSelect";
-import { UseMainContext } from "../context";
-import {
-  Link,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
-import Error from "../components/Status/Error";
-import Loading from "../components/Status/Loading";
+import { useState, useEffect } from 'react'
+import InputField from '../components/Forms/InputField'
+import { RegisterFormType } from '../common.types'
+import ImgUpload from '../components/Profile_photo_upload'
+import DropDownSelect from '../components/Forms/dropDownSelect'
+import { UseMainContext } from '../context'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import Error from '../components/Status/Error'
+import Loading from '../components/Status/Loading'
 const Register = () => {
   const {
     hanldeAuth,
@@ -18,27 +14,20 @@ const Register = () => {
     statusState,
     Authloading,
     UserState,
-  } = UseMainContext();
+  } = UseMainContext()
 
-  const [formData, setFormData] =
-    useState<RegisterFormType>({
-      email: "",
-      userName: "",
-      password: "",
-      confirmPassword: "",
-      role: "",
-    });
+  const [formData, setFormData] = useState<RegisterFormType>({
+    email: '',
+    userName: '',
+    password: '',
+    confirmPassword: '',
+    role: 'Developer',
+  })
 
   //submit data
   async function handleSubmit() {
     // avatar:ImgState.imgUrl
-    const {
-      email,
-      userName,
-      password,
-      confirmPassword,
-      role,
-    } = formData;
+    const { email, userName, password, confirmPassword, role } = formData
 
     hanldeAuth(
       {
@@ -49,14 +38,15 @@ const Register = () => {
         avatar: ImgState.imgUrl,
         role,
       },
-      "register"
-    );
+      'register',
+    )
   }
 
   return (
     <main className="flex items-center justify-center relative mb-20 -mt-20">
       <Error error={statusState.error} />
       <Loading loading={Authloading} />
+
       {/* <button onClick={() => console.log(ImgState.imgUrl)}>CLICK</button> */}
       <section className="w-[90%] lg:w-[30%] h-[80vh] flex flex-col py-10 px-5 sm:px-12 text-center border border-slate-500/50 dark:border-green-500/50 bg-white rounded-2xl dark:bg-slate-800 justify-between">
         {/* Title */}
@@ -148,7 +138,7 @@ const Register = () => {
         © 2023 DevConnect
       </span>
     </main>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register
