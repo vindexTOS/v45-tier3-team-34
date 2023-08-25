@@ -20,3 +20,14 @@ export type GeneralActionType = {
   payload: string
   type: string
 }
+
+export type UserType = {
+  avatar: string
+  date: string
+  email: string
+  password: null
+  role: string
+  userName: string
+  _id: string
+  __v?: number
+}
