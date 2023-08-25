@@ -30,14 +30,14 @@ export default function Footer() {
                   <ul className="">
                     {menuItem.subMenus.map(
                       (subMenu, subIndex) => (
-                        <a
-                          href={subMenu.link}
+                        <Link
+                          to={subMenu.link}
                           key={subIndex}
                         >
                           <li className="w-full sm:w-auto text-xs my-3 text-green-900 hover:text-slate-700 hover:underline dark:text-green-600">
                             {subMenu.title}
                           </li>
-                        </a>
+                        </Link>
                       )
                     )}
                   </ul>
