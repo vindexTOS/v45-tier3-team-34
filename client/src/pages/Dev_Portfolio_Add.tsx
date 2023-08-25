@@ -4,9 +4,11 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 import Portfolio_layout from '../components/Dev_Portfolio/Portfolio_layout'
 import Succsess from '../components/Status/Success'
 import { UseMainContext } from '../context'
+import Error from '../components/Status/Error'
+import LoadingComponent from '../components/Status/Loading'
 const Dev_Portfolio_Add = () => {
   const navigate = useNavigate()
-  const { statusState, UserState } = UseMainContext()
+  const { statusState, UserState, PortfolioState } = UseMainContext()
   const style = {
     mainDiv: ` w-[100vw] max_xl:w-[100%] py-60 flex flex-col  `,
     header: `text-gray-500 max_sm:hidden max_xml:text-[1rem]  flex items-center justify-center gap-2 font-bold text-[2rem]`,
@@ -36,12 +38,12 @@ const Dev_Portfolio_Add = () => {
           </Portfolio_layout>
         </section>
         <Succsess success={statusState.success} />
+        <Error error={statusState.error} />
       </div>
     )
   } else {
     return (
       <div>
-        {' '}
         <Link to="/register">Register</Link> or <Link to="/login">login</Link>
       </div>
     )

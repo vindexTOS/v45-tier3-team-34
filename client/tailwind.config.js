@@ -1,52 +1,83 @@
 /** @type {import('tailwindcss').Config} */
+<<<<<<< HEAD
+const colors = require('tailwindcss/colors')
+=======
+// eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
+const colors = require("tailwindcss/colors");
+
+>>>>>>> 9c1a03a01a4926110c2e3e6cd705d02ddc99cf2e
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'class',
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: "class",
   theme: {
-    extend: {
-      // colors: {
-      // },
+    button: {
+      base: 'py-2 px-4 rounded',
+      primary: 'bg-primary text-white',
+      secondary: 'bg-secondary text-white',
     },
+
+    extend: {
+      colors: {
+<<<<<<< HEAD
+        green: colors.green,
+        white: colors.white,
+        gray: colors.gray,
+        black: colors.black,
+        slate: colors.slate,
+        blue: colors.blue,
+=======
+        light: {
+          primary: colors.red[100],
+          secondary: colors.slate[900],
+          text: colors.green[900],
+        },
+        dark: {
+          primary: colors.slate[800],
+          secondary: colors.gray[800],
+          text: colors.slate[400],
+        },
+      },
+      transition: {
+        custom: "all 500ms ease-in-out 400ms",
+>>>>>>> 9c1a03a01a4926110c2e3e6cd705d02ddc99cf2e
+      },
+    },
+
+    variants: {
+      extend: {
+        // backgroundColor: ["dark"],
+        textColor: ["dark"],
+      },
+    },
+
     screens: {
-      // heights
-      laptop: { raw: '(max-height:900px)' },
+      // Define custom screen breakpoints
+      // Heights
+      laptop: { raw: "(max-height:900px)" },
       // => @media (max-height: 900px) { ...
-      //widths
-      xm: '500px',
-      sm: '640px',
-      // => @media (min-width: 640px) { ... }
 
-      md: '768px',
-      // => @media (min-width: 768px) { ... }
-      mdxl: '901px',
-      lg: '1024px',
-      // => @media (min-width: 1024px) { ... }
-
-      xl: '1280px',
-      // => @media (min-width: 1280px) { ... }
-      '1xl': '1361px',
-      '2xl': '1536px',
-
-      // => @media (min-width: 1536px) { ... }
-      max_xl1500: { max: '1500px' },
-      max_xl: { max: '1287px' },
-      max_xml: { max: '1270px' },
-      // => @media (max-width: 1279px) { ... }
-      max_x: { max: '1150px' },
-
-      max_lg: { max: '1050px' },
-      // => @media (max-width: 1050px) { ... }
-      max_850: { max: '850px' },
-      max_md: { max: '767px' },
-      // => @media (max-width: 767px) { ... }
-
-      max_sm: { max: '640px' },
-
-      // => @media (max-width: 639px) { ... }
-
-      max_smm: { max: '500px' },
-      // => @media (max-width:500px) { ... }
+      // Widths
+      xm: "500px",
+      sm: "640px",
+      md: "768px",
+      mdxl: "901px",
+      lg: "1024px",
+      xl: "1280px",
+      "1xl": "1361px",
+      "2xl": "1536px",
+      max_xl1500: { max: "1500px" },
+      max_xl: { max: "1287px" },
+      max_xml: { max: "1270px" },
+      max_x: { max: "1150px" },
+      max_lg: { max: "1050px" },
+      max_850: { max: "850px" },
+      max_md: { max: "767px" },
+      max_sm: { max: "640px" },
+      max_smm: { max: "500px" },
     },
   },
-  plugins: [],
-}
+  plugins: ["macros"], // Enable the "macros" plugin for Tailwind CSS
+};

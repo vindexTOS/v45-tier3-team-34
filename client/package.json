@@ -15,6 +15,11 @@
     "axios": "^1.4.0",
     "firebase": "^10.1.0",
     "jwt-decode": "^3.1.2",
+<<<<<<< HEAD
+    "luxon": "^3.4.0",
+=======
+    "lottie-react": "^2.4.0",
+>>>>>>> 9c1a03a01a4926110c2e3e6cd705d02ddc99cf2e
     "react": "^18.2.0",
     "react-datepicker": "^4.16.0",
     "react-dom": "^18.2.0",
