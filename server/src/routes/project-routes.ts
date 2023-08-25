@@ -19,7 +19,7 @@ projectRouter
 projectRouter
   .route('/:user_id')
   .get(getProject, errorHandler)
-  .put(updateProject, errorHandler)
+  .patch(updateProject, errorHandler)
   .delete(deleteProject, errorHandler)
 
 export default projectRouter

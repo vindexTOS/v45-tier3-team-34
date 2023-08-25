@@ -143,7 +143,7 @@ const Portfolio_Preview = () => {
       </div>
       <Portfolio_Buttons
         nextbtn="Submit The Project"
-        link="/dev_project_add/details"
+        link=" "
         backbtn="back"
         cancelToken="back-to-detail"
       />

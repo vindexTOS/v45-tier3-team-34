@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+<<<<<<< HEAD
+const colors = require('tailwindcss/colors')
+=======
 // eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
 const colors = require("tailwindcss/colors");
 
+>>>>>>> 9c1a03a01a4926110c2e3e6cd705d02ddc99cf2e
 export default {
   content: [
     "./index.html",
@@ -9,8 +13,22 @@ export default {
   ],
   darkMode: "class",
   theme: {
+    button: {
+      base: 'py-2 px-4 rounded',
+      primary: 'bg-primary text-white',
+      secondary: 'bg-secondary text-white',
+    },
+
     extend: {
       colors: {
+<<<<<<< HEAD
+        green: colors.green,
+        white: colors.white,
+        gray: colors.gray,
+        black: colors.black,
+        slate: colors.slate,
+        blue: colors.blue,
+=======
         light: {
           primary: colors.red[100],
           secondary: colors.slate[900],
@@ -24,6 +42,7 @@ export default {
       },
       transition: {
         custom: "all 500ms ease-in-out 400ms",
+>>>>>>> 9c1a03a01a4926110c2e3e6cd705d02ddc99cf2e
       },
     },
 
