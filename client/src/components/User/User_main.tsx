@@ -13,7 +13,7 @@ const User_main = ({
 }: {
   userData: any
   userInfo: any
-  isUser?: boolean
+  isUser: boolean
 }) => {
   const {
     UserState,
@@ -62,16 +62,10 @@ const User_main = ({
               textArea={true}
               style=" w-[600px] h-[300px]"
             />
-            {/* <div className="flex gap-2 items-start justify-start ">
-              <p className="break-normal 	">{summary}</p>
-              <div className="  text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300  ">
-                <MdModeEdit />
-              </div>
-            </div> */}
           </div>
         </section>
-        <User_portfolio />
-        <User_skills />
+        <User_portfolio isUser={isUser} />
+        <User_skills isUser={isUser} />
       </div>
     )
   } else {

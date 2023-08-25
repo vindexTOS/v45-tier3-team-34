@@ -54,7 +54,6 @@ export default function NavBar() {
                   onClick={() => setDropDown(!dropDown)}
                 >
                   <img
-                    onClick={() => navigate('/profile')}
                     className="w-[50px] h-[50px] rounded-[50%] cursor-pointer"
                     src={UserState.userData.user.avatar}
                   />

@@ -3,7 +3,13 @@ import { UseMainContext } from '../../context'
 import { DiGithubAlt } from 'react-icons/di'
 import { AiOutlineLinkedin } from 'react-icons/ai'
 import { SiWebmoney } from 'react-icons/si'
-const User_Side = ({ userInfo }: { userInfo: any }) => {
+const User_Side = ({
+  userInfo,
+  isUser,
+}: {
+  userInfo: any
+  isUser?: boolean
+}) => {
   const { UserState } = UseMainContext()
 
   const style = {

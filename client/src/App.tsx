@@ -17,7 +17,7 @@ import FindCompanyMain from './pages/MainMenu/FindCompany/FindCompanyMain'
 import { JSX } from 'react/jsx-runtime'
 
 import Single_User_Page from './pages/Single_User_Page'
-
+import User_Portfolio_Single from './components/User/User_Portfolio_Single'
 //routes
 const router = [
   {
@@ -57,6 +57,10 @@ const router = [
   {
     path: '/profile',
     element: <Profile />,
+  },
+  {
+    path: '/Project/:project_id',
+    element: <User_Portfolio_Single />,
   },
 
   {

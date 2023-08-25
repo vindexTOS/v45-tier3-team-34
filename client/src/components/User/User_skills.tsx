@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { UseMainContext } from '../../context'
 import { MdModeEdit } from 'react-icons/md'
-
-const User_skills = () => {
+import SkillSelection from '../Forms/SkillSelection'
+const User_skills = ({ isUser }: { isUser?: boolean }) => {
   const style = {
     mainDiv: `border-t-[2px] flex flex-col  items-center px-4 gap-4 py-3  `,
   }
   const { UserState } = UseMainContext()
-
+  const [editSkills, setEditSkills] = useState(false)
   return (
     <div className={style.mainDiv}>
       <div className="flex w-[100%] items-center px-2 justify-start">
         <h1 className="text-[1.4rem]  flex items-start px-2">Skills</h1>
-        <div className="  text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300  ">
+        <div
+          onClick={() => setEditSkills(!editSkills)}
+          className={` ${
+            isUser && 'hidden'
+          } text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 `}
+        >
           <MdModeEdit />
         </div>
       </div>
@@ -23,6 +28,7 @@ const User_skills = () => {
           )
         })}
       </div>
+      <SkillSelection />
     </div>
   )
 }
