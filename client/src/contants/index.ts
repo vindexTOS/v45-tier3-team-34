@@ -47,7 +47,7 @@ export const categories_temp = [
         skills:508,
     },
     {
-        title: "Graphic Design & Creative Stuff",
+        title: "Design & Create",
         rating: 4.91,
         skills:968,
     },
@@ -57,12 +57,12 @@ export const categories_temp = [
         skills:392,
     },
     {
-        title: "Copy Writing & Translation",
+        title: "Copy Writing",
         rating: 4.92,
         skills:505,
     },
     {
-        title: "Admin & Customer Support",
+        title: "Customer Support",
         rating: 4.66,
         skills:508,
     },
@@ -77,7 +77,7 @@ export const categories_temp = [
         skills:756,
     },
     {
-        title: "Legal",
+        title: "Legal & Policy",
         rating: 4.85,
         skills:145,
     },

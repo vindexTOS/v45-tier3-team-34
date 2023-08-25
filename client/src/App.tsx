@@ -8,12 +8,16 @@ import Dev_Add_Personal_Project from './pages/Dev_Portfolio_Add'
 import Portfolio_title from './components/Dev_Portfolio/Portfolio_title'
 import Portfolio_details from './components/Dev_Portfolio/Portfolio_details'
 import Portfolio_Preview from './components/Dev_Portfolio/Portfolio_Preview'
+
 import Layout from './layout'
+
 import User_info_form from './pages/User_info_form'
 import Developer_list from './pages/Developer_list'
 import FindCompanyMain from './pages/MainMenu/FindCompany/FindCompanyMain'
 import { JSX } from 'react/jsx-runtime'
+
 import Single_User_Page from './pages/Single_User_Page'
+
 //routes
 const router = [
   {
@@ -54,6 +58,7 @@ const router = [
     path: '/profile',
     element: <Profile />,
   },
+
   {
     path: '/Developer/:dev_id',
     element: <Single_User_Page />,
@@ -69,6 +74,7 @@ const router = [
     ],
   },
 ]
+
 type ReactRouteType = {
   path: string
   element: JSX.Element

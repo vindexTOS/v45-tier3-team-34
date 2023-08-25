@@ -47,6 +47,7 @@ const Profile = () => {
       <User_layout>
         <div className="flex  flex-col gap-2 p-2 items-center justify-center ">
           <User_Top
+            isUser={false}
             userData={UserState.userData}
             userInfo={UserState.full_user_info.user_info}
           />
