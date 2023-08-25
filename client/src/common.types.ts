@@ -20,3 +20,14 @@ export type GeneralActionType = {
   payload: string
   type: string
 }
+
+
+export type ProjectCardType = {
+  id: string,
+    title: string,
+    reviews: number,
+    price: number,
+    description: string,
+    stars: number,
+    img: string,
+}
