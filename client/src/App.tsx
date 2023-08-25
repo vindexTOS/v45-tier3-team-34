@@ -22,6 +22,7 @@ import ListProjects from "./pages/MainMenu/FindDeveloper/ListProjects";
 import FAQs from "./pages/MainMenu/WhyDevConnect/FAQs";
 import SuccessStories from "./pages/MainMenu/WhyDevConnect/SuccessStories";
 import AboutUs from "./pages/MainMenu/WhyDevConnect/AboutUs";
+import CategoryPage from "./pages/CategoryPage";
 //routes
 const router = [
   {
@@ -102,6 +103,13 @@ const router = [
     //can make it protected or not
     path: "/profile",
     element: <Profile />,
+  },
+
+  //category dynamic route
+  {
+    //temporary, may be changed if needed
+    path: "/category/:categoryType",
+    element: < CategoryPage/>,
   },
 ];
 type ReactRouteType = {
