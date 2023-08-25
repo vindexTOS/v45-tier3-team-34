@@ -177,17 +177,17 @@ export const footerMenuItems = [
         {
           title: "Develpment Team",
           description: "See a comprehensive list of all our junior developers",
-          link: "#"
+          link: "/"
         },
         {
           title: "Vision Statement",
           description: "Browse our list of all Completed Projects",
-          link: "#"
+          link: "/"
         },
         {
           title: "Contact us",
           description: "Feel free to contact us for more info",
-          link: "#"
+          link: "/"
         } 
       ]
     },
