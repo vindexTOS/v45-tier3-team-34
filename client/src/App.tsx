@@ -37,6 +37,52 @@ const router = [
     path: "/register",
     element: <Register />,
   },
+  // Main Menu
+  {
+    path: "/FindCompany/ListDevelopers",
+    element: <ListDevelopers />,
+  },
+  {
+    path: "/FindCompany/PostProjects",
+    element: <PostProject />,
+  },
+  {
+    path: "/FindCompany/ViewProjects",
+    element: <ViewProjects />,
+  },
+  {
+    path: "/FindCompany/NeedHelp",
+    element: <NeedHelp />,
+  },
+  {
+    path: "/FindDeveloper/ListProjects",
+    element: <ListProjects />,
+  },
+  {
+    path: "/FindDeveloper/ResourceTools",
+    element: <ResourceTools />,
+  },
+  {
+    path: "/FindDeveloper/MyProjects",
+    element: <MyProjects />,
+  },
+  {
+    path: "/FindDeveloper/NeedHelpDev",
+    element: <NeedHelpDev />,
+  },
+  {
+    path: "/WhyDevConnect/AboutUs",
+    element: <AboutUs />,
+  },
+  {
+    path: "/WhyDevConnect/SuccessStories",
+    element: <SuccessStories />,
+  },
+  {
+    path: "/WhyDevConnect/FAQs",
+    element: <FAQs />,
+  },
+
   {
     path: "/dev_project_add",
     element: <Dev_Add_Personal_Project />,
