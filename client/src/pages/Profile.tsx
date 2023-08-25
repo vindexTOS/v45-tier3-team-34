@@ -19,7 +19,6 @@ const Profile = () => {
     cookies.remove('jwt_authorization')
     window.location.reload()
   }
-<<<<<<< HEAD
   const [project, setProject] = useState()
   const getAllDevProjects = async () => {
     if (UserState.userData && UserState.userData.user) {
@@ -40,8 +39,6 @@ const Profile = () => {
   useEffect(() => {
     getAllDevProjects()
   }, [UserState.userData])
-=======
->>>>>>> 5af41ca93bf6ab44df3b0f38c7080148f4ae6cc7
 
   if (UserState.userData.user && UserState.userData.user.email) {
     //_id should not be accsasable on UI, _id will be used to create chat,update user infomration, post new projects etc
