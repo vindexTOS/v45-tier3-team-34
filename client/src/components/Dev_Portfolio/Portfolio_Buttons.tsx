@@ -34,7 +34,9 @@ const Portfolio_Buttons = ({
     if (UserState.userData.user) {
       try {
         const res = await axios.post(
-          `${globalUrl}/projects/${UserState.userData.user._id}`,
+          `${import.meta.env.VITE_GLOBAL_URL}/projects/${
+            UserState.userData.user._id
+          }`,
           {
             user_id: UserState.userData.user._id,
             title,

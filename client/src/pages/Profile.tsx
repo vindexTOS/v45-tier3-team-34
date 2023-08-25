@@ -21,7 +21,9 @@ const Profile = () => {
     if (UserState.userData && UserState.userData.user) {
       try {
         const res = await axios.get(
-          `${globalUrl}/projects/${UserState.userData.user._id}`,
+          `${import.meta.env.VITE_GLOBAL_URL}/projects/${
+            UserState.userData.user._id
+          }`,
         )
         const data = res.data
         console.log(data)

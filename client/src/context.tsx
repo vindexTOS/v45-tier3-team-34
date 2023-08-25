@@ -153,7 +153,10 @@ export const ContextProvider = ({
   const hanldeAuth = async (authObj: RegisterFormType, url: string) => {
     setAuthLoading(true)
     try {
-      const response = await axios.post(`${globalUrl}/${url}`, authObj)
+      const response = await axios.post(
+        `${import.meta.env.VITE_GLOBAL_URL}/${url}`,
+        authObj,
+      )
       const data = response.data
 
       setSuccess(data.msg)
@@ -199,7 +202,9 @@ export const ContextProvider = ({
   const GetUserData = async () => {
     try {
       const response = await axios.get(
-        `${globalUrl}/user/${UserState.userTokenData.user._id}`,
+        `${import.meta.env.VITE_GLOBAL_URL}/user/${
+          UserState.userTokenData.user._id
+        }`,
       )
       const data = response.data
       UserDispatch({ type: 'user-data', payload: data })
