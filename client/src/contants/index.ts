@@ -47,7 +47,7 @@ export const categories_temp = [
         skills:508,
     },
     {
-        title: "Graphic Design & Creative Stuff",
+        title: "Design & Create",
         rating: 4.91,
         skills:968,
     },
@@ -57,12 +57,12 @@ export const categories_temp = [
         skills:392,
     },
     {
-        title: "Copy Writing & Translation",
+        title: "Copy Writing",
         rating: 4.92,
         skills:505,
     },
     {
-        title: "Admin & Customer Support",
+        title: "Customer Support",
         rating: 4.66,
         skills:508,
     },
@@ -77,7 +77,7 @@ export const categories_temp = [
         skills:756,
     },
     {
-        title: "Legal",
+        title: "Legal & Policy",
         rating: 4.85,
         skills:145,
     },
@@ -107,22 +107,22 @@ export const footerMenuItems = [
         {
           title: "List All Developers",
           description: "See a comprehensive list of all our junior developers",
-          link: "#"
+          link: "/FindCompany/ListDevelopers"
         },
         {
           title: "Post a New Project",
           description: "Follow these easy steps to get started",
-          link: "#"
+          link: "/FindCompany/PostProjects"
         },
         {
           title: "View/Buy Completed Projects",
           description: "Browse our list of all Completed Projects",
-          link: "#"
+          link: "/FindCompany/ViewProjects"
         },
         {
           title: "Need Help",
           description: "Feel free to contact us for more info",
-          link: "#"
+          link: "/FindCompany/NeedHelp"
         } 
       ]
     },
@@ -132,22 +132,22 @@ export const footerMenuItems = [
         {
           title: "List All Projects",
           description: "See a list of all available Projects",
-          link: "#"
+          link: "/FindDeveloper/ListProjects"
         },
         {
           title: "Resource Tools",
           description: "Follow these easy steps to get started",
-          link: "#"
+          link: "/FindDeveloper/ResourceTools"
         },
         {
           title: "View my Projects",
           description: "Browse our list of all Active/Completed Projects",
-          link: "#"
+          link: "/FindDeveloper/MyProjects"
         },
         {
           title: "Need Help",
           description: "Feel free to contact us for more info",
-          link: "#"
+          link: "/FindDeveloper/NeedHelpDev"
         } 
       ]
     },
@@ -157,17 +157,17 @@ export const footerMenuItems = [
         {
           title: "About us",
           description: "Read more about the project vision and team info",
-          link: "#"
+          link: "WhyDevConnect/AboutUs"
         },
         {
           title: "Success Stories",
           description: "Read on successfully completed projects",
-          link: "#"
+          link: "WhyDevConnect/SuccessStories"
         },
         {
           title: "FAQs",
           description: "Browse our list of Frequently Asked Questions",
-          link: "#"
+          link: "WhyDevConnect/FAQs"
         }
       ]
     },
@@ -177,17 +177,17 @@ export const footerMenuItems = [
         {
           title: "Develpment Team",
           description: "See a comprehensive list of all our junior developers",
-          link: "#"
+          link: "/"
         },
         {
           title: "Vision Statement",
           description: "Browse our list of all Completed Projects",
-          link: "#"
+          link: "/"
         },
         {
           title: "Contact us",
           description: "Feel free to contact us for more info",
-          link: "#"
+          link: "/"
         } 
       ]
     },
