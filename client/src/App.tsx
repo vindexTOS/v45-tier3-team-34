@@ -10,7 +10,10 @@ import Portfolio_details from './components/Dev_Portfolio/Portfolio_details'
 import Portfolio_Preview from './components/Dev_Portfolio/Portfolio_Preview'
 import Layout from './layout'
 import User_info_form from './pages/User_info_form'
+import Developer_list from './pages/Developer_list'
+import FindCompanyMain from './pages/MainMenu/FindCompany/FindCompanyMain'
 import { JSX } from 'react/jsx-runtime'
+import Single_User_Page from './pages/Single_User_Page'
 //routes
 const router = [
   {
@@ -48,9 +51,22 @@ const router = [
     element: <Login />,
   },
   {
-    //can make it protected or not
     path: '/profile',
     element: <Profile />,
+  },
+  {
+    path: '/Developer/:dev_id',
+    element: <Single_User_Page />,
+  },
+  {
+    path: '/FindCompany',
+    element: <FindCompanyMain />,
+    outlet: [
+      {
+        path: 'ListDevelopers',
+        element: <Developer_list />,
+      },
+    ],
   },
 ]
 type ReactRouteType = {

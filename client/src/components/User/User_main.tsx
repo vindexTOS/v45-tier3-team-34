@@ -6,11 +6,15 @@ import { MdModeEdit, MdOutlineCancel } from 'react-icons/md'
 import { GiSaveArrow } from 'react-icons/gi'
 import LoadingComponent from '../Status/Loading'
 import User_info_Update_input from './User_Info_Update_Input'
-const User_main = () => {
-  const [titleEdit, setTitleEdit] = useState<boolean>(false)
-  const [summaryEdit, setsummary] = useState<boolean>(false)
-  const [HrPayEdit, setHrPay] = useState<boolean>(false)
-
+const User_main = ({
+  userData,
+  userInfo,
+  isUser,
+}: {
+  userData: any
+  userInfo: any
+  isUser?: boolean
+}) => {
   const {
     UserState,
     UserStateUpdateDispatch,
@@ -24,11 +28,7 @@ const User_main = () => {
     topSection: ` border-b-[2px] px-4 py-6 flex flex-col  gap-5`,
   }
 
-  if (
-    UserState.userData &&
-    UserState.userData.user &&
-    UserState.full_user_info.user_info
-  ) {
+  if (userData && userData.user && userInfo) {
     // const { avatar, date, email, role, userName } = UserState.userData.user
     const { title, summary, hrPay } = UserState.full_user_info.user_info
     return (
@@ -37,12 +37,14 @@ const User_main = () => {
         <section className={style.topSection}>
           <div className={style.headerDiv}>
             <User_info_Update_input
+              isUser={isUser}
               initialValue={title}
               type="title"
               obj={{ title: UserStateUpdate.title }}
               newValue={UserStateUpdate.title}
             />
             <User_info_Update_input
+              isUser={isUser}
               initialValue={`$${hrPay}.00/hr`}
               type="hrPay"
               obj={{ hrPay: UserStateUpdate.hrPay }}
@@ -52,6 +54,7 @@ const User_main = () => {
           </div>
           <div>
             <User_info_Update_input
+              isUser={isUser}
               initialValue={summary}
               type="summary"
               obj={{ summary: UserStateUpdate.summary }}

@@ -44,7 +44,9 @@ export default function User_info_form() {
       setLoading(true)
       try {
         const data = await axios.patch(
-          `${globalUrl}/user/info/${UserState.userData.user._id}`,
+          `${import.meta.env.VITE_GLOBAL_URL}/user/info/${
+            UserState.userData.user._id
+          }`,
           {
             lastName,
             firstName,

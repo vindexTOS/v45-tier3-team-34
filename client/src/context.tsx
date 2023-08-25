@@ -106,6 +106,8 @@ type Cell = {
   UserStateUpdate: UserInfoState
   UserStateUpdateDispatch: React.Dispatch<UserInfoAction>
   UpdateUserInfo: (obj: any) => void
+  GetSingleDev: (dev_id: string) => void
+  devInfo: any
 }
 
 const Context = createContext<Cell | null>(null)
@@ -308,17 +310,18 @@ export const ContextProvider = ({
 
   // get updated user data or specifice user data when clicked on user
   const GetUserData = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_GLOBAL_URL}/user/${
-          UserState.userTokenData.user._id
-        }`,
-      )
-      const data = response.data
-      UserDispatch({ type: 'user-data', payload: data })
-    } catch (error) {
-      console.log(error)
-    }
+    if (UserState.userTokenData.user && UserState.userTokenData.user._id)
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_GLOBAL_URL}/user/${
+            UserState.userTokenData.user._id
+          }`,
+        )
+        const data = response.data
+        UserDispatch({ type: 'user-data', payload: data })
+      } catch (error) {
+        console.log(error)
+      }
   }
 
   // update user information
@@ -503,6 +506,22 @@ export const ContextProvider = ({
   useEffect(() => {
     getAllDevProjects()
   }, [UserState.userData])
+
+  const [devInfo, setDevInfo] = useState<any>()
+
+  const GetSingleDev = async (dev_id: string) => {
+    try {
+      const res = await axios.get(`http://localhost:8080/user/info/${dev_id}`)
+      setDevInfo(res.data)
+
+      console.log(res.data)
+
+      navigate(`/Developer/${dev_id}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <Context.Provider
       value={{
@@ -523,6 +542,8 @@ export const ContextProvider = ({
         UserStateUpdate,
         UserStateUpdateDispatch,
         UpdateUserInfo,
+        devInfo,
+        GetSingleDev,
       }}
     >
       {children}

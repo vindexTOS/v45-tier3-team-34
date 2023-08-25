@@ -5,9 +5,15 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 import { MdModeEdit } from 'react-icons/md'
 // Assuming you have retrieved user data including their timezone from the database
 
-const User_Top = () => {
-  const { UserState, UserStateUpdate } = UseMainContext()
-
+const User_Top = ({
+  userData,
+  userInfo,
+  isUser,
+}: {
+  userData: any
+  userInfo: any
+  isUser: boolean
+}) => {
   const [editName, setEditName] = useState(false)
   const style = {
     section: `flex items-start justify-start w-[100%] px-2 py-5 border-b-[1px] border-gray-300 `,
@@ -16,17 +22,9 @@ const User_Top = () => {
     nameHeader: `text-gray-800 text-[1.6rem] font-bold`,
     timeZone: ` flex flex-col gap-2`,
   }
-  if (
-    UserState.userData &&
-    UserState.userData.user &&
-    UserState.full_user_info.user_info
-  ) {
-    const { avatar, date, email, role, userName } = UserState.userData.user
-    const {
-      firstName,
-      lastName,
-      userTimeZone,
-    } = UserState.full_user_info.user_info
+  if (userData && userData.user && userInfo) {
+    const { avatar, date, email, role, userName } = userData.user
+    const { firstName, lastName, userTimeZone } = userInfo
 
     function getUserTimezone() {
       // const userTimeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -43,15 +41,22 @@ const User_Top = () => {
     const userNameUpdate = async () => {}
 
     return (
-      <section className={style.section}>
+      <section
+        onClick={() => console.log(userData.user)}
+        className={style.section}
+      >
         <div className={style.imgDiv}>
           <div className="relative">
-            <div className="absolute text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px]">
+            <div
+              className={` ${
+                isUser && 'hidden'
+              } absolute text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px]`}
+            >
               <MdModeEdit />
             </div>
             <img
               onClick={() => getUserTimezone()}
-              src={avatar}
+              src={`${avatar}`}
               className={style.img}
             />
           </div>
