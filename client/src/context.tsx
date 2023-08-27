@@ -251,11 +251,11 @@ export const ContextProvider = ({
   )
 
   useEffect(() => {
-    const GetUserInfo = async () => {
+    const GetUserInfo = async (userUrl: string) => {
       if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
         try {
           const res = await axios.get(
-            `${globalUrl}/user/info/${UserState.userTokenData.user._id}`,
+            `${globalUrl}/${userUrl}/info/${UserState.userTokenData.user._id}`,
           )
           UserDispatch({ type: 'full-user-info', payload: res.data })
 
@@ -266,7 +266,17 @@ export const ContextProvider = ({
         }
       }
     }
-    GetUserInfo()
+    if (
+      UserState.userTokenData.user &&
+      UserState.userTokenData.user.role === 'Developer'
+    ) {
+      GetUserInfo('user')
+    } else if (
+      UserState.userTokenData.user &&
+      UserState.userTokenData.user.role === 'Company/Startup'
+    ) {
+      GetUserInfo('company')
+    }
   }, [UserState.userData])
 
   // handle registration and login
@@ -316,7 +326,11 @@ export const ContextProvider = ({
           navigate(`/company_info`)
         }
       } else if (location.pathname === '/login') {
-        navigate('/profile')
+        if (UserState.userData.user.role === 'Developer') {
+          navigate('/profile')
+        } else {
+          navigate(`/company_profile`)
+        }
       }
     }
   }, [UserState.userData, UserState.token])
@@ -335,11 +349,11 @@ export const ContextProvider = ({
   // user update
 
   // get updated user data or specifice user data when clicked on user
-  const GetUserData = async () => {
+  const GetUserData = async (midUrl: string) => {
     if (UserState.userTokenData.user && UserState.userTokenData.user._id)
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_GLOBAL_URL}/user/${
+          `${import.meta.env.VITE_GLOBAL_URL}/${midUrl}/info/${
             UserState.userTokenData.user._id
           }`,
         )
@@ -441,7 +455,17 @@ export const ContextProvider = ({
 
   useEffect(() => {
     if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
-      GetUserData()
+      if (
+        UserState.userTokenData.user &&
+        UserState.userTokenData.user.role === 'Developer'
+      ) {
+        GetUserData('user')
+      } else if (
+        UserState.userTokenData.user &&
+        UserState.userTokenData.user.role === 'Company/Startup'
+      ) {
+        GetUserData('company')
+      }
     }
   }, [UserState.userTokenData.user, UserState.updateUser, isUpdate])
 

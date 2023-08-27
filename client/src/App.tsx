@@ -29,7 +29,7 @@ import User_info_form from './pages/User_info_form'
 import Developer_list from './pages/MainMenu/FindCompany/Developer_list'
 import FindCompanyMain from './pages/MainMenu/FindCompany/FindCompanyMain'
 import Company_info_form from './pages/Company_info_form'
-
+import Company_Profile from './pages/Company_Profile'
 //routes
 const router = [
   {
@@ -126,6 +126,10 @@ const router = [
   {
     path: '/profile',
     element: <Profile />,
+  },
+  {
+    path: '/company_profile',
+    element: <Company_Profile />,
   },
   {
     path: '/Project/:project_id',
