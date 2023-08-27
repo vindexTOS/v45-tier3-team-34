@@ -18,9 +18,9 @@ const User_main = ({
   const {
     UserState,
     UserStateUpdateDispatch,
-    UserStateUpdate,
 
     UpdateUserInfo,
+    UserStateUpdate,
   } = UseMainContext()
   const style = {
     mainDiv: `w-[75%] h-[1000px]`,
@@ -30,9 +30,12 @@ const User_main = ({
 
   if (userData && userData.user && userInfo) {
     // const { avatar, date, email, role, userName } = UserState.userData.user
-    const { title, summary, hrPay } = UserState.full_user_info.user_info
+    const { title, summary, hrPay } = userInfo
     return (
-      <div className={style.mainDiv}>
+      <div
+        onClick={() => console.log(userInfo.user_info)}
+        className={style.mainDiv}
+      >
         <LoadingComponent loading={UserStateUpdate.loading} />
         <section className={style.topSection}>
           <div className={style.headerDiv}>
@@ -65,11 +68,11 @@ const User_main = ({
           </div>
         </section>
         <User_portfolio isUser={isUser} />
-        <User_skills isUser={isUser} />
+        <User_skills isUser={isUser} userInfo={userInfo} />
       </div>
     )
   } else {
-    return <div>login</div>
+    return <div onClick={() => console.log(userInfo)}>login</div>
   }
 }
 

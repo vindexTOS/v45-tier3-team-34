@@ -10,6 +10,8 @@ import axios from 'axios'
 import { globalUrl } from '../global-vars/Api-url'
 import User_layout from '../components/User/User_layout'
 import User_Top from '../components/User/User_Top'
+import User_skills from '../components/User/User_skills'
+import User_portfolio from '../components/User/User_portfolio'
 const Profile = () => {
   const { UserState, statusState, UserDispatch } = UseMainContext()
   const navigate = useNavigate()
@@ -54,10 +56,12 @@ const Profile = () => {
           <section className="flex w-[100%]">
             <User_Side userInfo={UserState.full_user_info} />
             <User_main
+              isUser={false}
               userData={UserState.userData}
               userInfo={UserState.full_user_info.user_info}
             />
           </section>
+
           <Succsess success={statusState.success} />
         </div>
       </User_layout>

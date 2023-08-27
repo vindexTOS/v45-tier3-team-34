@@ -66,6 +66,7 @@ type UserInfoAction = {
 }
 
 // user portfolio project types
+
 export type PortfolioState = {
   userProjects: any
   title: string
@@ -84,7 +85,19 @@ type PortfolioAction = {
   payload: any
   type: string
 }
+// company
 
+type CompanyStateType = {
+  companyName: string
+  summary: string
+  linkedin: string
+  website: string
+  hrPay: string
+}
+type CompanyActionType = {
+  type: string
+  payload: string
+}
 type Cell = {
   ImgState: ImgState
   ImgDispatch: React.Dispatch<ImgAction>
@@ -108,6 +121,9 @@ type Cell = {
   UpdateUserInfo: (obj: any) => void
   GetSingleDev: (dev_id: string) => void
   devInfo: any
+
+  CompanyState: CompanyStateType
+  CompanyDispatch: React.Dispatch<CompanyActionType>
 }
 
 const Context = createContext<Cell | null>(null)
@@ -120,7 +136,7 @@ export const ContextProvider = ({
   const navigate = useNavigate()
   const routeLocation = useLocation()
   const cookies = new Cookies()
-
+  const location = useLocation()
   // this is custome hook
   const { statusState, setError, setSuccess } = useStatusMessages({
     error: '',
@@ -280,11 +296,6 @@ export const ContextProvider = ({
       setAuthLoading(false)
       ImgDispatch({ type: 'set-img-url', payload: '' })
 
-      if (url === 'register') {
-        navigate(`/dev_project_add/title`)
-      } else if (url === 'login') {
-        navigate('/profile')
-      }
       return data
     } catch (error) {
       let err: any = error
@@ -294,6 +305,21 @@ export const ContextProvider = ({
       setAuthLoading(false)
     }
   }
+
+  useEffect(() => {
+    const token = cookies.get('jwt_authorization')
+    if (token && UserState.userData && UserState.userData.user) {
+      if (location.pathname === '/register') {
+        if (UserState.userData.user.role === 'Developer') {
+          navigate(`/dev_project_add/title`)
+        } else {
+          navigate(`/company_info`)
+        }
+      } else if (location.pathname === '/login') {
+        navigate('/profile')
+      }
+    }
+  }, [UserState.userData, UserState.token])
 
   // getting token cookie from browser cookies and setting headers and UserState.userTokenData state
   const token = cookies.get('jwt_authorization')
@@ -416,7 +442,6 @@ export const ContextProvider = ({
   useEffect(() => {
     if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
       GetUserData()
-      console.log('hi')
     }
   }, [UserState.userTokenData.user, UserState.updateUser, isUpdate])
 
@@ -522,6 +547,54 @@ export const ContextProvider = ({
     }
   }
 
+  /// company
+
+  const companyInitialState = {
+    companyName: '',
+    summary: '',
+    linkedin: '',
+    website: '',
+    hrPay: '',
+  }
+  const CompanyReducer = (
+    state: CompanyStateType,
+    action: CompanyActionType,
+  ): CompanyStateType => {
+    switch (action.type) {
+      case 'SET_COMPANY_NAME':
+        return {
+          ...state,
+          companyName: action.payload,
+        }
+      case 'SET_SUMMARY':
+        return {
+          ...state,
+          summary: action.payload,
+        }
+      case 'SET_LINKEDIN':
+        return {
+          ...state,
+          linkedin: action.payload,
+        }
+      case 'SET_WEBSITE':
+        return {
+          ...state,
+          website: action.payload,
+        }
+      case 'SET_HR_PAY':
+        return {
+          ...state,
+          hrPay: action.payload,
+        }
+      default:
+        return state
+    }
+  }
+  const [CompanyState, CompanyDispatch] = useReducer(
+    CompanyReducer,
+    companyInitialState,
+  )
+
   return (
     <Context.Provider
       value={{
@@ -544,6 +617,8 @@ export const ContextProvider = ({
         UpdateUserInfo,
         devInfo,
         GetSingleDev,
+        CompanyState,
+        CompanyDispatch,
       }}
     >
       {children}

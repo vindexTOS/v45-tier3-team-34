@@ -2,11 +2,16 @@ import React, { useState } from 'react'
 import { UseMainContext } from '../../context'
 import { MdModeEdit } from 'react-icons/md'
 import SkillSelection from '../Forms/SkillSelection'
-const User_skills = ({ isUser }: { isUser?: boolean }) => {
+const User_skills = ({
+  isUser,
+  userInfo,
+}: {
+  isUser?: boolean
+  userInfo: any
+}) => {
   const style = {
     mainDiv: `border-t-[2px] flex flex-col  items-center px-4 gap-4 py-3  `,
   }
-  const { UserState } = UseMainContext()
   const [editSkills, setEditSkills] = useState(false)
   return (
     <div className={style.mainDiv}>
@@ -22,7 +27,7 @@ const User_skills = ({ isUser }: { isUser?: boolean }) => {
         </div>
       </div>
       <div className="flex  items-center px-30   flex flex-wrap    w-[90%]   gap-2 ">
-        {UserState.full_user_info.user_info.skills.map((val: string) => {
+        {userInfo.skills.map((val: string) => {
           return (
             <div className="bg-gray-200 p-1 px-2 rounded-[19px]">{val}</div>
           )

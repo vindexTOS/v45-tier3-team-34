@@ -19,6 +19,7 @@ export const update_user_info = tryCatch(
       runValidators: true,
     })
 
+    // Company/Startup
     res.status(202).json({ msg: 'User Has Been Updated' })
     return Promise.resolve()
   },
