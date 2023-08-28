@@ -39,7 +39,7 @@ export default function NavBar() {
             : ""
         }`}
       >
-        <nav className="w-[95%] bg-white rounded-lg my-5 bg-opacity-90 backdrop-blur shadow-md shadow-green-700/10 dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-100 ease-in-out dark:bg-opacity-80 dark:backdrop-blur-md">
+        <nav className="w-[95%] bg-white rounded-lg my-5 bg-opacity-90 backdrop-blur-md dark:bg-opacity-80 dark:backdrop-blur-md shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-100 ease-in-out">
           <div className="flex items-center justify-between mx-auto p-4 lg:px-20 lg:py-5">
             <div className="flex items-center space-x-10">
               <div>
