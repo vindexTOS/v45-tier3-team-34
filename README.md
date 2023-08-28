@@ -8,10 +8,11 @@
   We connect junior developers with low-paid real-world projects.
     <br />
     <br />
-    <a href="https://dev-connect-057y.onrender.com/" target="_blank">Live Site</a>
+    <a href="https://64e49d3eb7d9d109759abf22--devconnectchingu.netlify.app/" target="_blank">Live Site</a>
     ·
     <a href="https://github.com/chingu-voyages/v45-tier3-team-34/issues" target="_blank">Report Bug</a>
-    
+       ·
+    <a href="https://www.figma.com/proto/zv2fwT27yaOl2pBM6nA3dm/Recreate---Upwork---DevConnect?type=design&node-id=16-1407&t=FWVDL1zbjnJbkPSs-0&scaling=scale-down-width&page-id=0%3A1&starting-point-node-id=16%3A1407" target="_blank">Figma</a>
   </p>
 </div>
     <br />
@@ -90,6 +91,7 @@ We connect junior developers with clients seeking affordable software solutions,
 - Ali Mora - [LinkedIn](https://www.linkedin.com/in/daurius-ali-swarts-1b151420b/)
 - Mohamed Edris - [LinkedIn](https://www.linkedin.com/in/edriso)
 - Giorgi Kutateladze - [LinkedIn](https://www.linkedin.com/in/giorgi-kutateladze-65a83919a/)
+- Robert varchodi - [LinkedIn](https://www.linkedin.com/in/robert-varchodi-633515217)
 
 <br>
 <br>

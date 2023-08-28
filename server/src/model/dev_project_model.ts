@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const Project_model = new mongoose.Schema({
+const Dev_Project_model = new mongoose.Schema({
   user_id: {
     type: String,
     required: true,
@@ -12,6 +12,9 @@ const Project_model = new mongoose.Schema({
   description: {
     type: String,
     required: [true, 'description is required'],
+  },
+  date: {
+    type: String,
   },
   photo: {
     type: String,
@@ -26,19 +29,7 @@ const Project_model = new mongoose.Schema({
   videoLink: {
     type: String,
   },
-  skills_used: [
-    {
-      _id: mongoose.Schema.Types.ObjectId,
-      title: {
-        type: String,
-        required: true,
-      },
-      icon: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+  skills_used: [],
 })
 
-export default mongoose.model('connect_dev_user_projects', Project_model)
+export default mongoose.model('connect_dev_user_projects', Dev_Project_model)
