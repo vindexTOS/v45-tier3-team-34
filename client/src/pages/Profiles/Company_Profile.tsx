@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import User_layout from '../components/User/User_layout'
+import User_layout from '../../components/User/User_layout'
 import { MdModeEdit } from 'react-icons/md'
 import { DateTime } from 'luxon'
-import { UseMainContext } from '../context'
+import { UseMainContext } from '../../context'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { AiOutlineLinkedin } from 'react-icons/ai'
 import { SiWebmoney } from 'react-icons/si'
-import Succsess from '../components/Status/Success'
-import LoadingComponent from '../components/Status/Loading'
-import User_info_update_input from '../components/User/User_Info_Update_Input'
+import { IoIosAddCircleOutline } from 'react-icons/io'
+import Succsess from '../../components/Status/Success'
+import LoadingComponent from '../../components/Status/Loading'
+import User_info_update_input from '../../components/User/User_Info_Update_Input'
 const Company_Profile = () => {
   const { UserState, statusState, UserStateUpdate } = UseMainContext()
   const style = {
-    section: `flex items-start justify-start w-[100%] px-2 py-5 border-b-[1px] border-gray-300 `,
+    section: `flex items-center justify-between w-[100%] i px-4 py-5 border-b-[1px] border-gray-300 `,
     img: `h-[80px] w-[80px] rounded-[50%]`,
     imgDiv: `flex gap-1 items-start justify-around `,
     nameHeader: `text-gray-800 text-[1.6rem] font-bold`,
@@ -59,7 +60,7 @@ const Company_Profile = () => {
     return (
       <User_layout>
         <div
-          onClick={() => console.log(UserState)}
+          onClick={() => console.log(UserStateUpdate)}
           className="flex  flex-col gap-2 p-2 items-center justify-center "
         >
           <section
@@ -90,13 +91,19 @@ const Company_Profile = () => {
                 </div>
               </div>
             </div>
+            <div className="flex items-center justify-center gap-3 h-[100%] ">
+              <h1 className="text-[1.2rem] text-gray-500 font-bold">
+                Create Project Listing
+              </h1>
+              <IoIosAddCircleOutline className="text-[2rem] text-green-400 hover:text-green-300" />
+            </div>
           </section>
           <section className="flex w-[100%]">
             {/* side */}
             <div className={style.mainDiv}>
               {linkedin && (
                 <a href={linkedin} target="_blank" className={style.aTeg}>
-                  <AiOutlineLinkedin className="text-[1.2rem] text-yellow-900" />
+                  <AiOutlineLinkedin className="text-[1.2rem] text-yellow-900 cursor-pointer" />
 
                   <h1 className="text-yellow-900 text-[1rem]">Linkedin</h1>
                 </a>
@@ -120,9 +127,10 @@ const Company_Profile = () => {
                   <User_info_update_input
                     isUser={false}
                     initialValue={companyName}
-                    type="title"
-                    obj={{ title: UserStateUpdate.title }}
-                    newValue={UserStateUpdate.title}
+                    type="companyName"
+                    obj={{ companyName: UserStateUpdate.companyName }}
+                    newValue={UserStateUpdate.companyName}
+                    link="company"
                   />
                   <User_info_update_input
                     isUser={false}
@@ -131,6 +139,7 @@ const Company_Profile = () => {
                     obj={{ hrPay: UserStateUpdate.hrPay }}
                     newValue={UserStateUpdate.hrPay}
                     style="w-[4rem]"
+                    link="company"
                   />
                 </div>
                 <div>
@@ -142,6 +151,7 @@ const Company_Profile = () => {
                     newValue={UserStateUpdate.summary}
                     textArea={true}
                     style=" w-[600px] h-[300px]"
+                    link="company"
                   />
                 </div>
               </section>

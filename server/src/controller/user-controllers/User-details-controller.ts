@@ -23,7 +23,7 @@ export const update_user_detail_info = tryCatch(
 
 export const get_user_detail_info = tryCatch(async (req: Request, res: any) => {
   const { user_id } = req.params
-
+    
   const user = await user_model.find({ _id: user_id }).select('-password')
   if (!user) {
     return res.status(400).json({ msg: 'User Dose not exist' })

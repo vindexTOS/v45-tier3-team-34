@@ -58,6 +58,7 @@ type UserInfoState = {
   website: string
   hrPay: number
   loading: boolean
+  companyName: string
 }
 
 type UserInfoAction = {
@@ -106,7 +107,7 @@ type Cell = {
   hanldeAuth: (authObj: RegisterFormType, url: string) => void
   statusState: StatusState
   Authloading: boolean
-  GetUserData: () => void
+  GetUserData: (midUrl: string) => void
   PortfolioState: PortfolioState
   PortfolioDispatch: React.Dispatch<PortfolioAction>
 
@@ -118,7 +119,7 @@ type Cell = {
 
   UserStateUpdate: UserInfoState
   UserStateUpdateDispatch: React.Dispatch<UserInfoAction>
-  UpdateUserInfo: (obj: any) => void
+  UpdateUserInfo: (obj: any, link: string) => void
   GetSingleDev: (dev_id: string) => void
   devInfo: any
 
@@ -241,6 +242,7 @@ export const ContextProvider = ({
     github: '',
     linkedin: '',
     website: '',
+    companyName: '',
     hrPay: 0,
     loading: false,
   }
@@ -375,6 +377,7 @@ export const ContextProvider = ({
     linkedin: '',
     website: '',
     hrPay: 0,
+    companyName: '',
     loading: false,
   }
 
@@ -402,7 +405,8 @@ export const ContextProvider = ({
 
       case 'hrPay':
         return { ...state, hrPay: action.payload }
-
+      case 'companyName':
+        return { ...state, companyName: action.payload }
       case 'loading':
         return { ...state, loading: state.loading = action.payload }
 
@@ -429,15 +433,19 @@ export const ContextProvider = ({
       UserStateUpdateDispatch({ type: 'linkedin', payload: user_info.linkedin })
       UserStateUpdateDispatch({ type: 'website', payload: user_info.website })
       UserStateUpdateDispatch({ type: 'hrPay', payload: user_info.hrPay })
+      UserStateUpdateDispatch({
+        type: 'companyName',
+        payload: user_info.companyName,
+      })
     }
   }, [UserState.full_user_info])
 
-  const UpdateUserInfo = async (obj: any) => {
+  const UpdateUserInfo = async (obj: any, link: string) => {
     UserStateUpdateDispatch({ type: 'loading', payload: true })
     if (UserState.userData.user && UserState.userData.user?._id) {
       try {
         const res = await axios.patch(
-          `${globalUrl}/user/info/${UserState.userData.user?._id}`,
+          `${globalUrl}/${link}/info/${UserState.userData.user?._id}`,
           obj,
         )
         UserStateUpdateDispatch({ type: 'loading', payload: false })

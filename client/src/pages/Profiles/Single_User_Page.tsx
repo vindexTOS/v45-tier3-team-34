@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 
-import User_layout from '../components/User/User_layout'
-import User_Top from '../components/User/User_Top'
-import User_Side from '../components/User/User_Side'
-import User_main from '../components/User/User_main'
-import { UseMainContext } from '../context'
+import User_layout from '../../components/User/User_layout'
+import User_Top from '../../components/User/User_Top'
+import User_Side from '../../components/User/User_Side'
+import User_main from '../../components/User/User_main'
+import { UseMainContext } from '../../context'
 import { useNavigate, useParams } from 'react-router-dom'
-import LoadingComponent from '../components/Status/Loading'
-import User_info_Update_input from '../components/User/User_Info_Update_Input'
-import User_portfolio from '../components/User/User_portfolio'
-import User_skills from '../components/User/User_skills'
+import LoadingComponent from '../../components/Status/Loading'
+import User_info_Update_input from '../../components/User/User_Info_Update_Input'
+import User_portfolio from '../../components/User/User_portfolio'
+import User_skills from '../../components/User/User_skills'
 import axios from 'axios'
 const Single_User_Page = () => {
   const style = {
@@ -78,6 +78,7 @@ const Single_User_Page = () => {
                     type="title"
                     obj={{ title: UserStateUpdate.title }}
                     newValue={UserStateUpdate.title}
+                    link="user"
                   />
                   <User_info_Update_input
                     isUser={true}
@@ -85,7 +86,7 @@ const Single_User_Page = () => {
                     type="hrPay"
                     obj={{ hrPay: UserStateUpdate.hrPay }}
                     newValue={UserStateUpdate.hrPay}
-                    style="w-[4rem]"
+                    link="user"
                   />
                 </div>
                 <div>
@@ -97,6 +98,7 @@ const Single_User_Page = () => {
                     newValue={UserStateUpdate.summary}
                     textArea={true}
                     style=" w-[600px] h-[300px]"
+                    link="user"
                   />
                 </div>
               </section>

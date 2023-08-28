@@ -1,27 +1,16 @@
-import { UseMainContext } from '../context'
-import { Link, useNavigate } from 'react-router-dom'
-import Cookies from 'universal-cookie'
-import Succsess from '../components/Status/Success'
-import User_profile_card from '../components/User/User_profile_card'
-import User_Side from '../components/User/User_Side'
-import User_main from '../components/User/User_main'
-import { useEffect, useState } from 'react'
+import { UseMainContext } from '../../context'
+import { Link } from 'react-router-dom'
+import Succsess from '../../components/Status/Success'
+import User_Side from '../../components/User/User_Side'
+import User_main from '../../components/User/User_main'
+import { useEffect } from 'react'
 import axios from 'axios'
-import { globalUrl } from '../global-vars/Api-url'
-import User_layout from '../components/User/User_layout'
-import User_Top from '../components/User/User_Top'
-import User_skills from '../components/User/User_skills'
-import User_portfolio from '../components/User/User_portfolio'
-const Profile = () => {
-  const { UserState, statusState, UserDispatch } = UseMainContext()
-  const navigate = useNavigate()
-  const cookies = new Cookies()
+import User_layout from '../../components/User/User_layout'
+import User_Top from '../../components/User/User_Top'
 
-  const logOut = () => {
-    cookies.remove('jwt_authorization')
-    window.location.reload()
-  }
-  const [project, setProject] = useState()
+const Profile = () => {
+  const { UserState, statusState } = UseMainContext()
+
   const getAllDevProjects = async () => {
     if (UserState.userData && UserState.userData.user) {
       try {

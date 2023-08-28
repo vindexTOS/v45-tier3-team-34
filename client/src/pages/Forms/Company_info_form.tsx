@@ -1,24 +1,23 @@
 import React, { useState } from 'react'
-import Portfolio_layout from '../components/Dev_Portfolio/Portfolio_layout'
-import InputFieldGeneral from '../components/Forms/InputFieldGeneral'
-import TextAreaGeneral from '../components/Forms/TextAreaGeneral'
-import { UseMainContext } from '../context'
-import SkillSelection from '../components/Forms/SkillSelection'
+import Portfolio_layout from '../../components/Dev_Portfolio/Portfolio_layout'
+import InputFieldGeneral from '../../components/Forms/InputFieldGeneral'
+import TextAreaGeneral from '../../components/Forms/TextAreaGeneral'
+import { UseMainContext } from '../../context'
+import SkillSelection from '../../components/Forms/SkillSelection'
 import axios from 'axios'
-import { globalUrl } from '../global-vars/Api-url'
+import { globalUrl } from '../../global-vars/Api-url'
 import { useNavigate } from 'react-router-dom'
-import Error from '../components/Status/Error'
-import Succsess from '../components/Status/Success'
-import LoadingComponent from '../components/Status/Loading'
-export default function User_info_form() {
+import Error from '../../components/Status/Error'
+import Succsess from '../../components/Status/Success'
+import LoadingComponent from '../../components/Status/Loading'
+export default function Company_info_form() {
   const {
-    UserInfoState,
-    UserInfoDispatct,
-    PortfolioState,
-    UserState,
     setError,
     setSuccess,
     statusState,
+    CompanyDispatch,
+    UserState,
+    CompanyState,
   } = UseMainContext()
   const style = {
     mainDiv: ` w-[100vw] gap-3 max_xl:w-[100%] py-60 flex flex-col  items-center `,
@@ -29,39 +28,29 @@ export default function User_info_form() {
 
   const [loading, setLoading] = useState<boolean>(false)
 
-  const {
-    title,
-    summary,
-    lastName,
-    firstName,
-    github,
-    linkedin,
-    website,
-    hrPay,
-  } = UserInfoState
+  const { companyName, summary, linkedin, website, hrPay } = CompanyState
   const handleUpdateUserInfo = async () => {
     if (UserState.userData.user && UserState.userData.user._id) {
       setLoading(true)
       try {
         const data = await axios.patch(
-          `${import.meta.env.VITE_GLOBAL_URL}/user/info/${
+          `${import.meta.env.VITE_GLOBAL_URL}/company/info/${
             UserState.userData.user._id
           }`,
           {
-            lastName,
-            firstName,
-            title,
+            companyName,
+
             summary,
-            github,
+
             linkedin,
             website,
             hrPay,
-            skills: PortfolioState.technologies,
           },
         )
         setSuccess(data.data.msg)
+        navigate('/profile ')
+
         setLoading(false)
-        navigate('/dev_project_add/title')
       } catch (error) {
         const err: any = error
 
@@ -85,71 +74,49 @@ export default function User_info_form() {
       <Portfolio_layout>
         <section className="w-[100%]">
           <InputFieldGeneral
-            label={`First Name`}
+            label={`Company name`}
             placeholder="Ex. Jon"
-            dispatch={UserInfoDispatct}
-            state={UserInfoState}
-            dispatchType="firstName"
-            stateType="firstName"
+            dispatch={CompanyDispatch}
+            state={CompanyState}
+            dispatchType="companyName"
+            stateType="SET_COMPANY_NAME"
           />
-          <InputFieldGeneral
-            label={`Last Name`}
-            placeholder="Ex. Doe"
-            dispatch={UserInfoDispatct}
-            state={UserInfoState}
-            dispatchType="lastName"
-            stateType="lastName"
-          />
-          <InputFieldGeneral
-            label={`Who are you?`}
-            placeholder="Ex. Full-Stack web developer"
-            dispatch={UserInfoDispatct}
-            state={UserInfoState}
-            dispatchType="title"
-            stateType="title"
-          />
+
           <TextAreaGeneral
             label={`Talk about you`}
             placeholder="Enter a brief descritpion about yourself"
-            dispatch={UserInfoDispatct}
-            state={UserInfoState}
-            dispatchType="summary"
+            dispatch={CompanyDispatch}
+            state={CompanyState}
+            dispatchType="SET_SUMMARY"
             stateType="summary"
           />
-          <InputFieldGeneral
-            label={`Github`}
-            placeholder="https://github.com/"
-            dispatch={UserInfoDispatct}
-            state={UserInfoState}
-            dispatchType="github"
-            stateType="github"
-          />
+
           <InputFieldGeneral
             label={`Linkedin`}
             placeholder="https://www.linkedin.com/"
-            dispatch={UserInfoDispatct}
-            state={UserInfoState}
-            dispatchType="linkedin"
-            stateType="linkedin"
+            dispatch={CompanyDispatch}
+            state={CompanyState}
+            dispatchType="SET_LINKEDIN"
+            stateType="linkedin "
           />
           <InputFieldGeneral
             label={`Personal Website`}
-            placeholder="https://www.personal-website.com/"
-            dispatch={UserInfoDispatct}
-            state={UserInfoState}
-            dispatchType="website"
-            stateType="website"
+            placeholder="https://www.company-website.com/"
+            dispatch={CompanyDispatch}
+            state={CompanyState}
+            dispatchType="SET_WEBSITE"
+            stateType="website "
           />
           <InputFieldGeneral
             label={`hourly rate expectation`}
             placeholder="5.0$"
-            dispatch={UserInfoDispatct}
-            state={UserInfoState}
-            dispatchType="hrPay"
+            dispatch={CompanyDispatch}
+            state={CompanyState}
+            dispatchType="SET_HR_PAY"
             stateType="hrPay"
             type="number"
           />
-          <SkillSelection />
+
           <div className={style.btnWrapper}>
             <button
               onClick={() => navigate('/profile')}
