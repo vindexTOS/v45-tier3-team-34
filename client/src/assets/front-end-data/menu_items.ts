@@ -55,17 +55,17 @@ export const menuItems = [
         {
           "title": "About us",
           "description": "Read more about the project vision and team info",
-          "link": "WhyDevConnect/AboutUs"
+          "link": "/WhyDevConnect/AboutUs"
         },
         {
           "title": "Success Stories",
           "description": "Read on successfully completed projects",
-          "link": "WhyDevConnect/SuccessStories"
+          "link": "/WhyDevConnect/SuccessStories"
         },
         {
           "title": "FAQs",
           "description": "Browse our list of Frequently Asked Questions",
-          "link": "WhyDevConnect/FAQs"
+          "link": "/WhyDevConnect/FAQs"
         }
       ]
     }
