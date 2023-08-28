@@ -38,7 +38,7 @@ const ProjectCard = ({ data }: { data: ProjectCardType }) => {
                   <button
                       //may (have to be chnged too)
                       onClick={()=>setIsLinked(prev=>!prev)}
-                      className={`${isLinked ? 'bg-orange-200 dark:bg-orange-800 text-orange-500 dark:text-orange-200 ' : 'bg-slate-300 dark:bg-slate-700 text-slate-500  '} text-2xl p-3 rounded-md `}>
+                      className={`${!isLinked ? 'bg-orange-200 dark:bg-orange-800 text-orange-500 dark:text-orange-200 ' : 'bg-slate-300 dark:bg-slate-700 text-slate-500  '} text-2xl p-3 rounded-md `}>
                           <AiTwotoneHeart  />
                   </button>
               </div>

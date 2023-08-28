@@ -23,6 +23,7 @@ import FAQs from "./pages/MainMenu/WhyDevConnect/FAQs";
 import SuccessStories from "./pages/MainMenu/WhyDevConnect/SuccessStories";
 import AboutUs from "./pages/MainMenu/WhyDevConnect/AboutUs";
 import CategoryPage from "./pages/CategoryPage";
+import User_info_form from "./pages/User_info_form";
 //routes
 const router = [
   {
