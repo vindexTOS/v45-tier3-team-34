@@ -26,7 +26,7 @@ const CategoryCard = ({
           </span>
           {rating}/5
         </p>
-        <p>{skills} skills x</p>
+        <p>{skills} skills</p>
       </div>
     </Link>
   );
