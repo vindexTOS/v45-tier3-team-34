@@ -11,6 +11,7 @@ import Portfolio_Preview from "./components/Dev_Portfolio/Portfolio_Preview";
 
 import Layout from "./layout";
 
+
 import PostProject from "./pages/MainMenu/FindCompany/PostProject";
 import ViewProjects from "./pages/MainMenu/FindCompany/ViewProjects";
 import NeedHelp from "./pages/MainMenu/FindCompany/NeedHelp";
@@ -30,6 +31,7 @@ import Developer_list from "./pages/MainMenu/FindCompany/Developer_list";
 import FindCompanyMain from "./pages/MainMenu/FindCompany/FindCompanyMain";
 import Company_info_form from "./pages/Forms/Company_info_form";
 import Company_Profile from "./pages/Profiles/Company_Profile";
+
 //routes
 const router = [
   {
@@ -140,7 +142,15 @@ const router = [
     path: "/Developer/:dev_id",
     element: <Single_User_Page />,
   },
-];
+
+
+  //projects page (by category) !! ??
+  {
+    path: '/projects/:project_category',
+    element:<ProjectsPage/>
+  }
+]
+
 
 type ReactRouteType = {
   path: string;

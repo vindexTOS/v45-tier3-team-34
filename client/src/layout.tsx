@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import Footer from "./components/Home/Footer";
 import NavBar from "./components/Home/NavBar";
+
 const Layout = ({
   children,
 }: {

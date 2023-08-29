@@ -27,7 +27,7 @@ const Categories = () => {
             <CategoryCard
               //have to be changed
 
-              link="/"
+              link={`/projects/${title}`}
               key={title}
               rating={rating}
               skills={skills}
@@ -35,7 +35,6 @@ const Categories = () => {
             />
           )
         )}
-
       </article>
     </section>
   );

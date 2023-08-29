@@ -1,11 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 // eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
 const colors = require("tailwindcss/colors");
+
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
   theme: {
     button: {
@@ -15,6 +15,11 @@ export default {
     },
 
     extend: {
+      button: {
+        base: "py-2 px-4 rounded",
+        primary: "bg-primary text-white",
+        secondary: "bg-secondary text-white",
+      },
       colors: {
         green: colors.green,
         white: colors.white,
