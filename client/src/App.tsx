@@ -21,7 +21,7 @@ import ListProjects from './components/NavBar/MainMenu/FindDeveloper/ListProject
 import FAQs from './components/NavBar/MainMenu/WhyDevConnect/FAQs'
 import SuccessStories from './components/NavBar/MainMenu/WhyDevConnect/SuccessStories'
 import AboutUs from './components/NavBar/MainMenu/WhyDevConnect/AboutUs'
-import CategoryPage from './pages/CategoryPage'
+
 
 import Single_User_Page from './pages/Profiles/Single_User_Page'
 import User_Portfolio_Single from './components/User/User_Portfolio_Single'
@@ -30,6 +30,7 @@ import Developer_list from './components/NavBar/MainMenu/FindCompany/Developer_l
 import FindCompanyMain from './components/NavBar/MainMenu/FindCompany/FindCompanyMain'
 import Company_info_form from './pages/Forms/Company_info_form'
 import Company_Profile from './pages/Profiles/Company_Profile'
+import ProjectsPage from './pages/ProjectsPage'
 //routes
 const router = [
   {
@@ -140,6 +141,12 @@ const router = [
     path: '/Developer/:dev_id',
     element: <Single_User_Page />,
   },
+
+  //projects page (by category) !! ??
+  {
+    path: '/projects/:project_category',
+    element:<ProjectsPage/>
+  }
 ]
 
 type ReactRouteType = {

@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom'
-import CategoryHero from '../components/CategoryPage/Hero/CategoryHero';
-import TrustedCompany from '../components/CategoryPage/TrustedBy/TrustedCompany';
-import ProjectsContainer from '../components/CategoryPage/Projects/Projectscontainer';
+import CategoryHero from '../components/ProjectsPage/Hero/CategoryHero';
+import TrustedCompany from '../components/ProjectsPage/TrustedBy/TrustedCompany';
+import ProjectsContainer from '../components/ProjectsPage/Projects/Projectscontainer';
 
-const CategoryPage = () => {
+const ProjectsPage = () => {
   const params = useParams();
   //may be changed with category id , or samething else
-  const { categoryType } = params;
+  const { project_category } = params;
   return (
     <div
       className='px-4'
@@ -20,10 +20,10 @@ const CategoryPage = () => {
       {/* projects */}
       <ProjectsContainer
         //?? --> (id if data will be feached in te component , or projects if projects are feached here)
-        id={categoryType??''}
+        id={project_category??''}
       />
     </div>
   )
 }
 
-export default CategoryPage
+export default ProjectsPage
