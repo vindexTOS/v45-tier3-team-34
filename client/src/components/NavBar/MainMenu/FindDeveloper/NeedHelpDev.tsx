@@ -1,10 +1,11 @@
 // import React from "react";
 
 import { Link } from "react-router-dom";
+import NeedHelpDevCard from "../../../FindDeveloperPage/NeedHelpDevCard";
 
 export default function NeedHelpDev() {
   return (
-    <div>
+    <div className="">
       <div className="bg-[url('/assets/img/find_client_bg.png')] bg-cover  bg-no-repeat bg-gray-500 bg-fixed md:bg-scroll   sm:rounded-xl  text-white p-2 md:p-8 flex flex-col gap-2 md:gap-y-20 w-[80%] mx-auto">
         <section className="flex flex-col gap-4 md:gap-10">
           <article className="w-full md:max-w-xl flex flex-col gap-y-12 bg-green-600 rounded-lg p-5">
@@ -35,23 +36,38 @@ export default function NeedHelpDev() {
       </div>
       <div>
         {/* actions */}
-        {/* <article className='flex flex-wrap w-full 3xl:w-10/12 gap-6 '>
-                  <FindClientcard
-                      link='/'
-                      title='Post a job and hire a professional'
-                      sub_title='Talenta Markeplace'
-                  />
-                  <FindClientcard
-                      link='/'
-                      title='Browse and buy some projects'
-                      sub_title='Project Catalog'
-                  />
-                  <FindClientcard
-                      link='/'
-                      title='Let us help you find the right talent'
-                      sub_title='Talenta Scout'
-                  />
-              </article> */}
+        <article className="flex flex-wrap gap-6 space-y-5 sm:space-y-0 items-center justify-center my-20">
+          <NeedHelpDevCard
+            link="/"
+            title="Create a profile"
+            sub_title="Highlight your skills and experience, show your portfolio, and set your ideal pay rate."
+          />
+          <NeedHelpDevCard
+            link="/"
+            title="Search for jobs"
+            sub_title="Search on Talent Marketplace™ for the hourly or fixed-price work you’re looking for."
+          />
+          <NeedHelpDevCard
+            link="/"
+            title="Submit a proposal"
+            sub_title="Set your rate and tell clients why you’re the right person for the job!"
+          />
+          <NeedHelpDevCard
+            link="/"
+            title="Get contract"
+            sub_title="If the client likes your proposal they’ll send you a contract to begin working."
+          />
+          <NeedHelpDevCard
+            link="/"
+            title="Complete the work"
+            sub_title="Check steps off as you finish and work with your client if you have questions."
+          />
+          <NeedHelpDevCard
+            link="/"
+            title="Get paid securely"
+            sub_title="Once the client approves your work, you'll get paid and they can leave you feedback."
+          />
+        </article>
       </div>
     </div>
   );
