@@ -1,12 +1,12 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React from "react";
+import { Outlet } from "react-router-dom";
 
 const FindCompanyMain = () => {
   return (
-    <section className="w-[100vw] h-[100vh]">
+    <section className="">
       <Outlet />
     </section>
-  )
-}
+  );
+};
 
-export default FindCompanyMain
+export default FindCompanyMain;

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { HiArrowRight } from "react-icons/hi";
 
-const NeedHelpDevCard = ({
+const NeedHelpCard = ({
   title,
   sub_title,
   link,
@@ -28,4 +28,4 @@ const NeedHelpDevCard = ({
   );
 };
 
-export default NeedHelpDevCard;
+export default NeedHelpCard;

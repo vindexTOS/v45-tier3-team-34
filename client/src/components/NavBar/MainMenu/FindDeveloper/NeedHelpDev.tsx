@@ -5,8 +5,8 @@ import NeedHelpDevCard from "../../../FindDeveloperPage/NeedHelpDevCard";
 
 export default function NeedHelpDev() {
   return (
-    <div className="">
-      <div className="bg-[url('/assets/img/find_client_bg.png')] bg-cover  bg-no-repeat bg-gray-500 bg-fixed md:bg-scroll   sm:rounded-xl  text-white p-2 md:p-8 flex flex-col gap-2 md:gap-y-20 w-[80%] mx-auto">
+    <div className="w-[80%] mx-auto">
+      <div className="bg-[url('/assets/img/find_client_bg.png')] bg-cover  bg-no-repeat bg-gray-500 bg-fixed md:bg-scroll   sm:rounded-xl  text-white p-2 md:p-8 flex flex-col gap-2 md:gap-y-20 mx-auto">
         <section className="flex flex-col gap-4 md:gap-10">
           <article className="w-full md:max-w-xl flex flex-col gap-y-12 bg-green-600 rounded-lg p-5">
             <h1 className="text-xs capitalize font-light py-1 px-4 bg-green-800 rounded-lg max-w-min whitespace-nowrap">
