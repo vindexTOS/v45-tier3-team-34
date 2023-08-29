@@ -27,7 +27,7 @@ const Developer_list = () => {
   }, []);
   if (devData && devData.devs) {
     return (
-      <div className="mt-60 w-[100vw] items-center justify-center flex flex-wrap gap-3">
+      <div className="items-center justify-center flex flex-wrap gap-3">
         {devData.devs.map((val: any) => {
           const {
             avatar,
@@ -68,9 +68,7 @@ const Developer_list = () => {
       </div>
     );
   } else {
-    return (
-      <div className="mt-60">Loading...</div>
-    );
+    return <div className="">Loading...</div>;
   }
 };
 
