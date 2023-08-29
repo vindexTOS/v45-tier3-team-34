@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { ProjectCardType } from '../../../common.types'
 import { Link } from 'react-router-dom'
 import RatesStars from './RatesStars'
 import { AiTwotoneHeart } from "react-icons/ai";
 
 const ProjectCard = ({ data }: { data: ProjectCardType }) => {
-    const [isLinked, setIsLinked] = useState(true);
+    const [isLinked, setIsLinked] = useState(false);
   return (
       <article
-          className='max-w-md border border-gray-300 dark:border-slate-900 dark:bg-slate-800 rounded-lg p-2 flex flex-col shadow-md hover:shadow-xl'
+          className='max-w-md border bg-white border-gray-300 dark:border-slate-900 dark:bg-slate-800 rounded-lg p-2 flex flex-col shadow-md hover:shadow-xl'
           //to={'/project/' + data.id}
       >
           <div className={`w-full h-64 rounded-md p-0 m-0 bg-[url("${data.img}")]`}>
@@ -38,7 +38,7 @@ const ProjectCard = ({ data }: { data: ProjectCardType }) => {
                   <button
                       //may (have to be chnged too)
                       onClick={()=>setIsLinked(prev=>!prev)}
-                      className={`${isLinked ? 'bg-orange-200 dark:bg-orange-800 text-orange-500 dark:text-orange-200 ' : 'bg-slate-300 dark:bg-slate-700 text-slate-500  '} text-2xl p-3 rounded-md `}>
+                      className={`${!isLinked ? 'bg-orange-200 dark:bg-orange-800 text-orange-500 dark:text-orange-200 ' : 'bg-slate-300 dark:bg-slate-700 text-slate-500  '} text-2xl p-3 rounded-md `}>
                           <AiTwotoneHeart  />
                   </button>
               </div>
