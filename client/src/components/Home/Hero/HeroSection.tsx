@@ -2,7 +2,7 @@ import { companies } from "../../../contants";
 import HeroCTAButton from "../../Buttons/HeroCTAButton";
 import HeroCompany from "./HeroCompany";
 import Lottie from "lottie-react";
-import animationData from "../../../../public/assets/lottie/animation_llpgw5p0.json";
+import animationData from "../../../../src/assets/lottie/animation_llpgw5p0.json";
 
 const HeroSection = () => {
   return (

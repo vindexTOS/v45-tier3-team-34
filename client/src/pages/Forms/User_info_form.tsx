@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import Portfolio_layout from '../components/Dev_Portfolio/Portfolio_layout'
-import InputFieldGeneral from '../components/Forms/InputFieldGeneral'
-import TextAreaGeneral from '../components/Forms/TextAreaGeneral'
-import { UseMainContext } from '../context'
-import SkillSelection from '../components/Forms/SkillSelection'
+import Portfolio_layout from '../../components/Dev_Portfolio/Portfolio_layout'
+import InputFieldGeneral from '../../components/Forms/InputFieldGeneral'
+import TextAreaGeneral from '../../components/Forms/TextAreaGeneral'
+import { UseMainContext } from '../../context'
+import SkillSelection from '../../components/Forms/SkillSelection'
 import axios from 'axios'
-import { globalUrl } from '../global-vars/Api-url'
+import { globalUrl } from '../../global-vars/Api-url'
 import { useNavigate } from 'react-router-dom'
-import Error from '../components/Status/Error'
-import Succsess from '../components/Status/Success'
-import LoadingComponent from '../components/Status/Loading'
+import Error from '../../components/Status/Error'
+import Succsess from '../../components/Status/Success'
+import LoadingComponent from '../../components/Status/Loading'
 export default function User_info_form() {
   const {
     UserInfoState,
@@ -44,7 +44,9 @@ export default function User_info_form() {
       setLoading(true)
       try {
         const data = await axios.patch(
-          `${globalUrl}/user/info/${UserState.userData.user._id}`,
+          `${import.meta.env.VITE_GLOBAL_URL}/user/info/${
+            UserState.userData.user._id
+          }`,
           {
             lastName,
             firstName,

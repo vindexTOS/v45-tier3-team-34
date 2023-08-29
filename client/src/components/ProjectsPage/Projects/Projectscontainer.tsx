@@ -17,7 +17,7 @@ const ProjectsContainer = ({ id, }: {
   //if projects ??...
   return (
     <div>
-      <section>
+      <section className='my-6'>
         <h1 className='text-2xl md:text-4xl font-semibold text-green-800 dark:text-green-500'>Browse available projects</h1>
         <p className='text-green-950 dark:text-white font-thin'>Currently <span className='text-green-600 dark:text-green-500'>{projects.length} Projects</span> are open</p>
       </section>

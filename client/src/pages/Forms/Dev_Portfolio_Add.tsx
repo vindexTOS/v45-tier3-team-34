@@ -1,11 +1,11 @@
 import React from 'react'
-import Portfolio_Navigation from '../components/Dev_Portfolio/Portfolio_Navigation'
+import Portfolio_Navigation from '../../components/Dev_Portfolio/Portfolio_Navigation'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import Portfolio_layout from '../components/Dev_Portfolio/Portfolio_layout'
-import Succsess from '../components/Status/Success'
-import { UseMainContext } from '../context'
-import Error from '../components/Status/Error'
-import LoadingComponent from '../components/Status/Loading'
+import Portfolio_layout from '../../components/Dev_Portfolio/Portfolio_layout'
+import Succsess from '../../components/Status/Success'
+import { UseMainContext } from '../../context'
+import Error from '../../components/Status/Error'
+import LoadingComponent from '../../components/Status/Loading'
 const Dev_Portfolio_Add = () => {
   const navigate = useNavigate()
   const { statusState, UserState, PortfolioState } = UseMainContext()

@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import { tryCatch } from '../../middleware/tryCatch'
 import { Request, Response, NextFunction } from 'express'
 import user_info_model from '../../model/user_info_model'
-
+import company_user_model from '../../model/company_user_model'
 export const Register = tryCatch(async (req: Request, res: any) => {
   const { password, confirmPassword, email, userName, avatar, role } = req.body
   let user = {}
@@ -28,7 +28,11 @@ export const Register = tryCatch(async (req: Request, res: any) => {
 
   const userFromDb = await User_model.findOne({ email: email })
 
-  await user_info_model.create({ user_id: userFromDb._id })
+  if (userFromDb.role === 'Company/Startup') {
+    await company_user_model.create({ company_id: userFromDb._id })
+  } else if (userFromDb.role === 'Developer') {
+    await user_info_model.create({ user_id: userFromDb._id })
+  }
 
   userFromDb.password = null
   // console.log(userFromDb)

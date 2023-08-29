@@ -3,12 +3,17 @@
 const colors = require("tailwindcss/colors");
 
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
   theme: {
+    button: {
+      base: "py-2 px-4 rounded",
+      primary: "bg-primary text-white",
+      secondary: "bg-secondary text-white",
+    },
+
     extend: {
       button: {
         base: "py-2 px-4 rounded",
@@ -16,6 +21,12 @@ export default {
         secondary: "bg-secondary text-white",
       },
       colors: {
+        green: colors.green,
+        white: colors.white,
+        gray: colors.gray,
+        black: colors.black,
+        slate: colors.slate,
+        blue: colors.blue,
         light: {
           primary: colors.red[100],
           secondary: colors.slate[900],
@@ -26,9 +37,6 @@ export default {
           secondary: colors.gray[800],
           text: colors.slate[400],
         },
-      },
-      transition: {
-        custom: "all 500ms ease-in-out 400ms",
       },
     },
 

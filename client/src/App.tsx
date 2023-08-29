@@ -1,29 +1,36 @@
-import "./index.css";
-import Login from "./pages/Login";
-import Profile from "./pages/Profile";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-import { Route, Routes } from "react-router-dom";
-import Dev_Add_Personal_Project from "./pages/Dev_Portfolio_Add";
-import Portfolio_title from "./components/Dev_Portfolio/Portfolio_title";
-import Portfolio_details from "./components/Dev_Portfolio/Portfolio_details";
-import Portfolio_Preview from "./components/Dev_Portfolio/Portfolio_Preview";
+import './index.css'
+import Login from './pages/Login'
+import Profile from './pages/Profiles/Profile'
+import Home from './pages/Home'
+import Register from './pages/Register'
+import { Route, Routes } from 'react-router-dom'
+import Dev_Add_Personal_Project from './pages/Forms/Dev_Portfolio_Add'
+import Portfolio_title from './components/Dev_Portfolio/Portfolio_title'
+import Portfolio_details from './components/Dev_Portfolio/Portfolio_details'
+import Portfolio_Preview from './components/Dev_Portfolio/Portfolio_Preview'
 
-import Layout from "./layout";
+import Layout from './layout'
 
-import ListDevelopers from "./pages/MainMenu/FindCompany/ListDevelopers";
-import PostProject from "./pages/MainMenu/FindCompany/PostProject";
-import ViewProjects from "./pages/MainMenu/FindCompany/ViewProjects";
-import NeedHelp from "./pages/MainMenu/FindCompany/NeedHelp";
-import NeedHelpDev from "./pages/MainMenu/FindDeveloper/NeedHelpDev";
-import MyProjects from "./pages/MainMenu/FindDeveloper/MyProjects";
-import ResourceTools from "./pages/MainMenu/FindDeveloper/ResourceTools";
-import ListProjects from "./pages/MainMenu/FindDeveloper/ListProjects";
-import FAQs from "./pages/MainMenu/WhyDevConnect/FAQs";
-import SuccessStories from "./pages/MainMenu/WhyDevConnect/SuccessStories";
-import AboutUs from "./pages/MainMenu/WhyDevConnect/AboutUs";
-import CategoryPage from "./pages/CategoryPage";
-import User_info_form from "./pages/User_info_form";
+import PostProject from './components/NavBar/MainMenu/FindCompany/PostProject'
+import ViewProjects from './components/NavBar/MainMenu/FindCompany/ViewProjects'
+import NeedHelp from './components/NavBar/MainMenu/FindCompany/NeedHelp'
+import NeedHelpDev from './components/NavBar/MainMenu/FindDeveloper/NeedHelpDev'
+import MyProjects from './components/NavBar/MainMenu/FindDeveloper/MyProjects'
+import ResourceTools from './components/NavBar/MainMenu/FindDeveloper/ResourceTools'
+import ListProjects from './components/NavBar/MainMenu/FindDeveloper/ListProjects'
+import FAQs from './components/NavBar/MainMenu/WhyDevConnect/FAQs'
+import SuccessStories from './components/NavBar/MainMenu/WhyDevConnect/SuccessStories'
+import AboutUs from './components/NavBar/MainMenu/WhyDevConnect/AboutUs'
+
+
+import Single_User_Page from './pages/Profiles/Single_User_Page'
+import User_Portfolio_Single from './components/User/User_Portfolio_Single'
+import User_info_form from './pages/Forms/User_info_form'
+import Developer_list from './components/NavBar/MainMenu/FindCompany/Developer_list'
+import FindCompanyMain from './components/NavBar/MainMenu/FindCompany/FindCompanyMain'
+import Company_info_form from './pages/Forms/Company_info_form'
+import Company_Profile from './pages/Profiles/Company_Profile'
+import ProjectsPage from './pages/ProjectsPage'
 //routes
 const router = [
   {
@@ -34,6 +41,59 @@ const router = [
     path: '/register',
     element: <Register />,
   },
+  // Main Menu
+  {
+    path: '/FindCompany',
+    element: <FindCompanyMain />,
+    outlet: [
+      {
+        path: 'ListDevelopers',
+        element: <Developer_list />,
+      },
+      {
+        path: 'PostProjects',
+        element: <PostProject />,
+      },
+      {
+        path: 'ViewProjects',
+        element: <ViewProjects />,
+      },
+      {
+        path: 'NeedHelp',
+        element: <NeedHelp />,
+      },
+    ],
+  },
+
+  {
+    path: '/FindDeveloper/ListProjects',
+    element: <ListProjects />,
+  },
+  {
+    path: '/FindDeveloper/ResourceTools',
+    element: <ResourceTools />,
+  },
+  {
+    path: '/FindDeveloper/MyProjects',
+    element: <MyProjects />,
+  },
+  {
+    path: '/FindDeveloper/NeedHelpDev',
+    element: <NeedHelpDev />,
+  },
+  {
+    path: '/WhyDevConnect/AboutUs',
+    element: <AboutUs />,
+  },
+  {
+    path: '/WhyDevConnect/SuccessStories',
+    element: <SuccessStories />,
+  },
+  {
+    path: '/WhyDevConnect/FAQs',
+    element: <FAQs />,
+  },
+
   {
     path: '/dev_project_add',
     element: <Dev_Add_Personal_Project />,
@@ -57,22 +117,38 @@ const router = [
     element: <User_info_form />,
   },
   {
+    path: '/company_info',
+    element: <Company_info_form />,
+  },
+  {
     path: '/login',
     element: <Login />,
   },
   {
-    //can make it protected or not
     path: '/profile',
     element: <Profile />,
   },
-
-  //category dynamic route
   {
-    //temporary, may be changed if needed
-    path: "/category/:categoryType",
-    element: < CategoryPage/>,
+    path: '/company_profile',
+    element: <Company_Profile />,
   },
-];
+  {
+    path: '/Project/:project_id',
+    element: <User_Portfolio_Single />,
+  },
+
+  {
+    path: '/Developer/:dev_id',
+    element: <Single_User_Page />,
+  },
+
+  //projects page (by category) !! ??
+  {
+    path: '/projects/:project_category',
+    element:<ProjectsPage/>
+  }
+]
+
 type ReactRouteType = {
   path: string
   element: JSX.Element

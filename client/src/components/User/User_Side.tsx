@@ -3,15 +3,21 @@ import { UseMainContext } from '../../context'
 import { DiGithubAlt } from 'react-icons/di'
 import { AiOutlineLinkedin } from 'react-icons/ai'
 import { SiWebmoney } from 'react-icons/si'
-const User_Side = () => {
+const User_Side = ({
+  userInfo,
+  isUser,
+}: {
+  userInfo: any
+  isUser?: boolean
+}) => {
   const { UserState } = UseMainContext()
 
   const style = {
     mainDiv: `w-[25%] border-r-[1px] border-gray-300  flex items-center justify-start py-10 flex-col gap-2 `,
     aTeg: `flex items-center justify-center py-2  w-[15rem] border-2 border-orange-900/40 rounded-[39px] bg-yellow-600/10  gap-2 hover:bg-green-600/10`,
   }
-  if (UserState.full_user_info && UserState.full_user_info.user_info) {
-    const { website, linkedin, github } = UserState.full_user_info.user_info
+  if (userInfo && userInfo.user_info) {
+    const { website, linkedin, github } = userInfo.user_info
 
     return (
       <div className={style.mainDiv}>

@@ -58,6 +58,7 @@ type UserInfoState = {
   website: string
   hrPay: number
   loading: boolean
+  companyName: string
 }
 
 type UserInfoAction = {
@@ -66,6 +67,7 @@ type UserInfoAction = {
 }
 
 // user portfolio project types
+
 export type PortfolioState = {
   userProjects: any
   title: string
@@ -84,7 +86,19 @@ type PortfolioAction = {
   payload: any
   type: string
 }
+// company
 
+type CompanyStateType = {
+  companyName: string
+  summary: string
+  linkedin: string
+  website: string
+  hrPay: string
+}
+type CompanyActionType = {
+  type: string
+  payload: string
+}
 type Cell = {
   ImgState: ImgState
   ImgDispatch: React.Dispatch<ImgAction>
@@ -93,7 +107,7 @@ type Cell = {
   hanldeAuth: (authObj: RegisterFormType, url: string) => void
   statusState: StatusState
   Authloading: boolean
-  GetUserData: () => void
+  GetUserData: (midUrl: string) => void
   PortfolioState: PortfolioState
   PortfolioDispatch: React.Dispatch<PortfolioAction>
 
@@ -105,7 +119,12 @@ type Cell = {
 
   UserStateUpdate: UserInfoState
   UserStateUpdateDispatch: React.Dispatch<UserInfoAction>
-  UpdateUserInfo: (obj: any) => void
+  UpdateUserInfo: (obj: any, link: string) => void
+  GetSingleDev: (dev_id: string) => void
+  devInfo: any
+
+  CompanyState: CompanyStateType
+  CompanyDispatch: React.Dispatch<CompanyActionType>
 }
 
 const Context = createContext<Cell | null>(null)
@@ -118,7 +137,7 @@ export const ContextProvider = ({
   const navigate = useNavigate()
   const routeLocation = useLocation()
   const cookies = new Cookies()
-
+  const location = useLocation()
   // this is custome hook
   const { statusState, setError, setSuccess } = useStatusMessages({
     error: '',
@@ -223,6 +242,7 @@ export const ContextProvider = ({
     github: '',
     linkedin: '',
     website: '',
+    companyName: '',
     hrPay: 0,
     loading: false,
   }
@@ -233,11 +253,11 @@ export const ContextProvider = ({
   )
 
   useEffect(() => {
-    const GetUserInfo = async () => {
+    const GetUserInfo = async (userUrl: string) => {
       if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
         try {
           const res = await axios.get(
-            `${globalUrl}/user/info/${UserState.userTokenData.user._id}`,
+            `${globalUrl}/${userUrl}/info/${UserState.userTokenData.user._id}`,
           )
           UserDispatch({ type: 'full-user-info', payload: res.data })
 
@@ -248,7 +268,17 @@ export const ContextProvider = ({
         }
       }
     }
-    GetUserInfo()
+    if (
+      UserState.userTokenData.user &&
+      UserState.userTokenData.user.role === 'Developer'
+    ) {
+      GetUserInfo('user')
+    } else if (
+      UserState.userTokenData.user &&
+      UserState.userTokenData.user.role === 'Company/Startup'
+    ) {
+      GetUserInfo('company')
+    }
   }, [UserState.userData])
 
   // handle registration and login
@@ -278,11 +308,6 @@ export const ContextProvider = ({
       setAuthLoading(false)
       ImgDispatch({ type: 'set-img-url', payload: '' })
 
-      if (url === 'register') {
-        navigate(`/dev_project_add/title`)
-      } else if (url === 'login') {
-        navigate('/profile')
-      }
       return data
     } catch (error) {
       let err: any = error
@@ -292,6 +317,25 @@ export const ContextProvider = ({
       setAuthLoading(false)
     }
   }
+
+  useEffect(() => {
+    const token = cookies.get('jwt_authorization')
+    if (token && UserState.userData && UserState.userData.user) {
+      if (location.pathname === '/register') {
+        if (UserState.userData.user.role === 'Developer') {
+          navigate(`/dev_project_add/title`)
+        } else {
+          navigate(`/company_info`)
+        }
+      } else if (location.pathname === '/login') {
+        if (UserState.userData.user.role === 'Developer') {
+          navigate('/profile')
+        } else {
+          navigate(`/company_profile`)
+        }
+      }
+    }
+  }, [UserState.userData, UserState.token])
 
   // getting token cookie from browser cookies and setting headers and UserState.userTokenData state
   const token = cookies.get('jwt_authorization')
@@ -307,18 +351,19 @@ export const ContextProvider = ({
   // user update
 
   // get updated user data or specifice user data when clicked on user
-  const GetUserData = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_GLOBAL_URL}/user/${
-          UserState.userTokenData.user._id
-        }`,
-      )
-      const data = response.data
-      UserDispatch({ type: 'user-data', payload: data })
-    } catch (error) {
-      console.log(error)
-    }
+  const GetUserData = async (midUrl: string) => {
+    if (UserState.userTokenData.user && UserState.userTokenData.user._id)
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_GLOBAL_URL}/${midUrl}/info/${
+            UserState.userTokenData.user._id
+          }`,
+        )
+        const data = response.data
+        UserDispatch({ type: 'user-data', payload: data })
+      } catch (error) {
+        console.log(error)
+      }
   }
 
   // update user information
@@ -332,6 +377,7 @@ export const ContextProvider = ({
     linkedin: '',
     website: '',
     hrPay: 0,
+    companyName: '',
     loading: false,
   }
 
@@ -359,7 +405,8 @@ export const ContextProvider = ({
 
       case 'hrPay':
         return { ...state, hrPay: action.payload }
-
+      case 'companyName':
+        return { ...state, companyName: action.payload }
       case 'loading':
         return { ...state, loading: state.loading = action.payload }
 
@@ -386,15 +433,19 @@ export const ContextProvider = ({
       UserStateUpdateDispatch({ type: 'linkedin', payload: user_info.linkedin })
       UserStateUpdateDispatch({ type: 'website', payload: user_info.website })
       UserStateUpdateDispatch({ type: 'hrPay', payload: user_info.hrPay })
+      UserStateUpdateDispatch({
+        type: 'companyName',
+        payload: user_info.companyName,
+      })
     }
   }, [UserState.full_user_info])
 
-  const UpdateUserInfo = async (obj: any) => {
+  const UpdateUserInfo = async (obj: any, link: string) => {
     UserStateUpdateDispatch({ type: 'loading', payload: true })
     if (UserState.userData.user && UserState.userData.user?._id) {
       try {
         const res = await axios.patch(
-          `${globalUrl}/user/info/${UserState.userData.user?._id}`,
+          `${globalUrl}/${link}/info/${UserState.userData.user?._id}`,
           obj,
         )
         UserStateUpdateDispatch({ type: 'loading', payload: false })
@@ -412,8 +463,17 @@ export const ContextProvider = ({
 
   useEffect(() => {
     if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
-      GetUserData()
-      console.log('hi')
+      if (
+        UserState.userTokenData.user &&
+        UserState.userTokenData.user.role === 'Developer'
+      ) {
+        GetUserData('user')
+      } else if (
+        UserState.userTokenData.user &&
+        UserState.userTokenData.user.role === 'Company/Startup'
+      ) {
+        GetUserData('company')
+      }
     }
   }, [UserState.userTokenData.user, UserState.updateUser, isUpdate])
 
@@ -503,6 +563,70 @@ export const ContextProvider = ({
   useEffect(() => {
     getAllDevProjects()
   }, [UserState.userData])
+
+  const [devInfo, setDevInfo] = useState<any>()
+
+  const GetSingleDev = async (dev_id: string) => {
+    try {
+      const res = await axios.get(`http://localhost:8080/user/info/${dev_id}`)
+      setDevInfo(res.data)
+
+      console.log(res.data)
+
+      navigate(`/Developer/${dev_id}`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  /// company
+
+  const companyInitialState = {
+    companyName: '',
+    summary: '',
+    linkedin: '',
+    website: '',
+    hrPay: '',
+  }
+  const CompanyReducer = (
+    state: CompanyStateType,
+    action: CompanyActionType,
+  ): CompanyStateType => {
+    switch (action.type) {
+      case 'SET_COMPANY_NAME':
+        return {
+          ...state,
+          companyName: action.payload,
+        }
+      case 'SET_SUMMARY':
+        return {
+          ...state,
+          summary: action.payload,
+        }
+      case 'SET_LINKEDIN':
+        return {
+          ...state,
+          linkedin: action.payload,
+        }
+      case 'SET_WEBSITE':
+        return {
+          ...state,
+          website: action.payload,
+        }
+      case 'SET_HR_PAY':
+        return {
+          ...state,
+          hrPay: action.payload,
+        }
+      default:
+        return state
+    }
+  }
+  const [CompanyState, CompanyDispatch] = useReducer(
+    CompanyReducer,
+    companyInitialState,
+  )
+
   return (
     <Context.Provider
       value={{
@@ -523,6 +647,10 @@ export const ContextProvider = ({
         UserStateUpdate,
         UserStateUpdateDispatch,
         UpdateUserInfo,
+        devInfo,
+        GetSingleDev,
+        CompanyState,
+        CompanyDispatch,
       }}
     >
       {children}

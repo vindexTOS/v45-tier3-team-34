@@ -27,7 +27,7 @@ const Categories = () => {
             <CategoryCard
               //have to be changed
 
-              link={`/category/${title}`}
+              link={`/projects/${title}`}
               key={title}
               rating={rating}
               skills={skills}
