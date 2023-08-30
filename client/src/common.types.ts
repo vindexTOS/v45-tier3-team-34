@@ -56,5 +56,6 @@ export type ProjectType = {
     videoLink: string,
   skills_used: string[],
     //_id:string,
-    __v?: number,
+  __v?: number,
+    date?:string
 }

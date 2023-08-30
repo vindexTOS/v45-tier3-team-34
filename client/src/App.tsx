@@ -152,7 +152,7 @@ const router = [
   },
   //project page
   {
-    path: '/project/:project_id',
+    path: '/company/projects/:project_id',
     element:<Project_Page/>
   },
 ]
