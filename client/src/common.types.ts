@@ -65,6 +65,7 @@ export type CompanyProjectType = {
 
 //project type (from db)
 export type ProjectType = {
+<<<<<<< HEAD
   _id: {
     $oid: string
   } //?? to be reviewed according to gotten data
@@ -78,4 +79,20 @@ export type ProjectType = {
   skills_used: string[]
   //_id:string,
   __v?: number
+=======
+    _id: {
+      $oid: string,
+    }, //?? to be reviewed according to gotten data
+    user_id: string,
+    title: string,
+    description: string,
+    photo: string,
+    github: string,
+    liveLink: string,
+    videoLink: string,
+  skills_used: string[],
+    //_id:string,
+  __v?: number,
+    date?:string
+>>>>>>> 60e51556723b6b5977609fbdaf3e42c32984ca61
 }
