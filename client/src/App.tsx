@@ -22,7 +22,6 @@ import ListProjects from "./pages/MainMenu/FindDeveloper/ListProjects";
 import FAQs from "./pages/MainMenu/WhyDevConnect/FAQs";
 import SuccessStories from "./pages/MainMenu/WhyDevConnect/SuccessStories";
 import AboutUs from "./pages/MainMenu/WhyDevConnect/AboutUs";
-import CategoryPage from "./pages/CategoryPage";
 
 import Single_User_Page from "./pages/Profiles/Single_User_Page";
 import User_Portfolio_Single from "./components/User/User_Portfolio_Single";
@@ -31,6 +30,8 @@ import Developer_list from "./pages/MainMenu/FindCompany/Developer_list";
 import FindCompanyMain from "./pages/MainMenu/FindCompany/FindCompanyMain";
 import Company_info_form from "./pages/Forms/Company_info_form";
 import Company_Profile from "./pages/Profiles/Company_Profile";
+import ProjectsListingPage from "./pages/ProjectsListingPage";
+import Project_Page from "./pages/Project/Project_Page";
 
 //routes
 const router = [
@@ -144,11 +145,16 @@ const router = [
   },
 
 
-  //projects page (by category) !! ??
+  //projects listing page (by category) !! ??
   {
     path: '/projects/:project_category',
-    element:<ProjectsPage/>
-  }
+    element:<ProjectsListingPage/>
+  },
+  //project page
+  {
+    path: '/project/:project_id',
+    element:<Project_Page/>
+  },
 ]
 
 
