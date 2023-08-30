@@ -22,13 +22,13 @@ export type GeneralActionType = {
 }
 
 export type ProjectCardType = {
-  id: string
+  _id: string
   title: string
   reviews: number
   price: number
   description: string
   stars: number
-  img: string
+  image: string
 }
 
 export type UserType = {
@@ -65,17 +65,17 @@ export type CompanyProjectType = {
 
 //project type (from db)
 export type ProjectType = {
-    _id: {
-      $oid: string,
-    }, //?? to be reviewed according to gotten data
-    user_id: string,
-    title: string,
-    description: string,
-    photo: string,
-    github: string,
-    liveLink: string,
-    videoLink: string,
-  skills_used: string[],
-    //_id:string,
-    __v?: number,
+  _id: {
+    $oid: string
+  } //?? to be reviewed according to gotten data
+  user_id: string
+  title: string
+  description: string
+  photo: string
+  github: string
+  liveLink: string
+  videoLink: string
+  skills_used: string[]
+  //_id:string,
+  __v?: number
 }

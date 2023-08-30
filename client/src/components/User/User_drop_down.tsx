@@ -20,17 +20,28 @@ export default function User_drop_down() {
     cookies.remove('jwt_authorization')
     window.location.reload()
   }
-
+  const navigateToProfile = () => {
+    if (UserState.userData && UserState.userData.user) {
+      if (UserState.userData.user.role === 'Company/Startup') {
+        navigate('/company_profile')
+      } else if (UserState.userData.user.role === '/profile') {
+        navigate('/profile')
+      }
+    }
+  }
   if (UserState.userData && UserState.userData.user) {
     const { avatar, userName } = UserState.userData.user
     return (
-      <div className={style.mainDiv}>
+      <div
+        onClick={() => console.log(UserState.userData)}
+        className={style.mainDiv}
+      >
         <div className={style.imgWrapper}>
           <img className={style.img} src={avatar} />
           <h1>{userName}</h1>
         </div>
         <div className={style.btnWrapper}>
-          <button onClick={() => navigate('/profile')} className={style.btn}>
+          <button onClick={navigateToProfile} className={style.btn}>
             <AiOutlineUser />
             Profile
           </button>

@@ -5,6 +5,7 @@ import {
   getCompany,
   updateCompany,
   deleteCompany,
+  getAllCompaniesProjects,
 } from '../controller/company-project-controller'
 import { Check_user_id } from '../middleware/user-id-check'
 import { check_user_token } from '../middleware/user-token-check'
@@ -16,6 +17,8 @@ const router = express.Router()
 router
   .route('/:user_id')
   .post(Check_user_id, check_user_token, createCompany, errorHandler)
+
+router.route('/each/:user_id').get(getAllCompaniesProjects)
 router.route('/').get(getAllCompanies)
 router.route('/:id').get(getCompany).put(updateCompany).delete(deleteCompany)
 

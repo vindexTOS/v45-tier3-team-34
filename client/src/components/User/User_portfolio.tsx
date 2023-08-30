@@ -32,7 +32,7 @@ const User_portfolio = ({ isUser }: { isUser: boolean }) => {
               <img className="w-[250px] h-[200px]" src={val.photo} />
               <div
                 className="text-green-500 text-bold  text-[1.1rem] font-medium hover:text-green-400 hover:underline"
-                onClick={() => navigate(`/Project/${val._id}`)}
+                onClick={() => navigate(`user/project/${val._id}`)}
               >
                 {val.title}
               </div>

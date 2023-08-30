@@ -11,7 +11,7 @@ interface EditableFieldProps {
   style?: string
   textArea?: boolean
   isUser?: boolean
-  link: string
+  link?: string
 }
 
 const EditableField: React.FC<EditableFieldProps> = ({
@@ -33,7 +33,7 @@ const EditableField: React.FC<EditableFieldProps> = ({
   const [editing, setEditing] = useState(false)
 
   const handleSave = () => {
-    UpdateUserInfo(obj, link)
+    UpdateUserInfo(obj, link || '')
     setEditing(false)
   }
 
