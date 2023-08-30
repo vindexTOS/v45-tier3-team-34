@@ -10,6 +10,7 @@ import { IoIosAddCircleOutline } from 'react-icons/io'
 import Succsess from '../../components/Status/Success'
 import LoadingComponent from '../../components/Status/Loading'
 import User_info_update_input from '../../components/User/User_Info_Update_Input'
+import { useNavigate } from 'react-router-dom'
 const Company_Profile = () => {
   const { UserState, statusState, UserStateUpdate } = UseMainContext()
   const style = {
@@ -24,7 +25,7 @@ const Company_Profile = () => {
     headerDiv: `flex  justify-around text-gray-700 text-[1.3rem] font-bold py-3`,
     topSection: ` border-b-[2px] px-4 py-6 flex flex-col  gap-5`,
   }
-
+  const navigate = useNavigate()
   const [editName, setEditName] = useState(false)
   function getUserTimezone() {
     // const userTimeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -60,7 +61,7 @@ const Company_Profile = () => {
     return (
       <User_layout>
         <div
-          onClick={() => console.log(UserStateUpdate)}
+          // onClick={() => console.log(UserStateUpdate)}
           className="flex  flex-col gap-2 p-2 items-center justify-center "
         >
           <section
@@ -91,7 +92,10 @@ const Company_Profile = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-center gap-3 h-[100%] ">
+            <div
+              onClick={() => navigate('/company_project')}
+              className="flex items-center justify-center gap-3 h-[100%] cursor-pointer "
+            >
               <h1 className="text-[1.2rem] text-gray-500 font-bold">
                 Create Project Listing
               </h1>

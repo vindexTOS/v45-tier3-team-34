@@ -6,6 +6,9 @@ const MenuItem = () => {
   const [hoveredMenu, setHoveredMenu] = useState<
     string | null
   >(null);
+  const [activeMenu, setActiveMenu] = useState<
+    string | null
+  >(null);
 
   return (
     <div className="group relative hidden lg:block">
@@ -20,10 +23,22 @@ const MenuItem = () => {
               onMouseLeave={() =>
                 setHoveredMenu(null)
               }
+              onClick={() =>
+                setActiveMenu(menu.name)
+              }
             >
-              <button className="p-2 text-sm text-green-900 dark:text-slate-400 hover:text-green-700 dark:hover:text-green-500">
+              <button
+                className={`p-2 text-sm ${
+                  menu.name === hoveredMenu
+                    ? "text-green-900 dark:text-slate-400 hover:text-green-900 dark:hover:text-green-500 font-bold"
+                    : menu.name === activeMenu
+                    ? "font-bold text-green-900 dark:text-slate-400 hover:text-green-700 dark:hover:text-green-500"
+                    : "text-green-900 dark:text-slate-400 hover:text-green-700 dark:hover:text-green-500"
+                }`}
+              >
                 {menu.name}
               </button>
+
               <div className="group relative">
                 {menu.subMenus &&
                   menu.subMenus.length > 0 &&

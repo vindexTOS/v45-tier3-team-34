@@ -1,6 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const Company_Project_model = new mongoose.Schema({
+  user_id: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: [true, 'title is required'],
@@ -9,7 +13,7 @@ const Company_Project_model = new mongoose.Schema({
     type: String,
     required: [true, 'description is required'],
   },
-  skills_required: {
+  skills: {
     type: Array,
   },
   category: {
@@ -25,13 +29,13 @@ const Company_Project_model = new mongoose.Schema({
     type: Boolean,
   },
   price: {
-    type: Number,
+    type: String,
     required: [true, 'Price is required'],
   },
   difficulty: {
     type: String,
     enum: ['low', 'medium', 'high'],
   },
-});
+})
 
-export default mongoose.model('connect_dev_company', Company_Project_model);
+export default mongoose.model('connect_dev_company', Company_Project_model)
