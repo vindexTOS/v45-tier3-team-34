@@ -9,7 +9,7 @@ import React, {
 import jwt from 'jwt-decode'
 import Cookies from 'universal-cookie'
 import { globalUrl } from './global-vars/Api-url'
-import { RegisterFormType, UserType } from './common.types'
+import { CompanyProjectType, RegisterFormType, UserType } from './common.types'
 import { useLocation, useNavigate } from 'react-router-dom'
 import useStatusMessages from './hooks/Status_hook'
 // img types
@@ -125,6 +125,9 @@ type Cell = {
 
   CompanyState: CompanyStateType
   CompanyDispatch: React.Dispatch<CompanyActionType>
+
+  companyProjectsData: CompanyProjectType[]
+  setCompanyProjectsData: React.Dispatch<CompanyProjectType[]>
 }
 
 const Context = createContext<Cell | null>(null)
@@ -627,6 +630,9 @@ export const ContextProvider = ({
     companyInitialState,
   )
 
+  const [companyProjectsData, setCompanyProjectsData] = useState<
+    CompanyProjectType[]
+  >([])
   return (
     <Context.Provider
       value={{
@@ -651,6 +657,8 @@ export const ContextProvider = ({
         GetSingleDev,
         CompanyState,
         CompanyDispatch,
+        companyProjectsData,
+        setCompanyProjectsData,
       }}
     >
       {children}
