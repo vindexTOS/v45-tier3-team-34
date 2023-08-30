@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom'
-import CategoryHero from '../components/ProjectsPage/Hero/CategoryHero';
-import TrustedCompany from '../components/ProjectsPage/TrustedBy/TrustedCompany';
-import ProjectsContainer from '../components/ProjectsPage/Projects/Projectscontainer';
+import CategoryHero from '../components/ProjectsListingPage/Hero/CategoryHero';
+import TrustedCompany from '../components/ProjectsListingPage/TrustedBy/TrustedCompany';
+import ProjectsContainer from '../components/ProjectsListingPage/Projects/Projectscontainer';
 
-const ProjectsPage = () => {
+const ProjectsListingPage = () => {
   const params = useParams();
   //may be changed with category id , or samething else
   const { project_category } = params;
@@ -26,4 +26,4 @@ const ProjectsPage = () => {
   )
 }
 
-export default ProjectsPage
+export default ProjectsListingPage

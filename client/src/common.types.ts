@@ -62,3 +62,20 @@ export type CompanyProjectType = {
 
   user_id: string
 }
+
+//project type (from db)
+export type ProjectType = {
+    _id: {
+      $oid: string,
+    }, //?? to be reviewed according to gotten data
+    user_id: string,
+    title: string,
+    description: string,
+    photo: string,
+    github: string,
+    liveLink: string,
+    videoLink: string,
+  skills_used: string[],
+    //_id:string,
+    __v?: number,
+}
