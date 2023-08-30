@@ -64,13 +64,16 @@ We connect junior developers with clients seeking affordable software solutions,
 ![Before](/client/public/assets/img/epics-2.png)
 ## Features
 
-- [ ] Sign Up | Sign In
-- [ ] Demo login Developer/Client
-- [ ] Edit user profiles
+- [x] Sign Up | Sign In
+- [x] Demo login Developer/Client
+- [x] Edit user profiles
 - [ ] Search open Projects
 - [ ] Apply for Projects
 - [ ] Complete and Submit Projects
-- [ ] Chatbot integration
+- [ ] Get Reviews
+- [ ] Closed/Archive Projects
+- [ ] Chat integration
+- [ ] Ai Chatbot integration
 - [ ] Video Call
 
 ## Goals

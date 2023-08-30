@@ -4,7 +4,7 @@ import React, {
 } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { UseMainContext } from "../../../../context";
+import { UseMainContext } from "../../../context";
 const Developer_list = () => {
   const { GetSingleDev } = UseMainContext();
   const [devData, setDevData] = useState<any>();

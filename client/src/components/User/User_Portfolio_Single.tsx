@@ -6,7 +6,7 @@ import { UseMainContext } from '../../context'
 const User_Portfolio_Single = () => {
   const { PortfolioState } = UseMainContext()
   const { project_id } = useParams()
-  const singleProject = PortfolioState.userProjects.projects.find(
+  let singleProject = PortfolioState?.userProjects?.projects?.find(
     (val: any) => val._id === project_id,
   )
   const navigate = useNavigate()
@@ -15,6 +15,36 @@ const User_Portfolio_Single = () => {
     navigate(`/Developer/${singleProject.user_id}`)
   }
   useOutClick(ref, navigateOut)
+  
+  // if (!singleProject) {
+  //   return <div>
+  //     no project !!!
+  //   </div>
+  // }
+
+  //dummy data 
+  singleProject={
+    "_id": {
+      "$oid": "64e5d215edaa50d485169ab1"
+    },
+    "user_id": "64e485dba769e37c749933c5",
+    "title": "PC market",
+    "description": "Post their own orders for computer components. Search for orders posted by other users. View the details of a specific order. Buy an order. Sell an order. Manage their profile and view their own orders. Technologies The PC Market App is built using the following technologies:",
+    "date": "2023-08-15T09:30:18.000Z",
+    "photo": "https://firebasestorage.googleapis.com/v0/b/img-upload-7d368.appspot.com/o/connect-dev%2Fimage_large.jpg?alt=media&token=b4b2153c-4295-4978-a4e9-7329c94e7658",
+    "github": "",
+    "liveLink": "https://pcmarket.netlify.app/",
+    "videoLink": "cool",
+    "skills_used": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Express.js",
+      "React"
+    ],
+    "__v": 0
+  }
+
   const {
     date,
     description,

@@ -13,7 +13,7 @@ const ProjectCard = ({ data }: { data: ProjectCardType }) => {
       >
           {/* ?? a try */}
           <Link
-              to={'/project/' + data.id}>
+              to={'/company/projects/' + data.id}>
               {/* ?? this image require more stylings  */}
           <div className={`w-full h-64 rounded-md p-0 m-0 bg-[url("${data.img}")]`}>
               <img className='w-full h-full ' src={ data.img} alt={data.title.slice(0,2)}  />

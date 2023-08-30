@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { UseMainContext } from '../../context'
 import { storage } from '../../firebase/firebase'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-
+import LoadingComponent from '../Status/Loading'
 const DropeZone = () => {
   const { ImgState, ImgDispatch } = UseMainContext()
 
@@ -90,6 +90,7 @@ const DropeZone = () => {
       onClick={() => console.log(ImgState)}
       className="flex items-center  bg-gray justify-center w-[100%]"
     >
+      <LoadingComponent loading={ImgState.imgLoading} />
       <label
         onDragLeave={(e) => handleDragLeave(e)}
         onDragOver={(e) => handleDragOver(e)}

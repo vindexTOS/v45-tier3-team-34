@@ -11,26 +11,28 @@ import Portfolio_Preview from './components/Dev_Portfolio/Portfolio_Preview'
 
 import Layout from './layout'
 
-import PostProject from './components/NavBar/MainMenu/FindCompany/PostProject'
-import ViewProjects from './components/NavBar/MainMenu/FindCompany/ViewProjects'
-import NeedHelp from './components/NavBar/MainMenu/FindCompany/NeedHelp'
-import NeedHelpDev from './components/NavBar/MainMenu/FindDeveloper/NeedHelpDev'
-import MyProjects from './components/NavBar/MainMenu/FindDeveloper/MyProjects'
-import ResourceTools from './components/NavBar/MainMenu/FindDeveloper/ResourceTools'
-import ListProjects from './components/NavBar/MainMenu/FindDeveloper/ListProjects'
-import FAQs from './components/NavBar/MainMenu/WhyDevConnect/FAQs'
-import SuccessStories from './components/NavBar/MainMenu/WhyDevConnect/SuccessStories'
-import AboutUs from './components/NavBar/MainMenu/WhyDevConnect/AboutUs'
+import PostProject from "./pages/MainMenu/FindCompany/PostProject";
+import ViewProjects from "./pages/MainMenu/FindCompany/ViewProjects";
+import NeedHelp from "./pages/MainMenu/FindCompany/NeedHelp";
+import NeedHelpDev from "./pages/MainMenu/FindDeveloper/NeedHelpDev";
+import MyProjects from "./pages/MainMenu/FindDeveloper/MyProjects";
+import ResourceTools from "./pages/MainMenu/FindDeveloper/ResourceTools";
+import ListProjects from "./pages/MainMenu/FindDeveloper/ListProjects";
+import FAQs from "./pages/MainMenu/WhyDevConnect/FAQs";
+import SuccessStories from "./pages/MainMenu/WhyDevConnect/SuccessStories";
+import AboutUs from "./pages/MainMenu/WhyDevConnect/AboutUs";
 
+import Single_User_Page from "./pages/Profiles/Single_User_Page";
+import User_Portfolio_Single from "./components/User/User_Portfolio_Single";
+import User_info_form from "./pages/Forms/User_info_form";
+import Developer_list from "./pages/MainMenu/FindCompany/Developer_list";
+import FindCompanyMain from "./pages/MainMenu/FindCompany/FindCompanyMain";
+import Company_info_form from "./pages/Forms/Company_info_form";
+import Company_Profile from "./pages/Profiles/Company_Profile";
+import ProjectsListingPage from "./pages/ProjectsListingPage";
+import Project_Page from "./pages/Project/Project_Page";
+import CompanyProjectForm from './pages/Forms/Company_Project_posting'
 
-import Single_User_Page from './pages/Profiles/Single_User_Page'
-import User_Portfolio_Single from './components/User/User_Portfolio_Single'
-import User_info_form from './pages/Forms/User_info_form'
-import Developer_list from './components/NavBar/MainMenu/FindCompany/Developer_list'
-import FindCompanyMain from './components/NavBar/MainMenu/FindCompany/FindCompanyMain'
-import Company_info_form from './pages/Forms/Company_info_form'
-import Company_Profile from './pages/Profiles/Company_Profile'
-import ProjectsPage from './pages/ProjectsPage'
 //routes
 const router = [
   {
@@ -133,6 +135,10 @@ const router = [
     element: <Company_Profile />,
   },
   {
+    path: '/company_project',
+    element: <CompanyProjectForm />,
+  },
+  {
     path: '/Project/:project_id',
     element: <User_Portfolio_Single />,
   },
@@ -142,11 +148,17 @@ const router = [
     element: <Single_User_Page />,
   },
 
-  //projects page (by category) !! ??
+
+  //projects listing page (by category) !! ??
   {
     path: '/projects/:project_category',
-    element:<ProjectsPage/>
-  }
+    element:<ProjectsListingPage/>
+  },
+  //project page
+  {
+    path: '/company/projects/:project_id',
+    element:<Project_Page/>
+  },
 ]
 
 type ReactRouteType = {

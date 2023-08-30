@@ -20,16 +20,17 @@ export type GeneralActionType = {
   payload: string
   type: string
 }
- 
+
 export type ProjectCardType = {
-  id: string,
-    title: string,
-    reviews: number,
-    price: number,
-    description: string,
-    stars: number,
-    img: string,}
- 
+  id: string
+  title: string
+  reviews: number
+  price: number
+  description: string
+  stars: number
+  img: string
+}
+
 export type UserType = {
   avatar: string
   date: string
@@ -39,5 +40,43 @@ export type UserType = {
   userName: string
   _id: string
   __v?: number
- 
+}
+
+export type CompanyProjectType = {
+  category: string
+
+  country: string
+
+  description: string
+
+  difficulty: string
+
+  image: string
+  price: string
+
+  skills: string[]
+
+  title: string
+
+  urgent: string
+
+  user_id: string
+}
+
+//project type (from db)
+export type ProjectType = {
+    _id: {
+      $oid: string,
+    }, //?? to be reviewed according to gotten data
+    user_id: string,
+    title: string,
+    description: string,
+    photo: string,
+    github: string,
+    liveLink: string,
+    videoLink: string,
+  skills_used: string[],
+    //_id:string,
+  __v?: number,
+    date?:string
 }
