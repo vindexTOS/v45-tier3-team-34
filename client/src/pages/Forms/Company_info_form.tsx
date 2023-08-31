@@ -48,7 +48,7 @@ export default function Company_info_form() {
           },
         )
         setSuccess(data.data.msg)
-        navigate('/profile ')
+        navigate('/company_profile')
 
         setLoading(false)
       } catch (error) {

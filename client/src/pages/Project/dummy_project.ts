@@ -24,6 +24,38 @@ export const dummy_project_publisher = {
     country:"nigeria"
 }
 
+export const tiers = [
+    {
+        type: "basic",
+        budget:99,
+        delivery_time: 15,
+        deal_start_date: "25 sept 2023",
+        n_revisions: 5,
+        design_customisation: false,
+        content_upload: false,
+        responsive_design:true,
+    },
+    {
+        type: "standard",
+        budget:120,
+        delivery_time: 10,
+        deal_start_date: "25 sept 2023",
+        n_revisions: 10,
+        design_customisation: false,
+        content_upload: true,
+        responsive_design:true,
+    },
+    {
+        type: "premium",
+        budget:150,
+        delivery_time: 8,
+        deal_start_date: "25 sept 2023",
+        n_revisions: 15,
+        design_customisation: true,
+        content_upload: true,
+        responsive_design:true,
+    },
+]
 
 export type PublisherType = typeof dummy_project_publisher
 export type projectType=typeof dummy_project

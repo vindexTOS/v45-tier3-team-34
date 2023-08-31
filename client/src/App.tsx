@@ -139,7 +139,7 @@ const router = [
     element: <CompanyProjectForm />,
   },
   {
-    path: '/Project/:project_id',
+    path: 'user/project/:project_id',
     element: <User_Portfolio_Single />,
   },
 
@@ -152,7 +152,7 @@ const router = [
   //projects listing page (by category) !! ??
   {
     path: '/projects/:project_category',
-    element:<ProjectsListingPage/>
+    element: <ProjectsListingPage />,
   },
   //project page
   {

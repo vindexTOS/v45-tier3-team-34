@@ -1,10 +1,22 @@
 import Company_Project_model from '../model/company_project_model'
 import { tryCatch } from '../middleware/tryCatch'
 import { Request, Response, NextFunction } from 'express'
+import { CompanyProject } from '../types/Controller-types'
+import rating_model from '../model/rating_model'
+export const getAllCompanies = tryCatch(async (req: Request, res: any) => {
+  const projects = await Company_Project_model.find({})
+  const projectsData = []
 
-export const getAllCompanies = tryCatch(async (req: Request, res: Response) => {
-  const companies = await Company_Project_model.find({})
-  res.status(200).json({ companies })
+  for (const project of projects) {
+    const ratings = await rating_model.find({ user_id: project.user_id })
+    const combinedData = {
+      project,
+      ratings,
+    }
+    projectsData.push(combinedData)
+  }
+
+  return res.status(200).json({ projectsData })
 })
 
 export const createCompany = tryCatch(async (req: Request, res: any) => {
@@ -15,6 +27,22 @@ export const createCompany = tryCatch(async (req: Request, res: any) => {
   })
   return res.status(201).json({ msg: 'Project Added' })
 })
+
+export const getAllCompaniesProjects = tryCatch(
+  async (req: Request, res: any) => {
+    const { user_id } = req.params
+    const data = []
+    let companySpecificProjects: CompanyProject[] = await Company_Project_model.find()
+
+    for (let i = 0; i < companySpecificProjects.length; i++) {
+      if (companySpecificProjects[i].user_id === user_id) {
+        data.push(companySpecificProjects[i])
+      }
+    }
+
+    return res.status(200).json({ data })
+  },
+)
 
 export const getCompany = tryCatch(async (req: Request, res: any) => {
   const projectId = req.params.id

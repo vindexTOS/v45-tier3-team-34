@@ -1,8 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { dummy_project, dummy_project_publisher } from './dummy_project';
 import { BiSolidShareAlt,BiSolidBookmark } from "react-icons/bi";
+import { tierCategoryType } from '../../common.types';
+import { useState } from 'react';
+import TierDetails from '../../components/Project_detail/Tier_details';
 const Project_Page = () => {
-    const params = useParams();
+  const params = useParams()
   //may be changed with category id , or samething else
     const { project_id } = params;
   // fetch projecct data (info) by it id here;
@@ -10,6 +13,9 @@ const Project_Page = () => {
   const project = dummy_project;
   // ?? publisher (may be fetched to from db, or linked to the project (company _id))
   const publisher = dummy_project_publisher;
+
+  //tier ....??
+  const [selectedTier, setSetselectedTier] = useState<tierCategoryType>('basic')
 
   return (
     <div className='px-6 md:px-20 flex flex-col lg:flex-row gap-x-10 xl:gap-x-20'>
@@ -69,8 +75,34 @@ const Project_Page = () => {
           </div>
         </div>
       </article>
-      <article>
-        offers here
+      
+      <article className='lg:flex-1'>
+        <div className=' border border-green-600 bg-green-100/20 rounded-md dark:bg-slate-900 dark:border-slate-600 text-green-800 dark:text-green-300 p-4 md:p-10'>
+          <section className='flex justify-between items-center flex-wrap gap-y-2 border-b border-b-green-600 dark:border-slate-600 pb-8'>
+            <h1
+              className='text-lg'
+            >Select Tier</h1>
+            <div className='flex gap-4'>
+              {
+                ['basic', 'standard', 'premium'].map((tier) => (
+                  <button
+                    className={`text-white ${selectedTier===tier ? 'bg-green-800':'bg-green-500'} px-4 py-2 rounded-md shadow-lg capitalize`}
+                    key={tier}
+                    onClick={()=>setSetselectedTier(tier as tierCategoryType)}
+                  >
+                    {tier}
+                  </button>
+                ))
+              }
+            </div>
+          </section>
+            <TierDetails tier={selectedTier} />
+            <section></section>
+        </div>
+
+        <div>
+          publisher ....
+        </div>
       </article>
     </div>
   )

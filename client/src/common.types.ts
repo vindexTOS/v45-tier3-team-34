@@ -22,13 +22,13 @@ export type GeneralActionType = {
 }
 
 export type ProjectCardType = {
-  id: string
+  _id: string
   title: string
   reviews: number
   price: number
   description: string
   stars: number
-  img: string
+  image: string
 }
 
 export type UserType = {
@@ -63,7 +63,7 @@ export type CompanyProjectType = {
   user_id: string
 }
 
-//project type (from db)
+//company project type (from db)
 export type ProjectType = {
     _id: {
       $oid: string,
@@ -79,4 +79,19 @@ export type ProjectType = {
     //_id:string,
   __v?: number,
     date?:string
+}
+
+
+// tiers (offers types)
+export type tierCategoryType = 'basic' | 'standard' | 'premium';
+
+export type TiersType = {
+  type: tierCategoryType;
+  budget: number;
+  delivery_time: number;
+  deal_start_date: string;
+  n_revisions: number;
+  design_customisation: boolean;
+  content_upload: boolean;
+  responsive_design: boolean;
 }

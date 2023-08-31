@@ -24,6 +24,7 @@ const Single_User_Page = () => {
     UserStateUpdate,
     PortfolioDispatch,
     PortfolioState,
+    UserState,
   } = UseMainContext()
   const navigation = useNavigate()
   const [projects, setProjects] = useState<any>()
@@ -45,13 +46,78 @@ const Single_User_Page = () => {
     }
   }
 
+  const RateUser = async (user_id: string) => {
+    if (UserState.userData.user && UserState.userData.user._id) {
+      try {
+        const res = await axios.post(
+          `${import.meta.env.VITE_GLOBAL_URL}/rating/${user_id}`,
+          {
+            rater_id: UserState.userData.user._id,
+            rating_score: rating,
+            rating_review: '',
+          },
+        )
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+  const [rating, setRating] = useState<number>(0)
+
+  const GetUserRating = async () => {
+    if (devInfo && devInfo.user && devInfo.user._id) {
+      try {
+        const res = await axios.get(
+          `${import.meta.env.VITE_GLOBAL_URL}/rating/${devInfo.user._id}`,
+        )
+        setRatingFromDb(res.data.averageRating)
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+  const [ratingFromDb, setRatingFromDb] = useState<number>()
+
   useEffect(() => {
     getAllDevProjects()
   }, [])
 
-  if (devInfo && devInfo.user_info && devInfo.user) {
+  useEffect(() => {
+    GetUserRating()
+  }, [devInfo])
+
+  if (
+    devInfo &&
+    devInfo.user_info &&
+    devInfo.user &&
+    PortfolioState.userProjects &&
+    PortfolioState.userProjects.projects
+  ) {
     return (
       <User_layout>
+        <div>
+          <h1>Ratinig {rating}</h1>
+          <input
+            value={rating}
+            onChange={(e) => setRating(Number(e.target.value))}
+            type="range"
+            max="5"
+            min="1"
+          />
+          <button
+            onClick={() => RateUser(devInfo.user._id)}
+            className="bg-red-500 text-white  p-2 rounded-[9px]"
+          >
+            Rate
+          </button>
+
+          <div onClick={() => GetUserRating()}>
+            {' '}
+            Avreage rating {ratingFromDb?.toFixed(2)}
+          </div>
+        </div>
         <div
           onClick={() => console.log(devInfo)}
           className="flex  flex-col gap-2 p-2 items-center justify-center "
@@ -117,7 +183,7 @@ const Single_User_Page = () => {
                         <img className="w-[250px] h-[200px]" src={val.photo} />
                         <div
                           className="text-green-500 text-bold  text-[1.1rem] font-medium hover:text-green-400 hover:underline"
-                          onClick={() => navigation(`/Project/${val._id}`)}
+                          onClick={() => navigation(`/user/project/${val._id}`)}
                         >
                           {val.title}
                         </div>
