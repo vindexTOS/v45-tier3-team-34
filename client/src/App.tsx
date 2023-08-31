@@ -9,29 +9,28 @@ import Portfolio_title from './components/Dev_Portfolio/Portfolio_title'
 import Portfolio_details from './components/Dev_Portfolio/Portfolio_details'
 import Portfolio_Preview from './components/Dev_Portfolio/Portfolio_Preview'
 
-import Layout from './layout'
+import FAQs from './pages/MainMenu/WhyDevConnect/FAQs'
+import SuccessStories from './pages/MainMenu/WhyDevConnect/SuccessStories'
+import AboutUs from './pages/MainMenu/WhyDevConnect/AboutUs'
 
-import PostProject from "./pages/MainMenu/FindCompany/PostProject";
-import ViewProjects from "./pages/MainMenu/FindCompany/ViewProjects";
-import NeedHelp from "./pages/MainMenu/FindCompany/NeedHelp";
-import NeedHelpDev from "./pages/MainMenu/FindDeveloper/NeedHelpDev";
-import MyProjects from "./pages/MainMenu/FindDeveloper/MyProjects";
-import ResourceTools from "./pages/MainMenu/FindDeveloper/ResourceTools";
-import ListProjects from "./pages/MainMenu/FindDeveloper/ListProjects";
-import FAQs from "./pages/MainMenu/WhyDevConnect/FAQs";
-import SuccessStories from "./pages/MainMenu/WhyDevConnect/SuccessStories";
-import AboutUs from "./pages/MainMenu/WhyDevConnect/AboutUs";
-
-import Single_User_Page from "./pages/Profiles/Single_User_Page";
-import User_Portfolio_Single from "./components/User/User_Portfolio_Single";
-import User_info_form from "./pages/Forms/User_info_form";
-import Developer_list from "./pages/MainMenu/FindCompany/Developer_list";
-import FindCompanyMain from "./pages/MainMenu/FindCompany/FindCompanyMain";
-import Company_info_form from "./pages/Forms/Company_info_form";
-import Company_Profile from "./pages/Profiles/Company_Profile";
-import ProjectsListingPage from "./pages/ProjectsListingPage";
-import Project_Page from "./pages/Project/Project_Page";
+import Single_User_Page from './pages/Profiles/Single_User_Page'
+import User_Portfolio_Single from './components/User/User_Portfolio_Single'
+import User_info_form from './pages/Forms/User_info_form'
+import ForCompanyMain from './pages/MainMenu/ForCompany/ForCompanyMain'
+import Company_info_form from './pages/Forms/Company_info_form'
+import Company_Profile from './pages/Profiles/Company_Profile'
+import ProjectsListingPage from './pages/ProjectsListingPage'
+import Project_Page from './pages/Project/Project_Page'
+import Developer_list from './pages/MainMenu/ForCompany/Developer_list'
+import PostProject from './pages/MainMenu/ForCompany/PostProject'
+import ViewProjects from './pages/MainMenu/ForCompany/ViewProjects'
+import NeedHelp from './pages/MainMenu/ForCompany/NeedHelp'
+import ListProjects from './pages/MainMenu/ForDeveloper/ListProjects'
+import MyProjects from './pages/MainMenu/ForDeveloper/MyProjects'
+import NeedHelpDev from './pages/MainMenu/ForDeveloper/NeedHelpDev'
+import ResourceTools from './pages/MainMenu/ForDeveloper/ResourceTools'
 import CompanyProjectForm from './pages/Forms/Company_Project_posting'
+import Layout from './layout'
 
 //routes
 const router = [
@@ -45,8 +44,8 @@ const router = [
   },
   // Main Menu
   {
-    path: '/FindCompany',
-    element: <FindCompanyMain />,
+    path: '/ForCompany',
+    element: <ForCompanyMain />,
     outlet: [
       {
         path: 'ListDevelopers',
@@ -68,19 +67,19 @@ const router = [
   },
 
   {
-    path: '/FindDeveloper/ListProjects',
+    path: '/ForDeveloper/ListProjects',
     element: <ListProjects />,
   },
   {
-    path: '/FindDeveloper/ResourceTools',
+    path: '/ForDeveloper/ResourceTools',
     element: <ResourceTools />,
   },
   {
-    path: '/FindDeveloper/MyProjects',
+    path: '/ForDeveloper/MyProjects',
     element: <MyProjects />,
   },
   {
-    path: '/FindDeveloper/NeedHelpDev',
+    path: '/ForDeveloper/NeedHelpDev',
     element: <NeedHelpDev />,
   },
   {
@@ -148,7 +147,6 @@ const router = [
     element: <Single_User_Page />,
   },
 
-
   //projects listing page (by category) !! ??
   {
     path: '/projects/:project_category',
@@ -156,8 +154,8 @@ const router = [
   },
   //project page
   {
-    path: '/company/projects/:project_id',
-    element:<Project_Page/>
+    path: '/project/:project_id',
+    element: <Project_Page />,
   },
 ]
 
