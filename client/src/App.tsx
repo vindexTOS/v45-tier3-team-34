@@ -9,6 +9,7 @@ import Portfolio_title from './components/Dev_Portfolio/Portfolio_title'
 import Portfolio_details from './components/Dev_Portfolio/Portfolio_details'
 import Portfolio_Preview from './components/Dev_Portfolio/Portfolio_Preview'
 
+<<<<<<< HEAD
 import Layout from './layout'
 
 import PostProject from "./pages/MainMenu/FindCompany/PostProject";
@@ -18,6 +19,8 @@ import NeedHelpDev from "./pages/MainMenu/FindDeveloper/NeedHelpDev";
 import MyProjects from "./pages/MainMenu/FindDeveloper/MyProjects";
 import ResourceTools from "./pages/MainMenu/FindDeveloper/ResourceTools";
 import ListProjects from "./pages/MainMenu/FindDeveloper/ListProjects";
+=======
+>>>>>>> d696cb0227a870b22b9382847f57857c4247d6a1
 import FAQs from "./pages/MainMenu/WhyDevConnect/FAQs";
 import SuccessStories from "./pages/MainMenu/WhyDevConnect/SuccessStories";
 import AboutUs from "./pages/MainMenu/WhyDevConnect/AboutUs";
@@ -25,13 +28,23 @@ import AboutUs from "./pages/MainMenu/WhyDevConnect/AboutUs";
 import Single_User_Page from "./pages/Profiles/Single_User_Page";
 import User_Portfolio_Single from "./components/User/User_Portfolio_Single";
 import User_info_form from "./pages/Forms/User_info_form";
-import Developer_list from "./pages/MainMenu/FindCompany/Developer_list";
-import FindCompanyMain from "./pages/MainMenu/FindCompany/FindCompanyMain";
+import ForCompanyMain from "./pages/MainMenu/ForCompany/ForCompanyMain";
 import Company_info_form from "./pages/Forms/Company_info_form";
 import Company_Profile from "./pages/Profiles/Company_Profile";
 import ProjectsListingPage from "./pages/ProjectsListingPage";
 import Project_Page from "./pages/Project/Project_Page";
+<<<<<<< HEAD
 import CompanyProjectForm from './pages/Forms/Company_Project_posting'
+=======
+import Developer_list from "./pages/MainMenu/ForCompany/Developer_list";
+import PostProject from "./pages/MainMenu/ForCompany/PostProject";
+import ViewProjects from "./pages/MainMenu/ForCompany/ViewProjects";
+import NeedHelp from "./pages/MainMenu/ForCompany/NeedHelp";
+import ListProjects from "./pages/MainMenu/ForDeveloper/ListProjects";
+import MyProjects from "./pages/MainMenu/ForDeveloper/MyProjects";
+import NeedHelpDev from "./pages/MainMenu/ForDeveloper/NeedHelpDev";
+import ResourceTools from "./pages/MainMenu/ForDeveloper/ResourceTools";
+>>>>>>> d696cb0227a870b22b9382847f57857c4247d6a1
 
 //routes
 const router = [
@@ -45,8 +58,13 @@ const router = [
   },
   // Main Menu
   {
+<<<<<<< HEAD
     path: '/FindCompany',
     element: <FindCompanyMain />,
+=======
+    path: "/ForCompany",
+    element: <ForCompanyMain />,
+>>>>>>> d696cb0227a870b22b9382847f57857c4247d6a1
     outlet: [
       {
         path: 'ListDevelopers',
@@ -68,6 +86,7 @@ const router = [
   },
 
   {
+<<<<<<< HEAD
     path: '/FindDeveloper/ListProjects',
     element: <ListProjects />,
   },
@@ -81,6 +100,21 @@ const router = [
   },
   {
     path: '/FindDeveloper/NeedHelpDev',
+=======
+    path: "/ForDeveloper/ListProjects",
+    element: <ListProjects />,
+  },
+  {
+    path: "/ForDeveloper/ResourceTools",
+    element: <ResourceTools />,
+  },
+  {
+    path: "/ForDeveloper/MyProjects",
+    element: <MyProjects />,
+  },
+  {
+    path: "/ForDeveloper/NeedHelpDev",
+>>>>>>> d696cb0227a870b22b9382847f57857c4247d6a1
     element: <NeedHelpDev />,
   },
   {
@@ -148,18 +182,28 @@ const router = [
     element: <Single_User_Page />,
   },
 
-
   //projects listing page (by category) !! ??
   {
+<<<<<<< HEAD
     path: '/projects/:project_category',
+=======
+    path: "/projects/:project_category",
+>>>>>>> d696cb0227a870b22b9382847f57857c4247d6a1
     element: <ProjectsListingPage />,
   },
   //project page
   {
+<<<<<<< HEAD
     path: '/company/projects/:project_id',
     element:<Project_Page/>
   },
 ]
+=======
+    path: "/project/:project_id",
+    element: <Project_Page />,
+  },
+];
+>>>>>>> d696cb0227a870b22b9382847f57857c4247d6a1
 
 type ReactRouteType = {
   path: string
