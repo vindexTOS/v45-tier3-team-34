@@ -8,15 +8,13 @@ const ProjectCard = ({
 }) => {
   return (
     <article className="flex flex-col">
-      {/* ?? a try */}
       <Link to="#">
-        {/* ?? this image require more stylings  */}
         <div
-          className={`w-full relative h-48 rounded-md bg-[url("${data.img}")]`}
+          className={`w-full relative h-48 rounded-md bg-[url("${data.image}")]`}
         >
           <img
             className="w-full h-full rounded-lg object-cover"
-            src={data.img}
+            src={data.image}
             alt={data.title.slice(0, 2)}
           />
           <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-green-700 bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-70 rounded-lg"></div>

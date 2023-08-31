@@ -1,6 +1,5 @@
 import SuccessStoriesCard from "./SuccessStoriesCard";
 import { SuccessStoryDummy } from "./SuccessStoryDummy";
-import SuccessStories from "../../../pages/MainMenu/WhyDevConnect/SuccessStories";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SuccessStoriesContainer = ({
@@ -22,7 +21,7 @@ const SuccessStoriesContainer = ({
     <div>
       <section className="my-6">
         <h1 className="text-2xl md:text-4xl font-semibold text-green-800 dark:text-green-500">
-          Browse our SuccessStories
+          Browse our Success Stories
         </h1>
         <p className="text-green-950 dark:text-white text-sm">
           Currently{" "}
