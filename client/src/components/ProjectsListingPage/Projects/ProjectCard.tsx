@@ -44,7 +44,7 @@ const ProjectCard = ({ data }: { data: ProjectCardType }) => {
         </h1>
         {/* description */}
         <p className="text-gray-700 dark:text-gray-200">
-          {/* {data.description.slice(0, 96)}... */}
+          {description.slice(0, 96)}...
         </p>
         {/* price and linke */}
       </div>
