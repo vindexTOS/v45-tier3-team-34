@@ -12,10 +12,10 @@ export const Check_user_id = async (
 
   const user = await user_model.findById(user_id)
   if (!user) {
-    return res.status(402).json({ msg: 'User Not Found' })
+    return res.status(403).json({ msg: 'User Not Found' })
   }
   if (decoded.user._id.toString() !== user_id) {
-    return res.status(402).json({ msg: 'Not Authorised' })
+    return res.status(401).json({ msg: 'Not Authorised' })
   }
 
   next()

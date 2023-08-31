@@ -128,7 +128,10 @@ const User_profile_card = ({ data }: { data: UserCardType }): JSX.Element => {
     }
     setUpdateLoading(true)
     try {
-      const response = await axios.patch(`${globalUrl}/crud/${_id}`, sendObj)
+      const response = await axios.patch(
+        `${import.meta.env.VITE_GLOBAL_URL}/crud/${_id}`,
+        sendObj,
+      )
       const data = response.data
       setSuccess(data.msg)
       setUpdateLoading(false)

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ThemeToggle from "../Buttons/ThemeTogglerBtn";
 import Search from "../Buttons/Search";
 import { Dialog } from "@headlessui/react";
@@ -13,26 +13,34 @@ import {
 } from "react-router-dom";
 import { UseMainContext } from "../../context";
 import MenuItem from "../NavBar/MenuItem";
-
+import useOutClick from "../../hooks/useOutClick";
+import User_drop_down from "../User/User_drop_down";
 export default function NavBar() {
   const { UserState } = UseMainContext();
   const [mobileMenuOpen, setMobileMenuOpen] =
     useState(false);
-
+  const [dropDown, setDropDown] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const dropDownRef =
+    useRef<HTMLDivElement | null>(null);
+  const closeDropDown = () => {
+    setDropDown(false);
+  };
+
+  useOutClick(dropDownRef, closeDropDown);
   return (
     <>
       <header
-        className={`container ${
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-center ${
           location.pathname === "/login" ||
           location.pathname === "/register"
             ? "hidden"
             : ""
         }`}
       >
-        <nav className="bg-white border-gray-200 rounded-lg my-5 shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-100 ease-in-out">
-          <div className="max-w-screen-2xl flex items-center justify-between mx-auto p-4 lg:p-6">
+        <nav className="w-[95%] bg-white rounded-lg my-5 bg-opacity-90 backdrop-blur-md dark:bg-opacity-80 dark:backdrop-blur-md shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-100 ease-in-out">
+          <div className="flex items-center justify-between mx-auto p-4 lg:px-20 lg:py-5">
             <div className="flex items-center space-x-10">
               <div>
                 <a
@@ -54,17 +62,20 @@ export default function NavBar() {
               {UserState.userData &&
               UserState.userData.user ? (
                 <div
+                  ref={dropDownRef}
+                  className="relative "
                   onClick={() =>
-                    navigate("/profile")
+                    setDropDown(!dropDown)
                   }
                 >
                   <img
-                    className="w-[50px] h-[50px] rounded-[50%]"
+                    className="w-[50px] h-[50px] rounded-[50%] cursor-pointer"
                     src={
                       UserState.userData.user
                         .avatar
                     }
                   />
+                  {dropDown && <User_drop_down />}
                 </div>
               ) : (
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end ml-10">

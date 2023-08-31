@@ -1,15 +1,25 @@
-import express from 'express';
+import express from 'express'
 import {
   getAllCompanies,
   createCompany,
   getCompany,
   updateCompany,
   deleteCompany,
-} from '../controller/company-project-controller';
+  getAllCompaniesProjects,
+} from '../controller/company-controllers/company-project-controller'
+import { Check_user_id } from '../middleware/user-id-check'
+import { check_user_token } from '../middleware/user-token-check'
 
-const router = express.Router();
+import { errorHandler } from '../middleware/errorHandler'
 
-router.route('/').get(getAllCompanies).post(createCompany);
-router.route('/:id').get(getCompany).put(updateCompany).delete(deleteCompany);
+const router = express.Router()
+//pre fix  /companies/projects
+router
+  .route('/:user_id')
+  .post(Check_user_id, check_user_token, createCompany, errorHandler)
 
-export default router;
+router.route('/each/:user_id').get(getAllCompaniesProjects)
+router.route('/').get(getAllCompanies)
+router.route('/:id').get(getCompany).put(updateCompany).delete(deleteCompany)
+
+export default router

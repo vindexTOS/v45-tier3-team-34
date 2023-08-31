@@ -1,93 +1,93 @@
-import { useState } from 'react'
-import InputField from '../components/Forms/InputField'
-import { RegisterFormType } from '../common.types'
-import { UseMainContext } from '../context'
-import { Link } from 'react-router-dom'
-import Error from '../components/Status/Error'
-import Loading from '../components/Status/Loading'
+import { useState } from "react";
+import InputField from "../components/Forms/InputField";
+import { RegisterFormType } from "../common.types";
+import { UseMainContext } from "../context";
+import { Link } from "react-router-dom";
+import Error from "../components/Status/Error";
+import Loading from "../components/Status/Loading";
+
 const Login = () => {
-  const { hanldeAuth, statusState, Authloading } = UseMainContext()
+  const { hanldeAuth, statusState, Authloading } =
+    UseMainContext();
 
-  const [formData, setFormData] = useState<RegisterFormType>({
-    email: '',
-    password: '',
-  })
+  const [formData, setFormData] =
+    useState<RegisterFormType>({
+      email: "",
+      password: "",
+    });
 
-  //submit data
+  // Submit data
   async function handleSubmit() {
-    const { email, password } = formData
+    const { email, password } = formData;
 
-    hanldeAuth({ email, password }, 'login')
+    hanldeAuth({ email, password }, "login");
   }
 
   return (
-    <main className="w-full flex flex-col md:flex-row  place-content-center">
+    <main className="flex items-center justify-center relative">
       <Error error={statusState.error} />
       <Loading loading={Authloading} />
-      <section className="w-full md:w-[50%] lg:w-[40%] flex flex-col   py-4 px-2 sm:px-12 ">
-        {/* kinda logo */}
-        <article className="flex justify-between mb-8 sm:mb-auto">
-          <a
-            href="/"
-            className="text-2xl md:text-4xl font-extrabold text-gray-800 dark:text-gray-200"
-          >
-            devConnect
-          </a>
-          <h1 className="text-sm text-gray-800 font-extralight">went</h1>
-        </article>
-
-        {/* title */}
-        <article className="sm:my-6 my-12 mb-10 md:mb-16">
-          <h1 className="text-3xl md:text-2xl font-light md:font-semibold">
-            Welcome back 😁
+      <section className="w-[90%] lg:w-[30%] h-[60vh] flex flex-col py-10 px-5 sm:px-12 text-center border border-slate-500/50 dark:border-green-500/50 bg-white rounded-2xl dark:bg-slate-800 justify-between">
+        {/* Title */}
+        <article className="">
+          <h1 className="text-md font-sm text-light-text dark:text-dark-text mb-2">
+            Log in to
           </h1>
+          <Link
+            to="/"
+            className="text-2xl font-extrabold text-green-700 dark:text-green-500"
+          >
+            DevConnect
+          </Link>
         </article>
-        {/* form here  */}
-        <article className="flex flex-col gap-y-2 xl:mr-20">
-          <InputField
-            data={formData}
-            setData={setFormData}
-            field="email"
-            type="email"
-            label="Email"
-          />
 
-          <InputField
-            field="password"
-            type="password"
-            label="Password"
-            data={formData}
-            setData={setFormData}
-          />
-          {/* create account button */}
+        {/* Form here  */}
+        <article className="flex flex-col justify-center items-center">
+          <div className="space-y-3 w-[80%]">
+            <InputField
+              data={formData}
+              setData={setFormData}
+              field="email"
+              type="email"
+              label="Email"
+            />
+
+            <InputField
+              field="password"
+              type="password"
+              label="Password"
+              data={formData}
+              setData={setFormData}
+            />
+          </div>
+        </article>
+
+        {/* Create account button */}
+        <article>
+          <div className="my-8 text-center flex items-center justify-center">
+            <div className="border-t border-gray-200 flex-grow"></div>
+            <Link
+              className="font-light text-[13px] text-gray-500 dark:text-gray-300 mx-2 p-2"
+              to="/register"
+            >
+              Don't have an account?
+            </Link>
+            <div className="border-t border-gray-200 flex-grow"></div>
+          </div>
+
           <button
             onClick={handleSubmit}
-            className="mt-2 bg-red-600 py-4 px-4 outline-none border-none rounded-sm font-semibold text-sm text-white"
+            className="mt-2 mx-auto py-2 px-16 border-2 border-green-700 rounded-2xl font-semibold text-base text-green-700 hover:bg-green-400/30  hover:border-green-600 transition-all duration-300"
           >
             Login
           </button>
-          <Link
-            className="font-light text-end text-[13px] text-gray-700"
-            to="/register"
-          >
-            Don't have an account
-          </Link>
         </article>
       </section>
-      <section className=" flex-1 md:block  min-h-[500px] md:min-h-screen bg-[url('/assets/img/bg-temp.jpg')] bg-cover bg-no-repeat bg-center">
-        {/* image or samething else */}
-        <article className="bg-gradient-to-b min-h-full from-slate-800 to-transparent p-4">
-          <h1 className="text-4xl font-extrabold text-white ">
-            Add samething here ...
-          </h1>
-          <p className="text-lg text-white font-light">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
-            ullam odio deserunt ipsum, modi, soluta nulla
-          </p>
-        </article>
-      </section>
+      <span className="absolute -bottom-10 left-0 right-0 whitespace-nowrap text-xs text-slate-500 text-center justify-center">
+        © 2023 DevConnect
+      </span>
     </main>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
