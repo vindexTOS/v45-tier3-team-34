@@ -132,22 +132,22 @@ export const footerMenuItems = [
         {
           title: "List All Projects",
           description: "See a list of all available Projects",
-          link: "/FindDeveloper/ListProjects"
+          link: "/ForDeveloper/ListProjects"
         },
         {
           title: "Resource Tools",
           description: "Follow these easy steps to get started",
-          link: "/FindDeveloper/ResourceTools"
+          link: "/ForDeveloper/ResourceTools"
         },
         {
           title: "View my Projects",
           description: "Browse our list of all Active/Completed Projects",
-          link: "/FindDeveloper/MyProjects"
+          link: "/ForDeveloper/MyProjects"
         },
         {
           title: "Need Help",
           description: "Feel free to contact us for more info",
-          link: "/FindDeveloper/NeedHelpDev"
+          link: "/ForDeveloper/NeedHelpDev"
         } 
       ]
     },

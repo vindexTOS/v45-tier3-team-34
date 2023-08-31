@@ -8,7 +8,7 @@ export default function NeedHelp() {
         <section className="flex flex-col gap-4 md:gap-10">
           <article className="w-full md:max-w-xl flex flex-col gap-y-12 bg-blue-700 rounded-lg p-5">
             <h1 className="text-xs capitalize font-light py-1 px-4 bg-blue-900 rounded-lg max-w-min whitespace-nowrap">
-              Find Company
+              For Company
             </h1>
             <h1 className="text-[2.8rem] font-bold ">
               Need Help?

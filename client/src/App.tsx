@@ -11,10 +11,6 @@ import Portfolio_Preview from "./components/Dev_Portfolio/Portfolio_Preview";
 
 import Layout from "./layout";
 
-import NeedHelpDev from "./pages/MainMenu/FindDeveloper/NeedHelpDev";
-import MyProjects from "./pages/MainMenu/FindDeveloper/MyProjects";
-import ResourceTools from "./pages/MainMenu/FindDeveloper/ResourceTools";
-import ListProjects from "./pages/MainMenu/FindDeveloper/ListProjects";
 import FAQs from "./pages/MainMenu/WhyDevConnect/FAQs";
 import SuccessStories from "./pages/MainMenu/WhyDevConnect/SuccessStories";
 import AboutUs from "./pages/MainMenu/WhyDevConnect/AboutUs";
@@ -31,6 +27,10 @@ import Developer_list from "./pages/MainMenu/ForCompany/Developer_list";
 import PostProject from "./pages/MainMenu/ForCompany/PostProject";
 import ViewProjects from "./pages/MainMenu/ForCompany/ViewProjects";
 import NeedHelp from "./pages/MainMenu/ForCompany/NeedHelp";
+import ListProjects from "./pages/MainMenu/ForDeveloper/ListProjects";
+import MyProjects from "./pages/MainMenu/ForDeveloper/MyProjects";
+import NeedHelpDev from "./pages/MainMenu/ForDeveloper/NeedHelpDev";
+import ResourceTools from "./pages/MainMenu/ForDeveloper/ResourceTools";
 
 //routes
 const router = [
@@ -67,19 +67,19 @@ const router = [
   },
 
   {
-    path: "/FindDeveloper/ListProjects",
+    path: "/ForDeveloper/ListProjects",
     element: <ListProjects />,
   },
   {
-    path: "/FindDeveloper/ResourceTools",
+    path: "/ForDeveloper/ResourceTools",
     element: <ResourceTools />,
   },
   {
-    path: "/FindDeveloper/MyProjects",
+    path: "/ForDeveloper/MyProjects",
     element: <MyProjects />,
   },
   {
-    path: "/FindDeveloper/NeedHelpDev",
+    path: "/ForDeveloper/NeedHelpDev",
     element: <NeedHelpDev />,
   },
   {

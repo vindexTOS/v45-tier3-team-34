@@ -10,7 +10,7 @@ export default function NeedHelpDev() {
         <section className="flex flex-col gap-4 md:gap-10">
           <article className="w-full md:max-w-xl flex flex-col gap-y-12 bg-green-600 rounded-lg p-5">
             <h1 className="text-xs capitalize font-light py-1 px-4 bg-green-800 rounded-lg max-w-min whitespace-nowrap">
-              Find Developer
+              For Developer
             </h1>
             <h1 className="text-[2.8rem] font-bold ">
               Need Developer Help?
