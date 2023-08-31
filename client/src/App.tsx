@@ -18,7 +18,7 @@ import User_Portfolio_Single from './components/User/User_Portfolio_Single'
 import User_info_form from './pages/Forms/User_info_form'
 import ForCompanyMain from './pages/MainMenu/ForCompany/ForCompanyMain'
 import Company_info_form from './pages/Forms/Company_info_form'
-import Company_Profile from './pages/Profiles/Company_Profile'
+import Company_Profile from './pages/Profiles/Company_Profile/Company_Profile'
 import ProjectsListingPage from './pages/ProjectsListingPage'
 import Project_Page from './pages/Project/Project_Page'
 import Developer_list from './pages/MainMenu/ForCompany/Developer_list'
@@ -37,6 +37,7 @@ import Current_Projects from './pages/Profiles/Dev_Profile/Current_Projects'
 import Archived_Projects from './pages/Profiles/Dev_Profile/Archived_Projects'
 import Messages from './pages/Profiles/Dev_Profile/Messages'
 import Reviews from './pages/Profiles/Dev_Profile/Reviews'
+import Company_Profile_Main from './pages/Profiles/Company_Profile/Company_Profile_Main'
 
 //routes
 const router = [
@@ -159,7 +160,29 @@ const router = [
   },
   {
     path: '/company_profile',
-    element: <Company_Profile />,
+    element: <Company_Profile_Main />,
+    outlet: [
+      {
+        path: '',
+        element: <Company_Profile />,
+      },
+      {
+        path: 'current_project',
+        element: <Current_Projects />,
+      },
+      {
+        path: 'archived_project',
+        element: <Archived_Projects />,
+      },
+      {
+        path: 'messages',
+        element: <Messages />,
+      },
+      {
+        path: 'reviews',
+        element: <Reviews />,
+      },
+    ],
   },
   {
     path: '/company_project',
