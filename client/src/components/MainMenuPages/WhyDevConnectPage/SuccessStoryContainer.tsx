@@ -1,6 +1,5 @@
 import SuccessStoriesCard from "./SuccessStoriesCard";
 import { SuccessStoryDummy } from "./SuccessStoryDummy";
-import SuccessStories from "../../../pages/MainMenu/WhyDevConnect/SuccessStories";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SuccessStoriesContainer = ({
