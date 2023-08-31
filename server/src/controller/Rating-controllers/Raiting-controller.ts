@@ -23,20 +23,6 @@ export const GetUserSingleUserRating = tryCatch(
 
     const findRatings = await rating_model.find({ user_id })
 
-    let totalRating = 0
-
-    for (const rating of findRatings) {
-      totalRating += rating.rating_score
-    }
-
-    const numberOfRatings = findRatings.length
-    const averageRating = totalRating / numberOfRatings
-
-    // Ensure the average rating is between 0 and 5
-    const clampedAverageRating = Math.max(0, Math.min(5, averageRating))
-
-    return res
-      .status(200)
-      .json({ averageRating: clampedAverageRating, numberOfRatings })
+    return res.status(200).json({ rating: findRatings })
   },
 )

@@ -1,6 +1,6 @@
 import './index.css'
 import Login from './pages/Login'
-import Profile from './pages/Profiles/Profile'
+import Profile from './pages/Profiles/Dev_Profile/Profile'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import { Route, Routes } from 'react-router-dom'
@@ -32,6 +32,11 @@ import ResourceTools from './pages/MainMenu/ForDeveloper/ResourceTools'
 import CompanyProjectForm from './pages/Forms/Company_Project_posting'
 import Layout from './layout'
 import Single_Company_Page from './pages/Profiles/Single_Company_Page'
+import Profile_Main from './pages/Profiles/Dev_Profile/Profile_Main'
+import Current_Projects from './pages/Profiles/Dev_Profile/Current_Projects'
+import Archived_Projects from './pages/Profiles/Dev_Profile/Archived_Projects'
+import Messages from './pages/Profiles/Dev_Profile/Messages'
+import Reviews from './pages/Profiles/Dev_Profile/Reviews'
 
 //routes
 const router = [
@@ -128,7 +133,29 @@ const router = [
   },
   {
     path: '/profile',
-    element: <Profile />,
+    element: <Profile_Main />,
+    outlet: [
+      {
+        path: '',
+        element: <Profile />,
+      },
+      {
+        path: 'current_project',
+        element: <Current_Projects />,
+      },
+      {
+        path: 'archived_project',
+        element: <Archived_Projects />,
+      },
+      {
+        path: 'messages',
+        element: <Messages />,
+      },
+      {
+        path: 'reviews',
+        element: <Reviews />,
+      },
+    ],
   },
   {
     path: '/company_profile',
