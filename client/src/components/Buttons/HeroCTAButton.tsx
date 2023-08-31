@@ -9,7 +9,7 @@ const HeroCTAButton = ({
 }) => {
   return (
     <Link
-      to={"/"}
+      to={"/register"}
       className={`px-6 py-3 ${
         color == "green"
           ? "bg-green-600 hover:bg-green-700 text-white"
