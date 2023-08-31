@@ -1,26 +1,26 @@
 export const menuItems = [
     {
-      "name": "Find Company",
+      "name": "For Company",
       "subMenus": [
         {
           "title": "List All Developers",
           "description": "See a comprehensive list of all our junior developers",
-          "link": "/FindCompany/ListDevelopers",
+          "link": "/ForCompany/ListDevelopers",
         },
         {
           "title": "Post a New Project",
           "description": "Follow these easy steps to get started",
-          "link": "/FindCompany/PostProjects"
+          "link": "/ForCompany/PostProjects"
         },
         {
           "title": "View/Buy Completed Projects",
           "description": "Browse our list of all Completed Projects",
-          "link": "/FindCompany/ViewProjects"
+          "link": "/ForCompany/ViewProjects"
         },
         {
           "title": "Need Help",
           "description": "Feel free to contact us for more info",
-          "link": "/FindCompany/NeedHelp"
+          "link": "/ForCompany/NeedHelp"
         } 
       ]
     },

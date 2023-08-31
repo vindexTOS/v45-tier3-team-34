@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import NeedHelpCard from "../../../components/MainMenuPages/FindCompanyPage/NeedHelpCard";
+import NeedHelpCard from "../../../components/MainMenuPages/ForCompanyPage/NeedHelpCard";
 
 export default function NeedHelp() {
   return (
