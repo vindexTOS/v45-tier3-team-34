@@ -63,23 +63,8 @@ export type CompanyProjectType = {
   user_id: string
 }
 
-//project type (from db)
+//company project type (from db)
 export type ProjectType = {
-<<<<<<< HEAD
-  _id: {
-    $oid: string
-  } //?? to be reviewed according to gotten data
-  user_id: string
-  title: string
-  description: string
-  photo: string
-  github: string
-  liveLink: string
-  videoLink: string
-  skills_used: string[]
-  //_id:string,
-  __v?: number
-=======
     _id: {
       $oid: string,
     }, //?? to be reviewed according to gotten data
@@ -94,5 +79,19 @@ export type ProjectType = {
     //_id:string,
   __v?: number,
     date?:string
->>>>>>> 60e51556723b6b5977609fbdaf3e42c32984ca61
+}
+
+
+// tiers (offers types)
+export type tierCategoryType = 'basic' | 'standard' | 'premium';
+
+export type TiersType = {
+  type: tierCategoryType;
+  budget: number;
+  delivery_time: number;
+  deal_start_date: string;
+  n_revisions: number;
+  design_customisation: boolean;
+  content_upload: boolean;
+  responsive_design: boolean;
 }
