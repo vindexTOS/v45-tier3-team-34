@@ -11,7 +11,6 @@ const route = express.Router()
 route
   .route('/:user_id')
   .get(GetUserSingleUserRating)
-
   .post(check_user_token, CreateRaiting, errorHandler)
 
 export default route

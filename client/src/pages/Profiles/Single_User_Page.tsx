@@ -8,8 +8,7 @@ import { UseMainContext } from '../../context'
 import { useNavigate, useParams } from 'react-router-dom'
 import LoadingComponent from '../../components/Status/Loading'
 import User_info_Update_input from '../../components/User/User_Info_Update_Input'
-import User_portfolio from '../../components/User/User_portfolio'
-import User_skills from '../../components/User/User_skills'
+
 import axios from 'axios'
 const Single_User_Page = () => {
   const style = {

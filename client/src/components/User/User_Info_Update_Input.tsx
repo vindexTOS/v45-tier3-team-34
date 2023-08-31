@@ -4,7 +4,7 @@ import { MdOutlineCancel, MdModeEdit } from 'react-icons/md'
 import { UseMainContext } from '../../context'
 
 interface EditableFieldProps {
-  initialValue: string
+  initialValue?: string
   type: string
   obj: any
   newValue: any

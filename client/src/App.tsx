@@ -31,6 +31,7 @@ import NeedHelpDev from './pages/MainMenu/ForDeveloper/NeedHelpDev'
 import ResourceTools from './pages/MainMenu/ForDeveloper/ResourceTools'
 import CompanyProjectForm from './pages/Forms/Company_Project_posting'
 import Layout from './layout'
+import Single_Company_Page from './pages/Profiles/Single_Company_Page'
 
 //routes
 const router = [
@@ -145,6 +146,11 @@ const router = [
   {
     path: '/Developer/:dev_id',
     element: <Single_User_Page />,
+  },
+
+  {
+    path: '/company/single',
+    element: <Single_Company_Page />,
   },
 
   //projects listing page (by category) !! ??

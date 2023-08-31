@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import User_layout from '../../components/User/User_layout'
-import { MdModeEdit } from 'react-icons/md'
-import { DateTime } from 'luxon'
-import { UseMainContext } from '../../context'
-import { FaMapMarkerAlt } from 'react-icons/fa'
-import { AiOutlineLinkedin } from 'react-icons/ai'
-import { SiWebmoney } from 'react-icons/si'
-import { IoIosAddCircleOutline } from 'react-icons/io'
-import Succsess from '../../components/Status/Success'
-import LoadingComponent from '../../components/Status/Loading'
-import User_info_update_input from '../../components/User/User_Info_Update_Input'
-import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-const Company_Profile = () => {
+import User_info_update_input from '../../components/User/User_Info_Update_Input'
+import Succsess from '../../components/Status/Success'
+import { UseMainContext } from '../../context'
+import LoadingComponent from '../../components/Status/Loading'
+import { SiWebmoney } from 'react-icons/si'
+import { AiOutlineLinkedin } from 'react-icons/ai'
+import { FaMapMarkerAlt } from 'react-icons/fa'
+import { DateTime } from 'luxon'
+
+const Single_Company_Page = () => {
   const { UserState, statusState, UserStateUpdate } = UseMainContext()
+
   const style = {
     section: `flex items-center justify-between w-[100%] i px-4 py-5 border-b-[1px] border-gray-300 `,
     img: `h-[80px] w-[80px] rounded-[50%]`,
@@ -26,8 +25,25 @@ const Company_Profile = () => {
     headerDiv: `flex  justify-around text-gray-700 text-[1.3rem] font-bold py-3`,
     topSection: ` border-b-[2px] px-4 py-6 flex flex-col  gap-5`,
   }
-  const navigate = useNavigate()
-  const [editName, setEditName] = useState(false)
+  const [companyData, setCompanyData] = useState<any>()
+  const GetCompanyInfomration = async () => {
+    try {
+      const res = await axios.get(
+        `${
+          import.meta.env.VITE_GLOBAL_URL
+        }/company/info/64eb74492143c23701a7a747`,
+      )
+
+      const data = res.data
+      console.log(data)
+      setCompanyData(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    GetCompanyInfomration()
+  }, [])
   function getUserTimezone() {
     // const userTimeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
     //   console.log("User's timezone:", userTimeZone)
@@ -42,8 +58,44 @@ const Company_Profile = () => {
     return currentTime
   }
   const currentTime = getUserTimezone()
+  const RateUser = async (user_id: string) => {
+    if (companyData && companyData.user_info && companyData.user._id) {
+      try {
+        const res = await axios.post(
+          `${import.meta.env.VITE_GLOBAL_URL}/rating/${companyData.user._id}`,
+          {
+            rater_id: UserState.userData.user?._id,
+            rating_score: rating,
+            rating_review: '',
+          },
+        )
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+  const [rating, setRating] = useState<number>(0)
 
-  if (UserState.userData && UserState.full_user_info.user_info) {
+  const GetUserRating = async () => {
+    if (companyData && companyData.user_info && companyData.user._id) {
+      try {
+        const res = await axios.get(
+          `${import.meta.env.VITE_GLOBAL_URL}/rating/${companyData.user._id}`,
+        )
+        setRatingFromDb(res.data.averageRating)
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+  const [ratingFromDb, setRatingFromDb] = useState<number>()
+  useEffect(() => {
+    GetUserRating()
+  }, [companyData.user])
+  if (companyData && companyData.user_info && companyData.user) {
     const {
       companyName,
       company_id,
@@ -52,56 +104,53 @@ const Company_Profile = () => {
       summary,
       userTimeZone,
       website,
-    } = UserState.full_user_info.user_info
-    const {
-      avatar,
-      date,
-      email,
-      role,
-      userName,
-    } = UserState.full_user_info.user
+    } = companyData.user_info
+    const { avatar, date, email, role, userName } = companyData.user
     return (
       <User_layout>
         <div
           // onClick={() => console.log(UserStateUpdate)}
           className="flex  flex-col gap-2 p-2 items-center justify-center "
         >
+          <div>
+            <h1>Ratinig {rating}</h1>
+            <input
+              value={rating}
+              onChange={(e) => setRating(Number(e.target.value))}
+              type="range"
+              max="5"
+              min="1"
+            />
+            <button
+              onClick={() => RateUser(companyData.user._id)}
+              className="bg-red-500 text-white  p-2 rounded-[9px]"
+            >
+              Rate
+            </button>
+
+            <div onClick={() => GetUserRating()}>
+              Avreage rating {ratingFromDb?.toFixed(2)}
+            </div>
+          </div>
           <section
             //   onClick={() => console.log(UserState.full_user_info.user_info)}
             className={style.section}
           >
             <div className={style.imgDiv}>
               <div className="relative">
-                <div
-                  className={`  absolute text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px]`}
-                >
-                  <MdModeEdit />
-                </div>
                 <img src={`${avatar}`} className={style.img} />
               </div>
               <div className={style.timeZone}>
-                {!editName ? (
-                  <h1 className={style.nameHeader}>
-                    {companyName ? `${companyName.slice(0, 1)}.` : userName}
-                  </h1>
-                ) : (
-                  <input />
-                )}
+                <h1 className={style.nameHeader}>
+                  {companyName ? `${companyName.slice(0, 1)}.` : userName}
+                </h1>
+
                 <div className="flex gap-1 text-gray-500 items-center justify-center">
                   <FaMapMarkerAlt />
                   <p>{userTimeZone}</p>-
                   <p>{currentTime.slice(10, 16)} local time</p>
                 </div>
               </div>
-            </div>
-            <div
-              onClick={() => navigate('/company_project')}
-              className="flex items-center justify-center gap-3 h-[100%] cursor-pointer "
-            >
-              <h1 className="text-[1.2rem] text-gray-500 font-bold">
-                Create Project Listing
-              </h1>
-              <IoIosAddCircleOutline className="text-[2rem] text-green-400 hover:text-green-300" />
             </div>
           </section>
           <section className="flex w-[100%]">
@@ -164,14 +213,13 @@ const Company_Profile = () => {
             </div>
             {/* main */}
           </section>
-
           <Succsess success={statusState.success} />
         </div>
       </User_layout>
     )
   } else {
-    return <div>Loadin..</div>
+    return <div>Loading..</div>
   }
 }
 
-export default Company_Profile
+export default Single_Company_Page
