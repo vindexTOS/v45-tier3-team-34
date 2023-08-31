@@ -1,21 +1,9 @@
-<<<<<<< HEAD
-import React from 'react'
-import { useParams } from 'react-router-dom'
-
-=======
 import { useParams } from 'react-router-dom';
 import { dummy_project, dummy_project_publisher } from './dummy_project';
 import { BiSolidShareAlt,BiSolidBookmark } from "react-icons/bi";
->>>>>>> 60e51556723b6b5977609fbdaf3e42c32984ca61
 const Project_Page = () => {
   const params = useParams()
   //may be changed with category id , or samething else
-<<<<<<< HEAD
-  const { project_id } = params
-  // fetch projecct data (info) by it id here;
-
-  return <div>Project_Page {project_id}</div>
-=======
     const { project_id } = params;
   // fetch projecct data (info) by it id here;
   //fetch publisher from publisher(company) id 
@@ -86,7 +74,6 @@ const Project_Page = () => {
       </article>
     </div>
   )
->>>>>>> 60e51556723b6b5977609fbdaf3e42c32984ca61
 }
 
 export default Project_Page

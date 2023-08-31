@@ -11,30 +11,6 @@ import Portfolio_Preview from './components/Dev_Portfolio/Portfolio_Preview'
 
 import Layout from './layout'
 
-<<<<<<< HEAD
-import PostProject from './pages/MainMenu/FindCompany/PostProject'
-import ViewProjects from './pages/MainMenu/FindCompany/ViewProjects'
-import NeedHelp from './pages/MainMenu/FindCompany/NeedHelp'
-import NeedHelpDev from './pages/MainMenu/FindDeveloper/NeedHelpDev'
-import MyProjects from './pages/MainMenu/FindDeveloper/MyProjects'
-import ResourceTools from './pages/MainMenu/FindDeveloper/ResourceTools'
-import ListProjects from './pages/MainMenu/FindDeveloper/ListProjects'
-import FAQs from './pages/MainMenu/WhyDevConnect/FAQs'
-import SuccessStories from './pages/MainMenu/WhyDevConnect/SuccessStories'
-import AboutUs from './pages/MainMenu/WhyDevConnect/AboutUs'
-
-import Single_User_Page from './pages/Profiles/Single_User_Page'
-import User_Portfolio_Single from './components/User/User_Portfolio_Single'
-import User_info_form from './pages/Forms/User_info_form'
-import Developer_list from './pages/MainMenu/FindCompany/Developer_list'
-import FindCompanyMain from './pages/MainMenu/FindCompany/FindCompanyMain'
-import Company_info_form from './pages/Forms/Company_info_form'
-import Company_Profile from './pages/Profiles/Company_Profile'
-import ProjectsListingPage from './pages/ProjectsListingPage'
-import Project_Page from './pages/Project/Project_Page'
-import CompanyProjectForm from './pages/Forms/Company_Project_posting'
-
-=======
 import PostProject from "./pages/MainMenu/FindCompany/PostProject";
 import ViewProjects from "./pages/MainMenu/FindCompany/ViewProjects";
 import NeedHelp from "./pages/MainMenu/FindCompany/NeedHelp";
@@ -57,7 +33,6 @@ import ProjectsListingPage from "./pages/ProjectsListingPage";
 import Project_Page from "./pages/Project/Project_Page";
 import CompanyProjectForm from './pages/Forms/Company_Project_posting'
 
->>>>>>> 60e51556723b6b5977609fbdaf3e42c32984ca61
 //routes
 const router = [
   {
@@ -173,10 +148,7 @@ const router = [
     element: <Single_User_Page />,
   },
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 60e51556723b6b5977609fbdaf3e42c32984ca61
   //projects listing page (by category) !! ??
   {
     path: '/projects/:project_category',
@@ -184,13 +156,8 @@ const router = [
   },
   //project page
   {
-<<<<<<< HEAD
-    path: '/project/:project_id',
-    element: <Project_Page />,
-=======
     path: '/company/projects/:project_id',
     element:<Project_Page/>
->>>>>>> 60e51556723b6b5977609fbdaf3e42c32984ca61
   },
 ]
 
