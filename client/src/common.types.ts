@@ -44,6 +44,7 @@ export type ProjectMetaData = {
   urgent: boolean
 }
 export type ProjectCardType = {
+  _id?:string,
   project: ProjectMetaData
   ratings: RatingTypes[]
 }
