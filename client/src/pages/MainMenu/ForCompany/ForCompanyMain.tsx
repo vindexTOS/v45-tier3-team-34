@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-const FindCompanyMain = () => {
+const ForCompanyMain = () => {
   return (
     <section className="">
       <Outlet />
@@ -9,4 +9,4 @@ const FindCompanyMain = () => {
   );
 };
 
-export default FindCompanyMain;
+export default ForCompanyMain;

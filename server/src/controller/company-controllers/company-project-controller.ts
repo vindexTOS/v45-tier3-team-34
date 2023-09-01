@@ -1,8 +1,8 @@
-import Company_Project_model from '../model/company_project_model'
-import { tryCatch } from '../middleware/tryCatch'
+import Company_Project_model from '../../model/company_project_model'
+import { tryCatch } from '../../middleware/tryCatch'
 import { Request, Response, NextFunction } from 'express'
-import { CompanyProject } from '../types/Controller-types'
-import rating_model from '../model/rating_model'
+import { CompanyProject } from '../../types/Controller-types'
+import rating_model from '../../model/rating_model'
 export const getAllCompanies = tryCatch(async (req: Request, res: any) => {
   const projects = await Company_Project_model.find({})
   const projectsData = []

@@ -24,7 +24,7 @@ export default function User_drop_down() {
     if (UserState.userData && UserState.userData.user) {
       if (UserState.userData.user.role === 'Company/Startup') {
         navigate('/company_profile')
-      } else if (UserState.userData.user.role === '/profile') {
+      } else if (UserState.userData.user.role === 'Developer') {
         navigate('/profile')
       }
     }

@@ -3,9 +3,11 @@
 const colors = require("tailwindcss/colors");
 
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  darkMode: "class",
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.js",
+  ],
   darkMode: "class",
   theme: {
     button: {
@@ -73,5 +75,5 @@ export default {
       max_smm: { max: "500px" },
     },
   },
-  plugins: ["macros"], // Enable the "macros" plugin for Tailwind CSS
+  plugins: ["macros", "flowbite/plugin"], // Enable the "macros" plugin for Tailwind CSS
 };

@@ -8,9 +8,9 @@ import { UseMainContext } from '../../context'
 import { useNavigate, useParams } from 'react-router-dom'
 import LoadingComponent from '../../components/Status/Loading'
 import User_info_Update_input from '../../components/User/User_Info_Update_Input'
-import User_portfolio from '../../components/User/User_portfolio'
-import User_skills from '../../components/User/User_skills'
+
 import axios from 'axios'
+import RatesStars from '../../components/ProjectsListingPage/Projects/RatesStars'
 const Single_User_Page = () => {
   const style = {
     mainDiv: `w-[75%] h-[1000px]`,
@@ -71,14 +71,13 @@ const Single_User_Page = () => {
         const res = await axios.get(
           `${import.meta.env.VITE_GLOBAL_URL}/rating/${devInfo.user._id}`,
         )
-        setRatingFromDb(res.data.averageRating)
-        console.log(res)
+        setRatingFromDb(res.data.rating)
       } catch (error) {
         console.log(error)
       }
     }
   }
-  const [ratingFromDb, setRatingFromDb] = useState<number>()
+  const [ratingFromDb, setRatingFromDb] = useState<any>()
 
   useEffect(() => {
     getAllDevProjects()
@@ -93,35 +92,13 @@ const Single_User_Page = () => {
     devInfo.user_info &&
     devInfo.user &&
     PortfolioState.userProjects &&
-    PortfolioState.userProjects.projects
+    PortfolioState.userProjects.projects &&
+    ratingFromDb
   ) {
     return (
       <User_layout>
-        <div>
-          <h1>Ratinig {rating}</h1>
-          <input
-            value={rating}
-            onChange={(e) => setRating(Number(e.target.value))}
-            type="range"
-            max="5"
-            min="1"
-          />
-          <button
-            onClick={() => RateUser(devInfo.user._id)}
-            className="bg-red-500 text-white  p-2 rounded-[9px]"
-          >
-            Rate
-          </button>
-
-          <div onClick={() => GetUserRating()}>
-            {' '}
-            Avreage rating {ratingFromDb?.toFixed(2)}
-          </div>
-        </div>
-        <div
-          onClick={() => console.log(devInfo)}
-          className="flex  flex-col gap-2 p-2 items-center justify-center "
-        >
+        <div className="flex  flex-col gap-2 p-2 items-center justify-center ">
+          <RatesStars data={ratingFromDb} />
           <User_Top
             isUser={true}
             userData={devInfo}

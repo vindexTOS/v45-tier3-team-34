@@ -21,7 +21,14 @@ export type GeneralActionType = {
   type: string
 }
 
-export type ProjectCardType = {
+export type RatingTypes = {
+  rater_id: string
+  rating_score: number
+  user_id: string
+  rating_review: string
+}
+
+export type ProjectMetaData = {
   _id: string
   title: string
   reviews: number
@@ -29,6 +36,17 @@ export type ProjectCardType = {
   description: string
   stars: number
   image: string
+  category: string
+  country: string
+  difficulty: string
+  skills: string[]
+  skills_required?: string[]
+  urgent: boolean
+}
+export type ProjectCardType = {
+  _id?:string,
+  project: ProjectMetaData
+  ratings: RatingTypes[]
 }
 
 export type UserType = {
@@ -65,33 +83,32 @@ export type CompanyProjectType = {
 
 //company project type (from db)
 export type ProjectType = {
-    _id: {
-      $oid: string,
-    }, //?? to be reviewed according to gotten data
-    user_id: string,
-    title: string,
-    description: string,
-    photo: string,
-    github: string,
-    liveLink: string,
-    videoLink: string,
-  skills_used: string[],
-    //_id:string,
-  __v?: number,
-    date?:string
+  _id: {
+    $oid: string
+  } //?? to be reviewed according to gotten data
+  user_id: string
+  title: string
+  description: string
+  photo: string
+  github: string
+  liveLink: string
+  videoLink: string
+  skills_used: string[]
+  //_id:string,
+  __v?: number
+  date?: string
 }
 
-
 // tiers (offers types)
-export type tierCategoryType = 'basic' | 'standard' | 'premium';
+export type tierCategoryType = 'basic' | 'standard' | 'premium'
 
 export type TiersType = {
-  type: tierCategoryType;
-  budget: number;
-  delivery_time: number;
-  deal_start_date: string;
-  n_revisions: number;
-  design_customisation: boolean;
-  content_upload: boolean;
-  responsive_design: boolean;
+  type: tierCategoryType
+  budget: number
+  delivery_time: number
+  deal_start_date: string
+  n_revisions: number
+  design_customisation: boolean
+  content_upload: boolean
+  responsive_design: boolean
 }
