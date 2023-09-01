@@ -1,6 +1,6 @@
 import './index.css'
 import Login from './pages/Login'
-import Profile from './pages/Profiles/Profile'
+import Profile from './pages/Profiles/Dev_Profile/Profile'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import { Route, Routes } from 'react-router-dom'
@@ -18,7 +18,7 @@ import User_Portfolio_Single from './components/User/User_Portfolio_Single'
 import User_info_form from './pages/Forms/User_info_form'
 import ForCompanyMain from './pages/MainMenu/ForCompany/ForCompanyMain'
 import Company_info_form from './pages/Forms/Company_info_form'
-import Company_Profile from './pages/Profiles/Company_Profile'
+import Company_Profile from './pages/Profiles/Company_Profile/Company_Profile'
 import ProjectsListingPage from './pages/ProjectsListingPage'
 import Project_Page from './pages/Project/Project_Page'
 import Developer_list from './pages/MainMenu/ForCompany/Developer_list'
@@ -32,6 +32,12 @@ import ResourceTools from './pages/MainMenu/ForDeveloper/ResourceTools'
 import CompanyProjectForm from './pages/Forms/Company_Project_posting'
 import Layout from './layout'
 import Single_Company_Page from './pages/Profiles/Single_Company_Page'
+import Profile_Main from './pages/Profiles/Dev_Profile/Profile_Main'
+import Current_Projects from './pages/Profiles/Dev_Profile/Current_Projects'
+import Archived_Projects from './pages/Profiles/Dev_Profile/Archived_Projects'
+import Messages from './pages/Profiles/Dev_Profile/Messages'
+import Reviews from './pages/Profiles/Dev_Profile/Reviews'
+import Company_Profile_Main from './pages/Profiles/Company_Profile/Company_Profile_Main'
 
 //routes
 const router = [
@@ -128,11 +134,55 @@ const router = [
   },
   {
     path: '/profile',
-    element: <Profile />,
+    element: <Profile_Main />,
+    outlet: [
+      {
+        path: '',
+        element: <Profile />,
+      },
+      {
+        path: 'current_project',
+        element: <Current_Projects />,
+      },
+      {
+        path: 'archived_project',
+        element: <Archived_Projects />,
+      },
+      {
+        path: 'messages',
+        element: <Messages />,
+      },
+      {
+        path: 'reviews',
+        element: <Reviews />,
+      },
+    ],
   },
   {
     path: '/company_profile',
-    element: <Company_Profile />,
+    element: <Company_Profile_Main />,
+    outlet: [
+      {
+        path: '',
+        element: <Company_Profile />,
+      },
+      {
+        path: 'current_project',
+        element: <Current_Projects />,
+      },
+      {
+        path: 'archived_project',
+        element: <Archived_Projects />,
+      },
+      {
+        path: 'messages',
+        element: <Messages />,
+      },
+      {
+        path: 'reviews',
+        element: <Reviews />,
+      },
+    ],
   },
   {
     path: '/company_project',
@@ -158,9 +208,9 @@ const router = [
     path: '/projects/:project_category',
     element: <ProjectsListingPage />,
   },
-  //project page
+  //company project details page
   {
-    path: '/project/:project_id',
+    path: '/company/projects/:project_id',
     element: <Project_Page />,
   },
 ]
