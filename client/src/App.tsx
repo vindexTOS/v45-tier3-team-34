@@ -208,9 +208,9 @@ const router = [
     path: '/projects/:project_category',
     element: <ProjectsListingPage />,
   },
-  //project page
+  //company project details page
   {
-    path: '/project/:project_id',
+    path: '/company/projects/:project_id',
     element: <Project_Page />,
   },
 ]
