@@ -25,7 +25,7 @@ const ProjectCard = ({ data }: { data: ProjectCardType }) => {
       className="max-w-md border bg-white border-gray-300 dark:border-slate-900 dark:bg-slate-800 rounded-lg p-2 flex flex-col shadow-md hover:shadow-xl "
     >
       {/* ?? a try */}
-      {/* <Link to={'/company/projects/' + data._id}> */}
+       <Link to={'/company/projects/' + data._id}> 
       {/* ?? this image require more stylings  */}
       <div className={`w-full h-64 rounded-md p-0 m-0 bg-[url("${image}")]`}>
         <img
@@ -48,7 +48,7 @@ const ProjectCard = ({ data }: { data: ProjectCardType }) => {
         </p>
         {/* price and linke */}
       </div>
-      {/* </Link> */}
+       </Link>  
 
       {/* price and like btn */}
       <div className=" dark:text-gray-200 flex justify-between p-4">
