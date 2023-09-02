@@ -1,7 +1,7 @@
-import user_model from '../../model/user_model'
+import user_model from '../../model/User_models/user_model'
 import { Response, Request } from 'express'
 import { tryCatch } from '../../middleware/tryCatch'
-import user_info_model from '../../model/user_info_model'
+import user_info_model from '../../model/User_models/user_info_model'
 export const update_user_info = tryCatch(
   async (req: Request, res: Response) => {
     const { userName, avatar, email, role } = req.body

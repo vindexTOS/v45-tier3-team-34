@@ -17,6 +17,7 @@ const ProjectCard = ({ data }: { data: ProjectCardType }) => {
     title,
     urgent,
     skills,
+    _id,
   } = data.project
 
   return (
@@ -25,30 +26,30 @@ const ProjectCard = ({ data }: { data: ProjectCardType }) => {
       className="max-w-md border bg-white border-gray-300 dark:border-slate-900 dark:bg-slate-800 rounded-lg p-2 flex flex-col shadow-md hover:shadow-xl "
     >
       {/* ?? a try */}
-       <Link to={'/company/projects/' + data._id}> 
-      {/* ?? this image require more stylings  */}
-      <div className={`w-full h-64 rounded-md p-0 m-0 bg-[url("${image}")]`}>
-        <img
-          className="w-full h-full "
-          src={image}
-          // alt={data.title.slice(0, 2)}
-        />
-      </div>
-      {/* desc */}
-      <div className="max-w-sm px-4 flex flex-col gap-6">
-        {/* reviews */}
-        <RatesStars data={data.ratings} />
-        {/* title */}
-        <h1 className="text-2xl font-semibold text-slate-800 dark:text-green-400 capitalize">
-          {title}
-        </h1>
-        {/* description */}
-        <p className="text-gray-700 dark:text-gray-200">
-          {description.slice(0, 96)}...
-        </p>
-        {/* price and linke */}
-      </div>
-       </Link>  
+      <Link to={'/company/projects/' + _id}>
+        {/* ?? this image require more stylings  */}
+        <div className={`w-full h-64 rounded-md p-0 m-0 bg-[url("${image}")]`}>
+          <img
+            className="w-full h-full "
+            src={image}
+            // alt={data.title.slice(0, 2)}
+          />
+        </div>
+        {/* desc */}
+        <div className="max-w-sm px-4 flex flex-col gap-6">
+          {/* reviews */}
+          <RatesStars data={data.ratings} />
+          {/* title */}
+          <h1 className="text-2xl font-semibold text-slate-800 dark:text-green-400 capitalize">
+            {title}
+          </h1>
+          {/* description */}
+          <p className="text-gray-700 dark:text-gray-200">
+            {description.slice(0, 96)}...
+          </p>
+          {/* price and linke */}
+        </div>
+      </Link>
 
       {/* price and like btn */}
       <div className=" dark:text-gray-200 flex justify-between p-4">

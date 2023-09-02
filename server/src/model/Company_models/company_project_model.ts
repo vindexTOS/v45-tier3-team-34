@@ -7,11 +7,11 @@ const Company_Project_model = new mongoose.Schema({
   },
   title: {
     type: String,
-    required: [true, 'title is required'],
+    required: true,
   },
   description: {
     type: String,
-    required: [true, 'description is required'],
+    required: true,
   },
   skills: {
     type: Array,
@@ -30,11 +30,32 @@ const Company_Project_model = new mongoose.Schema({
   },
   price: {
     type: String,
-    required: [true, 'Price is required'],
+    required: true,
   },
   difficulty: {
     type: String,
-    enum: ['low', 'medium', 'high'],
+  },
+
+  DeliveryTime: {
+    type: String,
+  },
+  StartDate: {
+    type: String,
+  },
+  Revisions: {
+    type: String,
+  },
+  DesignCustomization: {
+    type: Boolean,
+    default: false,
+  },
+  ContentUpload: {
+    type: Boolean,
+    default: false,
+  },
+  Responsive: {
+    type: Boolean,
+    default: false,
   },
   isFinnished: {
     type: Boolean,

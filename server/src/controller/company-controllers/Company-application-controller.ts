@@ -1,8 +1,8 @@
 import { tryCatch } from '../../middleware/tryCatch'
 import { Request, Response } from 'express'
 import project_application_model from '../../model/project_application_model'
-import company_project_model from '../../model/company_project_model'
-import user_model from '../../model/user_model'
+import company_project_model from '../../model/Company_models/company_project_model'
+import user_model from '../../model/User_models/user_model'
 export const MakeCompanyApplication = tryCatch(
   async (req: Request, res: any) => {
     const { project_id } = req.params

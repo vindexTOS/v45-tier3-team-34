@@ -1,7 +1,7 @@
-import Dev_Project_model from '../../model/dev_project_model'
+import Dev_Project_model from '../../model/User_models/dev_project_model'
 import { tryCatch } from '../../middleware/tryCatch'
 import { Request, Response, NextFunction } from 'express'
-import user_model from '../../model/user_model'
+import user_model from '../../model/User_models/user_model'
 import rating_model from '../../model/rating_model'
 
 export const getAllProjects = tryCatch(async (req: Request, res: Response) => {
