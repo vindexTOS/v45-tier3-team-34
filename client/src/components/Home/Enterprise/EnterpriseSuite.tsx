@@ -6,9 +6,9 @@ import {
 } from "react-icons/lia";
 const EnterpriseSuite = () => {
   return (
-    <section className="flex  text-light-muted dark:text-dark-muted sm:rounded-lg my-0 sm:my-6 ">
+    <section className="flex  text-light-inverted dark:text-dark-primary sm:rounded-lg my-0 sm:my-6 ">
       <article className="flex-1 p-2 sm:p-8 rounded-lg sm:rounded-none  sm:rounded-l-lg">
-        <h2 className="font-thin text-base sm:mb-10">
+        <h2 className="font-thin text-base mb-10">
           Real-World Projects
         </h2>
         <h1 className="text-[4rem] font-bold leading-tight">
