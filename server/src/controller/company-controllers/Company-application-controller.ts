@@ -1,0 +1,75 @@
+import { tryCatch } from '../../middleware/tryCatch'
+import { Request, Response } from 'express'
+import project_application_model from '../../model/project_application_model'
+import company_project_model from '../../model/company_project_model'
+import user_model from '../../model/user_model'
+export const MakeCompanyApplication = tryCatch(
+  async (req: Request, res: any) => {
+    const { project_id } = req.params
+    const { dev_id, description, bide } = req.body
+    const userIsDev = await user_model.findById({ _id: dev_id })
+
+    if (userIsDev.role !== 'Developer') {
+      return res
+        .status(401)
+        .json({ msg: 'Create Developer account if you want to make a bide' })
+    }
+    const isProjectExist = await company_project_model.findById(project_id)
+
+    if (!isProjectExist) {
+      return res.status(406).json({ msg: 'Project Does Not Exist' })
+    }
+    const company_id = isProjectExist.user_id
+
+    if (company_id === dev_id) {
+      return res
+        .status(403)
+        .json({ msg: 'You cannot apply to your own project' })
+    }
+    const didUserMadeApplication = await project_application_model.findOne({
+      dev_id,
+    })
+
+    if (didUserMadeApplication) {
+      return res.status(406).json({ msg: 'You already made bide' })
+    }
+
+    await project_application_model.create({
+      company_id,
+      dev_id,
+      project_id,
+      description,
+      bide,
+    })
+
+    return res.status(200).json({ msg: 'Your application has been submited' })
+  },
+)
+
+export const GetSingleProjectApplication = tryCatch(
+  async (req: Request, res: any) => {
+    const { project_id } = req.params
+
+    const findProject = await project_application_model.find({ project_id })
+
+    if (!findProject) {
+      return res.status(404).json({ msg: 'Does not exist' })
+    }
+
+    return res.status(200).json({ data: findProject })
+  },
+)
+
+export const GetCompanyApplications = tryCatch(
+  async (req: Request, res: any) => {
+    const { company_id } = req.params
+
+    const companyProjects = await project_application_model.find({ company_id })
+
+    if (!companyProjects) {
+      return res.status(404).json({ msg: 'Company has no projects' })
+    }
+
+    return res.status(200).json({ companyProjects })
+  },
+)
