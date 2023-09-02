@@ -1,10 +1,10 @@
 import bcrypt from 'bcryptjs'
-import User_model from '../../model/user_model'
+import User_model from '../../model/User_models/user_model'
 import jwt from 'jsonwebtoken'
 import { tryCatch } from '../../middleware/tryCatch'
 import { Request, Response, NextFunction } from 'express'
-import user_info_model from '../../model/user_info_model'
-import company_user_model from '../../model/company_user_model'
+import user_info_model from '../../model/User_models/user_info_model'
+import company_user_model from '../../model/Company_models/company_user_model'
 import rating_model from '../../model/rating_model'
 
 export const Register = tryCatch(async (req: Request, res: any) => {

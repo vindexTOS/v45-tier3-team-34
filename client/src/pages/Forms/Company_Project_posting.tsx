@@ -4,6 +4,12 @@ import axios from 'axios'
 import { UseMainContext } from '../../context'
 import DropeZone from '../../components/Forms/DropeZone'
 import SkillSelection from '../../components/Forms/SkillSelection'
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css'
+import useStatusMessages from '../../hooks/Status_hook'
+import Succsess from '../../components/Status/Success'
+import Error from '../../components/Status/Error'
+import { useNavigate } from 'react-router-dom'
 type CompanyProjectState = {
   title: string
   description: string
@@ -14,6 +20,13 @@ type CompanyProjectState = {
   urgent: boolean
   price: number
   difficulty: 'low' | 'medium' | 'high'
+  DeliveryTime: string
+  StartDate: string
+  Revisions: string
+  DesignCustomization: boolean
+  ContentUpload: boolean
+  Responsive: boolean
+
   loading: boolean
 }
 
@@ -24,6 +37,11 @@ export type CompanyProjectAction = {
 }
 
 const CompanyProjectForm = () => {
+  const { statusState, setError, setSuccess } = useStatusMessages({
+    error: '',
+    success: '',
+  })
+  const navigate = useNavigate()
   const { UserState, ImgState, PortfolioState } = UseMainContext()
   // Initial state for the Company Project
   const initialCompanyProjectState: CompanyProjectState = {
@@ -36,6 +54,12 @@ const CompanyProjectForm = () => {
     urgent: false,
     price: 0,
     difficulty: 'low',
+    DeliveryTime: '',
+    StartDate: '',
+    Revisions: '',
+    DesignCustomization: false,
+    ContentUpload: false,
+    Responsive: false,
     loading: false,
   }
 
@@ -63,6 +87,18 @@ const CompanyProjectForm = () => {
         return { ...state, price: action.payload }
       case 'difficulty':
         return { ...state, difficulty: action.payload }
+      case 'deliveryTime':
+        return { ...state, DeliveryTime: action.payload }
+      case 'startDate':
+        return { ...state, StartDate: action.payload }
+      case 'revisions':
+        return { ...state, Revisions: action.payload }
+      case 'designCustomization':
+        return { ...state, DesignCustomization: action.payload }
+      case 'contentUpload':
+        return { ...state, ContentUpload: action.payload }
+      case 'responsive':
+        return { ...state, Responsive: action.payload }
       case 'loading':
         return { ...state, loading: action.payload }
       default:
@@ -74,7 +110,20 @@ const CompanyProjectForm = () => {
     companyProjectReducer,
     initialCompanyProjectState,
   )
+  const [value, onChange] = React.useState(new Date())
 
+  const HandleDeliveryCalendar = (e: Date) => {
+    companyProjectDispatch({
+      type: 'deliveryTime',
+      payload: e,
+    })
+  }
+  const HandleStartCalendar = (e: Date) => {
+    companyProjectDispatch({
+      type: 'startDate',
+      payload: e,
+    })
+  }
   useEffect(() => {
     companyProjectDispatch({ type: 'image', payload: ImgState.imgUrl })
   }, [ImgState.imgUrl])
@@ -91,22 +140,27 @@ const CompanyProjectForm = () => {
     try {
       if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
         const res = await axios.post(
-          `http://localhost:8080/companies/projects/${UserState.userTokenData.user._id}`,
+          `${import.meta.env.VITE_GLOBAL_URL}/companies/projects/${
+            UserState.userTokenData.user._id
+          }`,
           {
             ...companyProjectState,
           },
         )
-        console.log(res.data)
+
+        setSuccess(res.data.msg)
+        navigate(`/company/projects/${res.data.id}`)
       }
     } catch (error) {
-      console.log(error)
+      const err: any = error
+      setError(err.message)
     }
   }
 
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded shadow-lg">
       <h2 className="text-2xl font-semibold mb-4">Create a Company Project</h2>
-      <form>
+      <section>
         <FormField
           label="Title"
           id="title"
@@ -183,6 +237,63 @@ const CompanyProjectForm = () => {
             }
           />
         </div>
+        <div className="mb-4 flex items-center justify-around ">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor={`designCustomization`}
+          >
+            Design Customization
+          </label>
+          <input
+            className=""
+            id={`designCustomization`}
+            type="checkbox"
+            onClick={() =>
+              companyProjectDispatch({
+                type: `designCustomization`,
+                payload: !false,
+              })
+            }
+          />
+        </div>
+        <div className="mb-4 flex items-center justify-around ">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor={`contentUpload`}
+          >
+            Content Upload
+          </label>
+          <input
+            className=""
+            id={`contentUpload`}
+            type="checkbox"
+            onClick={() =>
+              companyProjectDispatch({
+                type: `contentUpload`,
+                payload: !false,
+              })
+            }
+          />
+        </div>
+        <div className="mb-4 flex items-center justify-around ">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor={`responsive`}
+          >
+            Content Upload
+          </label>
+          <input
+            className=""
+            id={`responsive`}
+            type="checkbox"
+            onClick={() =>
+              companyProjectDispatch({
+                type: `responsive`,
+                payload: !false,
+              })
+            }
+          />
+        </div>
         {/* Price Field */}
         <FormField
           label="Price"
@@ -191,6 +302,15 @@ const CompanyProjectForm = () => {
           value={companyProjectState.price.toString()}
           companyProjectDispatch={companyProjectDispatch}
           placeholder="Price"
+          required
+        />
+        <FormField
+          label="revisions"
+          id="revisions"
+          type="revisions"
+          value={companyProjectState.Revisions.toString()}
+          companyProjectDispatch={companyProjectDispatch}
+          placeholder="revisions"
           required
         />
 
@@ -219,7 +339,16 @@ const CompanyProjectForm = () => {
             ))}
           </select>
         </div>
-
+        <div className="flex flex-col items-center justify-center">
+          <div>
+            Delivery date
+            <Calendar onChange={HandleDeliveryCalendar} value={value} />
+          </div>
+          <div>
+            Start Date
+            <Calendar onChange={HandleStartCalendar} value={value} />
+          </div>
+        </div>
         <SkillSelection />
 
         <div className="mb-4">
@@ -231,7 +360,9 @@ const CompanyProjectForm = () => {
             Create Project
           </button>
         </div>
-      </form>
+        <Succsess success={statusState.success} />
+        <Error error={statusState.error} />
+      </section>
     </div>
   )
 }

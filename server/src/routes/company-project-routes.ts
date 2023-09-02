@@ -2,10 +2,10 @@ import express from 'express'
 import {
   getAllCompanies,
   createCompany,
-  getCompany,
   updateCompany,
   deleteCompany,
   getAllCompaniesProjects,
+  GetSingleProject,
 } from '../controller/company-controllers/company-project-controller'
 import { Check_user_id } from '../middleware/user-id-check'
 import { check_user_token } from '../middleware/user-token-check'
@@ -20,6 +20,7 @@ router
 
 router.route('/each/:user_id').get(getAllCompaniesProjects)
 router.route('/').get(getAllCompanies)
-router.route('/:id').get(getCompany).put(updateCompany).delete(deleteCompany)
+router.route('/:id').put(updateCompany).delete(deleteCompany)
+router.route('/single/:project_id').get(GetSingleProject)
 
 export default router

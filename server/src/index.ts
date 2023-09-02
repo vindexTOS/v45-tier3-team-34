@@ -9,6 +9,8 @@ import projectRouter from './routes/project-routes'
 import companyProjectRouter from './routes/company-project-routes'
 import companyRouter from './routes/company-router'
 import RaitingRouter from './routes/raiting-routes'
+
+import applicationRouter from './routes/application-routes'
 config()
 const app = express()
 
@@ -25,6 +27,7 @@ app.use('/projects', projectRouter)
 app.use('/companies/projects', companyProjectRouter)
 app.use('/company', companyRouter)
 app.use('/rating', RaitingRouter)
+app.use('/application', applicationRouter)
 
 // catch all
 

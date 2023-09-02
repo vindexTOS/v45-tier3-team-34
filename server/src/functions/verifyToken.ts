@@ -1,6 +1,6 @@
 import { Response } from 'express'
 import jwt from 'jsonwebtoken'
-import user_model from '../model/user_model'
+import user_model from '../model/User_models/user_model'
 export const verifyToken = async (token: string) => {
   try {
     // Verify the token

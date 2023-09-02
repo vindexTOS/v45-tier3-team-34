@@ -1,6 +1,6 @@
-import user_model from '../../model/user_model'
+import user_model from '../../model/User_models/user_model'
 import { tryCatch } from '../../middleware/tryCatch'
-import company_user_model from '../../model/company_user_model'
+import company_user_model from '../../model/Company_models/company_user_model'
 import { Request } from 'express'
 
 export const update_company_detail_info = tryCatch(
