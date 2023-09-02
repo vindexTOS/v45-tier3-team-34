@@ -73,3 +73,137 @@ export const GetCompanyApplications = tryCatch(
     return res.status(200).json({ companyProjects })
   },
 )
+
+export const RejectCandidat = tryCatch(async (req: Request, res: any) => {
+  const { dev_id } = req.params
+  const { company_id, project_id } = req.body
+  const application = await project_application_model.findOne({ dev_id })
+
+  if (
+    application.company_id !== company_id &&
+    project_id !== application.project_id
+  ) {
+    return res.status(403).json({ msg: 'Not authorized' })
+  }
+
+  await project_application_model.findByIdAndDelete(application._id)
+
+  return res.status(200).json({ msg: 'application has been deleted' })
+})
+
+export const AccaptCandidat = tryCatch(async (req: Request, res: any) => {
+  const { application_id } = req.params
+  const { dev_id } = req.body
+
+  const findProject = await project_application_model.findOne({
+    _id: application_id,
+  })
+
+  if (!findProject) {
+    return res.status(400).json({ msg: 'Project does not exist' })
+  }
+
+  if (findProject.dev_id !== dev_id) {
+    return res.status(403).json({ msg: 'not authorized' })
+  }
+
+  await project_application_model.findByIdAndUpdate(application_id, {
+    accepted: true,
+  })
+})
+export const devFinnishedProject = tryCatch(async (req: Request, res: any) => {
+  const { application_id } = req.params
+  const { dev_id } = req.body
+
+  const findProject = await project_application_model.findOne({
+    _id: application_id,
+  })
+
+  if (!findProject) {
+    return res.status(400).json({ msg: 'Project does not exist' })
+  }
+
+  if (findProject.dev_id !== dev_id) {
+    return res.status(403).json({ msg: 'not authorized' })
+  }
+
+  await project_application_model.findByIdAndUpdate(application_id, {
+    projectFinnishSubmit: true,
+  })
+
+  return res.status(200).json({ msg: 'Finnished submited' })
+})
+
+export const devFinnishedRejected = tryCatch(async (req: Request, res: any) => {
+  const { application_id } = req.params
+  const { dev_id } = req.body
+
+  const findProject = await project_application_model.findOne({
+    _id: application_id,
+  })
+
+  if (!findProject) {
+    return res.status(400).json({ msg: 'Project does not exist' })
+  }
+
+  if (findProject.dev_id !== dev_id) {
+    return res.status(403).json({ msg: 'not authorized' })
+  }
+
+  await project_application_model.findByIdAndUpdate(application_id, {
+    projectFinnishSubmit: false,
+  })
+
+  return res.status(200).json({ msg: 'Finnished submited' })
+})
+
+export const projectFinnished = tryCatch(async (req: Request, res: any) => {
+  const { application_id } = req.params
+  const { dev_id } = req.body
+
+  const findProject = await project_application_model.findOne({
+    _id: application_id,
+  })
+
+  if (!findProject) {
+    return res.status(400).json({ msg: 'Project does not exist' })
+  }
+
+  if (findProject.dev_id !== dev_id) {
+    return res.status(403).json({ msg: 'not authorized' })
+  }
+
+  await project_application_model.findByIdAndUpdate(application_id, {
+    projectFinnished: true,
+  })
+
+  return res.status(200).json({ msg: 'Project has been finnished' })
+})
+
+export const InProgress = tryCatch(async (req: Request, res: any) => {
+  const { company_id } = req.params
+
+  const findAllCompanyProjects = await project_application_model.find(
+    { _id: company_id },
+    { accepted: true, projectFinnished: false, projectFinnishSubmit: false },
+  )
+  if (!findAllCompanyProjects) {
+    return res.status(400).json({ msg: 'Application does not exist' })
+  }
+
+  return res.status(200).json(findAllCompanyProjects)
+})
+
+export const GetArchivedProjects = tryCatch(async (req: Request, res: any) => {
+  const { company_id } = req.params
+
+  const archivedProjects = await project_application_model.find({
+    company_id,
+    projectFinnished: true, // Add this condition
+  })
+  if (!archivedProjects) {
+    return res.status(406).json({ msg: 'Your archive is empity' })
+  }
+
+  return res.status(200).json(archivedProjects)
+})

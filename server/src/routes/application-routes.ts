@@ -3,6 +3,13 @@ import {
   MakeCompanyApplication,
   GetSingleProjectApplication,
   GetCompanyApplications,
+  RejectCandidat,
+  AccaptCandidat,
+  devFinnishedProject,
+  devFinnishedRejected,
+  projectFinnished,
+  InProgress,
+  GetArchivedProjects,
 } from '../controller/company-controllers/Company-application-controller'
 import { check_user_token } from '../middleware/user-token-check'
 import { errorHandler } from '../middleware/errorHandler'
@@ -16,5 +23,19 @@ applicationRouter
 applicationRouter
   .route('/company/:company_id')
   .get(GetCompanyApplications, errorHandler)
+
+applicationRouter.route('/reject/:dev_id').delete(RejectCandidat)
+applicationRouter.route('/accapt/:application_id').patch(AccaptCandidat)
+applicationRouter
+  .route('/dev-finnish/:application_id')
+  .patch(devFinnishedProject)
+applicationRouter
+  .route('/dev-reject-finnish/:application_id')
+  .patch(devFinnishedRejected)
+applicationRouter
+  .route('/project-finnish/:application_id')
+  .patch(projectFinnished)
+applicationRouter.route('/inprogress/:company_id').get(InProgress)
+applicationRouter.route('/archived/:company_id').get(GetArchivedProjects)
 
 export default applicationRouter

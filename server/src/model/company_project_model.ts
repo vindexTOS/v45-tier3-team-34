@@ -36,6 +36,10 @@ const Company_Project_model = new mongoose.Schema({
     type: String,
     enum: ['low', 'medium', 'high'],
   },
+  isFinnished: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 export default mongoose.model('connect_dev_company', Company_Project_model)

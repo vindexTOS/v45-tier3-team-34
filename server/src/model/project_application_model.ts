@@ -16,6 +16,18 @@ const ProjectApplicationModel = new mongoose.Schema({
   bide: {
     type: Number,
   },
+  accepted: {
+    type: Boolean,
+    default: false,
+  },
+  projectFinnishSubmit: {
+    type: Boolean,
+    default: false,
+  },
+  projectFinnished: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 export default mongoose.model(
