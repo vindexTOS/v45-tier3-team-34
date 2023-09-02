@@ -14,7 +14,7 @@ const CategoryCard = ({
   return (
     <Link
       to={link}
-      className="bg-gray-200 backdrop-blur-sm  dark:bg-white/10 dark:text-gray-300 rounded-lg p-4 md:p-8 shadow-md dark:shadow-gray-950 hover:shadow-2xl transition-shadow delay-75 sm:min-h-[120px] flex flex-col justify-between cursor-pointer"
+      className="bg-[#F7FAF7] hover:bg-[#e2ede2] backdrop-blur-sm  dark:bg-white/10 dark:text-gray-300 rounded-lg p-4 md:p-8 shadow-md/40 dark:shadow-gray-950 hover:shadow-lg/40 transition-shadow delay-75 sm:min-h-[120px] flex flex-col justify-between cursor-pointer border border-white dark:border-green-900 dark:hover:bg-white/5"
     >
       <h1 className="text-md md:text-lg 2xl:text-xl font-semibold mb-2">
         {title}
