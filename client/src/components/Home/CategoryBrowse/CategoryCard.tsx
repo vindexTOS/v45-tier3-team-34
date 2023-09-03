@@ -19,9 +19,9 @@ const CategoryCard = ({
       <h1 className="text-md md:text-lg 2xl:text-xl font-semibold mb-2 text-light-primary dark:text-dark-primary">
         {title}
       </h1>
-      <div className="flex justify-between text-light-muted dark:text-dark-muted text-sm">
+      <div className="flex justify-between text-light-muted dark:text-dark-muted text-[0.9rem]">
         <p className="flex items-center gap-1 ">
-          <span className="text-light-green text-lg">
+          <span className="text-light-green text-md">
             <HiStar />
           </span>
           {rating}/5
