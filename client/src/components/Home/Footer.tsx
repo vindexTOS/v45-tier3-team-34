@@ -15,8 +15,8 @@ export default function Footer() {
           : ""
       }`}
     >
-      <div className="py-20 px-16">
-        <section className="py-6 lg:py-8 px-10">
+      <div className="py-14 px-8 sm:px-20">
+        <section className="">
           <div className="flex flex-col flex-wrap lg:flex-row lg:justify-evenly lg:max-w-screen-2xl mx-auto">
             {footerMenuItems.map(
               (menuItem, index) => (
@@ -46,13 +46,13 @@ export default function Footer() {
             )}
           </div>
         </section>
-        <hr className="border-slate-200 dark:border-slate-600" />
+        <hr className="border-slate-200 dark:border-slate-600 my-5" />
 
-        <section className="flex justify-between py-6 px-10 flex-col-reverse lg:flex-row items-center gap-y-2">
-          <article className=" w-full sm:w-fit">
+        <section className="flex justify-between py-6 flex-col-reverse sm:flex-row items-center gap-y-2">
+          <article className=" w-full sm:w-fit pt-4 sm:pt-0">
             <a
               href="/"
-              className="flex transition-all duration-150 ease-out hover:text-green-800 dark:text-green-600"
+              className="flex transition-all duration-150 ease-out text-custom dark:text-green-600"
             >
               <h2 className="whitespace-nowrap text-sm">
                 © 2023 DevConnect
@@ -64,7 +64,7 @@ export default function Footer() {
               ({ title, link }) => (
                 <Link
                   key={title}
-                  className="w-full sm:w-auto text-xs transition-all duration-150 ease-out text-slate-400 hover:text-slate-600"
+                  className="w-full sm:w-auto text-xs transition-all duration-150 ease-out text-light-muted dark:text-dark-muted hover:text-slate-600"
                   to={link}
                 >
                   {title}
