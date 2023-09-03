@@ -128,6 +128,8 @@ type Cell = {
 
   companyProjectsData: CompanyProjectType[]
   setCompanyProjectsData: React.Dispatch<CompanyProjectType[]>
+
+  isUserLoggedIn: boolean
 }
 
 const Context = createContext<Cell | null>(null)
@@ -633,6 +635,8 @@ export const ContextProvider = ({
   const [companyProjectsData, setCompanyProjectsData] = useState<
     CompanyProjectType[]
   >([])
+
+  const isUserLoggedIn = UserState.userData.user && UserState.userData.user._id
   return (
     <Context.Provider
       value={{
@@ -659,6 +663,7 @@ export const ContextProvider = ({
         CompanyDispatch,
         companyProjectsData,
         setCompanyProjectsData,
+        isUserLoggedIn,
       }}
     >
       {children}

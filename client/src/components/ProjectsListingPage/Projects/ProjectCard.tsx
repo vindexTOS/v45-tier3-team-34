@@ -21,11 +21,9 @@ const ProjectCard = ({ data }: { data: ProjectCardType }) => {
   } = data.project
 
   return (
-    <article
-      onClick={() => console.log(data.ratings)}
-      className="max-w-md border bg-white border-gray-300 dark:border-slate-900 dark:bg-slate-800 rounded-lg p-2 flex flex-col shadow-md hover:shadow-xl "
-    >
+    <article className="max-w-md border bg-white border-gray-300 dark:border-slate-900 dark:bg-slate-800 rounded-lg p-2 flex flex-col shadow-md hover:shadow-xl ">
       {/* ?? a try */}
+
       <Link to={'/company/projects/' + _id}>
         {/* ?? this image require more stylings  */}
         <div className={`w-full h-64 rounded-md p-0 m-0 bg-[url("${image}")]`}>

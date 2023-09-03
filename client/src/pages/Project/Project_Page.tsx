@@ -5,7 +5,11 @@ import { tierCategoryType } from '../../common.types'
 import { useEffect, useState } from 'react'
 import TierDetails from '../../components/Project_detail/Tier_details'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { UseMainContext } from '../../context'
+
 const Project_Page = () => {
+  const { UserState } = UseMainContext()
   const params = useParams()
   //may be changed with category id , or samething else
   const { project_id } = params
@@ -17,9 +21,11 @@ const Project_Page = () => {
 
   //tier ....??
   const [selectedTier, setSetselectedTier] = useState<tierCategoryType>('basic')
-
+  const navigate = useNavigate()
   const [SingleProjectData, setSingleProjectData] = useState<any>()
   const [companyDetales, setCompanyDetales] = useState<any>()
+  const [application, setApplication] = useState<any>()
+
   const GetProjectInfo = async () => {
     try {
       const res = await axios.get(
@@ -27,7 +33,7 @@ const Project_Page = () => {
           import.meta.env.VITE_GLOBAL_URL
         }/companies/projects/single/${project_id}`,
       )
-      console.log(res.data)
+
       setSingleProjectData(res.data)
     } catch (error) {
       console.log(error)
@@ -49,12 +55,49 @@ const Project_Page = () => {
       console.log(error)
     }
   }
+
+  const GetCompanyApplications = async () => {
+    try {
+      if (SingleProjectData && SingleProjectData._id) {
+        const res = await axios.get(
+          `${import.meta.env.VITE_GLOBAL_URL}/application/${
+            SingleProjectData._id
+          }`,
+        )
+
+        const data = res.data
+        console.log(data.data)
+        setApplication(data.data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
     GetProjectInfo()
   }, [project_id])
   useEffect(() => {
     GetCompanyDetales()
+    GetCompanyApplications()
   }, [SingleProjectData])
+
+  const FindIfUserMadeAlreadyApplication = (): boolean => {
+    let isAplication = true
+    if (
+      application &&
+      application.length > 0 &&
+      UserState.userData.user &&
+      UserState.userData.user._id
+    ) {
+      isAplication = application.find(
+        (val: any) => val.dev_id !== UserState.userData.user._id,
+      )
+    }
+    return isAplication
+  }
+
+  const isUserApplication = FindIfUserMadeAlreadyApplication()
   if (
     SingleProjectData &&
     SingleProjectData._id &&
@@ -78,6 +121,8 @@ const Project_Page = () => {
       skills,
       title,
       urgent,
+      _id,
+      user_id,
     } = SingleProjectData
 
     const { avatar, userName } = companyDetales
@@ -90,9 +135,13 @@ const Project_Page = () => {
 
           <div className="flex w-full flex-col sm:flex-row  gap-x-6 gap-y-2 sm:items-center">
             {/* publisher profile image */}
-            <div className="flex items-center gap-3">
+            <div
+              onClick={() => navigate(`/company/page/${user_id}`)}
+              className="flex items-center gap-3 cursor-pointer"
+            >
               <img
-                className="w-10 sm:w-16 h-10 sm:h-16 rounded-full"
+                onClick={() => navigate(`/company/page/${user_id}`)}
+                className="w-10 sm:w-16 h-10 sm:h-16 rounded-full cursor-pointer"
                 src={avatar}
                 alt="publisher-profile"
               />
@@ -104,7 +153,12 @@ const Project_Page = () => {
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div className="flex gap-6 font-medium text-green-900 dark:text-green-600 w-full sm:w-fit justify-between sm:justify-center ">
                 <p>?? views</p>
-                <p>?? applications</p>
+                <p>
+                  {application && application.length >= 0
+                    ? application.length
+                    : 0}{' '}
+                  applications
+                </p>
               </div>
               {/* save & share actions */}
               <div className="flex gap-4  w-full sm:w-fit items-end sm:items-center justify-end sm:justify-center">
@@ -188,6 +242,19 @@ const Project_Page = () => {
           </div>
 
           <div>publisher ....</div>
+          {/* testing application button */}
+          {isUserApplication ? (
+            <button
+              onClick={() => navigate(`/company/project/application/${_id}`)}
+              className="bg-green-300 p-2 px-5 rounded-[9px]"
+            >
+              APPLY
+            </button>
+          ) : (
+            <h1 className="bg-red-300 p-2   rounded-[9px]">
+              You already made application
+            </h1>
+          )}
         </article>
       </div>
     )

@@ -51,10 +51,7 @@ const ProjectsContainer = ({
           </p>
         </section>
         {/* projects listing */}
-        <section
-          onClick={() => console.log(projects)}
-          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  gap-6 "
-        >
+        <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  gap-6 ">
           {projects.map((project: ProjectCardType) => (
             <ProjectCard data={project} key={project.project._id} />
           ))}
