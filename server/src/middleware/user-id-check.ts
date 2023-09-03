@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import user_model from '../model/user_model'
+import user_model from '../model/User_models/user_model'
 import jwt from 'jsonwebtoken'
 export const Check_user_id = async (
   req: Request,

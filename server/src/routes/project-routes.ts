@@ -5,7 +5,7 @@ import {
   getProject,
   updateProject,
   deleteProject,
-} from '../controller/project-controller'
+} from '../controller/user-controllers/project-controller'
 import { Check_user_id } from '../middleware/user-id-check'
 import { check_user_token } from '../middleware/user-token-check'
 import { errorHandler } from '../middleware/errorHandler'

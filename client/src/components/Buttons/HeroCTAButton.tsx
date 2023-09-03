@@ -12,8 +12,8 @@ const HeroCTAButton = ({
       to={"/register"}
       className={`px-6 py-3 ${
         color == "green"
-          ? "bg-green-600 hover:bg-green-700 text-white"
-          : "text-black bg-white hover:bg-gray-200 dark:bg-gray-200 dark:hover:bg-gray-500"
+          ? "hover:bg-light-green/90 text-white bg-light-green"
+          : "text-light-primary bg-white/70 hover:bg-gray-100 dark:bg-gray-100 dark:hover:bg-gray-100/90"
       } shadow-lg hover:shadow-xl transition-shadow delay-100 rounded-md font-bold text-sm`}
     >
       {title}

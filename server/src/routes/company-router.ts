@@ -5,7 +5,7 @@ import {
 } from '../controller/company-controllers/Company-details-controller'
 
 const companyRouter = express.Router()
-
+// prefix /company
 companyRouter
   .route('/info/:user_id')
   .get(get_company_detail_info)

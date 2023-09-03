@@ -83,7 +83,7 @@ const Single_Company_Page = () => {
         const res = await axios.get(
           `${import.meta.env.VITE_GLOBAL_URL}/rating/${companyData.user._id}`,
         )
-        setRatingFromDb(res.data.averageRating)
+        setRatingFromDb(res.data)
         console.log(res)
       } catch (error) {
         console.log(error)
@@ -94,7 +94,7 @@ const Single_Company_Page = () => {
   const [ratingFromDb, setRatingFromDb] = useState<number>()
   useEffect(() => {
     GetUserRating()
-  }, [companyData.user])
+  }, [])
   if (companyData && companyData.user_info && companyData.user) {
     const {
       companyName,
@@ -112,7 +112,7 @@ const Single_Company_Page = () => {
           // onClick={() => console.log(UserStateUpdate)}
           className="flex  flex-col gap-2 p-2 items-center justify-center "
         >
-          <div>
+          <div onClick={() => console.log(ratingFromDb)}>
             <h1>Ratinig {rating}</h1>
             <input
               value={rating}
@@ -128,9 +128,9 @@ const Single_Company_Page = () => {
               Rate
             </button>
 
-            <div onClick={() => GetUserRating()}>
+            {/* <div onClick={() => GetUserRating()}>
               Avreage rating {ratingFromDb?.toFixed(2)}
-            </div>
+            </div> */}
           </div>
           <section
             //   onClick={() => console.log(UserState.full_user_info.user_info)}
