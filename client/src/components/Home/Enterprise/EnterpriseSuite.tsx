@@ -6,9 +6,9 @@ import {
 } from "react-icons/lia";
 const EnterpriseSuite = () => {
   return (
-    <section className="flex  text-light-muted dark:text-dark-muted sm:rounded-lg my-0 sm:my-6 ">
+    <section className="flex  text-custom dark:text-dark-primary sm:rounded-lg my-0 sm:my-6 ">
       <article className="flex-1 p-2 sm:p-8 rounded-lg sm:rounded-none  sm:rounded-l-lg">
-        <h2 className="font-thin text-base sm:mb-10">
+        <h2 className="font-thin text-base mb-10 dark:text-light-green">
           Real-World Projects
         </h2>
         <h1 className="text-[4rem] font-bold leading-tight">
@@ -53,10 +53,11 @@ const EnterpriseSuite = () => {
 
         {/* link to more, must be changed (and style too) */}
         <Link
-          className="bg-green-600 dark:bg-green-100 text-white dark:text-light-green px-6 py-2 rounded-full flex align-middle items-start max-w-fit font-normal text-sm hover:shadow-green-300 hover:dark:shadow-green-400 hover:shadow-md"
+          className="bg-light-green hover:bg-custom dark:bg-green-100 text-white dark:text-light-green 
+          dark:hover:bg-light-green/50 px-6 py-2 rounded-full flex align-middle items-start max-w-fit font-normal text-sm"
           to={"/WhyDevConnect/AboutUs"}
         >
-          learn more
+          Learn more
         </Link>
       </article>
       <article className="hidden lg:block bg-[url('/assets/img/enteprise-img.png')]  bg-gray-800 min-w-[500px] bg-no-repeat bg-cover rounded-xl"></article>

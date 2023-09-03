@@ -32,22 +32,22 @@ export default function NavBar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-center ${
+        className={`fixed top-0 left-0 right-0 z-50 flex justify-center ${
           location.pathname === "/login" ||
           location.pathname === "/register"
             ? "hidden"
             : ""
         }`}
       >
-        <nav className="w-[95%] bg-white rounded-lg my-5 bg-opacity-90 backdrop-blur-md dark:bg-opacity-80 dark:backdrop-blur-md shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-100 ease-in-out">
-          <div className="flex items-center justify-between mx-auto p-4 lg:px-20 lg:py-5">
+        <nav className="w-[95%] bg-white rounded-lg my-5 bg-opacity-90 backdrop-blur-md dark:bg-opacity-80 dark:backdrop-blur-md shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-100 ease-in-out whitespace-nowrap">
+          <div className="flex items-center justify-between mx-auto p-5">
             <div className="flex items-center space-x-10">
               <div>
                 <a
                   href="/"
                   className="flex items-center"
                 >
-                  <span className="text-xl font-semibold text-green-700 lg:dark:text-green-500">
+                  <span className="text-xl font-semibold text-light-green">
                     DevConnect
                   </span>
                 </a>
@@ -81,12 +81,12 @@ export default function NavBar() {
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end ml-10">
                   <Link
                     to={"/login"}
-                    className="text-sm text-gray-700 dark:text-gray-300 py-2 lg:hover:text-green-700 lg:p-2 lg:dark:hover:text-green-500 dark:hover:text-white"
+                    className="text-sm text-gray-700 dark:text-gray-300 py-2 hover:text-dark-green lg:p-2 dark:hover:text-light-green"
                   >
                     Log in
                   </Link>
                   <Link
-                    className="rounded-lg py-2 px-4 ml-5 text-sm text-white bg-green-600"
+                    className="rounded-lg py-2 px-4 ml-5 text-sm text-white bg-light-green"
                     to="/register"
                   >
                     SignUp

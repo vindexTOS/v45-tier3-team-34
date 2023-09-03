@@ -34,13 +34,16 @@ export default {
           muted: colors.slate[500],
           inverted: colors.slate[900],
           green: colors.green[600],
+          blue: colors.blue[600],
         },
         dark: {
-          primary: colors.slate[500],
+          primary: colors.slate[400],
           muted: colors.slate[400],
           inverted: colors.slate[900],
           green: colors.green[400],
+          blue: colors.blue[900],
         },
+        custom: "#13544E",
       },
     },
 
