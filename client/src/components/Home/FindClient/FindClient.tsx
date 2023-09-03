@@ -5,12 +5,12 @@ const FindClient = () => {
     <div className="bg-[url('/assets/img/find_client_bg.png')] bg-cover bg-no-repeat bg-gray-500 bg-fixed md:bg-scroll rounded-xl  text-white p-4 md:p-8 flex flex-col gap-2 md:gap-y-20 py-10">
       <section>
         <h1 className="text-[1rem] font-light">
-          For Company
+          For Developer
         </h1>
       </section>
       <section className="flex flex-col gap-4 md:gap-10 ">
         <article className="w-full md:max-w-md flex flex-col gap-y-12">
-          <h1 className="text-[2rem] sm:text-[3rem] font-bold ">
+          <h1 className="text-[2rem] sm:text-[3rem] font-bold">
             Find talent your way
           </h1>
           {/* <p className="text-lg md:text-2xl font-normal">

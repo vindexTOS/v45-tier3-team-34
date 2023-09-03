@@ -7,10 +7,10 @@ const WhyUs = () => {
   return (
     <section className="flex flex-col lg:flex-row justify-between gap-x-3 sm:mt-8 sm:mb-4">
       <article className="p-8 rounded-b-none lg:rounded-b-lg rounded-lg flex gap-2 flex-col ">
-        <h1 className="text-[3rem] leading-tight font-bold text-light-primary dark:text-dark-primary">
+        <h1 className="text-[3rem] leading-tight font-bold text-custom dark:text-dark-primary">
           Why businesses turn to DevConnect
         </h1>
-        <div className="flex flex-col gap-y-4 text-light-muted dark:text-dark-muted ">
+        <div className="flex flex-col gap-y-2 text-light-muted dark:text-dark-muted ">
           {why_us.map(
             ({ title, description }) => (
               <div key={title}>
@@ -21,7 +21,7 @@ const WhyUs = () => {
 
                   {title}
                 </h1>
-                <p className="ml-6 md:max-w-md lg:max-w-lg text-[1rem] font-light mt-2">
+                <p className="ml-7 md:max-w-md lg:max-w-lg text-[1rem] font-light">
                   {description}
                 </p>
               </div>
@@ -31,7 +31,7 @@ const WhyUs = () => {
       </article>
       {/* problem ??? We can delete it --- ;) */}
       {/* <article className="bg-[url('assets/img/why_us_img.png')] border min-w-[500px] bg-center bg-contain bg-no-repeat "></article> */}
-      <article className="flex items-end p-8 text-white bg-light-green dark:bg-dark-green rounded-xl">
+      <article className="flex items-end p-8 text-white bg-custom dark:bg-light-green rounded-xl">
         <div className="space-y-3">
           <h1 className="text-3xl font-semibold">
             We’re the world’s work marketplace
@@ -42,10 +42,10 @@ const WhyUs = () => {
               <span className="text-4xl">
                 <HiStar />
               </span>
-              4.9/5
+              4.4/5
             </h2>
             <p className="font-thin ml-12">
-              Clients rate professionals on Upwork
+              Company rate and reviews
             </p>
           </div>
           <div className="">
@@ -56,7 +56,7 @@ const WhyUs = () => {
               Award winner
             </h2>
             <p className="font-thin ml-12">
-              G2’s 2021 Best Sofrware Awards
+              Chingu Voyage 45 - August 2023
             </p>
           </div>
         </div>

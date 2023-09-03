@@ -11,7 +11,7 @@ const NeedHelpDevCard = ({
   link: string;
 }) => {
   return (
-    <div className="flex w-full min-w-full md:min-w-min md:max-w-sm flex-col gap-4 backdrop-blur-sm bg-white/50 hover:bg-white/70 dark:bg-gray-900/60 hover:dark:bg-gray-900 dark:hover:text-slate-200 hover:text-gray-900 rounded-lg p-4 border border-white dark:border-slate-500 text-light-text dark:text-dark-text cursor-pointer">
+    <div className="flex w-full min-w-full md:min-w-min md:max-w-sm flex-col gap-4 backdrop-blur-sm bg-white/50 hover:bg-white/70 dark:bg-gray-900/60 hover:dark:bg-gray-900 dark:hover:text-slate-200 hover:text-gray-900 rounded-lg p-4 border border-white dark:border-slate-500  text-light-primary dark:text-dark-primary cursor-pointer">
       <h1 className="text-xl font-semibold">
         {title}
       </h1>
