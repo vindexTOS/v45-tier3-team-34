@@ -42,7 +42,7 @@ import Company_Messages from './pages/Profiles/Company_Profile/Company_Messages'
 import Company_Reviews from './pages/Profiles/Company_Profile/Company_Reviews'
 import Company_Current_Projects from './pages/Profiles/Company_Profile/Company_Current_Projects'
 import Company_Archived_Projects from './pages/Profiles/Company_Profile/Company_Archived_Projects'
-
+import Single_Application from './pages/Profiles/Company_Profile/Components/Single_Application'
 import Application_form from './pages/Forms/Application_form'
 
 //routes
@@ -176,6 +176,7 @@ const router = [
         path: 'current_project',
         element: <Company_Current_Projects />,
       },
+
       {
         path: 'archived_project',
         element: <Company_Archived_Projects />,

@@ -636,7 +636,7 @@ export const ContextProvider = ({
     CompanyProjectType[]
   >([])
 
-  const isUserLoggedIn = UserState.userData.user && UserState.userData.user._id
+  const isUserLoggedIn = UserState.userData.user && UserState.userData.user._id ? true :false
   return (
     <Context.Provider
       value={{

@@ -1,9 +1,20 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md'
-
+import { useNavigate } from 'react-router-dom'
+import Single_Application from './Single_Application'
+import Application_drop_down from './Application_drop_down'
+import useOutClick from '../../../../hooks/useOutClick'
 const Current_Project_Card = ({ data }: { data: any }) => {
   const [dropDown, setDropDown] = useState<boolean>(false)
+  const navigate = useNavigate()
 
+  const ref = useRef<HTMLDivElement | null>(null)
+
+  const navigateOut = () => {
+    setDropDown(false)
+  }
+
+  useOutClick(ref, navigateOut)
   const { _id, user_id, image, title, price, relatedApplications } = data
 
   const combinedArray = () => {
@@ -34,6 +45,7 @@ const Current_Project_Card = ({ data }: { data: any }) => {
   const applicationCombined = combinedArray()
   return (
     <div
+      ref={ref}
       key={_id}
       className="bg-white flex items-center  relative   rounded-lg shadow-md mb-4 p-4 "
     >
@@ -60,15 +72,16 @@ const Current_Project_Card = ({ data }: { data: any }) => {
             )}
           </div>
         </div>
-        <div
-          onClick={() => console.log(applicationCombined)}
-          className="w-[330px] h-[300px] rounded-[9px] bg-white top-40 absolute"
-        >
-          {applicationCombined.map((val: any) => {
-            const { userName } = val
-            return <div key={val._id}>{userName}</div>
-          })}
-        </div>
+        {dropDown && (
+          <div
+            onClick={() => console.log(applicationCombined)}
+            className="w-[330px] h-[300px] rounded-[9px] bg-white top-40 absolute"
+          >
+            {applicationCombined.map((val: any) => (
+              <Application_drop_down key={val._id} data={val} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )
