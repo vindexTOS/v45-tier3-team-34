@@ -9,7 +9,7 @@ const HeroSection = () => {
     <section className="rounded-lg w-full flex flex-col sm:flex-row transition-all duration-500 delay-100 ease-in-out">
       <article className="flex-1 flex flex-col items-start justify-center gap-20 p-5 lg:px-20">
         <div className="flex flex-col gap-2 lg:gap-4">
-          <h1 className="text-[2rem] capitalize font-bold text-light-primary dark:text-dark-primary">
+          <h1 className="text-[2.7rem] capitalize font-bold text-light-primary dark:text-dark-primary">
             DevConnect
           </h1>
           <p className="text-base font-normal text-light-primary dark:text-dark-primary">
