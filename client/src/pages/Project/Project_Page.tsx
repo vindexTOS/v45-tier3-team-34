@@ -138,12 +138,13 @@ const Project_Page = () => {
       user_id,
     } = SingleProjectData
 
+    // console.log(companyDetales);
     const { avatar, userName } = companyDetales;
     
     return (
       <div className="px-6 md:px-20 flex flex-col lg:flex-row gap-x-10 xl:gap-x-20">
         <article className="flex flex-col gap-x-6 gap-y-4">
-          <h1 className="text-green-950 dark:text-green-600 text-4xl md:text-6xl lg:text-7xl font-semibold">
+          <h1 className="text-green-950 dark:text-green-600 text-3xl md:text-6xl lg:text-7xl font-semibold capitalize">
             {title}
           </h1>
 
@@ -242,7 +243,7 @@ const Project_Page = () => {
                   <button
                     className={`text-white ${
                       selectedTier === tier ? 'bg-green-800' : 'bg-green-500'
-                    } px-4 py-2 rounded-md shadow-lg capitalize`}
+                    } px-2 sm:px-4 py-1 sm:py-2 text-sm sm:text-lg rounded-md shadow-lg capitalize`}
                     key={tier}
                     onClick={() => setSetselectedTier(tier as tierCategoryType)}
                   >
@@ -272,16 +273,16 @@ const Project_Page = () => {
             </section>
           </div>
           {/* publisher details card */}
-          <div className='p-2 md:p-4 flex gap-6 justify-between shadow-md border dark:bg-slate-900 dark:text-green-400 dark:border-slate-500 rounded-lg'>
+          <div className='p-2 md:p-4 flex gap-6 justify-between 2xl:max-w-fit shadow-md border dark:bg-slate-900 dark:text-green-400 dark:border-slate-500 rounded-lg'>
             {/* publisher image */}
             <section className=' w-36 h-auto'>
-              <img className='w-full h-full rounded-lg' src={publisher.image} alt="publisher profile" />
+              <img className='w-full h-full object-contain rounded-lg' src={avatar} alt="publisher profile" />
             </section>
             {/* publisher details */}
             <section className='flex flex-col gap-4'>
               <article className='flex-1 flex justify-between items-center font-semibold'>
                 <h1 className='capitalize text-xl md:text-2xl'
-                >{publisher.name}</h1>
+                >{userName}</h1>
                 <div className='uppercase text-sm md:text-md font-light'>{publisher.country.split('').splice(0,3).join('')}</div>
               </article>
 

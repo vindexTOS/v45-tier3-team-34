@@ -18,40 +18,40 @@ const TierDetails = ({ tier }: { tier: tierCategoryType | any }) => {
     price,
   } = tier
   return (
-    <div className="py-4 flex flex-col gap-4 border-b border-b-green-600 dark:border-slate-600">
+    <div className="py-4 flex flex-col gap-4 border-b border-b-green-600 dark:border-slate-600 text-sm sm:text-sm md:text-xl">
       <article className="flex justify-between items-center">
-        <h1 className="text-xl font-thin">Budget</h1>
-        <p className="font-bold text-green-800 dark:text-green-200 text-xl">
+        <h1 className="font-thin">Budget</h1>
+        <p className="font-bold text-green-800 dark:text-green-200 ">
           $ {price}
         </p>
       </article>
 
-      <article className="flex justify-between items-center">
-        <h1 className="text-xl font-thin">Delivery Time </h1>
-        <p className="font-bold text-green-800 dark:text-green-200 text-xl">
+      <article className="flex justify-between items-center text-sm sm:text-sm md:text-xl">
+        <h1 className=" font-thin">Delivery Time </h1>
+        <p className="font-bold text-green-800 dark:text-green-200 ">
           {DeliveryTime.slice(0, 10)}
         </p>
       </article>
 
-      <article className="flex justify-between items-center">
-        <h1 className="text-xl font-thin">Ideal start date </h1>
-        <p className="font-bold text-green-800 dark:text-green-200 text-xl">
+      <article className="flex justify-between items-center text-sm sm:text-sm md:text-xl">
+        <h1 className=" font-thin">Ideal start date </h1>
+        <p className="font-bold text-green-800 dark:text-green-200">
           {' '}
           {StartDate.slice(0, 10)}
         </p>
       </article>
 
-      <article className="flex justify-between items-center">
-        <h1 className="text-xl font-thin">Number of revisions</h1>
-        <p className="font-bold text-green-800 dark:text-green-200 text-xl">
+      <article className="flex justify-between items-center text-sm sm:text-sm md:text-xl">
+        <h1 className=" font-thin">Number of revisions</h1>
+        <p className="font-bold text-green-800 dark:text-green-200 ">
           {Revisions}
         </p>
       </article>
 
       {/*?? samrthing ❌✅ can be replaced bu react icons */}
-      <article className="flex justify-between items-center">
-        <h1 className="text-xl font-thin">Design Customization</h1>
-        <p className="font-bold text-green-800 dark:text-green-200 text-xl">
+      <article className="flex justify-between items-center text-sm sm:text-sm md:text-xl">
+        <h1 className=" font-thin">Design Customization</h1>
+        <p className="font-bold text-green-800 dark:text-green-200 ">
           {' '}
           {DesignCustomization ? 
             <p className='text-green-500 text-xl font-bold'>
@@ -63,9 +63,9 @@ const TierDetails = ({ tier }: { tier: tierCategoryType | any }) => {
         </p>
       </article>
 
-      <article className="flex justify-between items-center">
-        <h1 className="text-xl font-thin">Content Upload</h1>
-        <p className="font-bold text-green-800 dark:text-green-200 text-xl">
+      <article className="flex justify-between items-center text-sm sm:text-sm md:text-xl">
+        <h1 className="font-thin">Content Upload</h1>
+        <p className="font-bold text-green-800 dark:text-green-200 ">
           {' '}
           {ContentUpload ?
             <p className='text-green-500 text-xl font-bold'>
@@ -77,9 +77,9 @@ const TierDetails = ({ tier }: { tier: tierCategoryType | any }) => {
         </p>
       </article>
 
-      <article className="flex justify-between items-center">
-        <h1 className="text-xl font-thin">Responsive Design</h1>
-        <p className="font-bold text-green-800 dark:text-green-200 text-xl">
+      <article className="flex justify-between items-center text-sm sm:text-sm md:text-xl">
+        <h1 className="font-thin">Responsive Design</h1>
+        <p className="font-bold text-green-800 dark:text-green-200 ">
           {' '}
           {Responsive ?
             <p className='text-green-500 text-xl font-bold'>
