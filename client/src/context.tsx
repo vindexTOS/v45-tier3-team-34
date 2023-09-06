@@ -30,7 +30,7 @@ type ImgAction = {
 
 type UserState = {
   userTokenData: { user?: UserType }
-  userData: { user?: UserType }
+  userData: { user: UserType }
   full_user_info: any
   token: string
   updateUser: boolean
@@ -328,7 +328,7 @@ export const ContextProvider = ({
     if (token && UserState.userData && UserState.userData.user) {
       if (location.pathname === '/register') {
         if (UserState.userData.user.role === 'Developer') {
-          navigate(`/dev_project_add/title`)
+          navigate(`/user_info`)
         } else {
           navigate(`/company_info`)
         }
@@ -573,7 +573,9 @@ export const ContextProvider = ({
 
   const GetSingleDev = async (dev_id: string) => {
     try {
-      const res = await axios.get(`http://localhost:8080/user/info/${dev_id}`)
+      const res = await axios.get(
+        `${import.meta.env.VITE_GLOBAL_URL}/user/info/${dev_id}`,
+      )
       setDevInfo(res.data)
 
       console.log(res.data)
@@ -636,7 +638,8 @@ export const ContextProvider = ({
     CompanyProjectType[]
   >([])
 
-  const isUserLoggedIn = UserState.userData.user && UserState.userData.user._id ? true :false
+  const isUserLoggedIn = UserState && UserState.userData
+  UserState.userData.user && UserState.userData.user._id ? true : false
   return (
     <Context.Provider
       value={{

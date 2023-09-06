@@ -3,7 +3,7 @@ import { UseMainContext } from '../../../context'
 import axios from 'axios'
 import Current_Project_Card from './Components/Current_Project_Card'
 const Current_Projects = () => {
-  const { UserState, isUserLoggedIn } = UseMainContext()
+  const { UserState, isUserLoggedIn, statusState } = UseMainContext()
 
   const [projects, setProjects] = useState<any>()
 
@@ -18,7 +18,6 @@ const Current_Projects = () => {
 
         const data = res.data
         setProjects(data.data)
-        console.log(data.data)
       }
     } catch (error) {
       const err: any = error
@@ -28,7 +27,7 @@ const Current_Projects = () => {
 
   useEffect(() => {
     GetAllCurrentProject()
-  }, [])
+  }, [statusState.success])
 
   if (isUserLoggedIn && projects && projects.length > 0) {
     return (
@@ -39,7 +38,7 @@ const Current_Projects = () => {
       </div>
     )
   } else {
-    return <div>HAH</div>
+    return <div>NO applications</div>
   }
 }
 

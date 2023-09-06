@@ -3,7 +3,7 @@ import NeedHelpCard from "../../../components/MainMenuPages/ForCompanyPage/NeedH
 
 export default function NeedHelp() {
   return (
-    <div className="w-[80%] mx-auto">
+    <div className="">
       <div className="bg-[url('/assets/img/find_client.png')] bg-cover  bg-no-repeat bg-center bg-gray-500 bg-fixed md:bg-scroll   sm:rounded-xl  text-white p-2 md:p-8 flex flex-col gap-2 md:gap-y-20 mx-auto">
         <section className="flex flex-col gap-4 md:gap-10">
           <article className="w-full md:max-w-xl flex flex-col gap-y-12 bg-blue-700 rounded-lg p-5">

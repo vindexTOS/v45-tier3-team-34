@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import Single_Application from './Single_Application'
 import useOutClick from '../../../../hooks/useOutClick'
+import { useNavigate } from 'react-router-dom'
 export default function Application_drop_down({ data }: { data: any }) {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
@@ -8,12 +9,15 @@ export default function Application_drop_down({ data }: { data: any }) {
   const navigateOut = () => {
     setOpen(false)
   }
-
+  const navigate = useNavigate()
   useOutClick(ref, navigateOut)
-  const { userName, avatar, description, application_id } = data
+  const { userName, avatar, description, application_id, dev_id } = data
   return (
-    <div ref={ref} className="bg-gray-200 py-4 flex flex-col gap-2 realtive ">
-      <div className="flex items-center justify-around">
+    <div ref={ref} className="bg-gray-200 py-4 flex flex-col gap-2 realtive  ">
+      <div
+        onClick={() => navigate(`/Developer/${dev_id}`)}
+        className="flex items-center justify-around cursor-pointer"
+      >
         <img className="w-[50px] h-[50px] rounded-[12px]" src={avatar} />
         <h1>{userName}</h1>
       </div>
