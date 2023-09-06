@@ -56,7 +56,7 @@ type UserInfoState = {
   github: string
   linkedin: string
   website: string
-  hrPay: number
+  hrPay: number,
   loading: boolean
   companyName: string
 }
