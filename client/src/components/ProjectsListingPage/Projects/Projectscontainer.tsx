@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import { dummy_projects } from './dummy-data'
-import ProjectCard from './ProjectCard'
-import axios from 'axios'
-import { ProjectCardType } from '../../../common.types'
+import React, {
+  useState,
+  useEffect,
+} from "react";
+import { dummy_projects } from "./dummy-data";
+import ProjectCard from "./ProjectCard";
+import axios from "axios";
+import { ProjectCardType } from "../../../common.types";
 
 const ProjectsContainer = ({
   id,
 }: {
-  id: string
+  id: string;
   //projects?: any[]
 }) => {
   //fetch here if id given,
@@ -19,48 +22,55 @@ const ProjectsContainer = ({
 
   //if projects ??...
 
-  const [projects, setProjects] = useState<any>()
+  const [projects, setProjects] = useState<any>();
   const GetAllProjects = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_GLOBAL_URL}/companies/projects`,
-      )
+        `${
+          import.meta.env.VITE_GLOBAL_URL
+        }/companies/projects`
+      );
 
-      console.log(res.data)
-      setProjects(res.data.projectsData)
+      console.log(res.data);
+      setProjects(res.data.projectsData);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
   useEffect(() => {
-    GetAllProjects()
-  }, [])
+    GetAllProjects();
+  }, []);
   if (projects && projects.length > 0) {
     return (
-      <div>
-        <section className="my-6">
-          <h1 className="text-2xl md:text-4xl font-semibold text-green-800 dark:text-green-500">
+      <div className="my-10">
+        <section className="my-5">
+          <h1 className="text-[1.5rem] font-semibold text-light-primary dark:text-dark-primary">
             Browse available projects
           </h1>
-          <p className="text-green-950 dark:text-white font-thin">
-            Currently{' '}
-            <span className="text-green-600 dark:text-green-500">
+          <p className="text-[1rem] font-light text-light-muted dark:text-dark-muted">
+            Currently{" "}
+            <span className="text-light-green font-semibold hover:underline cursor-pointer">
               {projects.length} Projects
-            </span>{' '}
+            </span>{" "}
             are open
           </p>
         </section>
         {/* projects listing */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4  gap-6 ">
-          {projects.map((project: ProjectCardType) => (
-            <ProjectCard data={project} key={project.project._id} />
-          ))}
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-between">
+          {projects.map(
+            (project: ProjectCardType) => (
+              <ProjectCard
+                data={project}
+                key={project.project._id}
+              />
+            )
+          )}
         </section>
       </div>
-    )
+    );
   } else {
-    return <div>Loading</div>
+    return <div>Loading</div>;
   }
-}
+};
 
-export default ProjectsContainer
+export default ProjectsContainer;
