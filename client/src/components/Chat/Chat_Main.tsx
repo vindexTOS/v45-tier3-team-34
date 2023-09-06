@@ -7,11 +7,11 @@ import { DefaultEventsMap } from '@socket.io/component-emitter'
 const ENDPOINT = import.meta.env.VITE_GLOBAL_URL
 var socket: Socket<DefaultEventsMap, DefaultEventsMap>
 var selectedChatCompere
-const Chat = () => {
-  const { userId } = useParams()
+const Chat = ({ userId }: { userId: string }) => {
   const { UserState, isUserLoggedIn } = UseMainContext()
   const [userInfo, setUserInfo] = useState<any>()
   const [messages, setMessages] = useState<any>([])
+  const [chatRoom, setChatRoomInfo] = useState<any>()
   const [messageContent, setMessagesContent] = useState('')
   const [socketConnected, setSocketConnected] = useState(false)
   const socket: Socket<DefaultEventsMap, DefaultEventsMap> = io(ENDPOINT)
@@ -49,8 +49,9 @@ const Chat = () => {
           }&receiverId=${userId}`,
         )
 
-        const data = res.data.messages
-        setMessages(data)
+        const data = res.data
+        setMessages(data.messages)
+        setChatRoomInfo(data)
         console.log(res)
         socket.emit('join chat', userId)
       }
@@ -77,7 +78,7 @@ const Chat = () => {
   useEffect(() => {
     GetMessages()
     selectedChatCompere = messages
-  }, [UserState])
+  }, [userId])
   useEffect(() => {
     // Initialize and connect to the Socket.IO server
     if (isUserLoggedIn) {
@@ -100,45 +101,59 @@ const Chat = () => {
   if (userInfo && userInfo.user && userInfo.user.userName) {
     return (
       <div
-        onClick={() => console.log(messages)}
+        className="flex rounded-[40px] items-center"
+        onClick={() => console.log(chatRoom)}
         style={{
           backgroundColor: 'white',
           height: '600px',
           width: '500px',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-around',
-          alignItems: 'center',
         }}
       >
-        <div onClick={GetMessages} style={{ color: 'red' }}>
-          you are talking to{userInfo.user.userName}
+        <div className="flex items-center justify-start px-5 rounded-t-[40px]  gap-5 bg-green-400 w-[100%] py-10">
+          <img
+            className="w-[60px] h-[60px] rounded-[50%]"
+            src={userInfo.user.avatar}
+          />{' '}
+          <h1>{userInfo.user.userName}</h1>
         </div>
-        <div style={{ color: 'black' }}>
+        <div className="h-[390px] py-10 w-[100%] bg-white flex flex-col items-center gap-2 overflow-y-scroll">
           {messages &&
             messages.length > 0 &&
             messages.map((val: any) => {
               const { sender, content } = val
+
+              // Determine if the message is sent by the user or received from others
+              const isUserMessage = sender === UserState.userData.user._id
+
+              // Apply different styles based on the sender
+              const messageClasses = `px-10 max-h-[500px] max-w-[250px] rounded-[50px] break-all py-2 ${
+                isUserMessage
+                  ? 'bg-green-400 text-white self-start'
+                  : 'bg-gray-200 text-right self-end'
+              }`
+
               return (
-                <div
-                  key={val._id}
-                  style={{
-                    backgroundColor:
-                      sender === UserState.userData.user._id ? 'green' : 'blue',
-                  }}
-                >
-                  {content}
+                <div className={messageClasses} key={val._id}>
+                  <h1>{content}</h1>
                 </div>
               )
             })}
         </div>
 
-        <div>
+        <div className="bg-white  outline-gray-300 outline-[1px] outline rounded-[30px] w-[90%] p-5 flex justify-around">
           <input
+            className="outline-0 bg-transparent  w-[90%]"
             onChange={(e) => setMessagesContent(e.target.value)}
             placeholder="send"
           />
-          <button onClick={SendMessage}> Send</button>
+          <button
+            className="bg-green-300 h-[100%] w-[5rem]  "
+            onClick={SendMessage}
+          >
+            Send
+          </button>
         </div>
       </div>
     )

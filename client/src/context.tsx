@@ -56,7 +56,7 @@ type UserInfoState = {
   github: string
   linkedin: string
   website: string
-  hrPay: number,
+  hrPay: number
   loading: boolean
   companyName: string
 }
@@ -130,6 +130,10 @@ type Cell = {
   setCompanyProjectsData: React.Dispatch<CompanyProjectType[]>
 
   isUserLoggedIn: boolean
+
+  userId: string
+  setUserId: React.Dispatch<string>
+  GoToUserChat: (id: string) => void
 }
 
 const Context = createContext<Cell | null>(null)
@@ -637,8 +641,13 @@ export const ContextProvider = ({
   const [companyProjectsData, setCompanyProjectsData] = useState<
     CompanyProjectType[]
   >([])
+  const [userId, setUserId] = useState<string>('')
 
-  const isUserLoggedIn = UserState && UserState.userData
+  const GoToUserChat = (id: string) => {
+    navigate('/profile/messages')
+    setUserId(id)
+  }
+  const isUserLoggedIn: boolean = UserState && UserState.userData
   UserState.userData.user && UserState.userData.user._id ? true : false
   return (
     <Context.Provider
@@ -667,6 +676,9 @@ export const ContextProvider = ({
         companyProjectsData,
         setCompanyProjectsData,
         isUserLoggedIn,
+        GoToUserChat,
+        userId,
+        setUserId,
       }}
     >
       {children}
