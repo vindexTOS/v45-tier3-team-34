@@ -9,10 +9,10 @@ import { SiWebmoney } from 'react-icons/si'
 import { AiOutlineLinkedin } from 'react-icons/ai'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { DateTime } from 'luxon'
-
+import { useParams } from 'react-router-dom'
 const Single_Company_Page = () => {
   const { UserState, statusState, UserStateUpdate } = UseMainContext()
-
+  const { company_id } = useParams()
   const style = {
     section: `flex items-center justify-between w-[100%] i px-4 py-5 border-b-[1px] border-gray-300 `,
     img: `h-[80px] w-[80px] rounded-[50%]`,
@@ -29,18 +29,17 @@ const Single_Company_Page = () => {
   const GetCompanyInfomration = async () => {
     try {
       const res = await axios.get(
-        `${
-          import.meta.env.VITE_GLOBAL_URL
-        }/company/info/64eb74492143c23701a7a747`,
+        `${import.meta.env.VITE_GLOBAL_URL}/company/info/${company_id}`,
       )
 
       const data = res.data
-      console.log(data)
+
       setCompanyData(data)
     } catch (error) {
       console.log(error)
     }
   }
+
   useEffect(() => {
     GetCompanyInfomration()
   }, [])

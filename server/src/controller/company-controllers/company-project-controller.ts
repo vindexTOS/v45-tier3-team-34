@@ -3,6 +3,8 @@ import { tryCatch } from '../../middleware/tryCatch'
 import { Request, Response, NextFunction } from 'express'
 import { CompanyProject } from '../../types/Controller-types'
 import rating_model from '../../model/rating_model'
+import project_application_model from '../../model/project_application_model'
+import user_model from '../../model/User_models/user_model'
 export const getAllCompanies = tryCatch(async (req: Request, res: any) => {
   const projects = await Company_Project_model.find({})
   const projectsData = []
@@ -47,11 +49,43 @@ export const getAllCompaniesProjects = tryCatch(
   async (req: Request, res: any) => {
     const { user_id } = req.params
     const data = []
-    let companySpecificProjects: CompanyProject[] = await Company_Project_model.find()
+
+    let companySpecificProjects = await Company_Project_model.find({
+      isFinnished: false,
+    })
 
     for (let i = 0; i < companySpecificProjects.length; i++) {
       if (companySpecificProjects[i].user_id === user_id) {
-        data.push(companySpecificProjects[i])
+        // Find related applications for the current project
+        const relatedApplications = await project_application_model.find({
+          project_id: companySpecificProjects[i]._id,
+        })
+
+        // Create an array to store user information for related developers
+        const usersInfo = []
+
+        // Iterate through relatedApplications and fetch user information for each dev_id
+        for (let j = 0; j < relatedApplications.length; j++) {
+          const dev_id = relatedApplications[j].dev_id
+
+          // Fetch user information for the dev_id from user_model
+          const user = await user_model
+            .findOne({ _id: dev_id })
+            .select('-password')
+
+          // If a user is found, add it to the usersInfo array
+          if (user) {
+            usersInfo.push(user.toObject())
+          }
+        }
+
+        // Add the related applications with user information to the project object
+        const projectWithApplications = {
+          ...companySpecificProjects[i].toObject(),
+          relatedApplications: { relatedApplications, usersInfo },
+        }
+
+        data.push(projectWithApplications)
       }
     }
 

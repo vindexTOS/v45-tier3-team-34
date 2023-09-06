@@ -38,6 +38,12 @@ import Archived_Projects from './pages/Profiles/Dev_Profile/Archived_Projects'
 import Messages from './pages/Profiles/Dev_Profile/Messages'
 import Reviews from './pages/Profiles/Dev_Profile/Reviews'
 import Company_Profile_Main from './pages/Profiles/Company_Profile/Company_Profile_Main'
+import Company_Messages from './pages/Profiles/Company_Profile/Company_Messages'
+import Company_Reviews from './pages/Profiles/Company_Profile/Company_Reviews'
+import Company_Current_Projects from './pages/Profiles/Company_Profile/Company_Current_Projects'
+import Company_Archived_Projects from './pages/Profiles/Company_Profile/Company_Archived_Projects'
+import Single_Application from './pages/Profiles/Company_Profile/Components/Single_Application'
+import Application_form from './pages/Forms/Application_form'
 
 //routes
 const router = [
@@ -168,19 +174,20 @@ const router = [
       },
       {
         path: 'current_project',
-        element: <Current_Projects />,
+        element: <Company_Current_Projects />,
       },
+
       {
         path: 'archived_project',
-        element: <Archived_Projects />,
+        element: <Company_Archived_Projects />,
       },
       {
         path: 'messages',
-        element: <Messages />,
+        element: <Company_Messages />,
       },
       {
         path: 'reviews',
-        element: <Reviews />,
+        element: <Company_Reviews />,
       },
     ],
   },
@@ -199,7 +206,7 @@ const router = [
   },
 
   {
-    path: '/company/single',
+    path: '/company/page/:company_id',
     element: <Single_Company_Page />,
   },
 
@@ -212,6 +219,11 @@ const router = [
   {
     path: '/company/projects/:project_id',
     element: <Project_Page />,
+  },
+  // project application
+  {
+    path: '/company/project/application/:project_id',
+    element: <Application_form />,
   },
 ]
 
