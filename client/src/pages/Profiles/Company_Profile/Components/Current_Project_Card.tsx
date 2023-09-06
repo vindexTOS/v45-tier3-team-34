@@ -4,7 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import Single_Application from './Single_Application'
 import Application_drop_down from './Application_drop_down'
 import useOutClick from '../../../../hooks/useOutClick'
+import { UseMainContext } from '../../../../context'
+import Error from '../../../../components/Status/Error'
+import Succsess from '../../../../components/Status/Success'
 const Current_Project_Card = ({ data }: { data: any }) => {
+  const { statusState } = UseMainContext()
   const [dropDown, setDropDown] = useState<boolean>(false)
   const navigate = useNavigate()
 
@@ -15,7 +19,15 @@ const Current_Project_Card = ({ data }: { data: any }) => {
   }
 
   useOutClick(ref, navigateOut)
-  const { _id, user_id, image, title, price, relatedApplications } = data
+  const {
+    _id,
+    user_id,
+    image,
+    title,
+    price,
+    relatedApplications,
+    dev_id,
+  } = data
 
   const combinedArray = () => {
     let returnObj = {}
@@ -73,16 +85,15 @@ const Current_Project_Card = ({ data }: { data: any }) => {
           </div>
         </div>
         {dropDown && (
-          <div
-            onClick={() => console.log(applicationCombined)}
-            className="w-[330px] h-[300px] rounded-[9px] bg-white top-40 absolute"
-          >
+          <div className="w-[330px] h-[300px] rounded-[9px] bg-white top-40 absolute">
             {applicationCombined.map((val: any) => (
               <Application_drop_down key={val._id} data={val} />
             ))}
           </div>
         )}
       </div>
+      <Error error={statusState.error} />
+      <Succsess success={statusState.success} />
     </div>
   )
 }
