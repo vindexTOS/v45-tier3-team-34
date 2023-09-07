@@ -35,7 +35,7 @@ applicationRouter
 applicationRouter
   .route('/project-finnish/:application_id')
   .patch(projectFinnished)
-applicationRouter.route('/inprogress/:company_id').get(InProgress)
+applicationRouter.route('/inprogress/:company_id').get(InProgress, errorHandler)
 applicationRouter.route('/archived/:company_id').get(GetArchivedProjects)
 
 export default applicationRouter

@@ -19,22 +19,6 @@ const Chat = ({ userId }: { userId: string }) => {
     setMessages,
   } = UseMainContext()
 
-  const SeeNotifications = async () => {
-    if (isUserLoggedIn) {
-      try {
-        const res = await axios.post(
-          `${import.meta.env.VITE_GLOBAL_URL}/chat/see-notifications`,
-          { receiverId: UserState.userData.user._id },
-        )
-        console.log(res)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-  }
-  useEffect(() => {
-    SeeNotifications()
-  }, [])
   const [userInfo, setUserInfo] = useState<any>()
   const [messageContent, setMessagesContent] = useState('')
   const [socketConnected, setSocketConnected] = useState(false)

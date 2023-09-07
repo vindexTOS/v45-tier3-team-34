@@ -357,13 +357,15 @@ export const ContextProvider = ({
   }, [UserState.userData, UserState.token])
 
   // getting token cookie from browser cookies and setting headers and UserState.userTokenData state
-  const token = cookies.get('jwt_authorization')
   useEffect(() => {
+    const token = cookies.get('jwt_authorization')
+
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       const decoded = jwt(token)
       UserDispatch({ type: 'decod-user', payload: decoded })
+      UserDispatch({ type: 'user-data', payload: decoded })
     }
   }, [UserState.token])
 
@@ -654,7 +656,11 @@ export const ContextProvider = ({
   const [userId, setUserId] = useState<string>('')
 
   const GoToUserChat = (id: string) => {
-    navigate('/profile/messages')
+    if (UserState.userData.user.role === 'Company/Startup') {
+      navigate('/company_profile/messages')
+    } else {
+      navigate('/profile/messages')
+    }
     setUserId(id)
   }
   var socket: Socket<DefaultEventsMap, DefaultEventsMap>
