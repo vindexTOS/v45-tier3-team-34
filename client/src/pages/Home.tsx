@@ -7,7 +7,7 @@ import FindTalent from "../components/Home/FindTalent/FindTalent";
 
 const Home = () => {
   return (
-    <div className="transition-colors delay-100 space-y-24 my-10 max-w-7xl mx-auto">
+    <div className="transition-colors delay-100 space-y-24 my-10">
       {/* Hero */}
       <HeroSection />
       {/* browse by category */}

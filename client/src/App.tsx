@@ -35,9 +35,14 @@ import Single_Company_Page from './pages/Profiles/Single_Company_Page'
 import Profile_Main from './pages/Profiles/Dev_Profile/Profile_Main'
 import Current_Projects from './pages/Profiles/Dev_Profile/Current_Projects'
 import Archived_Projects from './pages/Profiles/Dev_Profile/Archived_Projects'
-import Messages from './pages/Profiles/Dev_Profile/Messages'
+import Messages from './pages/Profiles/Messages'
 import Reviews from './pages/Profiles/Dev_Profile/Reviews'
 import Company_Profile_Main from './pages/Profiles/Company_Profile/Company_Profile_Main'
+import Company_Reviews from './pages/Profiles/Company_Profile/Company_Reviews'
+import Company_Current_Projects from './pages/Profiles/Company_Profile/Company_Current_Projects'
+import Company_Archived_Projects from './pages/Profiles/Company_Profile/Company_Archived_Projects'
+import Application_form from './pages/Forms/Application_form'
+import Chat from './components/Chat/Chat_Main'
 
 //routes
 const router = [
@@ -151,6 +156,12 @@ const router = [
       {
         path: 'messages',
         element: <Messages />,
+        outlet: [
+          {
+            path: 'chat/:userId',
+            element: <Chat />,
+          },
+        ],
       },
       {
         path: 'reviews',
@@ -168,22 +179,24 @@ const router = [
       },
       {
         path: 'current_project',
-        element: <Current_Projects />,
+        element: <Company_Current_Projects />,
       },
+
       {
         path: 'archived_project',
-        element: <Archived_Projects />,
+        element: <Company_Archived_Projects />,
       },
       {
-        path: 'messages',
+        path: 'messages/:userId',
         element: <Messages />,
       },
       {
         path: 'reviews',
-        element: <Reviews />,
+        element: <Company_Reviews />,
       },
     ],
   },
+  // { path: '/chat/:userId', element: <Chat /> },
   {
     path: '/company_project',
     element: <CompanyProjectForm />,
@@ -199,7 +212,7 @@ const router = [
   },
 
   {
-    path: '/company/single',
+    path: '/company/page/:company_id',
     element: <Single_Company_Page />,
   },
 
@@ -212,6 +225,11 @@ const router = [
   {
     path: '/company/projects/:project_id',
     element: <Project_Page />,
+  },
+  // project application
+  {
+    path: '/company/project/application/:project_id',
+    element: <Application_form />,
   },
 ]
 

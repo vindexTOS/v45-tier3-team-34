@@ -10,7 +10,7 @@ const ProjectApplicationModel = new mongoose.Schema({
   project_id: {
     type: String,
   },
-  descriptio: {
+  description: {
     type: String,
   },
   bide: {

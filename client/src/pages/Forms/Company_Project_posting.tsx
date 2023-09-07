@@ -10,6 +10,7 @@ import useStatusMessages from '../../hooks/Status_hook'
 import Succsess from '../../components/Status/Success'
 import Error from '../../components/Status/Error'
 import { useNavigate } from 'react-router-dom'
+
 type CompanyProjectState = {
   title: string
   description: string
@@ -110,7 +111,8 @@ const CompanyProjectForm = () => {
     companyProjectReducer,
     initialCompanyProjectState,
   )
-  const [value, onChange] = React.useState(new Date())
+  // const [value, onChange] = React.useState(new Date())
+  const value = new Date();
 
   const HandleDeliveryCalendar = (e: Date) => {
     companyProjectDispatch({
@@ -158,200 +160,141 @@ const CompanyProjectForm = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded shadow-lg">
+    <div className="max-w-md lg:max-w-full mx-auto mt-8 p-6 bg-white rounded shadow-lg">
       <h2 className="text-2xl font-semibold mb-4">Create a Company Project</h2>
-      <section>
-        <FormField
-          label="Title"
-          id="title"
-          type="title"
-          value={companyProjectState.title}
-          companyProjectDispatch={companyProjectDispatch}
-          placeholder="Title"
-          required
-        />
+        <div className="flex flex-col lg:flex-row lg:gap-6 flex-wrap">
 
-        <FormField
-          label="Description"
-          id="description"
-          type="description"
-          value={companyProjectState.description}
-          companyProjectDispatch={companyProjectDispatch}
-          placeholder="Description"
-          required
-        />
-
-        {/* Skills Required Field */}
-        {/* <FormField
-          label="Skills Required"
-          id="skills_required"
-          type="skills_required"
-          value={companyProjectState.skills_required.join(', ')}
-          companyProjectDispatch={companyProjectDispatch}
-          placeholder="Skills Required"
-          required
-        /> */}
-        {/* Category Field */}
-        <FormField
-          label="Category"
-          id="category"
-          type="category"
-          value={companyProjectState.category}
-          companyProjectDispatch={companyProjectDispatch}
-          placeholder="Category"
-          required
-        />
-
-        {/* Image Field */}
-        <DropeZone />
-
-        {/* Country Field */}
-        <FormField
-          label="Country"
-          id="country"
-          type="country"
-          value={companyProjectState.country}
-          companyProjectDispatch={companyProjectDispatch}
-          placeholder="Country"
-          required
-        />
-
-        {/* Urgent Field */}
-
-        <div className="mb-4 flex items-center justify-around ">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor={`Urgent`}
-          >
-            Urgent
-          </label>
-          <input
-            className=""
-            id={`Urgent`}
-            type="checkbox"
-            onClick={() =>
-              companyProjectDispatch({
-                type: `urgent`,
-                payload: !false,
-              })
-            }
+        {/* Title and Country */}
+        <section className='flex flex-col lg:w-full'>
+          <FormField
+            label="Title"
+            id="title"
+            type="title"
+            value={companyProjectState.title}
+            companyProjectDispatch={companyProjectDispatch}
+            placeholder="Title"
+            required
           />
-        </div>
-        <div className="mb-4 flex items-center justify-around ">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor={`designCustomization`}
-          >
-            Design Customization
-          </label>
-          <input
-            className=""
-            id={`designCustomization`}
-            type="checkbox"
-            onClick={() =>
-              companyProjectDispatch({
-                type: `designCustomization`,
-                payload: !false,
-              })
-            }
+    
+          <FormField
+            label="Country"
+            id="country"
+            type="country"
+            value={companyProjectState.country}
+            companyProjectDispatch={companyProjectDispatch}
+            placeholder="Country"
+            required
           />
-        </div>
-        <div className="mb-4 flex items-center justify-around ">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor={`contentUpload`}
-          >
-            Content Upload
-          </label>
-          <input
-            className=""
-            id={`contentUpload`}
-            type="checkbox"
-            onClick={() =>
-              companyProjectDispatch({
-                type: `contentUpload`,
-                payload: !false,
-              })
-            }
-          />
-        </div>
-        <div className="mb-4 flex items-center justify-around ">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor={`responsive`}
-          >
-            Content Upload
-          </label>
-          <input
-            className=""
-            id={`responsive`}
-            type="checkbox"
-            onClick={() =>
-              companyProjectDispatch({
-                type: `responsive`,
-                payload: !false,
-              })
-            }
-          />
-        </div>
-        {/* Price Field */}
-        <FormField
-          label="Price"
-          id="price"
-          type="price"
-          value={companyProjectState.price.toString()}
-          companyProjectDispatch={companyProjectDispatch}
-          placeholder="Price"
-          required
-        />
-        <FormField
-          label="revisions"
-          id="revisions"
-          type="revisions"
-          value={companyProjectState.Revisions.toString()}
-          companyProjectDispatch={companyProjectDispatch}
-          placeholder="revisions"
-          required
-        />
+        </section>
 
-        {/* Difficulty Field */}
+        {/* Description, Category, DropeZone & Difficulty */}
+        <section className='lg:grow'>
+          <FormField
+            label="Description"
+            id="description"
+            type="description"
+            value={companyProjectState.description}
+            companyProjectDispatch={companyProjectDispatch}
+            placeholder="Description"
+            required
+          />
+    
+          <FormField
+            label="Category"
+            id="category"
+            type="category"
+            value={companyProjectState.category}
+            companyProjectDispatch={companyProjectDispatch}
+            placeholder="Category"
+            required
+          />
+    
+          <div className="mb-4 flex items-center justify-between">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="difficulty">
+              Difficulty
+            </label>
+            <select
+              onChange={(e) =>
+                companyProjectDispatch({
+                  type: 'difficulty',
+                  payload: e.target.value,
+                })
+              }
+              className="px-2 py-1 border rounded-md"
+            >
+              {['Low', 'Medium', 'High'].map((val) => (
+                <option key={val} value={val}>
+                  {val}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div className="mb-4 flex items-center justify-around ">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor={`Urgent`}
-          >
-            Difficulty
-          </label>
-          <select>
-            {['low', 'medium', 'high'].map((val: string) => (
-              <option
-                key={val}
+          <DropeZone />
+        </section>
+
+        {/* Checkmark Fields, Price & Revisions */}
+        <section className='lg:grow'>
+          {['Urgent', 'Design Customization', 'Content Upload', 'Responsive'].map((field) => (
+            <div className="mb-4 flex items-center justify-between" key={field}>
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={field}>
+                {field}
+              </label>
+              <input
+                className=""
+                id={field.replace(' ', '')}
+                type="checkbox"
                 onClick={() =>
                   companyProjectDispatch({
-                    type: 'difficulty',
-                    payload: val,
+                    type: field.toLowerCase(),
+                    payload: !false,
                   })
                 }
-              >
-                {val}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="flex flex-col items-center justify-center">
+              />
+            </div>
+          ))}
+    
+          <FormField
+            label="Price"
+            id="price"
+            type="price"
+            value={companyProjectState.price.toString()}
+            companyProjectDispatch={companyProjectDispatch}
+            placeholder="Price"
+            required
+          />
+    
+          <FormField
+            label="Revisions"
+            id="revisions"
+            type="revisions"
+            value={companyProjectState.Revisions.toString()}
+            companyProjectDispatch={companyProjectDispatch}
+            placeholder="Revisions"
+            required
+          />
+        </section>
+
+
+        {/* Calendar Fields */}
+        <section className='w-full flex flex-col lg:flex-row mb-4 gap-6 items-center justify-around'>
           <div>
-            Delivery date
-            <Calendar onChange={HandleDeliveryCalendar} value={value} />
+            Delivery Date
+            <Calendar onChange={() => HandleDeliveryCalendar} value={value} />
           </div>
           <div>
             Start Date
-            <Calendar onChange={HandleStartCalendar} value={value} />
+            <Calendar onChange={() => HandleStartCalendar} value={value} />
           </div>
-        </div>
-        <SkillSelection />
+        </section>
 
-        <div className="mb-4">
+
+        {/* Skills & Submit + Statuses */}
+        <section className='mb-4 w-full flex flex-col items-center justify-between'>
+
+        <SkillSelection />
+  
+        <div className="mt-8">
           <button
             onClick={handleProjectPosting}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -360,11 +303,15 @@ const CompanyProjectForm = () => {
             Create Project
           </button>
         </div>
+  
         <Succsess success={statusState.success} />
         <Error error={statusState.error} />
       </section>
+
+      </div>
     </div>
-  )
+  );
+  
 }
 
 export default CompanyProjectForm

@@ -18,6 +18,7 @@ const Single_User_Page = () => {
     topSection: ` border-b-[2px] px-4 py-6 flex flex-col  gap-5`,
   }
   const { dev_id } = useParams()
+  const navigate = useNavigate()
   const {
     devInfo,
     GetSingleDev,
@@ -25,6 +26,7 @@ const Single_User_Page = () => {
     PortfolioDispatch,
     PortfolioState,
     UserState,
+    GoToUserChat,
   } = UseMainContext()
   const navigation = useNavigate()
   const [projects, setProjects] = useState<any>()
@@ -98,6 +100,7 @@ const Single_User_Page = () => {
     return (
       <User_layout>
         <div className="flex  flex-col gap-2 p-2 items-center justify-center ">
+          <h1 onClick={() => GoToUserChat(dev_id || '')}>Message</h1>
           <RatesStars data={ratingFromDb} />
           <User_Top
             isUser={true}

@@ -23,8 +23,8 @@ const User_main = ({
     UserStateUpdate,
   } = UseMainContext()
   const style = {
-    mainDiv: `w-[75%] h-[1000px]`,
-    headerDiv: `flex  justify-around text-gray-700 text-[1.3rem] font-bold py-3`,
+    mainDiv: `w-full h-auto`,
+    headerDiv: `flex flex-wrap justify-between  sm:justify-around  items-start md:item-center text-green-800 dark:text-white text-[1.3rem] `,
     topSection: ` border-b-[2px] px-4 py-6 flex flex-col  gap-5`,
   }
 
@@ -67,7 +67,7 @@ const User_main = ({
             />
           </div>
         </section>
-        <User_portfolio isUser={isUser} />
+        {/* <User_portfolio isUser={isUser} /> */}
         <User_skills isUser={isUser} userInfo={userInfo} />
       </div>
     )

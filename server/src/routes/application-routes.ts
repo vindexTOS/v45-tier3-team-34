@@ -24,7 +24,7 @@ applicationRouter
   .route('/company/:company_id')
   .get(GetCompanyApplications, errorHandler)
 
-applicationRouter.route('/reject/:dev_id').delete(RejectCandidat)
+applicationRouter.route('/reject/:dev_id').patch(RejectCandidat)
 applicationRouter.route('/accapt/:application_id').patch(AccaptCandidat)
 applicationRouter
   .route('/dev-finnish/:application_id')

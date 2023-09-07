@@ -110,6 +110,7 @@ export const AccaptCandidat = tryCatch(async (req: Request, res: any) => {
   await project_application_model.findByIdAndUpdate(application_id, {
     accepted: true,
   })
+  return res.status(200).json({ msg: 'Application Accapted' })
 })
 export const devFinnishedProject = tryCatch(async (req: Request, res: any) => {
   const { application_id } = req.params
