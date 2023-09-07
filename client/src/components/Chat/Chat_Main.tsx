@@ -1,17 +1,41 @@
-import React, { useEffect, useState } from 'react'
+import React, { RefObject, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { UseMainContext } from '../../context'
 import io, { Socket } from 'socket.io-client'
+import { IoSendSharp } from 'react-icons/io5'
 import { DefaultEventsMap } from '@socket.io/component-emitter'
+import ChatSection from './ChatSection'
 const ENDPOINT = import.meta.env.VITE_GLOBAL_URL
-var socket: Socket<DefaultEventsMap, DefaultEventsMap>
-var selectedChatCompere
-const Chat = () => {
-  const { userId } = useParams()
-  const { UserState, isUserLoggedIn } = UseMainContext()
+
+const Chat = ({ userId }: { userId: string }) => {
+  const {
+    UserState,
+    isUserLoggedIn,
+    GetMessages,
+    chatRoom,
+    setChatRoomInfo,
+    messages,
+    setMessages,
+  } = UseMainContext()
+
+  const SeeNotifications = async () => {
+    if (isUserLoggedIn) {
+      try {
+        const res = await axios.post(
+          `${import.meta.env.VITE_GLOBAL_URL}/chat/see-notifications`,
+          { receiverId: UserState.userData.user._id },
+        )
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+  useEffect(() => {
+    SeeNotifications()
+  }, [])
   const [userInfo, setUserInfo] = useState<any>()
-  const [messages, setMessages] = useState<any>([])
   const [messageContent, setMessagesContent] = useState('')
   const [socketConnected, setSocketConnected] = useState(false)
   const socket: Socket<DefaultEventsMap, DefaultEventsMap> = io(ENDPOINT)
@@ -34,25 +58,7 @@ const Chat = () => {
           senderId: UserState.userData.user._id,
           receiverId: userId,
         })
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const GetMessages = async () => {
-    try {
-      if (isUserLoggedIn && userId) {
-        const res = await axios.get(
-          `${import.meta.env.VITE_GLOBAL_URL}/chat/get-message?senderId=${
-            UserState.userData.user._id
-          }&receiverId=${userId}`,
-        )
-
-        const data = res.data.messages
-        setMessages(data)
-        console.log(res)
-        socket.emit('join chat', userId)
+        setMessagesContent('')
       }
     } catch (error) {
       console.log(error)
@@ -71,28 +77,16 @@ const Chat = () => {
       console.log(error)
     }
   }
+
   useEffect(() => {
     GetSingleDev()
   }, [userId])
   useEffect(() => {
-    GetMessages()
-    selectedChatCompere = messages
-  }, [UserState])
-  useEffect(() => {
-    // Initialize and connect to the Socket.IO server
-    if (isUserLoggedIn) {
-      socket.on('connection', () => {
-        console.log('Connected to socket.io')
-        console.log('User ID:', UserState.userData.user._id)
-        setSocketConnected(true)
-      })
+    GetMessages(userId)
+  }, [userId])
 
-      // Debugging: Add a listener for 'disconnect' event
-    }
-  }, [isUserLoggedIn, socket])
   useEffect(() => {
     socket.on('new message', (data: any) => {
-      console.log(data)
       setMessages((prevMessages: any) => [...prevMessages, data])
     })
   }, [])
@@ -100,50 +94,49 @@ const Chat = () => {
   if (userInfo && userInfo.user && userInfo.user.userName) {
     return (
       <div
-        onClick={() => console.log(messages)}
+        className="flex rounded-[10px] items-center bg-[#E3F5E7] my-10 mx-auto"
         style={{
-          backgroundColor: 'white',
           height: '600px',
           width: '500px',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-around',
-          alignItems: 'center',
         }}
       >
-        <div onClick={GetMessages} style={{ color: 'red' }}>
-          you are talking to{userInfo.user.userName}
-        </div>
-        <div style={{ color: 'black' }}>
-          {messages &&
-            messages.length > 0 &&
-            messages.map((val: any) => {
-              const { sender, content } = val
-              return (
-                <div
-                  key={val._id}
-                  style={{
-                    backgroundColor:
-                      sender === UserState.userData.user._id ? 'green' : 'blue',
-                  }}
-                >
-                  {content}
-                </div>
-              )
-            })}
-        </div>
-
-        <div>
-          <input
-            onChange={(e) => setMessagesContent(e.target.value)}
-            placeholder="send"
+        {/* Chat top */}
+        <div className="flex items-center justify-start px-5 rounded-t-[10px]  gap-5 bg-[#E3F5E7] w-[100%] py-5">
+          <img
+            className="w-[50px] h-[50px] rounded-[50%]"
+            src={userInfo.user.avatar}
           />
-          <button onClick={SendMessage}> Send</button>
+          <div>
+            <h1 className="text-[1rem] font-semibold text-light-primary dark:text-dark-primary">
+              {userInfo.user.userName}
+            </h1>
+            <p className="text-xs text-light-green dark:text-dark-green">
+              4 hours ago
+            </p>
+          </div>
         </div>
+        <ChatSection messages={messages} />
+        {/* Chat body */}
+        <div className="w-[90%] py-2 px-6 flex my-auto justify-around bg-white rounded-lg">
+          <input
+            value={messageContent}
+            className="outline-0 bg-transparent  w-[90%]"
+            onChange={(e) => setMessagesContent(e.target.value)}
+            placeholder="start typing here ..."
+          />
+          <button
+            className="bg-light-green hover:bg-light-primary h-[100%] w-[3rem] flex items-center justify-center rounded-lg p-2"
+            onClick={SendMessage}
+          >
+            <IoSendSharp size={22} color="#fff" />
+          </button>
+        </div>{' '}
       </div>
     )
   } else {
-    return <div>NO </div>
+    return <div>NO Messages yet... </div>
   }
 }
 

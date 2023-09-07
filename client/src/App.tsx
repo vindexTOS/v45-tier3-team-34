@@ -196,7 +196,7 @@ const router = [
       },
     ],
   },
-  { path: '/chat/:userId', element: <Chat /> },
+  // { path: '/chat/:userId', element: <Chat /> },
   {
     path: '/company_project',
     element: <CompanyProjectForm />,
