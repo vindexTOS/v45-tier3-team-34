@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { UseMainContext } from '../../context'
 import io, { Socket } from 'socket.io-client'
+import { IoSendSharp } from 'react-icons/io5'
 import { DefaultEventsMap } from '@socket.io/component-emitter'
 const ENDPOINT = import.meta.env.VITE_GLOBAL_URL
 
@@ -103,23 +104,31 @@ const Chat = ({ userId }: { userId: string }) => {
   if (userInfo && userInfo.user && userInfo.user.userName) {
     return (
       <div
-        className="flex rounded-[40px] items-center"
+        className="flex rounded-[10px] items-center bg-[#E3F5E7] my-10 mx-auto"
         onClick={() => console.log(chatRoom)}
         style={{
-          backgroundColor: 'white',
           height: '600px',
           width: '500px',
           display: 'flex',
           flexDirection: 'column',
         }}
       >
-        <div className="flex items-center justify-start px-5 rounded-t-[40px]  gap-5 bg-green-400 w-[100%] py-10">
+        {/* Chat top */}
+        <div className="flex items-center justify-start px-5 rounded-t-[10px]  gap-5 bg-[#E3F5E7] w-[100%] py-5">
           <img
-            className="w-[60px] h-[60px] rounded-[50%]"
+            className="w-[50px] h-[50px] rounded-[50%]"
             src={userInfo.user.avatar}
           />{' '}
-          <h1>{userInfo.user.userName}</h1>
+          <div>
+            <h1 className="text-[1rem] font-semibold text-light-primary dark:text-dark-primary">
+              {userInfo.user.userName}
+            </h1>
+            <p className="text-xs text-light-green dark:text-dark-green">
+              4 hours ago
+            </p>
+          </div>
         </div>
+        {/* Chat body */}
         <div className="h-[390px] py-10 w-[100%] bg-white flex flex-col items-center gap-2 overflow-y-scroll">
           {messages &&
             messages.length > 0 &&
@@ -144,24 +153,24 @@ const Chat = ({ userId }: { userId: string }) => {
             })}
         </div>
 
-        <div className="bg-white  outline-gray-300 outline-[1px] outline rounded-[30px] w-[90%] p-5 flex justify-around">
+        <div className="w-[90%] py-2 px-6 flex my-auto justify-around bg-white rounded-lg">
           <input
             value={messageContent}
             className="outline-0 bg-transparent  w-[90%]"
             onChange={(e) => setMessagesContent(e.target.value)}
-            placeholder="send"
+            placeholder="start typing here ..."
           />
           <button
-            className="bg-green-300 h-[100%] w-[5rem]  "
+            className="bg-light-green hover:bg-light-primary h-[100%] w-[3rem] flex items-center justify-center rounded-lg p-2"
             onClick={SendMessage}
           >
-            Send
+            <IoSendSharp size={22} color="#fff" />
           </button>
         </div>
       </div>
     )
   } else {
-    return <div>NO </div>
+    return <div>NO Messages yet... </div>
   }
 }
 
