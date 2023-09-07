@@ -9,11 +9,11 @@ export default function User_drop_down() {
   const { UserState } = UseMainContext();
   const cookies = new Cookies();
   const style = {
-    mainDiv: `flex flex-col items-center justify-center w-[200px] h-[200px] bg-[#F3F4F6] shadow-md rounded-[10px] absolute right-0 top-[3.5rem]`,
+    mainDiv: `flex flex-col items-center justify-between py-8 w-[225px] h-[250px] bg-[#F3F4F6] shadow-md rounded-[10px] absolute right-0 top-[3.5rem]`,
     imgWrapper: `flex flex-col gap-2 items-center `,
-    img: `w-[60px] h-[60px] rounded-[50%]`,
+    img: `w-[70px] h-[70px] rounded-[50%]`,
     btnWrapper: `flex flex-col  pt-2   items-start w-[100%] `,
-    btn: `flex items-center justify-start text-[1.1rem] gap-2  w-[100%] px-4  py-1 hover:bg-green-100/40`,
+    btn: `flex items-center justify-start text-[1.1rem] gap-2  w-[100%] px-4  py-1 hover:bg-white`,
   };
   const navigate = useNavigate();
   const logOut = () => {
