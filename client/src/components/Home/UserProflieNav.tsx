@@ -43,12 +43,14 @@ const UserProflieNav = () => {
     ) {
       const Alert = chatRoom.messages.filter(
         (val: any) =>
+
           String(val.sender) !==
             UserState.userData.user._id &&
           !val.isRead
       );
       Alert.reverse();
       setNotificationMessages(Alert);
+
     }
   }, [chatRoom]);
 

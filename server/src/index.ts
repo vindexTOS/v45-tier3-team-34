@@ -77,6 +77,7 @@ const start = async () => {
         const messages = {
           sender: newMessageReceived.senderId,
           content: newMessageReceived.messageContent,
+          _id: newMessageReceived._id,
         }
 
         io.emit('new message', messages)
