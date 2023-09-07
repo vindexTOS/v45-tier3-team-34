@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { RefObject, useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { UseMainContext } from '../../context'
 import io, { Socket } from 'socket.io-client'
 import { IoSendSharp } from 'react-icons/io5'
 import { DefaultEventsMap } from '@socket.io/component-emitter'
+import ChatSection from './ChatSection'
 const ENDPOINT = import.meta.env.VITE_GLOBAL_URL
 
 const Chat = ({ userId }: { userId: string }) => {
@@ -18,22 +19,6 @@ const Chat = ({ userId }: { userId: string }) => {
     setMessages,
   } = UseMainContext()
 
-  const SeeNotifications = async () => {
-    if (isUserLoggedIn) {
-      try {
-        const res = await axios.post(
-          `${import.meta.env.VITE_GLOBAL_URL}/chat/see-notifications`,
-          { receiverId: UserState.userData.user._id },
-        )
-        console.log(res)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-  }
-  useEffect(() => {
-    SeeNotifications()
-  }, [])
   const [userInfo, setUserInfo] = useState<any>()
   const [messageContent, setMessagesContent] = useState('')
   const [socketConnected, setSocketConnected] = useState(false)
@@ -76,27 +61,16 @@ const Chat = ({ userId }: { userId: string }) => {
       console.log(error)
     }
   }
+
   useEffect(() => {
     GetSingleDev()
   }, [userId])
   useEffect(() => {
     GetMessages(userId)
   }, [userId])
-  useEffect(() => {
-    // Initialize and connect to the Socket.IO server
-    if (isUserLoggedIn) {
-      socket.on('connection', () => {
-        console.log('Connected to socket.io')
-        console.log('User ID:', UserState.userData.user._id)
-        setSocketConnected(true)
-      })
 
-      // Debugging: Add a listener for 'disconnect' event
-    }
-  }, [isUserLoggedIn, socket])
   useEffect(() => {
     socket.on('new message', (data: any) => {
-      console.log(data)
       setMessages((prevMessages: any) => [...prevMessages, data])
     })
   }, [])
@@ -105,7 +79,6 @@ const Chat = ({ userId }: { userId: string }) => {
     return (
       <div
         className="flex rounded-[10px] items-center bg-[#E3F5E7] my-10 mx-auto"
-        onClick={() => console.log(chatRoom)}
         style={{
           height: '600px',
           width: '500px',
@@ -118,7 +91,7 @@ const Chat = ({ userId }: { userId: string }) => {
           <img
             className="w-[50px] h-[50px] rounded-[50%]"
             src={userInfo.user.avatar}
-          />{' '}
+          />
           <div>
             <h1 className="text-[1rem] font-semibold text-light-primary dark:text-dark-primary">
               {userInfo.user.userName}
@@ -128,31 +101,8 @@ const Chat = ({ userId }: { userId: string }) => {
             </p>
           </div>
         </div>
+        <ChatSection messages={messages} />
         {/* Chat body */}
-        <div className="h-[390px] py-10 w-[100%] bg-white flex flex-col items-center gap-2 overflow-y-scroll">
-          {messages &&
-            messages.length > 0 &&
-            messages.map((val: any) => {
-              const { sender, content } = val
-
-              // Determine if the message is sent by the user or received from others
-              const isUserMessage = sender === UserState.userData.user._id
-
-              // Apply different styles based on the sender
-              const messageClasses = `px-10 max-h-[500px] max-w-[250px] rounded-[50px] break-all py-2 ${
-                isUserMessage
-                  ? 'bg-green-400 text-white self-start'
-                  : 'bg-gray-200 text-right self-end'
-              }`
-
-              return (
-                <div className={messageClasses} key={val._id}>
-                  <h1>{content}</h1>
-                </div>
-              )
-            })}
-        </div>
-
         <div className="w-[90%] py-2 px-6 flex my-auto justify-around bg-white rounded-lg">
           <input
             value={messageContent}
@@ -166,7 +116,7 @@ const Chat = ({ userId }: { userId: string }) => {
           >
             <IoSendSharp size={22} color="#fff" />
           </button>
-        </div>
+        </div>{' '}
       </div>
     )
   } else {

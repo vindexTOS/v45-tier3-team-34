@@ -1,19 +1,19 @@
-import React from "react";
+// import React from "react";
 import { UseMainContext } from "../../context";
 import Cookies from "universal-cookie";
-import { CiLogout } from "react-icons/ci";
-import { AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { TbLogout2 } from "react-icons/tb";
+import { CgProfile } from "react-icons/cg";
 
 export default function User_drop_down() {
   const { UserState } = UseMainContext();
   const cookies = new Cookies();
   const style = {
-    mainDiv: `flex flex-col items-center justify-between py-8 w-[225px] h-[250px] bg-[#F3F4F6] shadow-md rounded-[10px] absolute right-0 top-[3.5rem]`,
-    imgWrapper: `flex flex-col gap-2 items-center `,
+    mainDiv: `flex flex-col items-center justify-between py-8 w-[225px] bg-[#F3F4F6] shadow-md rounded-[10px] absolute right-0 top-[3.5rem]`,
+    imgWrapper: `flex flex-col items-center w-[100%]`,
     img: `w-[70px] h-[70px] rounded-[50%]`,
-    btnWrapper: `flex flex-col  pt-2   items-start w-[100%] `,
-    btn: `flex items-center justify-start text-[1.1rem] gap-2  w-[100%] px-4  py-1 hover:bg-white`,
+    btnWrapper: `flex flex-col pt-2 items-start w-[100%]`,
+    btn: `flex items-center justify-start text-[1rem] gap-4  w-[90%] mx-auto px-4 py-1 hover:bg-white hover:text-light-primary hover:font-semibold`,
   };
   const navigate = useNavigate();
   const logOut = () => {
@@ -42,7 +42,7 @@ export default function User_drop_down() {
     UserState.userData &&
     UserState.userData.user
   ) {
-    const { avatar, userName } =
+    const { avatar, userName, role } =
       UserState.userData.user;
     return (
       <div
@@ -56,21 +56,27 @@ export default function User_drop_down() {
             className={style.img}
             src={avatar}
           />
-          <h1>{userName}</h1>
+          <h1 className="font-semibold mt-3">
+            {userName}
+          </h1>
+          <p className="text-xs text-light-primary">
+            {role}
+          </p>
         </div>
+        <div className="border border-t-green-600 my-4 w-[90%]"></div>
         <div className={style.btnWrapper}>
           <button
             onClick={navigateToProfile}
             className={style.btn}
           >
-            <AiOutlineUser />
+            <CgProfile />
             Profile
           </button>
           <button
             className={style.btn}
             onClick={logOut}
           >
-            <CiLogout /> Log out
+            <TbLogout2 /> Log out
           </button>
         </div>
       </div>

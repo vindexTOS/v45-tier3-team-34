@@ -146,7 +146,7 @@ const router = [
         element: <Profile />,
       },
       {
-        path: 'current_project',
+        path: 'applications',
         element: <Current_Projects />,
       },
       {
@@ -156,12 +156,6 @@ const router = [
       {
         path: 'messages',
         element: <Messages />,
-        outlet: [
-          {
-            path: 'chat/:userId',
-            element: <Chat />,
-          },
-        ],
       },
       {
         path: 'reviews',
@@ -178,16 +172,16 @@ const router = [
         element: <Company_Profile />,
       },
       {
-        path: 'current_project',
+        path: 'applications',
         element: <Company_Current_Projects />,
       },
 
       {
-        path: 'archived_project',
+        path: 'inprogress',
         element: <Company_Archived_Projects />,
       },
       {
-        path: 'messages/:userId',
+        path: 'messages',
         element: <Messages />,
       },
       {

@@ -28,18 +28,6 @@ const User_model = new mongoose.Schema({
 
     default: 'Developer',
   },
-  skill_id: {
-    type: String,
-  },
-  projects_id: {
-    type: String,
-  },
-  task_id: {
-    type: String,
-  },
-  review_id: {
-    type: String,
-  },
 })
 
 export default mongoose.model('connect-dev-user', User_model)
