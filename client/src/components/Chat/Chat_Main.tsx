@@ -5,13 +5,35 @@ import { UseMainContext } from '../../context'
 import io, { Socket } from 'socket.io-client'
 import { DefaultEventsMap } from '@socket.io/component-emitter'
 const ENDPOINT = import.meta.env.VITE_GLOBAL_URL
-var socket: Socket<DefaultEventsMap, DefaultEventsMap>
-var selectedChatCompere
+
 const Chat = ({ userId }: { userId: string }) => {
-  const { UserState, isUserLoggedIn } = UseMainContext()
+  const {
+    UserState,
+    isUserLoggedIn,
+    GetMessages,
+    chatRoom,
+    setChatRoomInfo,
+    messages,
+    setMessages,
+  } = UseMainContext()
+
+  const SeeNotifications = async () => {
+    if (isUserLoggedIn) {
+      try {
+        const res = await axios.post(
+          `${import.meta.env.VITE_GLOBAL_URL}/chat/see-notifications`,
+          { receiverId: UserState.userData.user._id },
+        )
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+  useEffect(() => {
+    SeeNotifications()
+  }, [])
   const [userInfo, setUserInfo] = useState<any>()
-  const [messages, setMessages] = useState<any>([])
-  const [chatRoom, setChatRoomInfo] = useState<any>()
   const [messageContent, setMessagesContent] = useState('')
   const [socketConnected, setSocketConnected] = useState(false)
   const socket: Socket<DefaultEventsMap, DefaultEventsMap> = io(ENDPOINT)
@@ -34,26 +56,7 @@ const Chat = ({ userId }: { userId: string }) => {
           senderId: UserState.userData.user._id,
           receiverId: userId,
         })
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const GetMessages = async () => {
-    try {
-      if (isUserLoggedIn && userId) {
-        const res = await axios.get(
-          `${import.meta.env.VITE_GLOBAL_URL}/chat/get-message?senderId=${
-            UserState.userData.user._id
-          }&receiverId=${userId}`,
-        )
-
-        const data = res.data
-        setMessages(data.messages)
-        setChatRoomInfo(data)
-        console.log(res)
-        socket.emit('join chat', userId)
+        setMessagesContent('')
       }
     } catch (error) {
       console.log(error)
@@ -76,8 +79,7 @@ const Chat = ({ userId }: { userId: string }) => {
     GetSingleDev()
   }, [userId])
   useEffect(() => {
-    GetMessages()
-    selectedChatCompere = messages
+    GetMessages(userId)
   }, [userId])
   useEffect(() => {
     // Initialize and connect to the Socket.IO server
@@ -144,6 +146,7 @@ const Chat = ({ userId }: { userId: string }) => {
 
         <div className="bg-white  outline-gray-300 outline-[1px] outline rounded-[30px] w-[90%] p-5 flex justify-around">
           <input
+            value={messageContent}
             className="outline-0 bg-transparent  w-[90%]"
             onChange={(e) => setMessagesContent(e.target.value)}
             placeholder="send"

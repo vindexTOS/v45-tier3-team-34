@@ -12,6 +12,9 @@ import { globalUrl } from './global-vars/Api-url'
 import { CompanyProjectType, RegisterFormType, UserType } from './common.types'
 import { useLocation, useNavigate } from 'react-router-dom'
 import useStatusMessages from './hooks/Status_hook'
+import { Socket } from 'socket.io-client'
+import { DefaultEventsMap } from '@socket.io/component-emitter'
+
 // img types
 type ImgState = {
   image: null | string | any
@@ -134,6 +137,13 @@ type Cell = {
   userId: string
   setUserId: React.Dispatch<string>
   GoToUserChat: (id: string) => void
+
+  chatRoom: any
+  setChatRoomInfo: React.Dispatch<any>
+
+  messages: any
+  setMessages: React.Dispatch<any>
+  GetMessages: (userId: string) => void
 }
 
 const Context = createContext<Cell | null>(null)
@@ -647,6 +657,32 @@ export const ContextProvider = ({
     navigate('/profile/messages')
     setUserId(id)
   }
+  var socket: Socket<DefaultEventsMap, DefaultEventsMap>
+  var selectedChatCompere
+
+  const [chatRoom, setChatRoomInfo] = useState<any>()
+  const [messages, setMessages] = useState<any>([])
+
+  const GetMessages = async (userId: string) => {
+    try {
+      if (isUserLoggedIn && userId) {
+        const res = await axios.get(
+          `${import.meta.env.VITE_GLOBAL_URL}/chat/get-message?senderId=${
+            UserState.userData.user._id
+          }&receiverId=${userId}`,
+        )
+
+        const data = res.data
+        setMessages(data.messages)
+        setChatRoomInfo(data)
+        console.log(res)
+        socket.emit('join chat', userId)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const isUserLoggedIn: boolean = UserState && UserState.userData
   UserState.userData.user && UserState.userData.user._id ? true : false
   return (
@@ -679,6 +715,11 @@ export const ContextProvider = ({
         GoToUserChat,
         userId,
         setUserId,
+        chatRoom,
+        setChatRoomInfo,
+        messages,
+        setMessages,
+        GetMessages,
       }}
     >
       {children}

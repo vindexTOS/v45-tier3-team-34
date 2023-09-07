@@ -11,10 +11,11 @@ export const SendMessage = tryCatch(async (req: Request, res: any) => {
   const chatRoom = await Chat.findOne({
     participants: { $all: [senderId, receiverId] },
   })
-  await Chat.findByIdAndUpdate(chatRoom._id, {
-    'userNotification.notification': true,
-    'userNotification.receiverId': receiverId,
-  })
+
+  // await Chat.findByIdAndUpdate(chatRoom._id, {
+  //   'userNotification.notification': true,
+  //   'userNotification.receiverId': receiverId,
+  // })
   if (!chatRoom) {
     const newChatRoom = new Chat({
       participants: [senderId, receiverId],
@@ -26,6 +27,7 @@ export const SendMessage = tryCatch(async (req: Request, res: any) => {
   const newMessage = {
     sender: senderId,
     content: messageContent,
+    receiverId: receiverId,
     timestamp: new Date(),
   }
   await Chat.updateOne(
@@ -46,7 +48,6 @@ export const GetMessages = tryCatch(async (req: Request, res: any) => {
     return res.status(404).json({ message: 'Chat room not found' })
   }
   const messages = chatRoom.messages
-
   return res.status(200).json({ messages, roomInfo: chatRoom })
 })
 
@@ -88,4 +89,29 @@ export const Notification = tryCatch(async (req: Request, res: any) => {
   const { chatId } = req.body
 
   await Chat.find()
+})
+
+export const SeeNotifications = tryCatch(async (req: Request, res: any) => {
+  const { receiverId } = req.body
+  console.log(receiverId)
+  const allNotificatiosn = await Chat.find({ participants: receiverId })
+  if (!allNotificatiosn || allNotificatiosn.length === 0) {
+    return res.status(404).json({ error: 'Notifications not found' })
+  }
+
+  const messagesToUpdate = allNotificatiosn[0].messages.filter(
+    (message) =>
+      message.isRead === false &&
+      String(message.receiverId) === String(receiverId),
+  )
+  if (messagesToUpdate.length === 0) {
+    return res.status(200).json({ message: 'No messages to update' })
+  }
+
+  for (const message of messagesToUpdate) {
+    message.isRead = true
+  }
+  await allNotificatiosn[0].save()
+
+  return res.status(200).json({ msg: 'Notifcation seen' })
 })
