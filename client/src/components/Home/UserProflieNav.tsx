@@ -26,6 +26,7 @@ const UserProflieNav = () => {
         (val: any) =>
           String(val.sender) !== UserState.userData.user._id && !val.isRead,
       )
+
       Alert.reverse()
       setNotificationMessages(Alert)
     }

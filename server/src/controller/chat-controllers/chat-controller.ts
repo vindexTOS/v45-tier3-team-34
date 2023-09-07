@@ -98,12 +98,13 @@ export const SeeNotifications = tryCatch(async (req: Request, res: any) => {
   if (!allNotificatiosn || allNotificatiosn.length === 0) {
     return res.status(404).json({ error: 'Notifications not found' })
   }
-
+  console.log(receiverId)
   const messagesToUpdate = allNotificatiosn[0].messages.filter(
     (message) =>
       message.isRead === false &&
       String(message.receiverId) === String(receiverId),
   )
+
   if (messagesToUpdate.length === 0) {
     return res.status(200).json({ message: 'No messages to update' })
   }
