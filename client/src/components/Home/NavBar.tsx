@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import ThemeToggle from "../Buttons/ThemeTogglerBtn";
 import Search from "../Buttons/Search";
 import { Dialog } from "@headlessui/react";
@@ -17,6 +17,7 @@ import MenuItem from "../NavBar/MenuItem";
 import useOutClick from "../../hooks/useOutClick";
 import User_drop_down from "../User/User_drop_down";
 import UserProflieNav from "./UserProflieNav";
+import { buttonVariants } from "../../@/components/ui/button";
 export default function NavBar() {
   const { UserState, chatRoom } =
     UseMainContext();
@@ -35,7 +36,7 @@ export default function NavBar() {
             : ""
         }`}
       >
-        <nav className="w-[95%] bg-white rounded-lg my-5 bg-opacity-90 backdrop-blur-md dark:bg-opacity-80 dark:backdrop-blur-md shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-100 ease-in-out whitespace-nowrap">
+        <nav className="w-[95%] bg-white rounded-lg my-5 bg-opacity-90 backdrop-blur-md dark:bg-opacity-80 dark:backdrop-blur-md shadow-lg dark:bg-gray-950 dark:border-gray-700 whitespace-nowrap">
           <div className="flex items-center justify-between mx-auto p-5">
             <div className="flex items-center space-x-10">
               <div>
@@ -43,7 +44,7 @@ export default function NavBar() {
                   href="/"
                   className="flex items-center"
                 >
-                  <span className="text-xl font-semibold text-light-green">
+                  <span className="text-lg font-semibold text-primary hover:text-primary-hover">
                     DevConnect
                   </span>
                 </a>
@@ -59,18 +60,22 @@ export default function NavBar() {
               UserState.userData.user ? (
                 <UserProflieNav />
               ) : (
-                <div className="hidden lg:flex lg:flex-1 lg:justify-end ml-10">
+                <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-3">
                   <Link
+                    className={buttonVariants({
+                      variant: "ghost",
+                    })}
                     to={"/login"}
-                    className="text-sm text-light-primary dark:text-gray-300 py-2 hover:text-light-primary/80 lg:p-2 dark:hover:text-light-green"
                   >
                     Log in
                   </Link>
                   <Link
-                    className="rounded-lg py-2 px-4 ml-5 text-sm text-white bg-light-green hover:bg-light-green/80"
-                    to="/register"
+                    className={buttonVariants({
+                      variant: "default",
+                    })}
+                    to={"/register"}
                   >
-                    SignUp
+                    Sign up
                   </Link>
                 </div>
               )}
