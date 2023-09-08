@@ -26,6 +26,7 @@ export type RatingTypes = {
   rating_score: number
   user_id: string
   rating_review: string
+  user: UserCardType
 }
 
 export type ProjectMetaData = {

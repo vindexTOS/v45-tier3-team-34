@@ -44,6 +44,8 @@ export const get_all_users = tryCatch(async (req: Request, res: any) => {
 
 export const get_all_devs = tryCatch(async (req: Request, res: any) => {
   try {
+    const { search } = req.query
+
     const devs = await user_model
       .find({ role: 'Developer' })
       .select('-password')
