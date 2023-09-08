@@ -6,6 +6,7 @@ import { GoArchive } from 'react-icons/go'
 import { TiMessages } from 'react-icons/ti'
 import { MdOutlineReviews } from 'react-icons/md'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { GrInProgress } from 'react-icons/gr'
 const Company_Dashboard = () => {
   const style = {
     mainDiv: `w-[300px] outline  outline-[1px] outline-gray-300 rounded-[23px] h-[500px] flex flex-col py-10 gap-5 mt-40`,
@@ -19,11 +20,11 @@ const Company_Dashboard = () => {
       link: '',
     },
     {
-      title: 'Current Projects',
+      title: 'Applications',
       Icon: AiOutlineProject,
-      link: 'current_project',
+      link: 'applications',
     },
-    { title: 'Archived Projects', Icon: GoArchive, link: 'archived_project' },
+    { title: 'In progress', Icon: GrInProgress, link: 'inprogress' },
     { title: 'Messages', Icon: TiMessages, link: 'messages' },
     { title: 'Reviews', Icon: MdOutlineReviews, link: 'reviews' },
   ]

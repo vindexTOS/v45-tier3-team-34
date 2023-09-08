@@ -61,7 +61,7 @@ export default function User_info_form() {
         )
         setSuccess(data.data.msg)
         setLoading(false)
-        navigate('/dev_project_add/title')
+        navigate('/profile')
       } catch (error) {
         const err: any = error
 

@@ -12,6 +12,9 @@ import { globalUrl } from './global-vars/Api-url'
 import { CompanyProjectType, RegisterFormType, UserType } from './common.types'
 import { useLocation, useNavigate } from 'react-router-dom'
 import useStatusMessages from './hooks/Status_hook'
+import { Socket } from 'socket.io-client'
+import { DefaultEventsMap } from '@socket.io/component-emitter'
+
 // img types
 type ImgState = {
   image: null | string | any
@@ -30,7 +33,7 @@ type ImgAction = {
 
 type UserState = {
   userTokenData: { user?: UserType }
-  userData: { user?: UserType }
+  userData: { user: UserType }
   full_user_info: any
   token: string
   updateUser: boolean
@@ -130,6 +133,17 @@ type Cell = {
   setCompanyProjectsData: React.Dispatch<CompanyProjectType[]>
 
   isUserLoggedIn: boolean
+
+  userId: string
+  setUserId: React.Dispatch<string>
+  GoToUserChat: (id: string) => void
+
+  chatRoom: any
+  setChatRoomInfo: React.Dispatch<any>
+
+  messages: any
+  setMessages: React.Dispatch<any>
+  GetMessages: (userId: string) => void
 }
 
 const Context = createContext<Cell | null>(null)
@@ -328,7 +342,7 @@ export const ContextProvider = ({
     if (token && UserState.userData && UserState.userData.user) {
       if (location.pathname === '/register') {
         if (UserState.userData.user.role === 'Developer') {
-          navigate(`/dev_project_add/title`)
+          navigate(`/user_info`)
         } else {
           navigate(`/company_info`)
         }
@@ -343,13 +357,15 @@ export const ContextProvider = ({
   }, [UserState.userData, UserState.token])
 
   // getting token cookie from browser cookies and setting headers and UserState.userTokenData state
-  const token = cookies.get('jwt_authorization')
   useEffect(() => {
+    const token = cookies.get('jwt_authorization')
+
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
       axios.defaults.headers.common['Content-Type'] = 'application/json'
       const decoded = jwt(token)
       UserDispatch({ type: 'decod-user', payload: decoded })
+      UserDispatch({ type: 'user-data', payload: decoded })
     }
   }, [UserState.token])
 
@@ -573,7 +589,9 @@ export const ContextProvider = ({
 
   const GetSingleDev = async (dev_id: string) => {
     try {
-      const res = await axios.get(`http://localhost:8080/user/info/${dev_id}`)
+      const res = await axios.get(
+        `${import.meta.env.VITE_GLOBAL_URL}/user/info/${dev_id}`,
+      )
       setDevInfo(res.data)
 
       console.log(res.data)
@@ -635,8 +653,44 @@ export const ContextProvider = ({
   const [companyProjectsData, setCompanyProjectsData] = useState<
     CompanyProjectType[]
   >([])
+  const [userId, setUserId] = useState<string>('')
 
-  const isUserLoggedIn = UserState.userData.user && UserState.userData.user._id
+  const GoToUserChat = (id: string) => {
+    if (UserState.userData.user.role === 'Company/Startup') {
+      navigate('/company_profile/messages')
+    } else {
+      navigate('/profile/messages')
+    }
+    setUserId(id)
+  }
+  var socket: Socket<DefaultEventsMap, DefaultEventsMap>
+  var selectedChatCompere
+
+  const [chatRoom, setChatRoomInfo] = useState<any>()
+  const [messages, setMessages] = useState<any>([])
+
+  const GetMessages = async (userId: string) => {
+    try {
+      if (isUserLoggedIn && userId) {
+        const res = await axios.get(
+          `${import.meta.env.VITE_GLOBAL_URL}/chat/get-message?senderId=${
+            UserState.userData.user._id
+          }&receiverId=${userId}`,
+        )
+
+        const data = res.data
+        setMessages(data.messages)
+        setChatRoomInfo(data)
+        console.log(res)
+        socket.emit('join chat', userId)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const isUserLoggedIn: boolean = UserState && UserState.userData
+  UserState.userData.user && UserState.userData.user._id ? true : false
   return (
     <Context.Provider
       value={{
@@ -664,6 +718,14 @@ export const ContextProvider = ({
         companyProjectsData,
         setCompanyProjectsData,
         isUserLoggedIn,
+        GoToUserChat,
+        userId,
+        setUserId,
+        chatRoom,
+        setChatRoomInfo,
+        messages,
+        setMessages,
+        GetMessages,
       }}
     >
       {children}

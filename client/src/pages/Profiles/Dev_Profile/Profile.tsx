@@ -35,13 +35,13 @@ const Profile = () => {
     //_id should not be accsasable on UI, _id will be used to create chat,update user infomration, post new projects etc
 
     return (
-      <div className="flex  flex-col gap-2 p-2 items-center justify-center ">
+      <div className="flex  flex-col gap-2 items-center justify-center  ">
         <User_Top
           isUser={false}
           userData={UserState.userData}
           userInfo={UserState.full_user_info.user_info}
         />
-        <section className="flex w-[100%]">
+        <section className="flex flex-col md:flex-row w-full">
           <User_Side userInfo={UserState.full_user_info} />
           <User_main
             isUser={false}

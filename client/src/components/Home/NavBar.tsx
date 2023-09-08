@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import ThemeToggle from "../Buttons/ThemeTogglerBtn";
 import Search from "../Buttons/Search";
 import { Dialog } from "@headlessui/react";
+import { BsBell } from "react-icons/bs";
 import {
   XMarkIcon,
   Bars3Icon,
@@ -15,20 +16,15 @@ import { UseMainContext } from "../../context";
 import MenuItem from "../NavBar/MenuItem";
 import useOutClick from "../../hooks/useOutClick";
 import User_drop_down from "../User/User_drop_down";
+import UserProflieNav from "./UserProflieNav";
 export default function NavBar() {
-  const { UserState } = UseMainContext();
+  const { UserState, chatRoom } =
+    UseMainContext();
   const [mobileMenuOpen, setMobileMenuOpen] =
     useState(false);
-  const [dropDown, setDropDown] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const dropDownRef =
-    useRef<HTMLDivElement | null>(null);
-  const closeDropDown = () => {
-    setDropDown(false);
-  };
 
-  useOutClick(dropDownRef, closeDropDown);
   return (
     <>
       <header
@@ -61,32 +57,17 @@ export default function NavBar() {
               <Search />
               {UserState.userData &&
               UserState.userData.user ? (
-                <div
-                  ref={dropDownRef}
-                  className="relative "
-                  onClick={() =>
-                    setDropDown(!dropDown)
-                  }
-                >
-                  <img
-                    className="w-[50px] h-[50px] rounded-[50%] cursor-pointer"
-                    src={
-                      UserState.userData.user
-                        .avatar
-                    }
-                  />
-                  {dropDown && <User_drop_down />}
-                </div>
+                <UserProflieNav />
               ) : (
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end ml-10">
                   <Link
                     to={"/login"}
-                    className="text-sm text-gray-700 dark:text-gray-300 py-2 hover:text-dark-green lg:p-2 dark:hover:text-light-green"
+                    className="text-sm text-light-primary dark:text-gray-300 py-2 hover:text-light-primary/80 lg:p-2 dark:hover:text-light-green"
                   >
                     Log in
                   </Link>
                   <Link
-                    className="rounded-lg py-2 px-4 ml-5 text-sm text-white bg-light-green"
+                    className="rounded-lg py-2 px-4 ml-5 text-sm text-white bg-light-green hover:bg-light-green/80"
                     to="/register"
                   >
                     SignUp

@@ -8,7 +8,7 @@ import { UseMainContext } from '../../context'
 import { useNavigate, useParams } from 'react-router-dom'
 import LoadingComponent from '../../components/Status/Loading'
 import User_info_Update_input from '../../components/User/User_Info_Update_Input'
-
+import Rating from './Rating'
 import axios from 'axios'
 import RatesStars from '../../components/ProjectsListingPage/Projects/RatesStars'
 const Single_User_Page = () => {
@@ -18,6 +18,7 @@ const Single_User_Page = () => {
     topSection: ` border-b-[2px] px-4 py-6 flex flex-col  gap-5`,
   }
   const { dev_id } = useParams()
+  const navigate = useNavigate()
   const {
     devInfo,
     GetSingleDev,
@@ -25,6 +26,7 @@ const Single_User_Page = () => {
     PortfolioDispatch,
     PortfolioState,
     UserState,
+    GoToUserChat,
   } = UseMainContext()
   const navigation = useNavigate()
   const [projects, setProjects] = useState<any>()
@@ -45,25 +47,6 @@ const Single_User_Page = () => {
       console.log(err)
     }
   }
-
-  const RateUser = async (user_id: string) => {
-    if (UserState.userData.user && UserState.userData.user._id) {
-      try {
-        const res = await axios.post(
-          `${import.meta.env.VITE_GLOBAL_URL}/rating/${user_id}`,
-          {
-            rater_id: UserState.userData.user._id,
-            rating_score: rating,
-            rating_review: '',
-          },
-        )
-        console.log(res)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-  }
-  const [rating, setRating] = useState<number>(0)
 
   const GetUserRating = async () => {
     if (devInfo && devInfo.user && devInfo.user._id) {
@@ -98,7 +81,8 @@ const Single_User_Page = () => {
     return (
       <User_layout>
         <div className="flex  flex-col gap-2 p-2 items-center justify-center ">
-          <RatesStars data={ratingFromDb} />
+          <h1 onClick={() => GoToUserChat(dev_id || '')}>Message</h1>
+
           <User_Top
             isUser={true}
             userData={devInfo}
@@ -170,6 +154,9 @@ const Single_User_Page = () => {
               </div>
               {/* <User_portfolio isUser={isUser} />
               <User_skills isUser={isUser} userInfo={userInfo} /> */}
+              <Rating />
+              <RatesStars data={ratingFromDb} />
+              <div>See all reviews</div>
             </div>
             {/* user main end  */}
           </section>
