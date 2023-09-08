@@ -44,7 +44,7 @@ export type ProjectMetaData = {
   urgent: boolean
 }
 export type ProjectCardType = {
-  _id?:string,
+  _id?: string
   project: ProjectMetaData
   ratings: RatingTypes[]
 }
@@ -111,4 +111,18 @@ export type TiersType = {
   design_customisation: boolean
   content_upload: boolean
   responsive_design: boolean
+}
+
+export type ApplicationType = {
+  _id: string
+  company_id: string
+  dev_id: string
+  project_id: string
+  description: string
+  bide: number
+  accepted: boolean
+  projectFinnishSubmit: boolean
+  projectFinnished: boolean
+  userInfo: UserCardType
+  applicationProject: CompanyProjectType
 }

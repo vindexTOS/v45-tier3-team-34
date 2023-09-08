@@ -1,36 +1,48 @@
-import { Link } from 'react-router-dom'
-import { useState, useRef } from 'react'
-import ThemeToggle from '../Buttons/ThemeTogglerBtn'
-import Search from '../Buttons/Search'
-import { Dialog } from '@headlessui/react'
-import { BsBell } from 'react-icons/bs'
-import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { UseMainContext } from '../../context'
-import MenuItem from '../NavBar/MenuItem'
-import useOutClick from '../../hooks/useOutClick'
-import User_drop_down from '../User/User_drop_down'
-import UserProflieNav from './UserProflieNav'
+import { Link } from "react-router-dom";
+import { useState, useRef } from "react";
+import ThemeToggle from "../Buttons/ThemeTogglerBtn";
+import Search from "../Buttons/Search";
+import { Dialog } from "@headlessui/react";
+import { BsBell } from "react-icons/bs";
+import {
+  XMarkIcon,
+  Bars3Icon,
+} from "@heroicons/react/24/outline";
+import {
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import { UseMainContext } from "../../context";
+import MenuItem from "../NavBar/MenuItem";
+import useOutClick from "../../hooks/useOutClick";
+import User_drop_down from "../User/User_drop_down";
+import UserProflieNav from "./UserProflieNav";
 export default function NavBar() {
-  const { UserState, chatRoom } = UseMainContext()
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const location = useLocation()
-  const navigate = useNavigate()
+  const { UserState, chatRoom } =
+    UseMainContext();
+  const [mobileMenuOpen, setMobileMenuOpen] =
+    useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 flex justify-center ${
-          location.pathname === '/login' || location.pathname === '/register'
-            ? 'hidden'
-            : ''
+          location.pathname === "/login" ||
+          location.pathname === "/register"
+            ? "hidden"
+            : ""
         }`}
       >
         <nav className="w-[95%] bg-white rounded-lg my-5 bg-opacity-90 backdrop-blur-md dark:bg-opacity-80 dark:backdrop-blur-md shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-100 ease-in-out whitespace-nowrap">
           <div className="flex items-center justify-between mx-auto p-5">
             <div className="flex items-center space-x-10">
               <div>
-                <a href="/" className="flex items-center">
+                <a
+                  href="/"
+                  className="flex items-center"
+                >
                   <span className="text-xl font-semibold text-light-green">
                     DevConnect
                   </span>
@@ -43,18 +55,19 @@ export default function NavBar() {
             <div className="flex items-center space-x-4">
               <ThemeToggle />
               <Search />
-              {UserState.userData && UserState.userData.user ? (
+              {UserState.userData &&
+              UserState.userData.user ? (
                 <UserProflieNav />
               ) : (
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end ml-10">
                   <Link
-                    to={'/login'}
-                    className="text-sm text-gray-700 dark:text-gray-300 py-2 hover:text-dark-green lg:p-2 dark:hover:text-light-green"
+                    to={"/login"}
+                    className="text-sm text-light-primary dark:text-gray-300 py-2 hover:text-light-primary/80 lg:p-2 dark:hover:text-light-green"
                   >
                     Log in
                   </Link>
                   <Link
-                    className="rounded-lg py-2 px-4 ml-5 text-sm text-white bg-light-green"
+                    className="rounded-lg py-2 px-4 ml-5 text-sm text-white bg-light-green hover:bg-light-green/80"
                     to="/register"
                   >
                     SignUp
@@ -67,10 +80,17 @@ export default function NavBar() {
                 <button
                   type="button"
                   className="-m-2.5 inline-flex items-center justify-center rounded-lg p-2.5 text-gray-700"
-                  onClick={() => setMobileMenuOpen(true)}
+                  onClick={() =>
+                    setMobileMenuOpen(true)
+                  }
                 >
-                  <span className="sr-only">Open main menu</span>
-                  <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                  <span className="sr-only">
+                    Open main menu
+                  </span>
+                  <Bars3Icon
+                    className="h-6 w-6"
+                    aria-hidden="true"
+                  />
                 </button>
               </div>
             </div>
@@ -86,9 +106,17 @@ export default function NavBar() {
           <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex flex-col h-full relative">
               <div className="flex items-center justify-between mb-6">
-                <a href="/" className="-m-1.5 p-1.5">
-                  <span className="sr-only">DevConnect</span>
-                  <a href="/" className="flex items-center">
+                <a
+                  href="/"
+                  className="-m-1.5 p-1.5"
+                >
+                  <span className="sr-only">
+                    DevConnect
+                  </span>
+                  <a
+                    href="/"
+                    className="flex items-center"
+                  >
                     <span className="self-center text-xl font-semibold whitespace-nowrap text-green-700 lg:dark:text-green-500">
                       DevConnect
                     </span>
@@ -97,10 +125,17 @@ export default function NavBar() {
                 <button
                   type="button"
                   className="-m-2.5 rounded-lg p-2.5 text-gray-700"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() =>
+                    setMobileMenuOpen(false)
+                  }
                 >
-                  <span className="sr-only">Close menu</span>
-                  <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                  <span className="sr-only">
+                    Close menu
+                  </span>
+                  <XMarkIcon
+                    className="h-6 w-6"
+                    aria-hidden="true"
+                  />
                 </button>
               </div>
               <div className="flex-grow">
@@ -142,7 +177,7 @@ export default function NavBar() {
             <div className="divide-y divide-gray-500/10 text-center">
               <div className="absolute bottom-0 left-0 right-0 mx-auto w-2/3 py-6">
                 <Link
-                  to={'/register'}
+                  to={"/register"}
                   className="block rounded-lg bg-green-700 px-4 py-2 text-xs font-bold text-white hover:bg-gray-700 shadow-lg"
                 >
                   Signup
@@ -153,5 +188,5 @@ export default function NavBar() {
         </Dialog>
       </header>
     </>
-  )
+  );
 }
