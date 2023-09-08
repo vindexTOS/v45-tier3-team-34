@@ -19,20 +19,20 @@ export default function Footer() {
         <section className="">
           <div className="flex flex-col flex-wrap lg:flex-row lg:justify-evenly lg:max-w-screen-2xl mx-auto">
             {footerMenuItems.map(
-              (menuItem, index) => (
+              (menuItem, global) => (
                 <div
                   className="mb-6 lg:mb-0 flex-grow"
-                  key={index}
+                  key={global}
                 >
                   <h3 className="text-sm font-semibold dark:text-gray-400">
                     {menuItem.name}
                   </h3>
                   <ul className="">
                     {menuItem.subMenus.map(
-                      (subMenu, subIndex) => (
+                      (subMenu, subglobal) => (
                         <Link
                           to={subMenu.link}
-                          key={subIndex}
+                          key={subglobal}
                         >
                           <li className="w-full sm:w-auto text-xs my-3 text-green-900 hover:text-slate-700 hover:underline dark:text-green-600">
                             {subMenu.title}

@@ -13,8 +13,8 @@ const MenuItem = () => {
   return (
     <div className="group relative hidden lg:block">
       <div className="flex">
-        {menuItems.map((menu, index) => (
-          <div className="" key={index}>
+        {menuItems.map((menu, global) => (
+          <div className="" key={global}>
             <div
               className="group relative cursor-pointer"
               onMouseEnter={() =>
@@ -50,10 +50,10 @@ const MenuItem = () => {
                           {menu.subMenus.map(
                             (
                               submenu,
-                              subIndex
+                              subglobal
                             ) => (
                               <li
-                                key={subIndex}
+                                key={subglobal}
                                 className="p-2 hover:bg-white rounded-md relative group"
                               >
                                 <Link
