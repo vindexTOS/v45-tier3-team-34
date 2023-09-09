@@ -8,7 +8,7 @@ export default function Footer() {
   const location = useLocation();
   return (
     <footer
-      className={` bg-white border-gray-200 rounded-lg my-10 shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-100 ease-in-out ${
+      className={` bg-white border-gray-200 rounded-lg my-10 shadow-lg dark:bg-gray-950 border dark:border-primary ${
         location.pathname === "/login" ||
         location.pathname === "/register"
           ? "hidden"
@@ -24,7 +24,7 @@ export default function Footer() {
                   className="mb-6 lg:mb-0 flex-grow"
                   key={global}
                 >
-                  <h3 className="text-sm font-semibold dark:text-gray-400">
+                  <h3 className="text-sm font-semibold dark:text-muted text-muted">
                     {menuItem.name}
                   </h3>
                   <ul className="">
@@ -34,7 +34,7 @@ export default function Footer() {
                           to={subMenu.link}
                           key={subglobal}
                         >
-                          <li className="w-full sm:w-auto text-xs my-3 text-green-900 hover:text-slate-700 hover:underline dark:text-green-600">
+                          <li className="w-full sm:w-auto text-xs my-3 text-primary hover:text-slate-700 hover:underline dark:text-primary">
                             {subMenu.title}
                           </li>
                         </Link>
@@ -52,7 +52,7 @@ export default function Footer() {
           <article className=" w-full sm:w-fit pt-4 sm:pt-0">
             <a
               href="/"
-              className="flex transition-all duration-150 ease-out text-custom dark:text-green-600"
+              className="flex ext-custom dark:text-primary"
             >
               <h2 className="whitespace-nowrap text-sm">
                 © 2023 DevConnect
@@ -64,7 +64,7 @@ export default function Footer() {
               ({ title, link }) => (
                 <Link
                   key={title}
-                  className="w-full sm:w-auto text-xs transition-all duration-150 ease-out text-light-muted dark:text-dark-muted hover:text-slate-600"
+                  className="w-full sm:w-auto text-xs text-muted dark:text-muted hover:text-slate-600"
                   to={link}
                 >
                   {title}

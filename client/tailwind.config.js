@@ -50,6 +50,7 @@ export const theme = {
       },
       accent: {
         DEFAULT: "hsl(var(--accent))",
+        accentdrk: "hsl(var(--accentdrk))",
         foreground:
           "hsl(var(--accent-foreground))",
       },

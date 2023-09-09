@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { categories_temp } from "../../../contants";
 import CategoryCard from "./CategoryCard";
-import { buttonVariants } from "../../../@/components/ui/button";
+import { buttonVariants } from "../../../Shadcn/components/ui/button";
 
 const Categories = () => {
   return (

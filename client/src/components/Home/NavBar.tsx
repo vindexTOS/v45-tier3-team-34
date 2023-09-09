@@ -17,7 +17,7 @@ import MenuItem from "../NavBar/MenuItem";
 import useOutClick from "../../hooks/useOutClick";
 import User_drop_down from "../User/User_drop_down";
 import UserProflieNav from "./UserProflieNav";
-import { buttonVariants } from "../../@/components/ui/button";
+import { buttonVariants } from "../../Shadcn/components/ui/button";
 export default function NavBar() {
   const { UserState, chatRoom } =
     UseMainContext();

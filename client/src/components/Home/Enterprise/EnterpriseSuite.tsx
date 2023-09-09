@@ -4,7 +4,7 @@ import {
   LiaToolboxSolid,
   LiaHeadsetSolid,
 } from "react-icons/lia";
-import { buttonVariants } from "../../../@/components/ui/button";
+import { buttonVariants } from "../../../Shadcn/components/ui/button";
 const EnterpriseSuite = () => {
   return (
     <section className="flex  text-custom dark:text-primary sm:rounded-lg my-0 sm:my-6 ">

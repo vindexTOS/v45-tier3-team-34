@@ -2,7 +2,7 @@ import { companies } from "../../../contants";
 import HeroCompany from "./HeroCompany";
 import Lottie from "lottie-react";
 import animationData from "../../../../src/assets/lottie/animation_llpgw5p0.json";
-import { buttonVariants } from "../../../@/components/ui/button";
+import { buttonVariants } from "../../../Shadcn/components/ui/button";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
