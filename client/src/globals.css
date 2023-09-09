@@ -16,10 +16,12 @@
     --secondary: 100 100% 100%;
     --secondary-hover: 120, 4%, 90%;
     --secondary-foreground: 120, 50%, 20%;
+    --tersiary: 120, 40%, 20%;
+    --tersiary-foreground: 120, 50%, 20%;
     --muted: 125, 2%, 20%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 220, 60%, 50%;
+    --accent-foreground: 220, 60%, 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
@@ -43,7 +45,7 @@
     --secondary-foreground: 0 0% 98%;
     --muted: 120, 4%, 90%;
     --muted-foreground: 240 5% 64.9%;
-    --accent: 12 6.5% 15.1%;
+    --accent: 220, 60%, 50%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 85.7% 97.3%;

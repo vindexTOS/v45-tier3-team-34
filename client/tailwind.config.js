@@ -33,6 +33,11 @@ export const theme = {
         foreground:
           "hsl(var(--secondary-foreground))",
       },
+      tersiary: {
+        DEFAULT: "hsl(var(--tersiary))",
+        foreground:
+          "hsl(var(--tersiary-foreground))",
+      },
       destructive: {
         DEFAULT: "hsl(var(--destructive))",
         foreground:
