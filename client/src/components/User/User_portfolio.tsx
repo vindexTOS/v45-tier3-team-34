@@ -11,9 +11,9 @@ const User_portfolio = ({ isUser }: { isUser: boolean }) => {
     PortfolioState.userProjects.projects.length > 0
   ) {
     return (
-      <div className="flex  gap-5 px-5 py-10 flex-col">
+      <div className="flex  gap-5 px-5 py-2 flex-col border-t border-gray-600/20 dark:border-gray-600/50">
         <div className="flex items-center gap-3">
-          <h1 className="text-[1.4rem]  ">
+          <h1 className="text-lg font-semibold text-green-800 dark:text-green-500  ">
             Portfolio (
             <span>{PortfolioState.userProjects.projects.length}</span>)
           </h1>
@@ -21,24 +21,29 @@ const User_portfolio = ({ isUser }: { isUser: boolean }) => {
             onClick={() => navigate(`/dev_project_add/title`)}
             className={`${
               isUser && 'hidden'
-            }  text-green-600 text-[1.2rem] mt-1 cursor-pointer  p-1 rounded-[50%] outline outline-2 outline-gray-300  `}
+            }  text-green-600 text-sm  cursor-pointer  p-0.5 rounded-full outline outline-2 outline-gray-300 relative -top-1 -left-1 `}
           >
             <BsPlus />
           </div>
         </div>
-        {PortfolioState.userProjects.projects.slice(0, 3).map((val: any) => {
-          return (
-            <section key={val._id} className="flex flex-col gap-2 ">
-              <img className="w-[250px] h-[200px]" src={val.photo} />
-              <div
-                className="text-green-500 text-bold  text-[1.1rem] font-medium hover:text-green-400 hover:underline"
+
+        <div className='flex flex-wrap gap-4'>
+          {PortfolioState.userProjects.projects.slice(0, 3).map((val: any) => {
+            return (
+              <section
                 onClick={() => navigate(`user/project/${val._id}`)}
-              >
-                {val.title}
-              </div>
-            </section>
-          )
-        })}
+                key={val._id} className="pb-2 bg-white/40 dark:bg-slate-800 shadow-md hover:bg-green-500/10 hover:dark:bg-slate-700/50 rounded-md cursor-pointer flex flex-col justify-between gap-2  w-fit max-w-md h-25 border border-gray-600/20 dark:border-gray-600/50">
+                <img className="w-52 h-25 object-contain rounded-t-md hover:rounded-b-md hover:scale-105 mb-4 hover:shadow-xl" src={val.photo} />
+                <div
+                  className="text-gray-700 dark:text-gray-400 px-2 text-bold  text-[1.1rem] font-medium hover:text-gray-800 hover:underline cursor-pointer capitalize"
+                  // onClick={() => navigate(`user/project/${val._id}`)}
+                >
+                  {val.title}
+                </div>
+              </section>
+            )
+          })}
+        </div>
       </div>
     )
   } else {

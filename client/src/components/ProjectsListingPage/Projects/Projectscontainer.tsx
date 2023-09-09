@@ -13,14 +13,6 @@ const ProjectsContainer = ({
   id: string;
   //projects?: any[]
 }) => {
-  //fetch here if id given,
-  //if not (projects parsed ) , no need to fetch,use directly;
-
-  //dummy data
-
-  // may add same conditional stuff here if no pojects ???
-
-  //if projects ??...
 
   const [projects, setProjects] = useState<any>();
   const GetAllProjects = async () => {
