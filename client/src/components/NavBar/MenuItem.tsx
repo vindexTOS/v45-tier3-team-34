@@ -44,8 +44,8 @@ const MenuItem = () => {
                   menu.subMenus.length > 0 &&
                   hoveredMenu === menu.name && (
                     <div className="absolute -top-5 -left-5 group-hover:translate-y-5 translate-y-0 opacity-0 group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out group-hover:transform z-50 min-w-[500px] transform">
-                      <div className="relative group p-6 bg-secondary-hover rounded-xl shadow-xl">
-                        <div className="w-10 h-10 transform rotate-45 absolute top-0 rounded-sm bg-secondary-hover"></div>
+                      <div className="relative group p-6 bg-[#fafafa] dark:bg-slate-800 rounded-xl shadow-xl">
+                        <div className="w-10 h-10 transform rotate-45 absolute top-0 rounded-sm bg-[#fafafa] dark:bg-slate-800"></div>
                         <ul className="space-y-2">
                           {menu.subMenus.map(
                             (
@@ -54,7 +54,7 @@ const MenuItem = () => {
                             ) => (
                               <li
                                 key={subglobal}
-                                className="p-2 hover:bg-secondary rounded-md relative group"
+                                className="p-2 hover:bg-white hover:dark:bg-slate-950 rounded-md relative group"
                               >
                                 <Link
                                   to={

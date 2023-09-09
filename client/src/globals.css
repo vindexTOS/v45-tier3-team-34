@@ -18,7 +18,7 @@
     --secondary-foreground: 120, 50%, 20%;
     --tersiary: 120, 40%, 20%;
     --tersiary-foreground: 120, 50%, 20%;
-    --muted: 125, 2%, 20%;
+    --muted: 125, 2%, 40%;
     --muted-foreground: 240 3.8% 46.1%;
     --accent: 220, 60%, 50%;
     --accentdrk: 220, 60%, 30%;
@@ -44,7 +44,7 @@
     --secondary: 220, 3%, 5%;
     --secondary-hover: 220, 20%, 10%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 120, 4%, 90%;
+    --muted: 230, 15%, 80%;
     --muted-foreground: 240 5% 64.9%;
     --accent: 220, 60%, 50%;
     --accent-foreground: 0 0% 98%;
