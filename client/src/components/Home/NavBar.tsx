@@ -63,7 +63,7 @@ export default function NavBar() {
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-3">
                   <Link
                     className={buttonVariants({
-                      variant: "ghost",
+                      variant: "outline",
                     })}
                     to={"/login"}
                   >
@@ -122,7 +122,7 @@ export default function NavBar() {
                     href="/"
                     className="flex items-center"
                   >
-                    <span className="self-center text-xl font-semibold whitespace-nowrap text-green-700 lg:dark:text-green-500">
+                    <span className="self-center text-xl font-semibold whitespace-nowrap textprimary lg:dark:text-primary">
                       DevConnect
                     </span>
                   </a>

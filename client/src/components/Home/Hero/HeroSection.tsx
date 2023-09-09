@@ -10,10 +10,10 @@ const HeroSection = () => {
     <section className="rounded-lg w-full flex flex-col sm:flex-row">
       <article className="flex-1 flex flex-col items-start justify-center gap-20 p-5 lg:px-20">
         <div className="flex flex-col gap-2 lg:gap-4">
-          <h1 className="text-[2.7rem] font-bold text-primary dark:text-primary">
+          <h1 className="text-[3rem] sm:text-[4rem] font-bold text-primary dark:text-primary">
             DevConnect
           </h1>
-          <p className="text-sm text-muted dark:text-muted leading-tight">
+          <p className="text-[1.2rem] text-muted dark:text-muted leading-tight">
             We connect junior developers with{" "}
             <br />
             low-paid real-world projects

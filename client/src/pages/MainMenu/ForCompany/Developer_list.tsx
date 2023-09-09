@@ -31,11 +31,11 @@ const Developer_list = () => {
   if (devData && devData.devs) {
     return (
       <section className="my-10">
-        <article className="my-10 pb-10 border-b border-primary">
+        <article className="my-10 pb-10 border-b border-slate-300 dark:border-slate-600">
           <h3 className="text-[1.5rem] font-semibold text-primary dark:text-primary">
             Hire the best jnr Developers
           </h3>
-          <p className="text-[.8rem] text-light-muted dark:text-dark-muted">
+          <p className="text-[.8rem] text-muted dark:text-muted">
             Check out “Jnr Developers” with the
             skills you need for your next job.
           </p>
@@ -62,7 +62,7 @@ const Developer_list = () => {
                       GetSingleDev(_id)
                     }
                     key={_id}
-                    className="bg-white dark:bg-white/5 dark:hover:bg-white/10 rounded-lg w-[400px] shadow-md p-4 max-w-xs cursor-pointer hover:shadow-lg transition duration-300"
+                    className="bg-white dark:bg-slate-900 dark:hover:bg-slate-950 rounded-lg w-[400px] shadow-md p-4 max-w-xs cursor-pointer hover:shadow-lg"
                   >
                     <div className="flex items-center">
                       <img
@@ -74,7 +74,7 @@ const Developer_list = () => {
                         <h2 className="text-[1rem] font-semibold text-primary dark:text-primary">
                           {userName}
                         </h2>
-                        <p className="text-gray-500 text-[0.8rem]">
+                        <p className="text-muted text-[0.8rem]">
                           {role}
                         </p>
                         {/* Add more information here */}

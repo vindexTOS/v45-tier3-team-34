@@ -8,7 +8,7 @@ export default function Footer() {
   const location = useLocation();
   return (
     <footer
-      className={` bg-white border-gray-200 rounded-lg my-10 shadow-lg dark:bg-gray-950 border dark:border-primary ${
+      className={` bg-white rounded-lg my-10 shadow-lg dark:bg-gray-950 ${
         location.pathname === "/login" ||
         location.pathname === "/register"
           ? "hidden"
