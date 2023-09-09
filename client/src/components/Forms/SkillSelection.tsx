@@ -7,8 +7,8 @@ const SkillSelection = () => {
   const style = {
     skills: `flex flex-col justify-center gap-10 items-center w-[100%]  max_smm:h-[200px]   `,
     skillInputWrapper: `flex items-center justify-center w-[100%] h-[100%]   max_lg:w-[50%] max_smm:flex-col max_smm:w-[100%] max_smm:gap-0`,
-    skillsDiv: `flex gap-2 mr-40 w-[90%] flex-wrap  max_smm:w-[90%]   ml-[10rem] bg-green-300/50 shadow-md p-2 rounded-[9px]   top-2 left-[-5rem]  z-20`,
-    singleSkill: ` cursor-pointer hover:bg-red-500 hover:text-white shadow-md text-gray-400 p-1 rounded-[9px] bg-gray-100`,
+    skillsDiv: `flex gap-2 w-full md:w-[95%] flex-wrap    bg-green-200/10 dark:bg-slate-800 shadow-md p-2 rounded-md  z-20 border border-gray-600/20 dark:border-gray-600/50`,
+    singleSkill: ` cursor-pointer hover:bg-green-800 hover:dark:bg-green-500 text-gray-700 hover:dark:text-gray-800 dark:text-gray-300  hover:text-white shadow-md text-gray-400 p-2 rounded-md bg-white dark:bg-slate-700`,
     addBtn: `outline outline-2 outline-green-500 rounded-[8px] w-[9rem] h-[2.5rem] mt-5 text-white bg-green-300`,
   }
   const [search, setSearch] = React.useState<string>('')
@@ -22,7 +22,7 @@ const SkillSelection = () => {
     }
   }
   const RemoveSkill = (i: number) => {
-    let newArr = PortfolioState.technologies.filter(
+    const newArr = PortfolioState.technologies.filter(
       (_val, index) => index !== i,
     )
 
@@ -42,9 +42,9 @@ const SkillSelection = () => {
   return (
     <div ref={dropDownRef} className={style.skills}>
       <div className={style.skillInputWrapper}>
-        <div className="  w-[100%]  relative px-3 max_850:w-[100%] ">
+        <div className="  w-full  relative px-3 max_850:w-[100%] ">
           <label
-            className="block uppercase tracking-wide text-gray-500 text-[10px]   mb-2"
+            className="block uppercase tracking-wide text-gray-700 dark:text-gray-400 text-[10px]   mb-2"
             htmlFor="skill"
           >
             Technologies Used
@@ -59,10 +59,10 @@ const SkillSelection = () => {
             id="skill"
             type={'text'}
             placeholder={'Add technologies used one by one'}
-            className="appearance-none block w-[100%] rounded-[9px] bg-white text-gray-700 border border-gray-200   py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            className="appearance-none block w-full rounded-sm bg-white dark:bg-slate-800 shadow-md  text-gray-700 border-gray-600/20 dark:border-gray-600/50   py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
           />
           {openSearch && (
-            <div className="w-[95%] z-50 overflow-y-scroll h-[120px] flex flex-col p-2 text-gray-400  bg-white shadow-md rounded-[2px] absolute">
+            <div className="w-[95%] z-50 overflow-y-scroll h-[120px] flex flex-col p-2 text-gray-700 dark:text-gray-300  bg-white dark:bg-slate-700/95 shadow-md rounded-[2px] absolute">
               {skills
                 .filter((filtval: string) => {
                   if (search === '') {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import AllRatings from './AllRatings'
 import User_layout from '../../components/User/User_layout'
 import User_Top from '../../components/User/User_Top'
 import User_Side from '../../components/User/User_Side'
@@ -27,6 +27,7 @@ const Single_User_Page = () => {
     PortfolioState,
     UserState,
     GoToUserChat,
+    statusState,
   } = UseMainContext()
   const navigation = useNavigate()
   const [projects, setProjects] = useState<any>()
@@ -34,19 +35,19 @@ const Single_User_Page = () => {
     GetSingleDev(dev_id || '')
   }, [])
 
-  const getAllDevProjects = async () => {
-    try {
-      const res = await axios.get(
-        `${import.meta.env.VITE_GLOBAL_URL}/projects/${dev_id}`,
-      )
-      const data = res.data
+  // const getAllDevProjects = async () => {
+  //   try {
+  //     const res = await axios.get(
+  //       `${import.meta.env.VITE_GLOBAL_URL}/projects/${dev_id}`,
+  //     )
+  //     const data = res.data
 
-      PortfolioDispatch({ type: 'get-user-projects', payload: data })
-    } catch (error) {
-      const err: any = error
-      console.log(err)
-    }
-  }
+  //     PortfolioDispatch({ type: 'get-user-projects', payload: data })
+  //   } catch (error) {
+  //     const err: any = error
+  //     console.log(err)
+  //   }
+  // }
 
   const GetUserRating = async () => {
     if (devInfo && devInfo.user && devInfo.user._id) {
@@ -62,13 +63,13 @@ const Single_User_Page = () => {
   }
   const [ratingFromDb, setRatingFromDb] = useState<any>()
 
-  useEffect(() => {
-    getAllDevProjects()
-  }, [])
+  // useEffect(() => {
+  //   getAllDevProjects()
+  // }, [])
 
   useEffect(() => {
     GetUserRating()
-  }, [devInfo])
+  }, [devInfo, statusState.success])
 
   if (
     devInfo &&
@@ -92,10 +93,7 @@ const Single_User_Page = () => {
             <User_Side isUser={true} userInfo={devInfo} />
 
             {/* user main start */}
-            <div
-              onClick={() => console.log(devInfo.user_info)}
-              className={style.mainDiv}
-            >
+            <div className={style.mainDiv}>
               <LoadingComponent loading={UserStateUpdate.loading} />
               <section className={style.topSection}>
                 <div className={style.headerDiv}>
@@ -129,7 +127,7 @@ const Single_User_Page = () => {
                   />
                 </div>
               </section>
-              <div className="flex  gap-5 px-5 py-10 flex-col">
+              {/* <div className="flex  gap-5 px-5 py-10 flex-col">
                 <div className="flex items-center gap-3">
                   <h1 className="text-[1.4rem]  ">
                     Portfolio (
@@ -151,12 +149,13 @@ const Single_User_Page = () => {
                       </section>
                     )
                   })}
-              </div>
+              </div> */}
               {/* <User_portfolio isUser={isUser} />
               <User_skills isUser={isUser} userInfo={userInfo} /> */}
-              <Rating />
+              <Rating dev_id={dev_id || ''} data={ratingFromDb} />
               <RatesStars data={ratingFromDb} />
               <div>See all reviews</div>
+              <AllRatings data={ratingFromDb} />
             </div>
             {/* user main end  */}
           </section>

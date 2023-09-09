@@ -111,7 +111,7 @@ const Single_Company_Page = () => {
           // onClick={() => console.log(UserStateUpdate)}
           className="flex  flex-col gap-2 p-2 items-center justify-center "
         >
-          <div onClick={() => console.log(ratingFromDb)}>
+          {/* <div onClick={() => console.log(ratingFromDb)}>
             <h1>Ratinig {rating}</h1>
             <input
               value={rating}
@@ -127,10 +127,8 @@ const Single_Company_Page = () => {
               Rate
             </button>
 
-            {/* <div onClick={() => GetUserRating()}>
-              Avreage rating {ratingFromDb?.toFixed(2)}
-            </div> */}
-          </div>
+          
+          </div> */}
           <section
             //   onClick={() => console.log(UserState.full_user_info.user_info)}
             className={style.section}
