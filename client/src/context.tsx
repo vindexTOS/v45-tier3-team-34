@@ -466,7 +466,9 @@ export const ContextProvider = ({
     if (UserState.userData.user && UserState.userData.user?._id) {
       try {
         const res = await axios.patch(
-          `${globalUrl}/${link}/info/${UserState.userData.user?._id}`,
+          `${import.meta.env.VITE_GLOBAL_URL}/${link}/info/${
+            UserState.userData.user?._id
+          }`,
           obj,
         )
         UserStateUpdateDispatch({ type: 'loading', payload: false })
@@ -689,8 +691,13 @@ export const ContextProvider = ({
     }
   }
 
-  const isUserLoggedIn: boolean = UserState && UserState.userData
-  UserState.userData.user && UserState.userData.user._id ? true : false
+  const isUserLoggedIn =
+    UserState &&
+    UserState.userData &&
+    UserState.userData.user &&
+    UserState.userData.user._id
+      ? true
+      : false
   return (
     <Context.Provider
       value={{

@@ -6,7 +6,21 @@ import rating_model from '../../model/rating_model'
 import project_application_model from '../../model/project_application_model'
 import user_model from '../../model/User_models/user_model'
 export const getAllCompanies = tryCatch(async (req: Request, res: any) => {
-  const projects = await Company_Project_model.find({})
+  const { search } = req.query
+  let query = {}
+
+  if (search) {
+    // Create a query to search for projects with matching title, description, or skills
+    query = {
+      $or: [
+        { title: { $regex: search, $options: 'i' } }, // Case-insensitive title search
+        { description: { $regex: search, $options: 'i' } }, // Case-insensitive description search
+        { skills: { $in: [search] } }, // Search for projects with a specific skill
+      ],
+    }
+  }
+
+  const projects = await Company_Project_model.find(query)
   const projectsData = []
 
   for (const project of projects) {

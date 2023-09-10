@@ -39,7 +39,10 @@ const Current_Project_Card = ({ data }: { data: any }) => {
     ) {
       let Application = relatedApplications?.relatedApplications
       let user = relatedApplications?.usersInfo
-      for (let i = 0; i < Application.length; i++) {
+
+      let loopNum = Application.slice(0, user.length)
+
+      for (let i = 0; i < loopNum.length; i++) {
         if (Application[i].dev_id === user[i]._id) {
           returnObj = {
             ...Application[i],
