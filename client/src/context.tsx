@@ -691,8 +691,13 @@ export const ContextProvider = ({
     }
   }
 
-  const isUserLoggedIn: boolean = UserState && UserState.userData
-  UserState.userData.user && UserState.userData.user._id ? true : false
+  const isUserLoggedIn =
+    UserState &&
+    UserState.userData &&
+    UserState.userData.user &&
+    UserState.userData.user._id
+      ? true
+      : false
   return (
     <Context.Provider
       value={{

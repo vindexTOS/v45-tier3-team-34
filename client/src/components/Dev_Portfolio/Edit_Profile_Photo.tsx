@@ -3,6 +3,7 @@ import { UseMainContext } from '../../context'
 import ImgUpload from '../Profile_photo_upload'
 import { useState } from 'react'
 import LoadingComponent from '../Status/Loading'
+import { Link } from 'react-router-dom'
 export default function Edit_Profile_Photo({
   setPhotoEdit,
 }: {
@@ -60,6 +61,10 @@ export default function Edit_Profile_Photo({
       </div>
     )
   } else {
-    return <div>Login register </div>
+    return (
+      <div>
+        <Link to="/login">Login</Link> register{' '}
+      </div>
+    )
   }
 }
