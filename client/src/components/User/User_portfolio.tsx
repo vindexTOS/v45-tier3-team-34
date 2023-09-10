@@ -19,9 +19,9 @@ const User_portfolio = ({
       0
   ) {
     return (
-      <div className="flex  gap-5 px-5 py-10 flex-col">
+      <div className="flex  gap-5 px-5 py-2 flex-col border-t border-gray-600/20 dark:border-gray-600/50">
         <div className="flex items-center gap-3">
-          <h1 className="text-[1.4rem]  ">
+          <h1 className="text-lg font-semibold text-green-800 dark:text-green-500  ">
             Portfolio (
             <span>
               {
@@ -36,12 +36,15 @@ const User_portfolio = ({
               navigate(`/dev_project_add/title`)
             }
             className={`${
+
               isUser && "hidden"
             }  text-green-600 text-[1.2rem] mt-1 cursor-pointer  p-1 rounded-[50%] outline outline-2 outline-gray-300  `}
+
           >
             <BsPlus />
           </div>
         </div>
+
         {PortfolioState.userProjects.projects
           .slice(0, 3)
           .map((val: any) => {
@@ -61,12 +64,15 @@ const User_portfolio = ({
                       `user/project/${val._id}`
                     )
                   }
+
                 >
                   {val.title}
                 </div>
               </section>
+
             );
           })}
+
       </div>
     );
   } else {
