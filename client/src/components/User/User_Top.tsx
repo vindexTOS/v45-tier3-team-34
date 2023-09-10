@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { UseMainContext } from '../../context'
 import { DateTime } from 'luxon'
 import { FaMapMarkerAlt } from 'react-icons/fa'
+import Edit_Profile_Photo from '../Dev_Portfolio/Edit_Profile_Photo'
 import { MdModeEdit } from 'react-icons/md'
 // Assuming you have retrieved user data including their timezone from the database
 
@@ -22,7 +23,7 @@ const User_Top = ({
     nameHeader: `text-green-800 dark:text-green-500 text-lg md:text-2xl font-semibold`,
     timeZone: ` flex flex-col gap-2 text-xs sm:text-sm md:text-lg `,
   }
-  function getUserTimezone(time:string) {
+  function getUserTimezone(time: string) {
     // const userTimeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
     //   console.log("User's timezone:", userTimeZone)
 
@@ -37,7 +38,7 @@ const User_Top = ({
     const { avatar, date, email, role, userName } = userData.user
     const { firstName, lastName, userTimeZone } = userInfo
 
-    const currentTime = getUserTimezone(userTimeZone);
+    const currentTime = getUserTimezone(userTimeZone)
 
     const userNameUpdate = async () => {}
 
@@ -72,7 +73,7 @@ const User_Top = ({
               <input />
             )}
             <div className="flex flex-col sm:flex-row gap-1 text-green-800 dark:text-white items-center justify-center">
-              <div className='flex gap-1 items-center'>
+              <div className="flex gap-1 items-center">
                 <FaMapMarkerAlt />
                 <p>{userTimeZone}</p>
               </div>
