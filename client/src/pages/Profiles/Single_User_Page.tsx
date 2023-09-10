@@ -71,14 +71,7 @@ const Single_User_Page = () => {
     GetUserRating()
   }, [devInfo, statusState.success])
 
-  if (
-    devInfo &&
-    devInfo.user_info &&
-    devInfo.user &&
-    PortfolioState.userProjects &&
-    PortfolioState.userProjects.projects &&
-    ratingFromDb
-  ) {
+  if (ratingFromDb) {
     return (
       <User_layout>
         <div className="flex  flex-col gap-2 p-2 items-center justify-center ">

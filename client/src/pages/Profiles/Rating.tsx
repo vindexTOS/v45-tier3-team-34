@@ -60,7 +60,7 @@ export default function Rating({
   const userRating = UserRating()
   const [rating, setRating] = useState<number>(0)
   const [message, setMessage] = useState<string>('')
-  if (userRating) {
+  if (userRating && userRating.rating_review && userRating.rating_score) {
     const { rating_review, rating_score } = userRating
     return (
       <div className="bg-white w-[100%] p-6 rounded-lg shadow-md">
@@ -85,6 +85,8 @@ export default function Rating({
     )
   } else if (
     isUserLoggedIn &&
+    UserState.userData.user &&
+    UserState.userData.user.role &&
     UserState.userData.user.role === 'Company/Startup'
   ) {
     return (
@@ -119,7 +121,11 @@ export default function Rating({
         <Succsess success={statusState.success} />
       </div>
     )
-  } else if (UserState.userData.user.role === 'Developer') {
+  } else if (
+    UserState.userData.user &&
+    UserState.userData.user.role &&
+    UserState.userData.user.role === 'Developer'
+  ) {
     return <div>Developers cannot rate other developers </div>
   } else {
     return <div>Login or register to rate this user </div>
