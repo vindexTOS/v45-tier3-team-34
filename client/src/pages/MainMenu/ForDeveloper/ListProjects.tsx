@@ -34,7 +34,7 @@ export default function ListProjects() {
     companyProjectsData.length > 0
   ) {
     return (
-      <div className="text-xl text-center text-light-muted dark:text-dark-muted transition-all duration-500 delay-100 ease-in-out">
+      <div className="text-xl text-center text-muted dark:text-muted">
         {companyProjectsData.map(
           (val: CompanyProjectType) => {
             return (
