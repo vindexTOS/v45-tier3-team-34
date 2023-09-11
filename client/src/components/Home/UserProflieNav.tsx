@@ -8,6 +8,7 @@ import { RiChatOffLine } from "react-icons/ri";
 import User_drop_down from "../User/User_drop_down";
 import { UseMainContext } from "../../context";
 import useOutClick from "../../hooks/useOutClick";
+import axios from "axios";
 
 const UserProflieNav = () => {
   const dropDownRef =
@@ -18,6 +19,7 @@ const UserProflieNav = () => {
     chatRoom,
     GetMessages,
     GoToUserChat,
+    isUserLoggedIn,
   } = UseMainContext();
   useEffect(() => {
     GetMessages(UserState.userData.user._id);
@@ -32,24 +34,21 @@ const UserProflieNav = () => {
   const [
     NotificationMessages,
     setNotificationMessages,
-  ] = useState<unknown>([]);
+  ] = useState<any>([]);
   useOutClick(dropDownRef, closeDropDown);
 
   useEffect(() => {
-    if (
-      chatRoom &&
-      chatRoom.messages &&
-      chatRoom.messages.length > 0
-    ) {
-      const Alert = chatRoom.messages.filter(
-        (val: any) =>
-          String(val.sender) !==
-            UserState.userData.user._id &&
-          !val.isRead
-      );
-      Alert.reverse();
-      setNotificationMessages(Alert);
-    }
+    // if (chatRoom && chatRoom.messages && chatRoom.messages.length > 0) {
+    //   const Alert = chatRoom.messages.filter(
+    //     (val: any) =>
+    //       String(val.sender) !== UserState.userData.user._id &&
+    //       val.isRead === false,
+    //   )
+    //   Alert.reverse()
+    //   setNotificationMessages(Alert)
+    // }
+
+    UNreadNotifications();
   }, [chatRoom]);
 
   return (
@@ -75,7 +74,7 @@ const UserProflieNav = () => {
       />
       {dropDown && <User_drop_down />}
       {notficationDrop && (
-        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#F7FAF7] shadow-md max-h-[500px] overflow-y-scroll top-14 right-[2rem] z-10 border-2 border-t-primary">
+        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#F7FAF7] shadow-md max-h-[500px] overflow-y-scroll top-14 right-[2rem] z-10 border-2 border-t-green-600">
           {NotificationMessages &&
           NotificationMessages.length > 0 ? (
             <div
@@ -94,7 +93,7 @@ const UserProflieNav = () => {
                           String(val.sender)
                         )
                       }
-                      className="bg-gray-200 py-2 px-4 rounded-lg text-gray-600 hover:bg-gray-300  "
+                      className="bg-gray-200 py-2 px-1 rounded-[2px] text-gray-600 hover:bg-gray-300 hover:text-white  "
                       key={val._id}
                     >
                       {content.slice(0, 40)}...
@@ -106,7 +105,7 @@ const UserProflieNav = () => {
           ) : (
             <div className="flex gap-3 items-center justify-center text-primary z-10">
               <RiChatOffLine />
-              <p className="text-muted text-sm">
+              <p className="text-light-muted text-sm">
                 No notifcations
               </p>
             </div>

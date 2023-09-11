@@ -9,7 +9,12 @@ import React, {
 import jwt from 'jwt-decode'
 import Cookies from 'universal-cookie'
 import { globalUrl } from './global-vars/Api-url'
-import { CompanyProjectType, RegisterFormType, UserType } from './common.types'
+import {
+  CompanyProjectType,
+  ProjectCardType,
+  RegisterFormType,
+  UserType,
+} from './common.types'
 import { useLocation, useNavigate } from 'react-router-dom'
 import useStatusMessages from './hooks/Status_hook'
 import { Socket } from 'socket.io-client'
@@ -129,8 +134,8 @@ type Cell = {
   CompanyState: CompanyStateType
   CompanyDispatch: React.Dispatch<CompanyActionType>
 
-  companyProjectsData: CompanyProjectType[]
-  setCompanyProjectsData: React.Dispatch<CompanyProjectType[]>
+  companyProjectsData: ProjectCardType[]
+  setCompanyProjectsData: React.Dispatch<ProjectCardType[]>
 
   isUserLoggedIn: boolean
 

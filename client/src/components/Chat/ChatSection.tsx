@@ -49,7 +49,11 @@ export default function ChatSection({ messages }: { messages: any }) {
           }`
 
           return (
-            <div className={messageClasses} key={val._id}>
+            <div
+              onClick={() => console.log(messages)}
+              className={messageClasses}
+              key={val._id}
+            >
               <h1>{content}</h1>
             </div>
           )

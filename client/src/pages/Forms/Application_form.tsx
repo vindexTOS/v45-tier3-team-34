@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import Error from '../../components/Status/Error'
 import LoadingComponent from '../../components/Status/Loading'
 import Succsess from '../../components/Status/Success'
@@ -8,14 +8,14 @@ import axios from 'axios'
 import useStatusMessages from '../../hooks/Status_hook'
 import { UseMainContext } from '../../context'
 export default function Application_form() {
-  const { UserState } = UseMainContext()
+  const { UserState, isUserLoggedIn } = UseMainContext()
   const [loading, setLoading] = useState(false)
   const { statusState, setError, setSuccess } = useStatusMessages({
     error: '',
     success: '',
   })
 
-  const { project_id } = useParams()
+  const { project_id, company_id } = useParams()
   const navigate = useNavigate()
   const ref = useRef<HTMLDivElement | null>(null)
 
@@ -48,6 +48,28 @@ export default function Application_form() {
     }
   }
 
+  const SendMessage = async () => {
+    try {
+      if (isUserLoggedIn) {
+        const messageContent = `Hello, ${UserState.userData.user.userName} just made an application, please check your applications on dashboard`
+
+        const res = await axios.post(
+          `${import.meta.env.VITE_GLOBAL_URL}/chat/send-message`,
+          {
+            messageContent,
+            senderId: UserState.userData.user._id,
+            receiverId: company_id,
+          },
+        )
+        console.log(res)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    SendMessage()
+  }, [statusState.success])
   if (UserState.userData.user && UserState.userData.user._id) {
     return (
       <div className="flex items-center registrationBg     justify-center h-[900px] ">
