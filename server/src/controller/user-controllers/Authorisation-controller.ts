@@ -49,7 +49,7 @@ export const Register = tryCatch(async (req: Request, res: any) => {
   // console.log(userFromDb)
 
   const token = jwt.sign({ user: userFromDb }, process.env.JWT_STRING, {
-    expiresIn: '1h',
+    expiresIn: '14d',
   })
 
   if (userFromDb) {
@@ -76,7 +76,7 @@ export const Login = tryCatch(async (req: Request, res: any) => {
   user.password = null
 
   const token = jwt.sign({ user }, process.env.JWT_STRING, {
-    expiresIn: '1h',
+    expiresIn: '14d',
   })
 
   return res

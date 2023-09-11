@@ -86,33 +86,57 @@ export const GetUserChatRooms = tryCatch(async (req: Request, res: any) => {
 })
 
 export const Notification = tryCatch(async (req: Request, res: any) => {
-  const { chatId } = req.body
+  const { receiverId } = req.params
 
-  await Chat.find()
+  // Use Mongoose's find method to retrieve chats with the given receiverId
+  const notifications = await Chat.find({
+    'messages.receiverId': receiverId,
+  })
+
+  // Combine all messages into one array
+  const allMessages = notifications.flatMap(
+    (notification) => notification.messages,
+  )
+
+  // Filter the messages to include only those with isRead set to false
+  const unreadMessages = allMessages.filter((message) => !message.isRead)
+
+  return res.status(200).json(unreadMessages)
 })
 
 export const SeeNotifications = tryCatch(async (req: Request, res: any) => {
   const { receiverId } = req.body
   console.log(receiverId)
-  const allNotificatiosn = await Chat.find({ participants: receiverId })
-  if (!allNotificatiosn || allNotificatiosn.length === 0) {
+  const allNotifications = await Chat.find({
+    'messages.receiverId': receiverId,
+  })
+
+  if (!allNotifications || allNotifications.length === 0) {
     return res.status(404).json({ error: 'Notifications not found' })
   }
-  console.log(receiverId)
-  const messagesToUpdate = allNotificatiosn[0].messages.filter(
-    (message) =>
-      message.isRead === false &&
-      String(message.receiverId) === String(receiverId),
-  )
+
+  let messagesToUpdate = []
+
+  for (const notification of allNotifications) {
+    for (const message of notification.messages) {
+      if (
+        !message.isRead &&
+        String(message.receiverId) === String(receiverId)
+      ) {
+        messagesToUpdate.push(message)
+        message.isRead = true // Mark the message as read
+      }
+    }
+  }
 
   if (messagesToUpdate.length === 0) {
     return res.status(200).json({ message: 'No messages to update' })
   }
 
-  for (const message of messagesToUpdate) {
-    message.isRead = true
+  // Save the changes to the messages
+  for (const notification of allNotifications) {
+    await notification.save()
   }
-  await allNotificatiosn[0].save()
 
-  return res.status(200).json({ msg: 'Notifcation seen' })
+  return res.status(200).json({ msg: 'Notification seen' })
 })
