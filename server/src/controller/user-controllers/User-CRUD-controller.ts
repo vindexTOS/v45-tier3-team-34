@@ -1,6 +1,7 @@
-import user_model from '../../model/user_model'
+import user_model from '../../model/User_models/user_model'
 import { Response, Request } from 'express'
 import { tryCatch } from '../../middleware/tryCatch'
+import user_info_model from '../../model/User_models/user_info_model'
 export const update_user_info = tryCatch(
   async (req: Request, res: Response) => {
     const { userName, avatar, email, role } = req.body
@@ -18,6 +19,7 @@ export const update_user_info = tryCatch(
       runValidators: true,
     })
 
+    // Company/Startup
     res.status(202).json({ msg: 'User Has Been Updated' })
     return Promise.resolve()
   },
@@ -38,4 +40,37 @@ export const get_all_users = tryCatch(async (req: Request, res: any) => {
   const allUsers = await user_model.find({}).select('-password')
 
   return res.status(200).json({ allUsers })
+})
+
+export const get_all_devs = tryCatch(async (req: Request, res: any) => {
+  try {
+    const { search } = req.query
+
+    const devs = await user_model
+      .find({ role: 'Developer' })
+      .select('-password')
+
+    // Create an array to store the combined results
+    const combinedResults = []
+
+    // Loop through the developers and fetch corresponding user_info
+    for (let dev of devs) {
+      const dev_info = await user_info_model.findOne({
+        user_id: dev._id.toString(),
+      })
+      console.log(dev_info)
+      // Combine user and user_info details
+      const combinedData = {
+        user: dev,
+        user_info: dev_info,
+      }
+
+      combinedResults.push(combinedData)
+    }
+
+    return res.status(200).json({ devs: combinedResults })
+  } catch (error) {
+    // Handle the error appropriately
+    return res.status(500).json({ error: 'An error occurred' })
+  }
 })

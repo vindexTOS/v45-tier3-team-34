@@ -1,8 +1,10 @@
 import React from 'react'
 import { UseMainContext } from '../../context'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { BsPlus } from 'react-icons/bs'
-const User_portfolio = () => {
+
+const User_portfolio = ({ isUser }: { isUser: boolean }) => {
+  const navigate = useNavigate()
   const { PortfolioState } = UseMainContext()
   if (
     PortfolioState.userProjects.projects &&
@@ -15,20 +17,25 @@ const User_portfolio = () => {
             Portfolio (
             <span>{PortfolioState.userProjects.projects.length}</span>)
           </h1>
-          <div className="  text-green-600 text-[1.2rem] mt-1 cursor-pointer  p-1 rounded-[50%] outline outline-2 outline-gray-300  ">
+          <div
+            onClick={() => navigate(`/dev_project_add/title`)}
+            className={`${
+              isUser && 'hidden'
+            }  text-green-600 text-[1.2rem] mt-1 cursor-pointer  p-1 rounded-[50%] outline outline-2 outline-gray-300  `}
+          >
             <BsPlus />
           </div>
         </div>
         {PortfolioState.userProjects.projects.slice(0, 3).map((val: any) => {
           return (
-            <section className="flex flex-col gap-2 ">
+            <section key={val._id} className="flex flex-col gap-2 ">
               <img className="w-[250px] h-[200px]" src={val.photo} />
-              <Link
+              <div
                 className="text-green-500 text-bold  text-[1.1rem] font-medium hover:text-green-400 hover:underline"
-                to={val._id}
+                onClick={() => navigate(`user/project/${val._id}`)}
               >
                 {val.title}
-              </Link>
+              </div>
             </section>
           )
         })}

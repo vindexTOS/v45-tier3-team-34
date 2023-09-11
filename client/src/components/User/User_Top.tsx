@@ -2,56 +2,63 @@ import React, { useState } from 'react'
 import { UseMainContext } from '../../context'
 import { DateTime } from 'luxon'
 import { FaMapMarkerAlt } from 'react-icons/fa'
+import Edit_Profile_Photo from '../Dev_Portfolio/Edit_Profile_Photo'
 import { MdModeEdit } from 'react-icons/md'
 // Assuming you have retrieved user data including their timezone from the database
 
-const User_Top = () => {
-  const { UserState, UserStateUpdate } = UseMainContext()
-
+const User_Top = ({
+  userData,
+  userInfo,
+  isUser,
+}: {
+  userData: any
+  userInfo: any
+  isUser: boolean
+}) => {
   const [editName, setEditName] = useState(false)
   const style = {
-    section: `flex items-start justify-start w-[100%] px-2 py-5 border-b-[1px] border-gray-300 `,
-    img: `h-[80px] w-[80px] rounded-[50%]`,
-    imgDiv: `flex gap-1 items-start justify-around `,
-    nameHeader: `text-gray-800 text-[1.6rem] font-bold`,
-    timeZone: ` flex flex-col gap-2`,
+    section: `flex items-center justify-start  px-1 md:px-2 py-5 border-b border-gray-300 w-full`,
+    img: `h-18 w-18 md:h-24 md:w-24  rounded-full object-contain border`,
+    imgDiv: `flex gap-1 items-center justify-around`,
+    nameHeader: `text-green-800 dark:text-green-500 text-lg md:text-2xl font-semibold`,
+    timeZone: ` flex flex-col gap-2 text-xs sm:text-sm md:text-lg `,
   }
-  if (
-    UserState.userData &&
-    UserState.userData.user &&
-    UserState.full_user_info.user_info
-  ) {
-    const { avatar, date, email, role, userName } = UserState.userData.user
-    const {
-      firstName,
-      lastName,
-      userTimeZone,
-    } = UserState.full_user_info.user_info
+  function getUserTimezone(time: string) {
+    // const userTimeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
+    //   console.log("User's timezone:", userTimeZone)
 
-    function getUserTimezone() {
-      // const userTimeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
-      //   console.log("User's timezone:", userTimeZone)
+    // Get the user's current time based on their timezone
+    const userCurrentTime = DateTime.now().setZone(time)
 
-      // Get the user's current time based on their timezone
-      const userCurrentTime = DateTime.now().setZone(userTimeZone)
+    const currentTime = `${userCurrentTime.toFormat('yyyy-MM-dd HH:mm:ss')}`
 
-      const currentTime = `${userCurrentTime.toFormat('yyyy-MM-dd HH:mm:ss')}`
+    return currentTime
+  }
+  if (userData && userData.user && userInfo) {
+    const { avatar, date, email, role, userName } = userData.user
+    const { firstName, lastName, userTimeZone } = userInfo
 
-      return currentTime
-    }
-    const currentTime = getUserTimezone()
+    const currentTime = getUserTimezone(userTimeZone)
+
     const userNameUpdate = async () => {}
 
     return (
-      <section className={style.section}>
+      <section
+        onClick={() => console.log(userData.user)}
+        className={style.section}
+      >
         <div className={style.imgDiv}>
           <div className="relative">
-            <div className="absolute text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px]">
+            <div
+              className={` ${
+                isUser && 'hidden'
+              } absolute text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px]`}
+            >
               <MdModeEdit />
             </div>
             <img
-              onClick={() => getUserTimezone()}
-              src={avatar}
+              onClick={() => getUserTimezone(userTimeZone)}
+              src={`${avatar}`}
               className={style.img}
             />
           </div>
@@ -65,9 +72,11 @@ const User_Top = () => {
             ) : (
               <input />
             )}
-            <div className="flex gap-1 text-gray-500 items-center justify-center">
-              <FaMapMarkerAlt />
-              <p>{userTimeZone}</p>-
+            <div className="flex flex-col sm:flex-row gap-1 text-green-800 dark:text-white items-center justify-center">
+              <div className="flex gap-1 items-center">
+                <FaMapMarkerAlt />
+                <p>{userTimeZone}</p>
+              </div>
               <p>{currentTime.slice(10, 16)} local time</p>
             </div>
           </div>

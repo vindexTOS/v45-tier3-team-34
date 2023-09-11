@@ -1,9 +1,11 @@
 import bcrypt from 'bcryptjs'
-import User_model from '../../model/user_model'
+import User_model from '../../model/User_models/user_model'
 import jwt from 'jsonwebtoken'
 import { tryCatch } from '../../middleware/tryCatch'
 import { Request, Response, NextFunction } from 'express'
-import user_info_model from '../../model/user_info_model'
+import user_info_model from '../../model/User_models/user_info_model'
+import company_user_model from '../../model/Company_models/company_user_model'
+import rating_model from '../../model/rating_model'
 
 export const Register = tryCatch(async (req: Request, res: any) => {
   const { password, confirmPassword, email, userName, avatar, role } = req.body
@@ -27,14 +29,27 @@ export const Register = tryCatch(async (req: Request, res: any) => {
   }
 
   const userFromDb = await User_model.findOne({ email: email })
-
-  await user_info_model.create({ user_id: userFromDb._id })
+  if (userFromDb.role === 'Company/Startup') {
+    await company_user_model.create({ company_id: userFromDb._id })
+    await rating_model.create({
+      user_id: userFromDb._id,
+      rater_id: userFromDb._id,
+      rating_score: 0,
+    })
+  } else if (userFromDb.role === 'Developer') {
+    await user_info_model.create({ user_id: userFromDb._id })
+    await rating_model.create({
+      user_id: userFromDb._id,
+      rater_id: userFromDb._id,
+      rating_score: 0,
+    })
+  }
 
   userFromDb.password = null
   // console.log(userFromDb)
 
   const token = jwt.sign({ user: userFromDb }, process.env.JWT_STRING, {
-    expiresIn: '1h',
+    expiresIn: '14d',
   })
 
   if (userFromDb) {
@@ -61,7 +76,7 @@ export const Login = tryCatch(async (req: Request, res: any) => {
   user.password = null
 
   const token = jwt.sign({ user }, process.env.JWT_STRING, {
-    expiresIn: '1h',
+    expiresIn: '14d',
   })
 
   return res

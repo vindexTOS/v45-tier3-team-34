@@ -6,9 +6,16 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.js",
   ],
   darkMode: "class",
   theme: {
+    button: {
+      base: "py-2 px-4 rounded",
+      primary: "bg-primary text-white",
+      secondary: "bg-secondary text-white",
+    },
+
     extend: {
       button: {
         base: "py-2 px-4 rounded",
@@ -16,19 +23,27 @@ export default {
         secondary: "bg-secondary text-white",
       },
       colors: {
+        green: colors.green,
+        white: colors.white,
+        gray: colors.gray,
+        black: colors.black,
+        slate: colors.slate,
+        blue: colors.blue,
         light: {
-          primary: colors.red[100],
-          secondary: colors.slate[900],
-          text: colors.green[900],
+          primary: colors.green[800],
+          muted: colors.slate[500],
+          inverted: colors.slate[900],
+          green: colors.green[600],
+          blue: colors.blue[600],
         },
         dark: {
-          primary: colors.slate[800],
-          secondary: colors.gray[800],
-          text: colors.slate[400],
+          primary: colors.slate[400],
+          muted: colors.slate[400],
+          inverted: colors.slate[900],
+          green: colors.green[400],
+          blue: colors.blue[900],
         },
-      },
-      transition: {
-        custom: "all 500ms ease-in-out 400ms",
+        custom: "#13544E",
       },
     },
 
@@ -65,5 +80,5 @@ export default {
       max_smm: { max: "500px" },
     },
   },
-  plugins: ["macros"], // Enable the "macros" plugin for Tailwind CSS
+  plugins: ["macros", "flowbite/plugin"], // Enable the "macros" plugin for Tailwind CSS
 };

@@ -6,6 +6,9 @@ const MenuItem = () => {
   const [hoveredMenu, setHoveredMenu] = useState<
     string | null
   >(null);
+  const [activeMenu, setActiveMenu] = useState<
+    string | null
+  >(null);
 
   return (
     <div className="group relative hidden lg:block">
@@ -20,17 +23,29 @@ const MenuItem = () => {
               onMouseLeave={() =>
                 setHoveredMenu(null)
               }
+              onClick={() =>
+                setActiveMenu(menu.name)
+              }
             >
-              <button className="p-2 text-sm text-green-900 dark:text-slate-400 hover:text-green-700 dark:hover:text-green-500">
+              <button
+                className={`p-2 text-sm ${
+                  menu.name === hoveredMenu
+                    ? "text-green-900 dark:text-slate-400 hover:text-green-900 dark:hover:text-green-500 font-bold"
+                    : menu.name === activeMenu
+                    ? "font-bold text-green-900 dark:text-slate-400 hover:text-green-700 dark:hover:text-green-500"
+                    : "text-green-900 dark:text-slate-400 hover:text-green-700 dark:hover:text-green-500"
+                }`}
+              >
                 {menu.name}
               </button>
+
               <div className="group relative">
                 {menu.subMenus &&
                   menu.subMenus.length > 0 &&
                   hoveredMenu === menu.name && (
-                    <div className="absolute -top-6 -left-10 transition group-hover:translate-y-5 translate-y-0 opacity-0 group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 min-w-[500px] transform">
-                      <div className="relative p-6 bg-[#F3F4F6] rounded-xl shadow-xl">
-                        <div className="w-10 h-10 bg-[#F3F4F6] transform rotate-45 absolute top-0 -z-10 translate-x-0 transition-transform group-hover:translate-x-[3rem] duration-500 ease-in-out rounded-sm"></div>
+                    <div className="absolute -top-5 -left-5 group-hover:translate-y-5 translate-y-0 opacity-0 group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out group-hover:transform z-50 min-w-[500px] transform">
+                      <div className="relative group p-6 bg-[#F3F4F6] rounded-xl shadow-xl">
+                        <div className="w-10 h-10 transform rotate-45 absolute top-0 duration-500 ease-in-out rounded-sm bg-[#F3F4F6]"></div>
                         <ul className="space-y-2">
                           {menu.subMenus.map(
                             (
