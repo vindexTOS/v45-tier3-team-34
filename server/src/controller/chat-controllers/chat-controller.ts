@@ -99,7 +99,9 @@ export const Notification = tryCatch(async (req: Request, res: any) => {
   )
 
   // Filter the messages to include only those with isRead set to false
-  const unreadMessages = allMessages.filter((message) => !message.isRead)
+  const unreadMessages = allMessages.filter(
+    (message) => !message.isRead && receiverId === String(message.receiverId),
+  )
 
   return res.status(200).json(unreadMessages)
 })
@@ -107,6 +109,8 @@ export const Notification = tryCatch(async (req: Request, res: any) => {
 export const SeeNotifications = tryCatch(async (req: Request, res: any) => {
   const { receiverId } = req.body
   console.log(receiverId)
+
+  // Find all notifications with messages matching the receiverId
   const allNotifications = await Chat.find({
     'messages.receiverId': receiverId,
   })
@@ -127,15 +131,13 @@ export const SeeNotifications = tryCatch(async (req: Request, res: any) => {
         message.isRead = true // Mark the message as read
       }
     }
+
+    // Save the changes to the notification (including updated messages)
+    await notification.save()
   }
 
   if (messagesToUpdate.length === 0) {
     return res.status(200).json({ message: 'No messages to update' })
-  }
-
-  // Save the changes to the messages
-  for (const notification of allNotifications) {
-    await notification.save()
   }
 
   return res.status(200).json({ msg: 'Notification seen' })

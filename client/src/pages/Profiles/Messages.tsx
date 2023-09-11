@@ -53,7 +53,8 @@ const Messages = () => {
                   >
                     <div
                       className={`${
-                        !lastMessage.isRead
+                        !lastMessage.isRead &&
+                        UserState.userData.user._id === lastMessage.receiverId
                           ? 'w-[20px] h-[20px] bg-red-500 rounded-[50%] absolute top-2'
                           : 'hidden'
                       }`}
