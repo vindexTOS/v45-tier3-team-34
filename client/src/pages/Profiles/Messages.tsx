@@ -25,6 +25,7 @@ const Messages = () => {
         const data = res.data.chatRooms
 
         setChatData(data)
+        console.log(data)
       }
     } catch (error) {
       console.log(error)
@@ -43,13 +44,20 @@ const Messages = () => {
           {chatData.length > 0
             ? chatData?.map((val: any) => {
                 const { id, name, avatar } = val.userInfo
-
+                const { lastMessage } = val
                 return (
                   <div
                     onClick={() => getUserId(id)}
-                    className="flex items-center gap-2 shadow-md p-2 rounded-[9px]"
+                    className="flex items-center gap-2 shadow-md p-2 rounded-[9px] relative"
                     key={id}
                   >
+                    <div
+                      className={`${
+                        !lastMessage.isRead
+                          ? 'w-[20px] h-[20px] bg-red-500 rounded-[50%] absolute top-2'
+                          : 'hidden'
+                      }`}
+                    ></div>
                     <img
                       className="w-[70px] h-[70px] rounded-[50%] shadow-md"
                       src={avatar ? avatar : defaultPhoto}

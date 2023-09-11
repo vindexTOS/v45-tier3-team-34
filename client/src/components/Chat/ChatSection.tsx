@@ -27,7 +27,6 @@ export default function ChatSection({ messages }: { messages: any }) {
   }
   useEffect(() => {
     SeeNotifications()
-    console.log('seen')
   }, [])
   return (
     <div
