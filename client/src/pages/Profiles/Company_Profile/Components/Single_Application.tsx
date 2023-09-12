@@ -75,7 +75,7 @@ const Single_Application = ({ data }: { data: any }) => {
         </div>
       </div>
       <p className="mt-4">{description}</p>
-      <div className="mt-4 t">
+      <div className="mt-4 ">
         <span
           className={`px-2 py-1 rounded ${
             accepted ? 'bg-green-500 text-white' : 'bg-red-500 text-white'

@@ -222,7 +222,7 @@ const router = [
   },
   // project application
   {
-    path: '/company/project/application/:project_id/:company_id',
+    path: "/company/project/application/:project_id",
     element: <Application_form />,
   },
 ];
