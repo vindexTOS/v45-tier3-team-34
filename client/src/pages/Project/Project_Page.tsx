@@ -266,6 +266,7 @@ const Project_Page = () => {
 
               {/* message the company or publisher */}
               <button
+                
                 className="border-2 border-light-green  text-light-green p-2 text-center min-w-fit w-3/4 rounded-full shadow-md hover:bg-slate-200 dark:hover:bg-slate-800"
                 onClick={() => GoToUserChat(user_id)}
               >
