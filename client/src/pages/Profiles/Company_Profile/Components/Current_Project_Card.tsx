@@ -31,15 +31,18 @@ const Current_Project_Card = ({ data }: { data: any }) => {
 
   const combinedArray = () => {
     let returnObj = {}
-    let returnArr = []
+    const returnArr = []
     if (
       relatedApplications &&
       relatedApplications.relatedApplications &&
       relatedApplications.relatedApplications.length > 0
     ) {
-      let Application = relatedApplications?.relatedApplications
-      let user = relatedApplications?.usersInfo
-      for (let i = 0; i < Application.length; i++) {
+      const Application = relatedApplications?.relatedApplications
+      const user = relatedApplications?.usersInfo
+
+      const loopNum = Application.slice(0, user.length)
+
+      for (let i = 0; i < loopNum.length; i++) {
         if (Application[i].dev_id === user[i]._id) {
           returnObj = {
             ...Application[i],
@@ -59,17 +62,17 @@ const Current_Project_Card = ({ data }: { data: any }) => {
     <div
       ref={ref}
       key={_id}
-      className="bg-white flex items-center  relative   rounded-lg shadow-md mb-4 p-4 "
+      className="bg-white text-gray-700 dark:text-gray-400 dark:bg-slate-800 flex items-center flex-wrap relative   rounded-lg shadow-md mb-4 p-2 sm:p-4 "
     >
-      <img src={image} alt={title} className="w-[120px] h-[100px]   " />
+      <img src={image} alt={title} className="w-[120px] h-[100px]   object-contain " />
       <div className="p-4 flex flex-col gap-1 justify-center">
-        <h2 className="text-xl font-semibold mb-2">{title}</h2>
-        <p className="text-gray-700">Price: ${price}</p>
+        <h2 className="text-xl text-slate-800 dark:text-slate-200 font-semibold mb-2">{title}</h2>
+        <p className="">Price: ${price}</p>
         <div
           onClick={() => setDropDown(!dropDown)}
-          className="outline outline-[1px] outline-gray-300 rounded-[20px] px-2 flex items-center justify-around"
+          className="outline outline-[1px] outline-gray-300 dark:outline-gray-500  rounded-[20px] px-2 flex items-center justify-around"
         >
-          <h1 className="text-gray-700  flex gap-2    cursor-pointer">
+          <h1 className="   flex gap-2    cursor-pointer">
             Applications:
             <span className="font-bold text-blue-400   ">
               {relatedApplications &&
@@ -85,7 +88,7 @@ const Current_Project_Card = ({ data }: { data: any }) => {
           </div>
         </div>
         {dropDown && (
-          <div className="w-[330px] h-[300px] rounded-[9px] bg-white top-40 absolute">
+          <div className="w-fit  h-fit rounded-md backdrop-blur-md bg-gray-500/10 dark:bg-slate-300/10 top-40 z-10 shadow-lg absolute">
             {applicationCombined.map((val: any) => (
               <Application_drop_down key={val._id} data={val} />
             ))}

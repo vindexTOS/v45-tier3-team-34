@@ -12,9 +12,9 @@ import { FaBellSlash } from 'react-icons/fa'
 
 const Project_Page = () => {
   const { UserState, GoToUserChat } = UseMainContext()
-  const params = useParams()
+
   //may be changed with category id , or samething else
-  const { project_id } = params
+  const { project_id } = useParams()
   // fetch projecct data (info) by it id here;
   //fetch publisher from publisher(company) id
   const project = dummy_project
@@ -76,7 +76,8 @@ const Project_Page = () => {
         )
 
         const data = res.data
-        console.log(data.data)
+        console.log(data)
+        console.log(SingleProjectData)
         setApplication(data.data)
       }
     } catch (error) {
@@ -103,12 +104,13 @@ const Project_Page = () => {
       isAplication = application.find(
         (val: any) => val.dev_id === UserState?.userData?.user?._id,
       )
+      return isAplication === undefined ? false : true
+    } else {
+      return false
     }
-    return isAplication === undefined ? false : true
   }
 
   const isUserApplication = FindIfUserMadeAlreadyApplication()
-  console.log('applied ? :', isUserApplication)
 
   if (
     SingleProjectData &&
@@ -256,7 +258,9 @@ const Project_Page = () => {
               {/* apply */}
               <button
                 disabled={isUserApplication}
-                onClick={() => navigate(`/company/project/application/${_id}`)}
+                onClick={() =>
+                  navigate(`/company/project/application/${_id}/${user_id}`)
+                }
                 className="bg-light-green disabled:bg-red-600  text-white p-2 text-center min-w-fit w-3/4 rounded-full shadow-md hover:bg-green-600"
               >
                 {!isUserApplication
@@ -266,6 +270,7 @@ const Project_Page = () => {
 
               {/* message the company or publisher */}
               <button
+                
                 className="border-2 border-light-green  text-light-green p-2 text-center min-w-fit w-3/4 rounded-full shadow-md hover:bg-slate-200 dark:hover:bg-slate-800"
                 onClick={() => GoToUserChat(user_id)}
               >

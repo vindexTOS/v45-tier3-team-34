@@ -27,6 +27,7 @@ const Chat = ({ userId }: { userId: string }) => {
   const SendMessage = async () => {
     try {
       if (isUserLoggedIn && userId) {
+        setSocketConnected(!socketConnected)
         const res = await axios.post(
           `${import.meta.env.VITE_GLOBAL_URL}/chat/send-message`,
           {
@@ -36,6 +37,7 @@ const Chat = ({ userId }: { userId: string }) => {
           },
         )
         console.log(res)
+        console.log('message sent')
 
         socket.emit('message', {
           messageContent,
@@ -68,12 +70,16 @@ const Chat = ({ userId }: { userId: string }) => {
   useEffect(() => {
     GetMessages(userId)
   }, [userId])
-
   useEffect(() => {
     socket.on('new message', (data: any) => {
       setMessages((prevMessages: any) => [...prevMessages, data])
     })
-  }, [])
+
+    return () => {
+      // Clean up the event listener when the component unmounts
+      socket.off('new message')
+    }
+  }, [socketConnected])
 
   if (userInfo && userInfo.user && userInfo.user.userName) {
     return (

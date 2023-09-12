@@ -13,12 +13,6 @@ const FindClient = () => {
           <h1 className="text-[2rem] sm:text-[3rem] font-bold">
             Find talent your way
           </h1>
-          {/* <p className="text-lg md:text-2xl font-normal">
-            Work with the largest network of
-            independent professionals and get
-            things done from quick turnarounds to
-            big transformations.
-          </p> */}
         </article>
         {/* actions */}
         <article className="flex flex-wrap w-full 3xl:w-10/12 gap-6 ">

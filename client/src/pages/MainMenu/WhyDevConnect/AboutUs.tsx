@@ -4,9 +4,9 @@ import StartJourney from "./StartJourney";
 
 export default function AboutUs() {
   return (
-    <div className="mx-auto text-slate-700 dark:text-slate-500 transition-all duration-500 delay-100 ease-in-out w-[90%] lg:w-[60%]  items-center justify-center my-14">
+    <div className="mx-auto text-muted dark:text-muted w-[90%] lg:w-[60%]  items-center justify-center my-14">
       <div className="space-y-6">
-        <div className="text-light-text dark:text-dark-text">
+        <div className="">
           <h3 className="text-[2.5rem] font-bold">
             About Us
           </h3>

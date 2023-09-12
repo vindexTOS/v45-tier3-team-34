@@ -20,12 +20,12 @@ const SuccessStoriesContainer = ({
   return (
     <div>
       <section className="mb-10">
-        <h1 className="text-2xl md:text-4xl font-semibold text-green-800 dark:text-green-500">
+        <h1 className="text-2xl md:text-4xl font-semibold text-primary dark:text-primary">
           Browse our Success Stories
         </h1>
         <p className="text-green-950 dark:text-white text-sm">
           Currently{" "}
-          <span className="text-green-600 dark:text-green-500">
+          <span className="text-primary dark:text-primary font-bold">
             {projects.length} Stories
           </span>{" "}
           to read
