@@ -92,7 +92,7 @@ export default function Search() {
             onChange={(e) => setSearch(e.target.value)}
             type="text"
             id="search-navbar"
-            className="block w-80 p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+            className="block w-80 p-2 pl-10 text-sm text-gray-900 border border-border rounded-lg bg-gray-50 focus:ring-ring focus:border-border dark:bg-gray-700 dark:border-border dark:placeholder-gray-400 dark:text-white dark:focus:ring-ring dark:focus:border-border"
             placeholder="Search..."
           />
         </div>
@@ -122,7 +122,7 @@ export default function Search() {
           <input
             type="text"
             id="search-navbar"
-            className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+            className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-ring focus:border-border dark:bg-gray-700 dark:border-border dark:placeholder-gray-400 dark:text-white dark:focus:ring-ring dark:focus:border-ring"
             placeholder="Search..."
           />
         </div>

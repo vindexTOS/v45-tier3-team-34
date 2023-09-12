@@ -44,12 +44,12 @@ const ProjectCard = ({
           {/* reviews */}
           <RatesStars data={data.ratings} />
           {/* title */}
-          <h1 className="text-[1.2rem] font-semibold text-light-primary dark:text-dark-primary">
+          <h1 className="text-[1.2rem] font-semibold text-primary dark:text-primary">
             {title}
           </h1>
           {/* description */}
           <p className="text-gray-500 text-[0.8rem]">
-            {description.slice(0, 96)}...
+            {description.slice(0, 40)}...
           </p>
           {/* price and linke */}
         </div>
@@ -58,8 +58,8 @@ const ProjectCard = ({
       {/* price and like btn */}
       <div className=" dark:text-gray-200 flex justify-between p-4">
         {/* price */}
-        <p className="flex items-center text-light-muted dark:text-dark-muted text-[.8rem]">
-          <span className="text-[1rem] font-semibold text-light-primary dark:text-dark-primary mr-2">
+        <p className="flex items-center text-muted dark:text-muted text-[.8rem]">
+          <span className="text-[1rem] font-semibold text-primary dark:text-primary mr-2">
             ${price}
           </span>
           project Budjet
@@ -72,8 +72,8 @@ const ProjectCard = ({
           }
           className={`${
             isLinked
-              ? "bg-green-200 dark:bg-green-800 text-green-600 dark:text-green-200 "
-              : "bg-slate-300 dark:bg-slate-700 text-slate-500  "
+              ? "bg-seconary dark:bg-tersiary text-primary dark:text-secondary"
+              : "bg-slate-300 dark:bg-slate-700 text-slate-500"
           } text-lg p-2 rounded-md `}
         >
           <AiTwotoneHeart />

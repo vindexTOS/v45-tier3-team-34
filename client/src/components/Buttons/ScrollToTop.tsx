@@ -43,7 +43,7 @@ const ScrollToTop = () => {
     <button
       id="scroll"
       className={classNames(
-        "fixed right-10 bottom-10 cursor-pointer w-12 h-12 bg-light-green hover:bg-custom transition-all duration-150 ease-in-out rounded-full flex items-center justify-center",
+        "fixed right-10 bottom-10 cursor-pointer w-12 h-12 bg-primary hover:bg-tersiary transition-all duration-150 ease-in-out rounded-full flex items-center justify-center",
         {
           hidden: !isVisible,
         }
