@@ -91,7 +91,7 @@ const UserProflieNav = () => {
       />
       {dropDown && <User_drop_down />}
       {notficationDrop && (
-        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#F7FAF7] shadow-md max-h-[500px] overflow-y-scroll top-14 right-[2rem] z-10 border-2 border-t-primary">
+        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#e3e9e3] dark:bg-slate-900 shadow-md max-h-[500px] overflow-y-scroll top-14 right-[2rem] z-10 border-2 border-t-primary">
           {NotificationMessages &&
           NotificationMessages.length > 0 ? (
             <div
@@ -110,28 +110,10 @@ const UserProflieNav = () => {
                           String(val.sender)
                         )
                       }
-                      className="bg-gray-200 py-2 px-4 rounded-lg text-gray-600 hover:bg-gray-300  "
+                      className="bg-white dark:bg-slate-700 p-2 rounded-lg text-muted hover:bg-primary dark:hover:bg-primary  hover:text-white text-sm"
                       key={val._id}
                     >
-                      {content.slice(0, 40)}...
-                    </div>
-                  );
-                }
-              )}
-              {NotificationMessages.map(
-                (val: any) => {
-                  const { content } = val;
-                  return (
-                    <div
-                      onClick={() =>
-                        GoToUserChat(
-                          String(val.sender)
-                        )
-                      }
-                      className="bg-gray-200 py-2 px-1 rounded-[2px] text-gray-600 hover:bg-gray-300 hover:text-white  "
-                      key={val._id}
-                    >
-                      {content.slice(0, 40)}...
+                      {content.slice(0, 50)}...
                     </div>
                   );
                 }
@@ -140,7 +122,7 @@ const UserProflieNav = () => {
           ) : (
             <div className="flex gap-3 items-center justify-center text-primary z-10">
               <RiChatOffLine />
-              <p className="text-muted text-sm">
+              <p className="text-tersiary text-sm">
                 No notifcations
               </p>
             </div>
