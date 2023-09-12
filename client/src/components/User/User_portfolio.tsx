@@ -45,33 +45,26 @@ const User_portfolio = ({
           </div>
         </div>
 
-        {PortfolioState.userProjects.projects
-          .slice(0, 3)
-          .map((val: any) => {
-            return (
-              <section
-                key={val._id}
-                className="flex flex-col gap-2 "
-              >
-                <img
-                  className="w-[250px] h-[200px]"
-                  src={val.photo}
-                />
+        {/* portfolio projects ?? */}
+        <div className="flex flex-wrap gap-x-6 gap-y-3 ">
+          {PortfolioState.userProjects.projects
+            .slice(0, 3)
+            .map((val: any) => {
+              return (
+                <section
+                key={val._id} className="pb-2 bg-white/40 dark:bg-slate-800 shadow-md hover:bg-green-500/10 hover:dark:bg-slate-700/50 rounded-md cursor-pointer flex flex-col justify-between gap-2  w-fit max-w-md min-h-full border border-gray-600/20 dark:border-gray-600/50">
+                <img className="w-52 h-25 object-contain rounded-t-md hover:rounded-b-md  mb-4 hover:shadow-xl" src={val.photo} />
                 <div
-                  className="text-green-500 text-bold  text-[1.1rem] font-medium hover:text-green-400 hover:underline"
-                  onClick={() =>
-                    navigate(
-                      `user/project/${val._id}`
-                    )
-                  }
-
+                  className="text-gray-700 dark:text-gray-400 px-2 text-bold  text-[1.1rem] font-medium hover:text-gray-800 hover:underline cursor-pointer capitalize"
+                   onClick={() => navigate(`user/project/${val._id}`)}
                 >
                   {val.title}
                 </div>
               </section>
 
-            );
-          })}
+              );
+            })}
+        </div>
 
       </div>
     );

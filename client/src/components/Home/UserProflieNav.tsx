@@ -31,11 +31,23 @@ const UserProflieNav = () => {
     setDropDown(false);
   };
 
-  const [
-    NotificationMessages,
-    setNotificationMessages,
-  ] = useState<any>([]);
-  useOutClick(dropDownRef, closeDropDown);
+  const [NotificationMessages, setNotificationMessages] = useState<any>([])
+  useOutClick(dropDownRef, closeDropDown)
+
+  const UNreadNotifications = async () => {
+    try {
+      if (isUserLoggedIn) {
+        const req = await axios.get(
+          `${import.meta.env.VITE_GLOBAL_URL}/chat/get-notifications/${
+            UserState.userData.user._id
+          }`,
+        )
+        setNotificationMessages(req.data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     // if (chatRoom && chatRoom.messages && chatRoom.messages.length > 0) {
@@ -48,8 +60,9 @@ const UserProflieNav = () => {
     //   setNotificationMessages(Alert)
     // }
 
-    UNreadNotifications();
-  }, [chatRoom]);
+    UNreadNotifications()
+  }, [chatRoom])
+>>>>>>>>> Temporary merge branch 2
 
   return (
     <div
@@ -74,15 +87,21 @@ const UserProflieNav = () => {
       />
       {dropDown && <User_drop_down />}
       {notficationDrop && (
-        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#F7FAF7] shadow-md max-h-[500px] overflow-y-scroll top-14 right-[2rem] z-10 border-2 border-t-green-600">
+<<<<<<<<< Temporary merge branch 1
+        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#F7FAF7] shadow-md max-h-[500px] overflow-y-scroll top-14 right-[2rem] z-10 border-2 border-t-primary">
           {NotificationMessages &&
           NotificationMessages.length > 0 ? (
+=========
+        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#F7FAF7] shadow-md max-h-[500px] overflow-y-scroll top-14 right-[2rem] z-10 border-2 border-t-green-600">
+          {NotificationMessages && NotificationMessages.length > 0 ? (
+>>>>>>>>> Temporary merge branch 2
             <div
               onClick={() =>
                 console.log(NotificationMessages)
               }
               className="flex flex-col gap-2 "
             >
+<<<<<<<<< Temporary merge branch 1
               {NotificationMessages.map(
                 (val: any) => {
                   const { content } = val;
@@ -93,7 +112,7 @@ const UserProflieNav = () => {
                           String(val.sender)
                         )
                       }
-                      className="bg-gray-200 py-2 px-1 rounded-[2px] text-gray-600 hover:bg-gray-300 hover:text-white  "
+                      className="bg-gray-200 py-2 px-4 rounded-lg text-gray-600 hover:bg-gray-300  "
                       key={val._id}
                     >
                       {content.slice(0, 40)}...
@@ -101,13 +120,31 @@ const UserProflieNav = () => {
                   );
                 }
               )}
+=========
+              {NotificationMessages.map((val: any) => {
+                const { content } = val
+                return (
+                  <div
+                    onClick={() => GoToUserChat(String(val.sender))}
+                    className="bg-gray-200 py-2 px-1 rounded-[2px] text-gray-600 hover:bg-gray-300 hover:text-white  "
+                    key={val._id}
+                  >
+                    {content.slice(0, 40)}...
+                  </div>
+                )
+              })}
+>>>>>>>>> Temporary merge branch 2
             </div>
           ) : (
             <div className="flex gap-3 items-center justify-center text-primary z-10">
               <RiChatOffLine />
-              <p className="text-light-muted text-sm">
+<<<<<<<<< Temporary merge branch 1
+              <p className="text-muted text-sm">
                 No notifcations
               </p>
+=========
+              <p className="text-light-muted text-sm">No notifcations</p>
+>>>>>>>>> Temporary merge branch 2
             </div>
           )}
         </div>
