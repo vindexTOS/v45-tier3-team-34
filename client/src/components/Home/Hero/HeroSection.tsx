@@ -5,6 +5,7 @@ import animationData from "../../../../src/assets/lottie/animation_llpgw5p0.json
 import { motion } from "framer-motion";
 import { buttonVariants } from "../../../Shadcn/components/ui/button";
 import { Link } from "react-router-dom";
+import HeroCTAButton from "../../Buttons/HeroCTAButton";
 
 const HeroSection = () => {
   return (
