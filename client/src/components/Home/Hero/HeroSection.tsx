@@ -30,22 +30,33 @@ const HeroSection = () => {
 
             {/* Buttons */}
             <div className="flex gap-x-5 gap-y-2 sm:gap-5 w-full sm:w-max flex-wrap mt-5">
-              <Link
-                className={buttonVariants({
-                  variant: "default",
-                })}
-                to={"/register"}
+              <motion.div
+                drag
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
-                Get Started
-              </Link>
-              <Link
-                className={buttonVariants({
-                  variant: "secondary",
-                })}
-                to={"#"}
+                <Link
+                  className={buttonVariants({
+                    variant: "default",
+                  })}
+                  to={"/regiiser"}
+                >
+                  Get Started
+                </Link>{" "}
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
-                View Projects
-              </Link>
+                <Link
+                  className={buttonVariants({
+                    variant: "secondary",
+                  })}
+                  to={"#"}
+                >
+                  View Projects
+                </Link>{" "}
+              </motion.div>
             </div>
           </div>
         </motion.div>
