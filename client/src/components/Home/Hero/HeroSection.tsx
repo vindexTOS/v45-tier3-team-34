@@ -19,27 +19,34 @@ const HeroSection = () => {
           }}
         >
           <div className="flex flex-col gap-2 lg:gap-4">
-            <h1 className="text-[2.7rem] capitalize font-bold text-light-primary dark:text-dark-primary">
+            <h1 className="text-[2.7rem] capitalize font-bold text-primary dark:text-primary">
               DevConnect
             </h1>
-            <p className="text-base font-normal text-light-primary dark:text-dark-primary">
+            <p className="text-muted dark:text-muted">
               We connect junior developers with{" "}
               <br />
               low-paid real-world projects
             </p>
 
-            {/* actions */}
-            <div className="flex gap-x-10 gap-y-2 sm:gap-14 w-full sm:w-max flex-wrap mt-5">
-              <HeroCTAButton
-                title="Get Started"
-                color="green"
-              />
-              <HeroCTAButton
-                title="View Projects"
-                color="white"
-              />
+            {/* Buttons */}
+            <div className="flex gap-x-5 gap-y-2 sm:gap-5 w-full sm:w-max flex-wrap mt-5">
+              <Link
+                className={buttonVariants({
+                  variant: "default",
+                })}
+                to={"/register"}
+              >
+                Get Started
+              </Link>
+              <Link
+                className={buttonVariants({
+                  variant: "secondary",
+                })}
+                to={"#"}
+              >
+                View Projects
+              </Link>
             </div>
-
           </div>
         </motion.div>
         <div className="flex flex-col gap-4">
