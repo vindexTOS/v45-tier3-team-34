@@ -17,14 +17,16 @@ import useOutClick from '../../../hooks/useOutClick'
 const Company_Profile = () => {
   const { UserState, statusState, UserStateUpdate } = UseMainContext()
   const style = {
-    section: `flex items-center justify-between w-[100%] i px-4 py-5 border-b-[1px] border-gray-300 `,
+    section: `flex items-center justify-between w-[100%] px-4 py-5 border-b-[1px] border-gray-300 `,
     img: `h-[80px] w-[80px] rounded-[50%]`,
     imgDiv: `flex gap-1 items-start justify-around `,
     nameHeader: `text-gray-800 text-[1.6rem] font-bold`,
     timeZone: ` flex flex-col gap-2`,
-    mainDiv: `w-[25%] laptop:w-[300px] border-r-[1px] border-gray-300  flex items-center justify-start py-10 flex-col gap-2 `,
-    aTeg: ` laptop:w-[10rem]   flex items-center justify-center py-2  w-[15rem] border-2 border-orange-900/40 rounded-[39px] bg-yellow-600/10  gap-2 hover:bg-green-600/10`,
-    main: `w-[75%] h-[1000px]`,
+
+    mainDiv: `w-[25%] laptop:w-[300px] z-40 border-r-[1px] border-gray-300  flex items-center justify-start py-10 flex-col gap-2   max_xml:flex-row      max_xml:outline-none   max_xml:border-none   max_xml:w-[100%]   max_xml:justify-center max_md:flex-col  `,
+    aTeg: ` laptop:w-[90%] w-[90%]   flex items-center justify-center py-2  dark:bg-green-500  w-[15rem] border-2 border-orange-900/40 rounded-[39px] bg-yellow-600/10  gap-2 hover:bg-green-600/10`,
+
+    main: `w-[75%] h-[1000px] flex max_lg:items-center max_lg:justify-center  flex-col w-[100%]`,
     headerDiv: `flex  justify-around text-gray-700 text-[1.3rem] font-bold py-3`,
     topSection: ` border-b-[2px] px-4 py-6 flex flex-col  gap-5`,
   }
@@ -72,7 +74,7 @@ const Company_Profile = () => {
       <div
         ref={photEditRef}
         // onClick={() => console.log(UserStateUpdate)}
-        className="flex  flex-col gap-2 p-2 items-center justify-center relative "
+        className="flex  flex-col gap-2 p-2 items-center justify-center relative w-[1000px] laptop:w-[100%]  max_xl1500:w-[900px]  max_xl:w-[700px] max_lg:w-[100%] "
       >
         {PhotoEdit && <Edit_Profile_Photo setPhotoEdit={setPhotoEdit} />}
         <section
@@ -114,7 +116,7 @@ const Company_Profile = () => {
             <IoIosAddCircleOutline className="text-[2rem] text-green-400 hover:text-green-300" />
           </div>
         </section>
-        <section className="flex w-[100%]">
+        <section className="flex w-[100%] max_lg:flex-col max_lg:items-center max_lg:justify-center ">
           {/* side */}
           <div className={style.mainDiv}>
             {linkedin && (

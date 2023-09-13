@@ -14,7 +14,7 @@ const User_Side = ({
 
   const style = {
     mainDiv: `w-[25%] laptop:w-[300px] z-40 border-r-[1px] border-gray-300  flex items-center justify-start py-10 flex-col gap-2   max_xml:flex-row      max_xml:outline-none   max_xml:border-none   max_xml:w-[100%]   max_xml:justify-center max_md:flex-col  `,
-    aTeg: ` laptop:w-[10rem]   flex items-center justify-center py-2  dark:bg-green-500  w-[15rem] border-2 border-orange-900/40 rounded-[39px] bg-yellow-600/10  gap-2 hover:bg-green-600/10`,
+    aTeg: ` laptop:w-[90%]    flex items-center justify-center py-2  dark:bg-green-500  w-[15rem] border-2 border-orange-900/40 rounded-[39px] bg-yellow-600/10  gap-2 hover:bg-green-600/10`,
   }
   if (userInfo && userInfo.user_info) {
     const { website, linkedin, github } = userInfo.user_info

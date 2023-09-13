@@ -8,7 +8,7 @@ const Company_Profile_Main = () => {
   const { UserState, isUserLoggedIn } = UseMainContext()
   if (isUserLoggedIn && UserState.userData.user.role === 'Company/Startup') {
     return (
-      <section className="flex h-[100%] gap-20  ">
+      <section className="flex h-[100%] gap-20 w-[100%] ">
         <Company_Dashboard />
         <User_layout>
           <Outlet />
