@@ -1,3 +1,4 @@
+
 import React, { useRef, useState } from 'react'
 import { UseMainContext } from '../../context'
 import { DateTime } from 'luxon'
@@ -18,11 +19,12 @@ const User_Top = ({
 }) => {
   const [editName, setEditName] = useState(false)
   const style = {
-    section: `  flex items-center justify-start  px-1 md:px-2 py-5 border-b border-gray-300 w-full`,
-    img: `h-18 w-18 md:h-24 md:w-24  rounded-full object-contain border`,
+    section: `flex items-center justify-start  px-1 md:px-2 py-5 border-b border-gray-300 w-full`,
+    img: `h-12 w-12 md:h-20 md:w-20   lg:h-24 lg:w-24  rounded-full lg:object-cover border`,
+
     imgDiv: `flex gap-1 items-center justify-around`,
     nameHeader: `text-green-800 dark:text-green-500 text-lg md:text-2xl font-semibold`,
-    timeZone: ` flex flex-col gap-2 text-xs sm:text-sm md:text-lg `,
+    timeZone: ` flex flex-col gap-2  text-xs sm:text-sm md:text-lg font-thin`,
   }
   function getUserTimezone(time: string) {
     // const userTimeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -74,16 +76,19 @@ const User_Top = ({
             ) : (
               <input />
             )}
-            <div className="flex flex-col sm:flex-row gap-1 text-green-800 dark:text-white items-center justify-center">
-              <div className="flex gap-1 items-center">
+            <div className="flex flex-col sm:flex-row gap-1 text-gray-600 dark:text-gray-400 items-center justify-center">
+              <div className='flex gap-1 items-center text-sm'>
+
                 <FaMapMarkerAlt />
                 <p>{userTimeZone}</p>
               </div>
-              <p>{currentTime.slice(10, 16)} local time</p>
+              <p className='text-sm'>{currentTime.slice(10, 16)} local time</p>
             </div>
           </div>
         </div>
       </section>
+
+
     )
   } else {
     return <div>Login </div>

@@ -7,10 +7,10 @@ const WhyUs = () => {
   return (
     <section className="flex flex-col lg:flex-row justify-between gap-x-3 sm:mt-8 sm:mb-4">
       <article className="p-8 rounded-b-none lg:rounded-b-lg rounded-lg flex gap-2 flex-col ">
-        <h1 className="text-[3rem] leading-tight font-bold text-custom dark:text-dark-primary">
+        <h1 className="text-[3rem] leading-tight font-bold text-tersiary dark:text-primary">
           Why businesses turn to DevConnect
         </h1>
-        <div className="flex flex-col gap-y-2 text-light-muted dark:text-dark-muted ">
+        <div className="flex flex-col gap-y-2 text-muted dark:text-muted ">
           {why_us.map(
             ({ title, description }) => (
               <div key={title}>
@@ -29,9 +29,8 @@ const WhyUs = () => {
           )}
         </div>
       </article>
-      {/* problem ??? We can delete it --- ;) */}
-      {/* <article className="bg-[url('assets/img/why_us_img.png')] border min-w-[500px] bg-center bg-contain bg-no-repeat "></article> */}
-      <article className="flex items-end p-8 text-white bg-custom dark:bg-light-green rounded-xl">
+
+      <article className="flex items-end p-8 text-white bg-tersiary rounded-xl">
         <div className="space-y-3">
           <h1 className="text-3xl font-semibold">
             We’re the world’s work marketplace

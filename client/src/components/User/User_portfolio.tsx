@@ -1,64 +1,102 @@
-import React from 'react'
-import { UseMainContext } from '../../context'
-import { Link, useNavigate } from 'react-router-dom'
-import { BsPlus } from 'react-icons/bs'
+import React from "react";
+import { UseMainContext } from "../../context";
+import {
+  Link,
+  useNavigate,
+} from "react-router-dom";
+import { BsPlus } from "react-icons/bs";
 
-const User_portfolio = ({ isUser }: { isUser: boolean }) => {
-  const navigate = useNavigate()
-  const { PortfolioState } = UseMainContext()
+const User_portfolio = ({
+  isUser,
+}: {
+  isUser: boolean;
+}) => {
+  const navigate = useNavigate();
+  const { PortfolioState } = UseMainContext();
   if (
     PortfolioState.userProjects.projects &&
-    PortfolioState.userProjects.projects.length > 0
+    PortfolioState.userProjects.projects.length >
+      0
   ) {
     return (
-      <div className="flex  gap-5 px-5 py-10 flex-col">
+      <div className="flex  gap-5 px-5 py-2 flex-col border-t border-gray-600/20 dark:border-gray-600/50">
         <div className="flex items-center gap-3">
-          <h1 className="text-[1.4rem]  ">
+          <h1 className="text-lg font-semibold text-green-800 dark:text-green-500  ">
             Portfolio (
-            <span>{PortfolioState.userProjects.projects.length}</span>)
+            <span>
+              {
+                PortfolioState.userProjects
+                  .projects.length
+              }
+            </span>
+            )
           </h1>
           <div
-            onClick={() => navigate(`/dev_project_add/title`)}
+            onClick={() =>
+              navigate(`/dev_project_add/title`)
+            }
             className={`${
-              isUser && 'hidden'
+
+              isUser && "hidden"
             }  text-green-600 text-[1.2rem] mt-1 cursor-pointer  p-1 rounded-[50%] outline outline-2 outline-gray-300  `}
+
           >
             <BsPlus />
           </div>
         </div>
-        {PortfolioState.userProjects.projects.slice(0, 3).map((val: any) => {
-          return (
-            <section key={val._id} className="flex flex-col gap-2 ">
-              <img className="w-[250px] h-[200px]" src={val.photo} />
-              <div
-                className="text-green-500 text-bold  text-[1.1rem] font-medium hover:text-green-400 hover:underline"
-                onClick={() => navigate(`user/project/${val._id}`)}
+
+        {PortfolioState.userProjects.projects
+          .slice(0, 3)
+          .map((val: any) => {
+            return (
+              <section
+                key={val._id}
+                className="flex flex-col gap-2 "
               >
-                {val.title}
-              </div>
-            </section>
-          )
-        })}
+                <img
+                  className="w-[250px] h-[200px]"
+                  src={val.photo}
+                />
+                <div
+                  className="text-green-500 text-bold  text-[1.1rem] font-medium hover:text-green-400 hover:underline"
+                  onClick={() =>
+                    navigate(
+                      `user/project/${val._id}`
+                    )
+                  }
+
+                >
+                  {val.title}
+                </div>
+              </section>
+
+            );
+          })}
+
       </div>
-    )
+    );
   } else {
     return (
-      <div onClick={() => console.log(PortfolioState.userProjects)}>
+      <div
+        onClick={() =>
+          console.log(PortfolioState.userProjects)
+        }
+      >
         No projects
       </div>
-    )
+    );
   }
-}
+};
 
-export default User_portfolio
+export default User_portfolio;
 
-// {_id: '64e20327398d54b6da337463', user_id: '64d5f51ebd4cf4f2385d7c2e', title: 'fasf', description: 'https://www.youtube.com/watch?v=PsO6ZnUZI0g&list=RDGMEMHDXYb1_DDSgDsobPsOFxpAVMtQjsAJhsSw8&index=9', date: '2023-08-23T12:08:22.000Z', …}
+// {_id: '64e20327398d54b6da337463', user_id: '64d5f51ebd4cf4f2385d7c2e', title: 'fasf', description: 'https://www.youtube.com/watch?v=PsO6ZnUZI0g&list=RDGMEMHDXYb1_DDSgDsobPsOFxpAVMtQjsAJhsSw8&global=9', date: '2023-08-23T12:08:22.000Z', …}
 // date
 // :
 // "2023-08-23T12:08:22.000Z"
 // description
 // :
-// "https://www.youtube.com/watch?v=PsO6ZnUZI0g&list=RDGMEMHDXYb1_DDSgDsobPsOFxpAVMtQjsAJhsSw8&index=9"
+// "https://www.youtube.com/watch?v=PsO6ZnUZI0g&list=RDGMEMHDXYb1_DDSgDsobPsOFxpAVMtQjsAJhsSw8&global=9"
 // github
 // :
 // "saf"

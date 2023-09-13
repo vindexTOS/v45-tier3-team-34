@@ -26,12 +26,18 @@ export default function ListProjects() {
 
   if (companyProjectsData && companyProjectsData.length > 0) {
     return (
-      <div className="text-xl text-center text-light-muted dark:text-dark-muted transition-all duration-500 delay-100 ease-in-out">
-        <section className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-between">
-          {companyProjectsData.map((val: ProjectCardType) => {
-            return <ProjectCard data={val} key={val._id} />
-          })}
-        </section>
+      <div className="text-xl text-center text-muted dark:text-muted">
+        {companyProjectsData.map(
+          (val: CompanyProjectType) => {
+            return (
+              <div>
+                <h1>{val.title}</h1>
+                <img src={val.image} />
+              </div>
+            );
+          }
+        )}
+
       </div>
     )
   } else {

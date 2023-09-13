@@ -11,7 +11,7 @@ const FindClientcard = ({
   link: string;
 }) => {
   return (
-    <div className="flex w-full min-w-full md:min-w-min md:max-w-sm flex-col gap-6 backdrop-blur-md bg-white/20 hover:bg-white/40 dark:bg-gray-900/60 dark:hover:text-dark-green hover:text-light-inverted rounded-lg p-4 cursor-pointer">
+    <div className="flex w-full min-w-full md:min-w-min md:max-w-sm flex-col gap-6 backdrop-blur-md bg-white/20 hover:bg-white/40 dark:bg-gray-900/60 dark:hover:text-primary hover:text-light-inverted rounded-lg p-4 cursor-pointer">
       <h1 className="text-[1.8rem] leading-tight font-semibold">
         {title}
       </h1>
