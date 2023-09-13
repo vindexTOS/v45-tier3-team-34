@@ -75,7 +75,7 @@ const UserProflieNav = () => {
       />
       {dropDown && <User_drop_down />}
       {notficationDrop && (
-        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#F7FAF7] shadow-md max-h-[500px] overflow-y-scroll top-14 right-[2rem] z-10 border-2 border-t-primary">
+        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#F7FAF7] dark:bg-slate-900 shadow-md  top-14 right-[2rem] z-10 border-2 border-t-primary">
           {NotificationMessages &&
           NotificationMessages.length > 0 ? (
             <div
@@ -94,7 +94,7 @@ const UserProflieNav = () => {
                           String(val.sender)
                         )
                       }
-                      className="bg-gray-200 py-2 px-4 rounded-lg text-gray-600 hover:bg-gray-300  "
+                      className="bg-gray-200 py-2 px-4 rounded-lg text-muted hover:bg-[#F7FAF7]  dark:bg-slate-950 hover:dark:bg-slate-900"
                       key={val._id}
                     >
                       {content.slice(0, 40)}...
