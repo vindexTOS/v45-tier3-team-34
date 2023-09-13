@@ -8,7 +8,7 @@ import { MdOutlineReviews } from 'react-icons/md'
 import { useNavigate, useLocation } from 'react-router-dom'
 const Profile_Dashboard = () => {
   const style = {
-    mainDiv: `w-fit dark:outline  dark:outline-[1px] shadow-sm shadow-green-800 bg-green-200/10 dark:bg-slate-800 dark:outline-gray-300 rounded-md h-[500px] flex flex-col py-10 gap-5 mt-2 md:mt-8 `,
+    mainDiv: `w-fit px-4 md:p-auto dark:outline  dark:outline-[1px] shadow-sm shadow-green-800 bg-green-200/10 dark:bg-slate-800 dark:outline-gray-300 rounded-md h-[500px] flex flex-col py-10 gap-5 mt-2 md:mt-8 `,
   }
   const navigate = useNavigate()
   const location = useLocation()
@@ -33,7 +33,7 @@ const Profile_Dashboard = () => {
         // ?? profile link wont change ??
 
         <div
-          className={` z-10 cursor-pointer group flex items-center px-2 md:px-10 gap-2 hover:text-blue-300 cursor-pointer font-thin text-sm sm:text-base ${
+          className={` z-10 group flex items-center px-2 md:px-10 gap-2 hover:text-blue-300 dark:hover:text-blue-200 cursor-pointer font-thin text-sm sm:text-base ${
             location.pathname === `/profile/${val.link}`
               ? 'text-blue-400 dark:text-blue-400 underline'
               : 'text-green-800 dark:text-green-500'

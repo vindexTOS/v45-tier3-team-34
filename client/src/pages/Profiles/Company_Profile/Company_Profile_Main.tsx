@@ -5,19 +5,16 @@ import { Navigate, Outlet } from 'react-router-dom'
 import { UseMainContext } from '../../../context'
 
 const Company_Profile_Main = () => {
-  const { UserState, isUserLoggedIn } = UseMainContext()
-  if (isUserLoggedIn && UserState.userData.user.role === 'Company/Startup') {
-    return (
-      <section className="flex h-[100%] gap-20  ">
-        <Company_Dashboard />
+  return (
+    <section className="flex md:justify-center gap-2 md:gap-10 sm:px-4 w-full  ">
+      <Company_Dashboard />
+      <div className='flex-1'>
         <User_layout>
           <Outlet />
         </User_layout>
-      </section>
-    )
-  } else {
-    return <Navigate to="/" />
-  }
+      </div>
+    </section>
+  )
 }
 
 export default Company_Profile_Main

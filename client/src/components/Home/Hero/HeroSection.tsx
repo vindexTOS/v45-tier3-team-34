@@ -1,13 +1,14 @@
 import { companies } from "../../../contants";
-import HeroCTAButton from "../../Buttons/HeroCTAButton";
 import HeroCompany from "./HeroCompany";
 import Lottie from "lottie-react";
 import animationData from "../../../../src/assets/lottie/animation_llpgw5p0.json";
 import { motion } from "framer-motion";
+import { buttonVariants } from "../../../Shadcn/components/ui/button";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <section className="rounded-lg w-full flex flex-col sm:flex-row transition-all duration-500 delay-100 ease-in-out">
+    <section className="rounded-lg w-full flex flex-col sm:flex-row">
       <article className="flex-1 flex flex-col items-start justify-center gap-20 p-5 lg:px-20">
         <motion.div
           animate={{ y: 0, opacity: 1 }}
@@ -38,14 +39,15 @@ const HeroSection = () => {
                 color="white"
               />
             </div>
+
           </div>
         </motion.div>
         <div className="flex flex-col gap-4">
-          <h2 className="text-base font-normal text-light-muted dark:text-dark-muted">
+          <h2 className="text-sm text-muted dark:text-muted">
             Working with the best
           </h2>
           {/* socials */}
-          <div className="flex gap-8 text-light-muted dark:text-dark-muted">
+          <div className="flex gap-8 text-muted dark:text-muted">
             {companies.map(({ name, icon }) => (
               <HeroCompany
                 key={name}

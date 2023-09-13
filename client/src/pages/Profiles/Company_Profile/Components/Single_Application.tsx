@@ -99,16 +99,16 @@ const Single_Application = ({ data }: { data: any }) => {
   }, [isSend])
 
   return (
-    <div className="absolute w-[500px] h-[500px] bg-white rounded-[20px] p-4 shadow-lg">
+    <div className="absolute w-full min-w-fit h-fit  bg-white/90 dark:bg-slate-900/95 backdrop-blur-xl z-20 rounded-md p-4 shadow-md ">
       <div className="flex items-center space-x-4">
         <img src={avatar} alt={userName} className="w-12 h-12 rounded-full" />
         <div>
-          <h2 className="text-xl font-semibold">{userName}</h2>
-          <p className="text-gray-600">{email}</p>
+          <h2 className="text-lg sm:text-xl font-semibold">{userName}</h2>
+          <p className="text-gray-600 text-sm font-thin pl-1">{email}</p>
         </div>
       </div>
       <p className="mt-4">{description}</p>
-      <div className="mt-4">
+      <div className="mt-4 ">
         <span
           className={`px-2 py-1 rounded ${
             accepted ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
@@ -119,19 +119,19 @@ const Single_Application = ({ data }: { data: any }) => {
         <span className="ml-2">{role}</span>
       </div>
       <div className="mt-4">
-        <span className="font-bold">Project ID:</span> {project_id}
+        <span className="font-semibold  text-slate-800 dark:text-slate-200 pr-0.5 ">Project ID:</span> {project_id}
       </div>
       <div className="mt-2">
-        <span className="font-bold">Project Finished:</span>{' '}
+        <span className="font-semibold  text-slate-800 dark:text-slate-200 pr-0.5 ">Project Finished:</span>{' '}
         {projectFinnished ? 'Yes' : 'No'}
       </div>
 
       <div className="mt-2">
-        <span className="font-bold">Bide:</span> ${bide}
+        <span className="font-semibold  text-slate-800 dark:text-slate-200 pr-0.5 ">Bide:</span> ${bide}
       </div>
 
       <div className="mt-2">
-        <span className="font-bold">Date:</span> {date}
+        <span className="font-semibold  text-slate-800 dark:text-slate-200 pr-0.5 ">Date:</span> {date}
       </div>
       <div className="mt-4 flex justify-between">
         {!accepted && (
