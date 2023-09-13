@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import User_layout from '../../../components/User/User_layout'
 import { MdModeEdit } from 'react-icons/md'
 import { DateTime } from 'luxon'
@@ -11,7 +11,9 @@ import Succsess from '../../../components/Status/Success'
 import LoadingComponent from '../../../components/Status/Loading'
 import User_info_update_input from '../../../components/User/User_Info_Update_Input'
 import { useNavigate } from 'react-router-dom'
+import Edit_Profile_Photo from '../../../components/Dev_Portfolio/Edit_Profile_Photo'
 import axios from 'axios'
+import useOutClick from '../../../hooks/useOutClick'
 const Company_Profile = () => {
   const { UserState, statusState, UserStateUpdate } = UseMainContext()
   const style = {
@@ -42,6 +44,12 @@ const Company_Profile = () => {
     return currentTime
   }
   const currentTime = getUserTimezone()
+  const [PhotoEdit, setPhotoEdit] = useState<boolean>(false)
+  const photEditRef = useRef(null)
+  const PhotoEditFun = () => {
+    setPhotoEdit(false)
+  }
+  useOutClick(photEditRef, PhotoEditFun)
 
   if (UserState.userData && UserState.full_user_info.user_info) {
     const {
@@ -62,9 +70,11 @@ const Company_Profile = () => {
     } = UserState.full_user_info.user
     return (
       <div
+        ref={photEditRef}
         // onClick={() => console.log(UserStateUpdate)}
-        className="flex  flex-col gap-2 p-2 items-center justify-center "
+        className="flex  flex-col gap-2 p-2 items-center justify-center relative "
       >
+        {PhotoEdit && <Edit_Profile_Photo setPhotoEdit={setPhotoEdit} />}
         <section
           //   onClick={() => console.log(UserState.full_user_info.user_info)}
           className={style.section}
@@ -72,6 +82,7 @@ const Company_Profile = () => {
           <div className={style.imgDiv}>
             <div className="relative">
               <div
+                onClick={() => setPhotoEdit(!PhotoEdit)}
                 className={`  absolute text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px]`}
               >
                 <MdModeEdit />
@@ -173,3 +184,6 @@ const Company_Profile = () => {
 }
 
 export default Company_Profile
+function UpdateUserInfo(obj: any, arg1: any) {
+  throw new Error('Function not implemented.')
+}

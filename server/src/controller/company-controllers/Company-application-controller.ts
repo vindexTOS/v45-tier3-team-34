@@ -30,7 +30,7 @@ export const MakeCompanyApplication = tryCatch(
       dev_id,
     })
 
-    if (didUserMadeApplication) {
+    if (didUserMadeApplication.project_id === project_id) {
       return res.status(406).json({ msg: 'You already made bide' })
     }
 
@@ -50,7 +50,9 @@ export const GetSingleProjectApplication = tryCatch(
   async (req: Request, res: any) => {
     const { project_id } = req.params
 
-    const findProject = await project_application_model.find({ project_id })
+    const findProject = await project_application_model.find({
+      project_id,
+    })
 
     if (!findProject) {
       return res.status(404).json({ msg: 'Does not exist' })

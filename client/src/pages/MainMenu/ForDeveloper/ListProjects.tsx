@@ -1,38 +1,30 @@
 // import React from "react";
 
-import axios from "axios";
-import { UseMainContext } from "../../../context";
-import { useEffect } from "react";
-import { CompanyProjectType } from "../../../common.types";
-
+import axios from 'axios'
+import { UseMainContext } from '../../../context'
+import { useEffect } from 'react'
+import { ProjectCardType } from '../../../common.types'
+import ProjectCard from '../../../components/ProjectsListingPage/Projects/ProjectCard'
 export default function ListProjects() {
-  const {
-    companyProjectsData,
-    setCompanyProjectsData,
-  } = UseMainContext();
+  const { companyProjectsData, setCompanyProjectsData } = UseMainContext()
 
   const getAllProjects = async () => {
     try {
       const res = await axios.get(
-        `${
-          import.meta.env.VITE_GLOBAL_URL
-        }/companies/projects`
-      );
-      setCompanyProjectsData(res.data.companies);
-      console.log(res.data.companies);
+        `${import.meta.env.VITE_GLOBAL_URL}/companies/projects`,
+      )
+      setCompanyProjectsData(res.data.projectsData)
+      console.log(res.data)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   useEffect(() => {
-    getAllProjects();
-  }, []);
+    getAllProjects()
+  }, [])
 
-  if (
-    companyProjectsData &&
-    companyProjectsData.length > 0
-  ) {
+  if (companyProjectsData && companyProjectsData.length > 0) {
     return (
       <div className="text-xl text-center text-muted dark:text-muted">
         {companyProjectsData.map(
@@ -45,9 +37,10 @@ export default function ListProjects() {
             );
           }
         )}
+
       </div>
-    );
+    )
   } else {
-    return <div>Loading..</div>;
+    return <div>Loading..</div>
   }
 }
