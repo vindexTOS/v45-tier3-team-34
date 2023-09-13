@@ -6,6 +6,7 @@ import io, { Socket } from 'socket.io-client'
 import { IoSendSharp } from 'react-icons/io5'
 import { DefaultEventsMap } from '@socket.io/component-emitter'
 import ChatSection from './ChatSection'
+import { ChatMessage } from '../../common.types'
 const ENDPOINT = import.meta.env.VITE_GLOBAL_URL
 
 const Chat = ({ userId }: { userId: string }) => {
@@ -13,8 +14,7 @@ const Chat = ({ userId }: { userId: string }) => {
     UserState,
     isUserLoggedIn,
     GetMessages,
-    chatRoom,
-    setChatRoomInfo,
+
     messages,
     setMessages,
   } = UseMainContext()
@@ -36,8 +36,6 @@ const Chat = ({ userId }: { userId: string }) => {
             receiverId: userId,
           },
         )
-        console.log(res)
-        console.log('message sent')
 
         socket.emit('message', {
           messageContent,
@@ -57,8 +55,6 @@ const Chat = ({ userId }: { userId: string }) => {
         `${import.meta.env.VITE_GLOBAL_URL}/user/info/${userId}`,
       )
       setUserInfo(res.data)
-
-      console.log(res.data)
     } catch (error) {
       console.log(error)
     }
@@ -71,8 +67,8 @@ const Chat = ({ userId }: { userId: string }) => {
     GetMessages(userId)
   }, [userId])
   useEffect(() => {
-    socket.on('new message', (data: any) => {
-      setMessages((prevMessages: any) => [...prevMessages, data])
+    socket.on('new message', (data: ChatMessage) => {
+      setMessages((prevMessages: ChatMessage) => [...prevMessages, data])
     })
 
     return () => {

@@ -64,7 +64,6 @@ const Single_Application = ({ data }: { data: any }) => {
             receiverId: dev_id,
           },
         )
-        console.log(res)
       }
     } catch (error) {
       console.log(error)

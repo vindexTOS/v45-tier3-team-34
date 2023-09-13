@@ -14,7 +14,6 @@ export default function ListProjects() {
         `${import.meta.env.VITE_GLOBAL_URL}/companies/projects`,
       )
       setCompanyProjectsData(res.data.projectsData)
-      console.log(res.data)
     } catch (error) {
       console.log(error)
     }

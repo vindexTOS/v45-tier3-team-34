@@ -19,8 +19,6 @@ const Profile = () => {
             UserState.userData.user._id
           }`,
         )
-        const data = res.data
-        console.log(data)
       } catch (error) {
         console.log(error)
       }

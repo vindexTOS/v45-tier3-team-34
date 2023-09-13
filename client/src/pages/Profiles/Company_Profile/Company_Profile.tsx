@@ -22,8 +22,8 @@ const Company_Profile = () => {
     imgDiv: `flex gap-1 items-start justify-around `,
     nameHeader: `text-gray-800 text-[1.6rem] font-bold`,
     timeZone: ` flex flex-col gap-2`,
-    mainDiv: `w-[25%] border-r-[1px] border-gray-300  flex items-center justify-start py-10 flex-col gap-2 `,
-    aTeg: `flex items-center justify-center py-2  w-[15rem] border-2 border-orange-900/40 rounded-[39px] bg-yellow-600/10  gap-2 hover:bg-green-600/10`,
+    mainDiv: `w-[25%] laptop:w-[300px] border-r-[1px] border-gray-300  flex items-center justify-start py-10 flex-col gap-2 `,
+    aTeg: ` laptop:w-[10rem]   flex items-center justify-center py-2  w-[15rem] border-2 border-orange-900/40 rounded-[39px] bg-yellow-600/10  gap-2 hover:bg-green-600/10`,
     main: `w-[75%] h-[1000px]`,
     headerDiv: `flex  justify-around text-gray-700 text-[1.3rem] font-bold py-3`,
     topSection: ` border-b-[2px] px-4 py-6 flex flex-col  gap-5`,
@@ -119,7 +119,7 @@ const Company_Profile = () => {
           <div className={style.mainDiv}>
             {linkedin && (
               <a href={linkedin} target="_blank" className={style.aTeg}>
-                <AiOutlineLinkedin className="text-[1.2rem] text-yellow-900 cursor-pointer" />
+                <AiOutlineLinkedin className="text-[1.2rem] text-yellow-900 " />
 
                 <h1 className="text-yellow-900 text-[1rem]">Linkedin</h1>
               </a>
@@ -184,6 +184,3 @@ const Company_Profile = () => {
 }
 
 export default Company_Profile
-function UpdateUserInfo(obj: any, arg1: any) {
-  throw new Error('Function not implemented.')
-}

@@ -127,3 +127,25 @@ export type ApplicationType = {
   userInfo: UserCardType
   applicationProject: CompanyProjectType
 }
+
+export type ChatMessage = {
+  sender: string // ID of the sender
+  receiverId: string // ID of the receiver
+  isRead?: boolean // Indicates if the message has been read
+  content: string // The message content
+  timestamp?: string // Timestamp of when the message was sent
+  _id?: string // Unique identifier for the message
+}
+
+export type RoomInfo = {
+  userNotification: { notification: boolean }
+  _id: string
+  participants: string[]
+  messages: ChatMessage[]
+  __v: number
+}
+
+export type ChatData = {
+  messages: ChatMessage[]
+  roomInfo: RoomInfo
+}

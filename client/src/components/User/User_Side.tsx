@@ -13,8 +13,8 @@ const User_Side = ({
   const { UserState } = UseMainContext()
 
   const style = {
-    mainDiv: `w-[25%] laptop:w-[300px] border-r-[1px] border-gray-300  flex items-center justify-start py-10 flex-col gap-2 `,
-    aTeg: ` laptop:w-[10rem]   flex items-center justify-center py-2  w-[15rem] border-2 border-orange-900/40 rounded-[39px] bg-yellow-600/10  gap-2 hover:bg-green-600/10`,
+    mainDiv: `w-[25%] laptop:w-[300px] z-40 border-r-[1px] border-gray-300  flex items-center justify-start py-10 flex-col gap-2   max_xml:flex-row      max_xml:outline-none   max_xml:border-none   max_xml:w-[100%]   max_xml:justify-center max_md:flex-col  `,
+    aTeg: ` laptop:w-[10rem]   flex items-center justify-center py-2  dark:bg-green-500  w-[15rem] border-2 border-orange-900/40 rounded-[39px] bg-yellow-600/10  gap-2 hover:bg-green-600/10`,
   }
   if (userInfo && userInfo.user_info) {
     const { website, linkedin, github } = userInfo.user_info
@@ -23,23 +23,29 @@ const User_Side = ({
       <div className={style.mainDiv}>
         {github && (
           <a href={github} target="_blank" className={style.aTeg}>
-            <DiGithubAlt className="text-[1.2rem] text-yellow-900   " />
+            <DiGithubAlt className="text-[1.2rem] text-yellow-900   dark:text-white " />
 
-            <h1 className="text-yellow-900 text-[1rem]">GitHub</h1>
+            <h1 className="text-yellow-900 text-[1rem] dark:text-white">
+              GitHub
+            </h1>
           </a>
         )}
         {linkedin && (
           <a href={linkedin} target="_blank" className={style.aTeg}>
-            <AiOutlineLinkedin className="text-[1.2rem] text-yellow-900 " />
+            <AiOutlineLinkedin className="text-[1.2rem] text-yellow-900 dark:text-white " />
 
-            <h1 className="text-yellow-900 text-[1rem]">Linkedin</h1>
+            <h1 className="text-yellow-900 text-[1rem] dark:text-white">
+              Linkedin
+            </h1>
           </a>
         )}
         {website && (
           <a href={website} target="_blank" className={style.aTeg}>
-            <SiWebmoney className="text-[1.2rem] text-yellow-900" />
+            <SiWebmoney className="text-[1.2rem] text-yellow-900 dark:text-white" />
 
-            <h1 className="text-yellow-900 text-[1rem]">Personal Website</h1>
+            <h1 className="text-yellow-900 text-[1rem] dark:text-white">
+              Personal Website
+            </h1>
           </a>
         )}
       </div>

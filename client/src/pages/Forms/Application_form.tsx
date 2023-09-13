@@ -61,7 +61,6 @@ export default function Application_form() {
             receiverId: company_id,
           },
         )
-        console.log(res)
       }
     } catch (error) {
       console.log(error)

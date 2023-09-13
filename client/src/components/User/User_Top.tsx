@@ -4,9 +4,9 @@ import { DateTime } from 'luxon'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import Edit_Profile_Photo from '../Dev_Portfolio/Edit_Profile_Photo'
 import { MdModeEdit } from 'react-icons/md'
+import { BsFillChatRightTextFill } from 'react-icons/bs'
 import useOutClick from '../../hooks/useOutClick'
 // Assuming you have retrieved user data including their timezone from the database
-
 const User_Top = ({
   userData,
   userInfo,
@@ -18,9 +18,9 @@ const User_Top = ({
 }) => {
   const [editName, setEditName] = useState(false)
   const style = {
-    section: `  flex items-center justify-start  px-1 md:px-2 py-5 border-b border-gray-300 w-full`,
-    img: `h-18 w-18 md:h-24 md:w-24  rounded-full object-contain border`,
-    imgDiv: `flex gap-1 items-center justify-around`,
+    section: `  flex items-center justify-around px-1 md:px-2 py-5 border-b border-gray-300 w-full px-20 max_md:pb-5 max_md:px-1`,
+    img: `h-18 w-18 md:h-24 md:w-24 max_md:w-[70px] max_md:h-[70px]  rounded-full object-contain border`,
+    imgDiv: `flex gap-1 items-center justify-start w-[80%] max_md:w-[100%]`,
     nameHeader: `text-green-800 dark:text-green-500 text-lg md:text-2xl font-semibold`,
     timeZone: ` flex flex-col gap-2 text-xs sm:text-sm md:text-lg `,
   }
@@ -44,10 +44,14 @@ const User_Top = ({
   useOutClick(photEditRef, PhotoEditFun)
 
   if (userData && userData.user && userInfo) {
-    const { avatar, date, email, role, userName } = userData.user
+    const { avatar, date, email, role, userName, _id } = userData.user
     const { firstName, lastName, userTimeZone } = userInfo
 
     const currentTime = getUserTimezone(userTimeZone)
+
+    function GoToUserChat(arg0: any): void {
+      throw new Error('Function not implemented.')
+    }
 
     return (
       <section ref={photEditRef} className={style.section}>
@@ -58,7 +62,9 @@ const User_Top = ({
           <div className="relative">
             <div
               onClick={() => setPhotoEdit(!PhotoEdit)}
-              className={`  absolute text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px]`}
+              className={`${
+                isUser && 'hidden'
+              }  absolute text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px]`}
             >
               <MdModeEdit />
             </div>
@@ -82,6 +88,15 @@ const User_Top = ({
               <p>{currentTime.slice(10, 16)} local time</p>
             </div>
           </div>
+        </div>
+        <div
+          onClick={() => GoToUserChat(_id || '')}
+          className={` ${
+            !isUser && 'hidden'
+          } flex flex-col items-center justify-center dark:text-white gap-2 z-40`}
+        >
+          <h1 className="max_md:hidden">Message: {userName}</h1>
+          <BsFillChatRightTextFill className="text-green-500 text-[2rem] cursor-pointer  hover:text-green-300" />
         </div>
       </section>
     )

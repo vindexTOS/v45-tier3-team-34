@@ -12,7 +12,6 @@ const Developer_list = () => {
       const res = await axios.get(`${import.meta.env.VITE_GLOBAL_URL}/all_devs`)
 
       setDevData(res.data)
-      console.log(res.data)
     } catch (error) {
       console.log(error)
     }

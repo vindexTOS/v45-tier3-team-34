@@ -80,10 +80,7 @@ const UserProflieNav = () => {
       {notficationDrop && (
         <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#F7FAF7] shadow-md max-h-[500px] overflow-y-scroll top-14 right-[2rem] z-10 border-2 border-t-green-600">
           {NotificationMessages && NotificationMessages.length > 0 ? (
-            <div
-              onClick={() => console.log(NotificationMessages)}
-              className="flex flex-col gap-2 "
-            >
+            <div className="flex flex-col gap-2 ">
               {NotificationMessages.map((val: any) => {
                 const { content } = val
                 return (

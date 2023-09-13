@@ -40,7 +40,7 @@ const EditableField: React.FC<EditableFieldProps> = ({
   return (
     <div className="flex gap-2 items-center justify-center">
       {!editing ? (
-        <h1>{initialValue}</h1>
+        <h1 className="dark:text-white">{initialValue}</h1>
       ) : (
         <div className="flex items-center justify-center gap-1">
           {textArea ? (
