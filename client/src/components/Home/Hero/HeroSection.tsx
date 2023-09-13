@@ -2,13 +2,33 @@ import { companies } from "../../../contants";
 import HeroCompany from "./HeroCompany";
 import Lottie from "lottie-react";
 import animationData from "../../../../src/assets/lottie/animation_llpgw5p0.json";
-import { motion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { buttonVariants } from "../../../Shadcn/components/ui/button";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 const HeroSection = () => {
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["end end", "end start"],
+  });
+
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.5],
+    [1.5, 0.8]
+  );
+
   return (
-    <section className="rounded-lg w-full flex flex-col sm:flex-row">
+    <motion.section
+      ref={targetRef}
+      className="rounded-lg w-full flex flex-col sm:flex-row"
+    >
       <article className="flex-1 flex flex-col items-start justify-center gap-20 p-5 lg:px-20">
         <motion.div
           animate={{ y: 0, opacity: 1 }}
@@ -31,7 +51,6 @@ const HeroSection = () => {
             {/* Buttons */}
             <div className="flex gap-x-5 gap-y-2 sm:gap-5 w-full sm:w-max flex-wrap mt-5">
               <motion.div
-                drag
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -60,30 +79,41 @@ const HeroSection = () => {
             </div>
           </div>
         </motion.div>
-        <div className="flex flex-col gap-4">
+        <motion.div
+          style={{ scale }}
+          className="flex flex-col gap-4"
+        >
           <h2 className="text-sm text-muted dark:text-muted">
             Working with the best
           </h2>
           {/* socials */}
           <div className="flex gap-8 text-muted dark:text-muted">
             {companies.map(({ name, icon }) => (
-              <HeroCompany
-                key={name}
-                title={name}
-                icon={icon}
-              />
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <HeroCompany
+                  key={name}
+                  title={name}
+                  icon={icon}
+                />
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </article>
       {/* Image section */}
-      <article className="flex-1 flex items-center justify-center">
+      <motion.article
+        style={{ scale }}
+        className="flex-1 flex items-center justify-center"
+      >
         <Lottie
           className="w-[80%] h-auto"
           animationData={animationData}
         />
-      </article>
-    </section>
+      </motion.article>
+    </motion.section>
   );
 };
 
