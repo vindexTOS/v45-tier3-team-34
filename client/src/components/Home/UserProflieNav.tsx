@@ -1,13 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { BsBell } from 'react-icons/bs'
-import { RiChatOffLine } from 'react-icons/ri'
-import User_drop_down from '../User/User_drop_down'
-import { UseMainContext } from '../../context'
-import useOutClick from '../../hooks/useOutClick'
-import axios from 'axios'
+import React, {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { BsBell } from "react-icons/bs";
+import { RiChatOffLine } from "react-icons/ri";
+import User_drop_down from "../User/User_drop_down";
+import { UseMainContext } from "../../context";
+import useOutClick from "../../hooks/useOutClick";
+import axios from "axios";
 
 const UserProflieNav = () => {
-  const dropDownRef = useRef<HTMLDivElement | null>(null)
+  const dropDownRef =
+    useRef<HTMLDivElement | null>(null);
 
   const {
     UserState,
@@ -15,33 +20,39 @@ const UserProflieNav = () => {
     GetMessages,
     GoToUserChat,
     isUserLoggedIn,
-  } = UseMainContext()
+  } = UseMainContext();
   useEffect(() => {
-    GetMessages(UserState.userData.user._id)
-  }, [UserState.userData.user._id])
-  const [dropDown, setDropDown] = useState(false)
-  const [notficationDrop, setNotificationDrop] = useState(false)
+    GetMessages(UserState.userData.user._id);
+  }, [UserState.userData.user._id]);
+  const [dropDown, setDropDown] = useState(false);
+  const [notficationDrop, setNotificationDrop] =
+    useState(false);
   const closeDropDown = () => {
-    setDropDown(false)
-  }
+    setDropDown(false);
+  };
 
-  const [NotificationMessages, setNotificationMessages] = useState<any>([])
-  useOutClick(dropDownRef, closeDropDown)
+  const [
+    NotificationMessages,
+    setNotificationMessages,
+  ] = useState<any>([]);
+  useOutClick(dropDownRef, closeDropDown);
 
   const UNreadNotifications = async () => {
     try {
       if (isUserLoggedIn) {
         const req = await axios.get(
-          `${import.meta.env.VITE_GLOBAL_URL}/chat/get-notifications/${
+          `${
+            import.meta.env.VITE_GLOBAL_URL
+          }/chat/get-notifications/${
             UserState.userData.user._id
-          }`,
-        )
-        setNotificationMessages(req.data)
+          }`
+        );
+        setNotificationMessages(req.data);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
     // if (chatRoom && chatRoom.messages && chatRoom.messages.length > 0) {
@@ -54,8 +65,8 @@ const UserProflieNav = () => {
     //   setNotificationMessages(Alert)
     // }
 
-    UNreadNotifications()
-  }, [chatRoom])
+    UNreadNotifications();
+  }, [chatRoom]);
 
   return (
     <div
@@ -63,7 +74,9 @@ const UserProflieNav = () => {
       className="relative flex items-center justify-around gap-5 cursor-pointer"
     >
       <div
-        onClick={() => setNotificationDrop(!notficationDrop)}
+        onClick={() =>
+          setNotificationDrop(!notficationDrop)
+        }
         className="relative"
       >
         <BsBell className="text-[1.5rem] text-muted dark:text-muted" />
@@ -78,12 +91,13 @@ const UserProflieNav = () => {
       />
       {dropDown && <User_drop_down />}
       {notficationDrop && (
-        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#F7FAF7] dark:bg-slate-900 shadow-md  top-14 right-[2rem] z-10 border-2 border-t-primary">
+        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#e3e9e3] dark:bg-slate-900 shadow-md max-h-[500px] overflow-y-scroll top-14 right-[2rem] z-10 border-2 border-t-primary">
           {NotificationMessages &&
           NotificationMessages.length > 0 ? (
-
             <div
-              onClick={() => console.log(NotificationMessages)}
+              onClick={() =>
+                console.log(NotificationMessages)
+              }
               className="flex flex-col gap-2 "
             >
               {NotificationMessages.map(
@@ -96,26 +110,27 @@ const UserProflieNav = () => {
                           String(val.sender)
                         )
                       }
-                      className="bg-gray-200 py-2 px-4 rounded-lg text-muted hover:bg-[#F7FAF7]  dark:bg-slate-950 hover:dark:bg-slate-900"
+                      className="bg-white dark:bg-slate-700 p-2 rounded-lg text-muted hover:bg-primary dark:hover:bg-primary  hover:text-white text-sm"
                       key={val._id}
                     >
-                      {content.slice(0, 40)}...
+                      {content.slice(0, 50)}...
                     </div>
                   );
                 }
               )}
-
             </div>
           ) : (
             <div className="flex gap-3 items-center justify-center text-primary z-10">
               <RiChatOffLine />
-              <p className="text-light-muted text-sm">No notifcations</p>
+              <p className="text-tersiary text-sm">
+                No notifcations
+              </p>
             </div>
           )}
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default UserProflieNav
+export default UserProflieNav;
