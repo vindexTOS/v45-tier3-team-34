@@ -30,7 +30,7 @@ const Archived_Projects = () => {
 
   if (progressProject && progressProject.length > 0) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="flex  flex-col gap-2 p-2 items-center justify-center relative w-[1000px] laptop:w-[100%]  max_xl1500:w-[900px]  max_xl:w-[700px] max_lg:w-[100%]">
         {progressProject.map((val: ApplicationType) => (
           <div
             key={val._id}
