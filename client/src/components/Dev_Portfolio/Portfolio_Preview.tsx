@@ -64,7 +64,7 @@ const Portfolio_Preview = () => {
     imgDiv: `relative w-[100%] flex items-center flex-col justify-center`,
     img: `h-[500px] w-[100%] rounded-[12px] cursor-pointer`,
     icon: `absolute text-[6rem] text-white hover:text-gray-200 cursor-pointer`,
-    skillsDiv: `flex gap-2   w-[100%] flex-wrap  max_smm:w-[90%]   bg-green-300/50 shadow-md p-2 rounded-[9px]     z-20`,
+    skillsDiv: `flex gap-2   w-[100%] flex-wrap  max_smm:w-[90%]   bg-primary/50 shadow-md p-2 rounded-[9px]     z-20`,
     singleSkill: ` cursor-pointer hover:bg-red-500 hover:text-white shadow-md text-gray-400 p-1 rounded-[9px] bg-gray-100`,
   };
 

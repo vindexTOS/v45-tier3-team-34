@@ -7,14 +7,14 @@ const WhyUs = () => {
   return (
     <section className="flex flex-col lg:flex-row justify-between gap-x-3 sm:mt-8 sm:mb-4">
       <article className="p-8 rounded-b-none lg:rounded-b-lg rounded-lg flex gap-2 flex-col ">
-        <h1 className="text-[3rem] leading-tight font-bold text-tersiary dark:text-primary">
+        <h1 className="text-[3rem] leading-tight font-bold text-tersiary dark:text-primary font-header">
           Why businesses turn to DevConnect
         </h1>
         <div className="flex flex-col gap-y-2 text-muted dark:text-muted ">
           {why_us.map(
             ({ title, description }) => (
               <div key={title}>
-                <h1 className="text-[1.4rem] font-semibold flex gap-2 items-center text-light-primary dark:text-dark-green">
+                <h1 className="text-[1.4rem] font-semibold flex gap-2 items-center text-primary dark:text-primary">
                   <span className="text-xl">
                     <MdStars />
                   </span>
@@ -32,7 +32,7 @@ const WhyUs = () => {
 
       <article className="flex items-end p-8 text-white bg-tersiary rounded-xl">
         <div className="space-y-3">
-          <h1 className="text-3xl font-semibold">
+          <h1 className="text-3xl font-semibold font-header">
             We’re the world’s work marketplace
           </h1>
           {/* others features */}

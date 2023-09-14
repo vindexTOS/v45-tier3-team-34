@@ -10,7 +10,7 @@ const FindClient = () => {
       </section>
       <section className="flex flex-col gap-4 md:gap-10 ">
         <article className="w-full md:max-w-md flex flex-col gap-y-12">
-          <h1 className="text-[2rem] sm:text-[3rem] font-bold">
+          <h1 className="text-[2rem] sm:text-[3rem] font-bold font-header">
             Find talent your way
           </h1>
         </article>

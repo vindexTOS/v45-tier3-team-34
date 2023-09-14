@@ -91,9 +91,11 @@ const UserProflieNav = () => {
       />
       {dropDown && <User_drop_down />}
       {notficationDrop && (
-        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#e3e9e3] dark:bg-slate-900 shadow-md max-h-[500px] overflow-y-scroll top-14 right-[2rem] z-10 border-2 border-t-primary">
+        <div className="absolute flex flex-col py-4 px-5 rounded-[10px] bg-[#F7FAF7] dark:bg-slate-900 shadow-md  top-14 right-[2rem] z-10 border-2 border-t-primary">
           {NotificationMessages &&
           NotificationMessages.length > 0 ? (
+
+
             <div
               onClick={() =>
                 console.log(NotificationMessages)

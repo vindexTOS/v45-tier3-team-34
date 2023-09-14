@@ -152,7 +152,7 @@ export default function NavBar() {
                     <li>
                       <a
                         href="#"
-                        className="block py-2 pl-3 pr-4 text-white bg-green-700 rounded lg:bg-transparent lg:text-green-700 lg:p-0 lg:dark:text-green-500 dark:bg-green-600 lg:dark:bg-transparent"
+                        className="block py-2 pl-3 pr-4 text-white bg-green-700 rounded lg:bg-transparent lg:text-green-700 lg:p-0 lg:dark:text-green-500 dark:bg-primary lg:dark:bg-transparent"
                         aria-current="page"
                       >
                         Find Developer

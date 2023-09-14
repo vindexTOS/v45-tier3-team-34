@@ -9,8 +9,8 @@ const SkillSelection = () => {
     skills: `flex flex-col justify-center gap-10 items-center w-[100%]  max_smm:h-[200px]   `,
     skillInputWrapper: `flex items-center justify-center w-[100%] h-[100%]   max_lg:w-[50%] max_smm:flex-col max_smm:w-[100%] max_smm:gap-0`,
     skillsDiv: `flex gap-2 w-full md:w-[95%] flex-wrap    bg-green-200/10 dark:bg-slate-800 shadow-md p-2 rounded-md  z-20 border border-gray-600/20 dark:border-gray-600/50`,
-    singleSkill: ` cursor-pointer hover:bg-green-800 hover:dark:bg-green-500 text-gray-700 hover:dark:text-gray-800 dark:text-gray-300  hover:text-white shadow-md text-gray-400 p-2 rounded-md bg-white dark:bg-slate-700`,
-    addBtn: `outline outline-2 outline-green-500 rounded-[8px] w-[9rem] h-[2.5rem] mt-5 text-white bg-green-300`,
+    singleSkill: ` cursor-pointer hover:bg-green-800 hover:dark:bg-primary text-gray-700 hover:dark:text-gray-800 dark:text-gray-300  hover:text-white shadow-md text-gray-400 p-2 rounded-md bg-white dark:bg-slate-700`,
+    addBtn: `outline outline-2 outline-green-500 rounded-[8px] w-[9rem] h-[2.5rem] mt-5 text-white bg-primary`,
   };
   const [search, setSearch] =
     React.useState<string>("");
@@ -31,12 +31,10 @@ const SkillSelection = () => {
     }
   };
   const RemoveSkill = (i: number) => {
-
     let newArr =
       PortfolioState.technologies.filter(
         (_val, global) => global !== i
       );
-
 
     PortfolioDispatch({
       type: "technologies-removed",
@@ -78,13 +76,11 @@ const SkillSelection = () => {
               // PortfolioDispatch({ type: 'skill', payload: e.target.value })
             }}
             id="skill"
-
             type={"text"}
             placeholder={
               "Add technologies used one by one"
             }
             className="appearance-none block w-[100%] rounded-[9px] bg-white text-gray-700 border border-gray-200   py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-
           />
           {openSearch && (
             <div className="w-[95%] z-50 overflow-y-scroll h-[120px] flex flex-col p-2 text-gray-700 dark:text-gray-300  bg-white dark:bg-slate-700/95 shadow-md rounded-[2px] absolute">

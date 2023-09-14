@@ -1,11 +1,10 @@
-
-import React, { useRef, useState } from 'react'
-import { UseMainContext } from '../../context'
-import { DateTime } from 'luxon'
-import { FaMapMarkerAlt } from 'react-icons/fa'
-import Edit_Profile_Photo from '../Dev_Portfolio/Edit_Profile_Photo'
-import { MdModeEdit } from 'react-icons/md'
-import useOutClick from '../../hooks/useOutClick'
+import React, { useRef, useState } from "react";
+import { UseMainContext } from "../../context";
+import { DateTime } from "luxon";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import Edit_Profile_Photo from "../Dev_Portfolio/Edit_Profile_Photo";
+import { MdModeEdit } from "react-icons/md";
+import useOutClick from "../../hooks/useOutClick";
 // Assuming you have retrieved user data including their timezone from the database
 
 const User_Top = ({
@@ -41,12 +40,13 @@ const User_Top = ({
     return currentTime;
   }
 
-  const [PhotoEdit, setPhotoEdit] = useState<boolean>(false)
-  const photEditRef = useRef(null)
+  const [PhotoEdit, setPhotoEdit] =
+    useState<boolean>(false);
+  const photEditRef = useRef(null);
   const PhotoEditFun = () => {
-    setPhotoEdit(false)
-  }
-  useOutClick(photEditRef, PhotoEditFun)
+    setPhotoEdit(false);
+  };
+  useOutClick(photEditRef, PhotoEditFun);
 
   if (userData && userData.user && userInfo) {
     const {
@@ -62,12 +62,20 @@ const User_Top = ({
     const currentTime =
       getUserTimezone(userTimeZone);
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     const userNameUpdate = async () => {};
 
     return (
-      <section ref={photEditRef} className={style.section}>
+      <section
+        ref={photEditRef}
+        className={style.section}
+      >
         <div className="absolute w-[100%] h-[100%] top-20 right-0 ">
-          {PhotoEdit && <Edit_Profile_Photo setPhotoEdit={setPhotoEdit} />}
+          {PhotoEdit && (
+            <Edit_Profile_Photo
+              setPhotoEdit={setPhotoEdit}
+            />
+          )}
         </div>
         <div className={style.imgDiv}>
           <div className="relative">
@@ -75,12 +83,16 @@ const User_Top = ({
               className={` ${
                 isUser && "hidden"
               } absolute text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px]`}
-              onClick={() => setPhotoEdit(!PhotoEdit)}
-              
+              onClick={() =>
+                setPhotoEdit(!PhotoEdit)
+              }
             >
               <MdModeEdit />
             </div>
-            <img src={`${avatar}`} className={style.img} />
+            <img
+              src={`${avatar}`}
+              className={style.img}
+            />
           </div>
           <div className={style.timeZone}>
             {!editName ? (
@@ -95,9 +107,8 @@ const User_Top = ({
             ) : (
               <input />
             )}
-            <div className="flex flex-col sm:flex-row gap-1 text-gray-600 dark:text-gray-400 items-center justify-center">
-              <div className='flex gap-1 items-center text-sm'>
-
+            <div className="flex flex-col sm:flex-row gap-1 text-muted dark:text-gray-400 items-center justify-center">
+              <div className="flex gap-1 items-center text-sm">
                 <FaMapMarkerAlt />
                 <p>{userTimeZone}</p>
               </div>

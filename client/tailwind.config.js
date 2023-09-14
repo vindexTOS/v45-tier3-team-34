@@ -15,6 +15,10 @@ export const theme = {
     },
   },
   extend: {
+    fontFamily: {
+      header: ["DM Serif Display", "serif"],
+      title: ["Lisu Bosa", "serif"],
+    },
     colors: {
       border: "hsl(var(--border))",
       input: "hsl(var(--input))",
