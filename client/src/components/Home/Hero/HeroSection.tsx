@@ -30,14 +30,7 @@ const HeroSection = () => {
       className="rounded-lg w-full flex flex-col sm:flex-row"
     >
       <article className="flex-1 flex flex-col items-start justify-center gap-20 p-5 lg:px-20">
-        <motion.div
-          animate={{ y: 0, opacity: 1 }}
-          initial={{ y: -200, opacity: 0.2 }}
-          transition={{
-            type: "spring",
-            stiffness: 120,
-          }}
-        >
+        <motion.div style={{ scale }}>
           <div className="flex flex-col gap-2 lg:gap-4">
             <h1 className="text-[2.7rem] sm:text-[4rem] capitalize font-bold text-primary dark:text-primary font-header">
               DevConnect
@@ -58,7 +51,7 @@ const HeroSection = () => {
                   className={buttonVariants({
                     variant: "default",
                   })}
-                  to={"/regiiser"}
+                  to={"/register"}
                 >
                   Get Started
                 </Link>{" "}
