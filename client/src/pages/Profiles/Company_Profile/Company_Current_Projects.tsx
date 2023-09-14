@@ -32,7 +32,8 @@ const Current_Projects = () => {
 
   if (isUserLoggedIn && projects && projects.length > 0) {
     return (
-      <div className="h-[500px] p-4 md:p-10 overflow-y-auto ">
+
+      <div className="h-[900px] w-[100%] p-10 overflow-y-scroll  flex  flex-col gap-2 p-2 items-center justify-start  relative w-[1000px] laptop:w-[100%]  max_xl1500:w-[900px]  max_xl:w-[700px] max_lg:w-[100%]">
         {projects.map((val: any) => (
           <Current_Project_Card key={val._id} data={val} />
         ))}
