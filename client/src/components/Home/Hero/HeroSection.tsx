@@ -39,7 +39,7 @@ const HeroSection = () => {
           }}
         >
           <div className="flex flex-col gap-2 lg:gap-4">
-            <h1 className="text-[2.7rem] capitalize font-bold text-primary dark:text-primary">
+            <h1 className="text-[2.7rem] sm:text-[4rem] capitalize font-bold text-primary dark:text-primary font-header">
               DevConnect
             </h1>
             <p className="text-muted dark:text-muted">
@@ -52,7 +52,7 @@ const HeroSection = () => {
             <div className="flex gap-x-5 gap-y-2 sm:gap-5 w-full sm:w-max flex-wrap mt-5">
               <motion.div
                 whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileTap={{ scale: 0.8 }}
               >
                 <Link
                   className={buttonVariants({

@@ -36,7 +36,7 @@ const Categories = () => {
     >
       <div className="sticky top-[20vh]">
         <article className="flex flex-col gap-y-0">
-          <h1 className="text-[1.5rem] font-semibold text-primary dark:text-primary">
+          <h1 className="text-[1.5rem] font-semibold text-primary dark:text-primary font-title">
             Browse projects by category
           </h1>
           <p className="text-[1rem] font-light text-muted dark:text-muted">
