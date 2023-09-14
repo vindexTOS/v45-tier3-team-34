@@ -7,7 +7,7 @@ import { buttonVariants } from "../../../Shadcn/components/ui/button";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import LoginRegButton from "../../Buttons/RegListButton";
-
+import { useScroll,useTransform } from "framer-motion";
 const HeroSection = () => {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
