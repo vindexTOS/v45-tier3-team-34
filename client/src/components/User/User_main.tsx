@@ -72,7 +72,7 @@ const User_main = ({
       </div>
     )
   } else {
-    return <div>login</div>
+    return <div onClick={() => console.log(userInfo)}>login</div>
   }
 }
 

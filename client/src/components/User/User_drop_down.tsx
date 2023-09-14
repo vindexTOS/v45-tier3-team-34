@@ -1,13 +1,13 @@
 // import React from "react";
-import { UseMainContext } from '../../context'
-import Cookies from 'universal-cookie'
-import { useNavigate } from 'react-router-dom'
-import { TbLogout2 } from 'react-icons/tb'
-import { CgProfile } from 'react-icons/cg'
+import { UseMainContext } from "../../context";
+import Cookies from "universal-cookie";
+import { useNavigate } from "react-router-dom";
+import { TbLogout2 } from "react-icons/tb";
+import { CgProfile } from "react-icons/cg";
 
 export default function User_drop_down() {
-  const { UserState } = UseMainContext()
-  const cookies = new Cookies()
+  const { UserState } = UseMainContext();
+  const cookies = new Cookies();
   const style = {
     mainDiv: `flex flex-col items-center justify-between py-8 w-[225px] bg-[#F3F4F6] dark:bg-slate-900 shadow-md rounded-[10px] absolute right-0 top-[3.5rem]`,
     imgWrapper: `flex flex-col items-center w-[100%]`,
@@ -17,40 +17,71 @@ export default function User_drop_down() {
   };
   const navigate = useNavigate();
   const logOut = () => {
-    cookies.remove('jwt_authorization')
-    window.location.reload()
-  }
+    cookies.remove("jwt_authorization");
+    window.location.reload();
+  };
   const navigateToProfile = () => {
-    if (UserState.userData && UserState.userData.user) {
-      if (UserState.userData.user.role === 'Company/Startup') {
-        navigate('/company_profile')
-      } else if (UserState.userData.user.role === 'Developer') {
-        navigate('/profile')
+    if (
+      UserState.userData &&
+      UserState.userData.user
+    ) {
+      if (
+        UserState.userData.user.role ===
+        "Company/Startup"
+      ) {
+        navigate("/company_profile");
+      } else if (
+        UserState.userData.user.role ===
+        "Developer"
+      ) {
+        navigate("/profile");
       }
     }
-  }
-  if (UserState.userData && UserState.userData.user) {
-    const { avatar, userName, role } = UserState.userData.user
+  };
+  if (
+    UserState.userData &&
+    UserState.userData.user
+  ) {
+    const { avatar, userName, role } =
+      UserState.userData.user;
     return (
-      <div className={style.mainDiv}>
+      <div
+        onClick={() =>
+          console.log(UserState.userData)
+        }
+        className={style.mainDiv}
+      >
         <div className={style.imgWrapper}>
-          <img className={style.img} src={avatar} />
-          <h1 className="font-semibold mt-3">{userName}</h1>
-          <p className="text-xs text-light-primary">{role}</p>
+          <img
+            className={style.img}
+            src={avatar}
+          />
+          <h1 className="font-semibold mt-3">
+            {userName}
+          </h1>
+          <p className="text-xs text-primary">
+            {role}
+          </p>
         </div>
         <div className="border border-t-primary my-4 w-[90%]"></div>
         <div className={style.btnWrapper}>
-          <button onClick={navigateToProfile} className={style.btn}>
+          <button
+            onClick={navigateToProfile}
+            className={style.btn}
+          >
             <CgProfile />
             Profile
           </button>
-          <button className={style.btn} onClick={logOut}>
+          <button
+            className={style.btn}
+            onClick={logOut}
+          >
             <TbLogout2 /> Log out
           </button>
         </div>
       </div>
-    )
+    );
   } else {
-    return <div>Nothing</div>
+    return <div>Nothing</div>;
   }
 }

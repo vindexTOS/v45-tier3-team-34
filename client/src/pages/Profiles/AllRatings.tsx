@@ -5,13 +5,13 @@ const AllRatings = ({ data }: { data: RatingTypes[] }) => {
   const navigate = useNavigate()
 
   return (
-    <div className="   max-w-fit       items-start gap-3  max_md:p-0  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+    <div className=" w-[100%]   grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
       {data.map((rating, index) => {
         const { avatar, userName } = rating.user
         return (
           <div
             key={index}
-            className="bg-white  w-[500px]   max_md:w-[300px] shadow-lg p-4 rounded-lg hover:shadow-xl transition duration-300 ease-in-out"
+            className="bg-white   w-[500px] shadow-lg p-4 rounded-lg hover:shadow-xl transition duration-300 ease-in-out"
           >
             <p className="text-gray-700">{`Review: ${rating.rating_review}`}</p>
             <div className="flex justify-between items-center mt-4">

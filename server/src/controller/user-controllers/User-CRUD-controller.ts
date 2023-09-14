@@ -58,7 +58,7 @@ export const get_all_devs = tryCatch(async (req: Request, res: any) => {
       const dev_info = await user_info_model.findOne({
         user_id: dev._id.toString(),
       })
-
+      console.log(dev_info)
       // Combine user and user_info details
       const combinedData = {
         user: dev,

@@ -108,7 +108,8 @@ export const Notification = tryCatch(async (req: Request, res: any) => {
 
 export const SeeNotifications = tryCatch(async (req: Request, res: any) => {
   const { receiverId } = req.body
- 
+  console.log(receiverId)
+
   // Find all notifications with messages matching the receiverId
   const allNotifications = await Chat.find({
     'messages.receiverId': receiverId,

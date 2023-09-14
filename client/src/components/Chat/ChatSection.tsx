@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { UseMainContext } from '../../context'
 import axios from 'axios'
-import { ChatMessage } from '../../common.types'
 export default function ChatSection({ messages }: { messages: any }) {
   const { UserState, isUserLoggedIn } = UseMainContext()
   const chatContainerRef: React.RefObject<HTMLSpanElement> = useRef(null) // Define the type of the ref
@@ -20,6 +19,7 @@ export default function ChatSection({ messages }: { messages: any }) {
           `${import.meta.env.VITE_GLOBAL_URL}/chat/see-notifications`,
           { receiverId: UserState.userData.user._id },
         )
+        console.log(res)
       } catch (error) {
         console.log(error)
       }
@@ -35,7 +35,7 @@ export default function ChatSection({ messages }: { messages: any }) {
     >
       {messages &&
         messages.length > 0 &&
-        messages.map((val: ChatMessage) => {
+        messages.map((val: any) => {
           const { sender, content } = val
 
           // Determine if the message is sent by the user or received from others
@@ -49,7 +49,11 @@ export default function ChatSection({ messages }: { messages: any }) {
           }`
 
           return (
-            <div className={messageClasses} key={val._id}>
+            <div
+              onClick={() => console.log(messages)}
+              className={messageClasses}
+              key={val._id}
+            >
               <h1>{content}</h1>
             </div>
           )

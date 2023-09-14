@@ -1,8 +1,7 @@
 import React from 'react'
 import Company_Dashboard from './Company_Dashboard'
 import User_layout from '../../../components/User/User_layout'
-import { Navigate, Outlet } from 'react-router-dom'
-import { UseMainContext } from '../../../context'
+import { Outlet } from 'react-router-dom'
 
 const Company_Profile_Main = () => {
   return (

@@ -7,7 +7,7 @@ import {
   GetUserSingleUserRating,
 } from '../controller/Rating-controllers/Raiting-controller'
 const route = express.Router()
-//  /rating
+
 route
   .route('/:user_id')
   .get(GetUserSingleUserRating)

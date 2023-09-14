@@ -1,12 +1,10 @@
-import React, { useRef, useState } from 'react'
-import { UseMainContext } from '../../context'
-import { DateTime } from 'luxon'
-import { FaMapMarkerAlt } from 'react-icons/fa'
-import Edit_Profile_Photo from '../Dev_Portfolio/Edit_Profile_Photo'
-import { MdModeEdit } from 'react-icons/md'
-import { BsFillChatRightTextFill } from 'react-icons/bs'
-import useOutClick from '../../hooks/useOutClick'
+import { useState } from "react";
+import { DateTime } from "luxon";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import Edit_Profile_Photo from "../Dev_Portfolio/Edit_Profile_Photo";
+import { MdModeEdit } from "react-icons/md";
 // Assuming you have retrieved user data including their timezone from the database
+
 const User_Top = ({
   userData,
   userInfo,
@@ -38,41 +36,43 @@ const User_Top = ({
 
     return currentTime;
   }
-
-  const [PhotoEdit, setPhotoEdit] = useState<boolean>(false)
-  const photEditRef = useRef(null)
-  const PhotoEditFun = () => {
-    setPhotoEdit(false)
-  }
-  useOutClick(photEditRef, PhotoEditFun)
-
   if (userData && userData.user && userInfo) {
-    const { avatar, date, email, role, userName, _id } = userData.user
-    const { firstName, lastName, userTimeZone } = userInfo
+    const {
+      avatar,
+      date,
+      email,
+      role,
+      userName,
+    } = userData.user;
+    const { firstName, lastName, userTimeZone } =
+      userInfo;
 
     const currentTime =
       getUserTimezone(userTimeZone);
 
-    function GoToUserChat(arg0: any): void {
-      throw new Error('Function not implemented.')
-    }
+    const userNameUpdate = async () => {};
 
     return (
-      <section ref={photEditRef} className={style.section}>
-        <div className="absolute w-[100%] h-[100%] top-20 right-0 ">
-          {PhotoEdit && <Edit_Profile_Photo setPhotoEdit={setPhotoEdit} />}
-        </div>
+      <section
+        onClick={() => console.log(userData.user)}
+        className={style.section}
+      >
         <div className={style.imgDiv}>
           <div className="relative">
             <div
-              onClick={() => setPhotoEdit(!PhotoEdit)}
-              className={`${
-                isUser && 'hidden'
-              }  absolute text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px]`}
+              className={` ${
+                isUser && "hidden"
+              } absolute text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px]`}
             >
               <MdModeEdit />
             </div>
-            <img src={`${avatar}`} className={style.img} />
+            <img
+              onClick={() =>
+                getUserTimezone(userTimeZone)
+              }
+              src={`${avatar}`}
+              className={style.img}
+            />
           </div>
           <div className={style.timeZone}>
             {!editName ? (
@@ -98,15 +98,6 @@ const User_Top = ({
               </p>
             </div>
           </div>
-        </div>
-        <div
-          onClick={() => GoToUserChat(_id || '')}
-          className={` ${
-            !isUser && 'hidden'
-          } flex flex-col items-center justify-center dark:text-white gap-2 z-40`}
-        >
-          <h1 className="max_md:hidden">Message: {userName}</h1>
-          <BsFillChatRightTextFill className="text-green-500 text-[2rem] cursor-pointer  hover:text-green-300" />
         </div>
       </section>
     );

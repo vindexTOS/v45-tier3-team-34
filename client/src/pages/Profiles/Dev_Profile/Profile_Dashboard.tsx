@@ -21,19 +21,22 @@ const Profile_Dashboard = () => {
     {
       title: 'Current Projects',
       Icon: AiOutlineProject,
-      link: 'applications',
+      link: 'current_project',
     },
     { title: 'Archived Projects', Icon: GoArchive, link: 'archived_project' },
     { title: 'Messages', Icon: TiMessages, link: 'messages' },
     { title: 'Reviews', Icon: MdOutlineReviews, link: 'reviews' },
   ]
   return (
-    <div className={style.mainDiv}>
+    <div
+      
+      className={style.mainDiv}
+    >
       {NavigationLinks.map((val: any) => (
         // ?? profile link wont change ??
-
+        
         <div
-          className={` z-10 cursor-pointer group flex items-center px-2 md:px-10 gap-2 hover:text-blue-300 cursor-pointer font-thin text-sm sm:text-base ${
+          className={`group flex items-center px-2 md:px-10 gap-2 hover:text-blue-300 cursor-pointer font-thin text-sm sm:text-base ${
             location.pathname === `/profile/${val.link}`
               ? 'text-blue-400 dark:text-blue-400 underline'
               : 'text-green-800 dark:text-green-500'
@@ -41,8 +44,8 @@ const Profile_Dashboard = () => {
           key={`${val.link}`}
           onClick={() => navigate(val.link)}
         >
-          <val.Icon className={`text-2xl md:text-3xl `} />
-          <h1 className="hidden md:block">{val.title}</h1>
+          <val.Icon className={`text-2xl md:text-3xl ` } />
+          <h1 className='hidden md:block'>{val.title}</h1>
         </div>
       ))}
     </div>
