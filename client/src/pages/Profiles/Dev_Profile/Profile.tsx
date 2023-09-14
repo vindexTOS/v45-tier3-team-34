@@ -44,7 +44,7 @@ const Profile = () => {
     //_id should not be accsasable on UI, _id will be used to create chat,update user infomration, post new projects etc
 
     return (
-      <div className="flex  flex-col gap-2 items-center justify-center  ">
+      <div className="flex flex-col gap-2 items-center justify-center  ">
         <User_Top
           isUser={false}
           userData={UserState.userData}

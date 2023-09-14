@@ -107,7 +107,7 @@ const User_Top = ({
             ) : (
               <input />
             )}
-            <div className="flex flex-col sm:flex-row gap-1 text-gray-600 dark:text-gray-400 items-center justify-center">
+            <div className="flex flex-col sm:flex-row gap-1 text-muted dark:text-gray-400 items-center justify-center">
               <div className="flex gap-1 items-center text-sm">
                 <FaMapMarkerAlt />
                 <p>{userTimeZone}</p>
