@@ -92,28 +92,28 @@ const Single_User_Page = () => {
                 <div className={style.headerDiv}>
                   <User_info_Update_input
                     isUser={true}
-                    initialValue={devInfo.user_info.title}
+                    initialValue={devInfo.user_info?.title}
                     type="title"
-                    obj={{ title: UserStateUpdate.title }}
-                    newValue={UserStateUpdate.title}
+                    obj={{ title: UserStateUpdate?.title }}
+                    newValue={UserStateUpdate?.title}
                     link="user"
                   />
                   <User_info_Update_input
                     isUser={true}
-                    initialValue={`$${devInfo.user_info.hrPay}.00/hr`}
+                    initialValue={`$${devInfo?.user_info?.hrPay}.00/hr`}
                     type="hrPay"
-                    obj={{ hrPay: UserStateUpdate.hrPay }}
-                    newValue={UserStateUpdate.hrPay}
+                    obj={{ hrPay: UserStateUpdate?.hrPay }}
+                    newValue={UserStateUpdate?.hrPay}
                     link="user"
                   />
                 </div>
                 <div>
                   <User_info_Update_input
                     isUser={true}
-                    initialValue={devInfo.user_info.summary}
+                    initialValue={devInfo?.user_info?.summary}
                     type="summary"
-                    obj={{ summary: UserStateUpdate.summary }}
-                    newValue={UserStateUpdate.summary}
+                    obj={{ summary: UserStateUpdate?.summary }}
+                    newValue={UserStateUpdate?.summary}
                     textArea={true}
                     style=" w-[600px] h-[300px]"
                     link="user"
