@@ -278,3 +278,17 @@ export const GetArchivedProjects = tryCatch(async (req: Request, res: any) => {
 
   return res.status(200).json(archivedProjects)
 })
+export const GetArchivedProjectsDev = tryCatch(
+  async (req: Request, res: any) => {
+    const { dev_id } = req.params
+
+    const archivedProjects = await project_application_model.find({
+      dev_id,
+    })
+    if (!archivedProjects) {
+      return res.status(406).json({ msg: 'Your archive is empity' })
+    }
+
+    return res.status(200).json({ data: archivedProjects })
+  },
+)

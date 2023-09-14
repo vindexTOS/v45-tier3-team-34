@@ -67,7 +67,7 @@ const User_main = ({
             />
           </div>
         </section>
-        <User_portfolio isUser={isUser} />
+        {/* <User_portfolio isUser={isUser} /> */}
         <User_skills isUser={isUser} userInfo={userInfo} />
       </div>
     )
