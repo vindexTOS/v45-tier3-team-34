@@ -44,7 +44,7 @@ const ProjectCard = ({
           {/* reviews */}
           <RatesStars data={data.ratings} />
           {/* title */}
-          <h1 className="text-[1.2rem] font-semibold text-light-primary dark:text-dark-primary">
+          <h1 className="text-[1.2rem] font-semibold text-primary dark:text-primary">
             {title}
           </h1>
           {/* description */}
@@ -59,7 +59,7 @@ const ProjectCard = ({
       <div className=" dark:text-gray-200 flex justify-between p-4">
         {/* price */}
         <p className="flex items-center text-light-muted dark:text-dark-muted text-[.8rem]">
-          <span className="text-[1rem] font-semibold text-light-primary dark:text-dark-primary mr-2">
+          <span className="text-[1rem] font-semibold text-primary dark:text-primary mr-2">
             ${price}
           </span>
           project Budjet

@@ -31,6 +31,8 @@ const Company_Dashboard = () => {
   return (
     <div className={style.mainDiv}>
       {NavigationLinks.map((val: any) => (
+        // ?? profile link wont change ??
+        
         <div
           className={` z-10 cursor-pointer group flex items-center px-2 md:px-10 gap-2 hover:text-blue-300 cursor-pointer font-thin text-sm sm:text-base ${
             location.pathname === `/company_profile/${val.link}`

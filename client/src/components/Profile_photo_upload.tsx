@@ -101,12 +101,12 @@ const ImgUpload = ({
             payload: false,
           });
 
-      
+          console.log("succsess");
           console.log(downloadURL);
           removeImgFromHtml();
         } catch (error) {
           console.log(error);
-         
+          console.log("ერრორ");
         }
       } else {
         ImgDispatch({

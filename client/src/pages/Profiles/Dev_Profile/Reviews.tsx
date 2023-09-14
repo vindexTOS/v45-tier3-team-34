@@ -16,6 +16,7 @@ const Reviews = () => {
           }`,
         )
         setReviewsData(res.data.rating)
+        console.log(res)
       } catch (error) {
         console.log(error)
       }
@@ -38,4 +39,5 @@ const Reviews = () => {
   }
 }
 
-export default Reviews
+
+export default Reviews;

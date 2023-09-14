@@ -23,9 +23,9 @@ const User_main = ({
     UserStateUpdate,
   } = UseMainContext()
   const style = {
-    mainDiv: `w-full h-auto`,
-    headerDiv: `flex flex-wrap justify-between  sm:justify-around  items-start md:item-center text-green-800 dark:text-white text-[1.3rem] `,
-    topSection: ` border-b-[2px] px-4 py-6 flex flex-col  gap-5`,
+    mainDiv: `w-full h-auto border-t border-gray-600/20 dark:border-gray-600/50 md:border-t-0`,
+    headerDiv: `w-full flex flex-wrap sm:flex-nowrap justify-between sm:justify-start gap-x-10 gap-y-4  items-start md:item-center text-green-800 dark:text-white text-[1.3rem] `,
+    topSection: ` px-4 py-6 flex flex-col  gap-5`,
   }
 
   if (userData && userData.user && userInfo) {
@@ -48,7 +48,7 @@ const User_main = ({
             />
             <User_info_Update_input
               isUser={isUser}
-              initialValue={`$${hrPay}.00/hr`}
+              initialValue={`$${hrPay?.type}.00/hr`}
               type="hrPay"
               obj={{ hrPay: UserStateUpdate.hrPay }}
               newValue={UserStateUpdate.hrPay}
@@ -67,12 +67,12 @@ const User_main = ({
             />
           </div>
         </section>
-        {/* <User_portfolio isUser={isUser} /> */}
+        <User_portfolio isUser={isUser} />
         <User_skills isUser={isUser} userInfo={userInfo} />
       </div>
     )
   } else {
-    return <div>login</div>
+    return <div onClick={() => console.log(userInfo)}>login</div>
   }
 }
 

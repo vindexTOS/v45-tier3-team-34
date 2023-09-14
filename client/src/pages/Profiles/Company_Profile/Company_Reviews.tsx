@@ -16,6 +16,7 @@ const Reviews = () => {
           }`,
         )
         setReviewsData(res.data.rating)
+        console.log(res)
       } catch (error) {
         console.log(error)
       }

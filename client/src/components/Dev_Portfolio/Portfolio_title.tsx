@@ -1,21 +1,24 @@
-import React from 'react'
-import InputFieldGeneral from '../Forms/InputFieldGeneral'
-import DatePicker from 'react-datepicker'
-import Portfolio_Buttons from './Portfolio_Buttons'
-import 'react-datepicker/dist/react-datepicker.css'
-import { UseMainContext } from '../../context'
-import Error from '../Status/Error'
+import React from "react";
+import InputFieldGeneral from "../Forms/InputFieldGeneral";
+import DatePicker from "react-datepicker";
+import Portfolio_Buttons from "./Portfolio_Buttons";
+import "react-datepicker/dist/react-datepicker.css";
+import { UseMainContext } from "../../context";
+import Error from "../Status/Error";
 const Portfolio_title = () => {
-  const { PortfolioState, PortfolioDispatch } = UseMainContext()
+  const { PortfolioState, PortfolioDispatch } =
+    UseMainContext();
   const style = {
     section: `flex flex-col items-start justify-around h-[500px] max_850:w-[100%]`,
     mainHeader: `text-[1.2rem] font-bold text-gray-700`,
     DatePicker: `appearance-none block max_850:w-[100%] w-[270px] ml-3   rounded-[9px] bg-white text-gray-700 border border-gray-200   py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`,
-  }
+  };
   return (
     <section className={style.section}>
       <Error error={PortfolioState.error} />
-      <h1 className={style.mainHeader}>Add porfolio project</h1>
+      <h1 className={style.mainHeader}>
+        Add porfolio project
+      </h1>
       <InputFieldGeneral
         label={`Project Title`}
         placeholder="Enter a brief but descriptive title"
@@ -25,13 +28,14 @@ const Portfolio_title = () => {
         stateType="title"
       />
 
-      <div className="text-gray-600 w-[50%] max_850:w-[100%] px-5 text-[14px]">
+      <div className="text-muted w-[50%] max_850:w-[100%] px-5 text-[14px]">
         <p className="text-gray-800 font-medium ">
           Related DevConnect Job (optional)
         </p>
         <p>
-          Once you've completed contracts on DevConnect, you'll be able to link
-          your work.
+          Once you've completed contracts on
+          DevConnect, you'll be able to link your
+          work.
         </p>
       </div>
       <div className="flex flex-col items-start justify-around gap-2  max_850:w-[100%]  ">
@@ -41,8 +45,13 @@ const Portfolio_title = () => {
         <DatePicker
           className={style.DatePicker}
           selected={PortfolioState.date}
-          onChange={(date: React.SetStateAction<Date>) =>
-            PortfolioDispatch({ type: 'date', payload: date })
+          onChange={(
+            date: React.SetStateAction<Date>
+          ) =>
+            PortfolioDispatch({
+              type: "date",
+              payload: date,
+            })
           }
         />
       </div>
@@ -53,7 +62,7 @@ const Portfolio_title = () => {
         cancelToken="cancel"
       />
     </section>
-  )
-}
+  );
+};
 
-export default Portfolio_title
+export default Portfolio_title;

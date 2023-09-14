@@ -10,15 +10,9 @@ const FindClient = () => {
       </section>
       <section className="flex flex-col gap-4 md:gap-10 ">
         <article className="w-full md:max-w-md flex flex-col gap-y-12">
-          <h1 className="text-[2rem] sm:text-[3rem] font-bold">
+          <h1 className="text-[2rem] sm:text-[3rem] font-bold font-header">
             Find talent your way
           </h1>
-          {/* <p className="text-lg md:text-2xl font-normal">
-            Work with the largest network of
-            independent professionals and get
-            things done from quick turnarounds to
-            big transformations.
-          </p> */}
         </article>
         {/* actions */}
         <article className="flex flex-wrap w-full 3xl:w-10/12 gap-6 ">

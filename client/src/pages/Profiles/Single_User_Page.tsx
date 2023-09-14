@@ -13,7 +13,7 @@ import axios from 'axios'
 import RatesStars from '../../components/ProjectsListingPage/Projects/RatesStars'
 const Single_User_Page = () => {
   const style = {
-    mainDiv: `w-[75%] h-[1000px] gap-10 flex flex-col`,
+    mainDiv: `w-[75%] h-[1000px]`,
     headerDiv: `flex  justify-around text-gray-700 text-[1.3rem] font-bold py-3`,
     topSection: ` border-b-[2px] px-4 py-6 flex flex-col  gap-5`,
   }
@@ -74,13 +74,15 @@ const Single_User_Page = () => {
   if (ratingFromDb) {
     return (
       <User_layout>
-        <div className="flex   flex-col gap-2 p-2 items-center justify-center ">
+        <div className="flex  flex-col gap-2 p-2 items-center justify-center ">
+          <h1 onClick={() => GoToUserChat(dev_id || '')}>Message</h1>
+
           <User_Top
             isUser={true}
             userData={devInfo}
             userInfo={devInfo.user_info}
           />
-          <section className="flex w-[100%]  gap-10 max_xml:flex-col   max_xml:items-center   max_xml:justify-center       ">
+          <section className="flex w-[100%]">
             <User_Side isUser={true} userInfo={devInfo} />
 
             {/* user main start */}
@@ -90,28 +92,28 @@ const Single_User_Page = () => {
                 <div className={style.headerDiv}>
                   <User_info_Update_input
                     isUser={true}
-                    initialValue={devInfo.user_info.title}
+                    initialValue={devInfo.user_info?.title}
                     type="title"
-                    obj={{ title: UserStateUpdate.title }}
-                    newValue={UserStateUpdate.title}
+                    obj={{ title: UserStateUpdate?.title }}
+                    newValue={UserStateUpdate?.title}
                     link="user"
                   />
                   <User_info_Update_input
                     isUser={true}
-                    initialValue={`$${devInfo.user_info.hrPay}.00/hr`}
+                    initialValue={`$${devInfo?.user_info?.hrPay}.00/hr`}
                     type="hrPay"
-                    obj={{ hrPay: UserStateUpdate.hrPay }}
-                    newValue={UserStateUpdate.hrPay}
+                    obj={{ hrPay: UserStateUpdate?.hrPay }}
+                    newValue={UserStateUpdate?.hrPay}
                     link="user"
                   />
                 </div>
                 <div>
                   <User_info_Update_input
                     isUser={true}
-                    initialValue={devInfo.user_info.summary}
+                    initialValue={devInfo?.user_info?.summary}
                     type="summary"
-                    obj={{ summary: UserStateUpdate.summary }}
-                    newValue={UserStateUpdate.summary}
+                    obj={{ summary: UserStateUpdate?.summary }}
+                    newValue={UserStateUpdate?.summary}
                     textArea={true}
                     style=" w-[600px] h-[300px]"
                     link="user"
@@ -145,7 +147,7 @@ const Single_User_Page = () => {
               <User_skills isUser={isUser} userInfo={userInfo} /> */}
               <Rating dev_id={dev_id || ''} data={ratingFromDb} />
               <RatesStars data={ratingFromDb} />
-              <div className="dark:text-white ml-10">See all reviews</div>
+              <div>See all reviews</div>
               <AllRatings data={ratingFromDb} />
             </div>
             {/* user main end  */}

@@ -10,7 +10,6 @@ import jwt from 'jwt-decode'
 import Cookies from 'universal-cookie'
 import { globalUrl } from './global-vars/Api-url'
 import {
-  ChatData,
   CompanyProjectType,
   ProjectCardType,
   RegisterFormType,
@@ -20,7 +19,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import useStatusMessages from './hooks/Status_hook'
 import { Socket } from 'socket.io-client'
 import { DefaultEventsMap } from '@socket.io/component-emitter'
-import { ChatMessage } from './common.types'
+
 // img types
 type ImgState = {
   image: null | string | any
@@ -144,11 +143,11 @@ type Cell = {
   setUserId: React.Dispatch<string>
   GoToUserChat: (id: string) => void
 
-  chatRoom: ChatData
-  setChatRoomInfo: React.Dispatch<ChatData>
+  chatRoom: any
+  setChatRoomInfo: React.Dispatch<any>
 
-  messages: ChatMessage[]
-  setMessages: React.Dispatch<ChatMessage[]>
+  messages: any
+  setMessages: React.Dispatch<any>
   GetMessages: (userId: string) => void
 }
 
@@ -577,7 +576,7 @@ export const ContextProvider = ({
           }`,
         )
         const data = res.data
-
+        console.log
         PortfolioDispatch({ type: 'get-user-projects', payload: data })
         setSuccess(data.msg)
         PortfolioDispatch({ type: 'loading', payload: false })
@@ -601,6 +600,8 @@ export const ContextProvider = ({
         `${import.meta.env.VITE_GLOBAL_URL}/user/info/${dev_id}`,
       )
       setDevInfo(res.data)
+
+      console.log(res.data)
 
       navigate(`/Developer/${dev_id}`)
     } catch (error) {
@@ -673,7 +674,7 @@ export const ContextProvider = ({
   var selectedChatCompere
 
   const [chatRoom, setChatRoomInfo] = useState<any>()
-  const [messages, setMessages] = useState<ChatMessage[]>([])
+  const [messages, setMessages] = useState<any>([])
 
   const GetMessages = async (userId: string) => {
     try {
@@ -687,7 +688,7 @@ export const ContextProvider = ({
         const data = res.data
         setMessages(data.messages)
         setChatRoomInfo(data)
-
+        console.log(res)
         socket.emit('join chat', userId)
       }
     } catch (error) {
@@ -702,10 +703,6 @@ export const ContextProvider = ({
     UserState.userData.user._id
       ? true
       : false
-
-  useEffect(() => {
-    console.log(chatRoom)
-  }, [chatRoom])
   return (
     <Context.Provider
       value={{
