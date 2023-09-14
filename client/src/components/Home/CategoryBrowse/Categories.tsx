@@ -35,7 +35,7 @@ const Categories = () => {
       className="bg-white/30 dark:bg-gray-900 border border-gray-50 dark:border-green-900 flex flex-col gap-y-4 sm:gap-y-12 p-4 md:p-10 rounded-lg h-[200vh] w-full"
     >
       <div className="sticky top-[20vh]">
-        <article className="flex flex-col gap-y-0">
+        <article className="flex flex-col gap-y-0 mb-5">
           <h1 className="text-[1.5rem] font-semibold text-primary dark:text-primary font-title">
             Browse projects by category
           </h1>

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { HiStar } from "react-icons/hi";
+import { useScroll, motion } from "framer-motion";
+import { useRef } from "react";
 const CategoryCard = ({
   title,
   rating,
@@ -11,8 +13,13 @@ const CategoryCard = ({
   skills: number;
   link: string;
 }) => {
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start end", "end start"],
+  });
   return (
-    <div>
+    <motion.div ref={targetRef}>
       <Link
         to={link}
         className="bg-[#F7FAF7] hover:bg-[#e2ede2] backdrop-blur-sm  dark:bg-white/10 border border-white dark:border-green-900 dark:hover:bg-white/5 p-4 lg:p-8 shadow-md/40 dark:shadow-gray-950 hover:shadow-lg/40 transition-shadow delay-75 sm:min-h-[120px] flex flex-col justify-between cursor-pointer rounded-lg"
@@ -30,7 +37,7 @@ const CategoryCard = ({
           <p>{skills} skills</p>
         </div>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
