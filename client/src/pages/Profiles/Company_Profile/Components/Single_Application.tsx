@@ -1,9 +1,15 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { UseMainContext } from '../../../../context'
 import LoadingComponent from '../../../../components/Status/Loading'
 const Single_Application = ({ data }: { data: any }) => {
-  const { statusState, setError, setSuccess } = UseMainContext()
+  const {
+    statusState,
+    setError,
+    setSuccess,
+    isUserLoggedIn,
+    UserState,
+  } = UseMainContext()
   const [loading, setLoading] = useState(false)
   const {
     userName,
@@ -21,7 +27,7 @@ const Single_Application = ({ data }: { data: any }) => {
     email,
     role,
   } = data
-
+  const [isSend, setIsSend] = useState(false)
   const AccaptApplication = async () => {
     try {
       setLoading(true)
@@ -36,11 +42,31 @@ const Single_Application = ({ data }: { data: any }) => {
 
       setSuccess(res.data.msg)
       setLoading(false)
+      setIsSend(true)
     } catch (error) {
       const err: any = error
       setLoading(false)
       setError(err.response.data.msg)
       console.log(err)
+    }
+  }
+
+  const SendMessage = async () => {
+    try {
+      if (isUserLoggedIn) {
+        const messageContent = `Hello, ${userName} You have been accapted for my project `
+
+        const res = await axios.post(
+          `${import.meta.env.VITE_GLOBAL_URL}/chat/send-message`,
+          {
+            messageContent,
+            senderId: UserState.userData.user._id,
+            receiverId: dev_id,
+          },
+        )
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -64,6 +90,12 @@ const Single_Application = ({ data }: { data: any }) => {
       console.log(err)
     }
   }
+
+  useEffect(() => {
+    if (isSend) {
+      SendMessage()
+    }
+  }, [isSend])
 
   return (
     <div className="absolute w-full min-w-fit h-fit  bg-white/90 dark:bg-slate-900/95 backdrop-blur-xl z-20 rounded-md p-4 shadow-md ">

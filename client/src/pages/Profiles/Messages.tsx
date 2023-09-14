@@ -26,7 +26,6 @@ const Messages = () => {
         const data = res.data.chatRooms
 
         setChatData(data)
-        console.log(data)
       }
     } catch (error) {
       console.log(error)

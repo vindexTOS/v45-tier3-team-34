@@ -14,14 +14,9 @@ export default function ListProjects() {
   const getAllProjects = async () => {
     try {
       const res = await axios.get(
-        `${
-          import.meta.env.VITE_GLOBAL_URL
-        }/companies/projects`
-      );
-      setCompanyProjectsData(
-        res.data.projectsData
-      );
-      console.log(res.data);
+        `${import.meta.env.VITE_GLOBAL_URL}/companies/projects`,
+      )
+      setCompanyProjectsData(res.data.projectsData)
     } catch (error) {
       console.log(error);
     }

@@ -20,7 +20,7 @@ import User_main from '../../../components/User/User_main'
 const Company_Profile = () => {
   const { UserState, statusState, UserStateUpdate } = UseMainContext()
   const style = {
-    section: `flex items-center justify-between w-[100%] i px-4 py-5 border-b-[1px] border-gray-300 `,
+    section: `flex items-center justify-between w-[100%] px-4 py-5 border-b-[1px] border-gray-300 `,
     img: `h-[80px] w-[80px] rounded-[50%]`,
     imgDiv: `flex gap-1 items-start justify-around `,
     nameHeader: `text-gray-800 text-[1.6rem] font-bold`,
@@ -231,6 +231,3 @@ const Company_Profile = () => {
 }
 
 export default Company_Profile
-function UpdateUserInfo(obj: any, arg1: any) {
-  throw new Error('Function not implemented.')
-}

@@ -76,8 +76,7 @@ const Project_Page = () => {
         )
 
         const data = res.data
-        console.log(data)
-        console.log(SingleProjectData)
+
         setApplication(data.data)
       }
     } catch (error) {
