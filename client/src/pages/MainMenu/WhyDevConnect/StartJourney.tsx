@@ -1,4 +1,6 @@
-import HeroCTAButton from "../../../components/Buttons/HeroCTAButton";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { buttonVariants } from "../../../Shadcn/components/ui/button";
 
 export default function StartJourney() {
   return (
@@ -7,16 +9,34 @@ export default function StartJourney() {
         <h3 className="text-[2rem] font-semibold text-muted dark:text-muted">
           Start your journey
         </h3>
-        {/* actions */}
-        <div className="flex gap-x-10 gap-y-2 sm:gap-14 w-full sm:w-max flex-wrap mt-5">
-          <HeroCTAButton
-            title="SignUp Today"
-            color="green"
-          />
-          <HeroCTAButton
-            title="View all Projects"
-            color="white"
-          />
+        {/* Buttons */}
+        <div className="flex gap-x-5 gap-y-2 sm:gap-5 w-full sm:w-max flex-wrap mt-5">
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <Link
+              className={buttonVariants({
+                variant: "default",
+              })}
+              to={"/register"}
+            >
+              Get Started
+            </Link>{" "}
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <Link
+              className={buttonVariants({
+                variant: "secondary",
+              })}
+              to={"#"}
+            >
+              View Projects
+            </Link>{" "}
+          </motion.div>
         </div>
       </div>
     </div>

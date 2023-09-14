@@ -12,7 +12,7 @@ const EnterpriseSuite = () => {
         <h2 className="font-thin text-muted mb-10 dark:text-primary">
           Real-World Projects
         </h2>
-        <h1 className="text-[4rem] text-muted font-bold leading-tight">
+        <h1 className="text-[4rem] text-tersiary font-bold leading-tight font-header">
           This is How{" "}
           <span className="text-primary dark:text-primary">
             Good Companies Find Good Company.

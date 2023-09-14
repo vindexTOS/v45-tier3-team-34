@@ -177,7 +177,7 @@ const Single_Company_Page = () => {
               <section className={style.topSection}>
                 <div className={style.headerDiv}>
                   <User_info_update_input
-                    isUser={false}
+                    isUser={true}
                     initialValue={companyName}
                     type="companyName"
                     obj={{ companyName: UserStateUpdate.companyName }}
@@ -185,7 +185,8 @@ const Single_Company_Page = () => {
                     link="company"
                   />
                   <User_info_update_input
-                    isUser={false}
+                                      isUser={true}
+
                     initialValue={`$${hrPay}.00/hr`}
                     type="hrPay"
                     obj={{ hrPay: UserStateUpdate.hrPay }}
@@ -196,7 +197,8 @@ const Single_Company_Page = () => {
                 </div>
                 <div>
                   <User_info_update_input
-                    isUser={false}
+                                     isUser={true}
+
                     initialValue={summary}
                     type="summary"
                     obj={{ summary: UserStateUpdate.summary }}
