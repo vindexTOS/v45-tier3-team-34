@@ -52,7 +52,7 @@ export default function Footer() {
           <article className=" w-full sm:w-fit pt-4 sm:pt-0">
             <a
               href="/"
-              className="flex ext-custom dark:text-primary"
+              className="flex text-primary dark:text-primary"
             >
               <h2 className="whitespace-nowrap text-sm">
                 © 2023 DevConnect
