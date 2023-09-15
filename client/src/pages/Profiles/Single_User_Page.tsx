@@ -4,12 +4,14 @@ import User_layout from '../../components/User/User_layout'
 import User_Top from '../../components/User/User_Top'
 import User_Side from '../../components/User/User_Side'
 import User_main from '../../components/User/User_main'
+import { AiOutlineMessage } from 'react-icons/ai'
 import { UseMainContext } from '../../context'
 import { useNavigate, useParams } from 'react-router-dom'
 import LoadingComponent from '../../components/Status/Loading'
 import User_info_Update_input from '../../components/User/User_Info_Update_Input'
 import Rating from './Rating'
 import axios from 'axios'
+import Error from '../../components/Status/Error'
 import RatesStars from '../../components/ProjectsListingPage/Projects/RatesStars'
 const Single_User_Page = () => {
   const style = {
@@ -74,18 +76,21 @@ const Single_User_Page = () => {
   if (ratingFromDb) {
     return (
       <User_layout>
-        <div className="flex  flex-col gap-2 p-2 items-center justify-center ">
+        <div className="flex  flex-col gap-2 p-2 items-center justify-center relative ">
           {/* <section className='flex justify-between items-center  w-full '> */}
 
           <h1
-            role='button'
-            className='cursor-pointer'
-            onClick={() => GoToUserChat(dev_id || '')}>Message</h1>
-            <User_Top
-              isUser={true}
-              userData={devInfo}
-              userInfo={devInfo.user_info}
-            />
+            role="button"
+            className="cursor-pointer absolute text-green-300 text-[1.6rem] gap-2 top-4 flex items-center  justify-center right-5"
+            onClick={() => GoToUserChat(dev_id || '')}
+          >
+            <AiOutlineMessage /> <span> Message {devInfo.user.userName}</span>
+          </h1>
+          <User_Top
+            isUser={true}
+            userData={devInfo}
+            userInfo={devInfo.user_info}
+          />
           {/* </section> */}
           <section className="flex w-full">
             <User_Side isUser={true} userInfo={devInfo} />
@@ -150,19 +155,20 @@ const Single_User_Page = () => {
               </div> */}
               {/* <User_portfolio isUser={isUser} />
               <User_skills isUser={isUser} userInfo={userInfo} /> */}
-              
-              <div className='p-2 md:p-4'>
+
+              <div className="p-2 md:p-4">
                 <Rating dev_id={dev_id || ''} data={ratingFromDb} />
               </div>
 
-              <div className='px-2 md:px-4'>
+              <div className="px-2 md:px-4">
                 <RatesStars data={ratingFromDb} />
-                <h2 className='text-sm text-muted'>See all reviews</h2>
+                <h2 className="text-sm text-muted">See all reviews</h2>
                 <AllRatings data={ratingFromDb} />
               </div>
             </div>
             {/* user main end  */}
           </section>
+          <Error error={statusState.error} />
         </div>
       </User_layout>
     )

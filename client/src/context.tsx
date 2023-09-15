@@ -663,6 +663,9 @@ export const ContextProvider = ({
   const [userId, setUserId] = useState<string>('')
 
   const GoToUserChat = (id: string) => {
+    if (!isUserLoggedIn) {
+      setError('Login if you want to message this user')
+    }
     if (UserState.userData.user.role === 'Company/Startup') {
       navigate('/company_profile/messages')
     } else {
@@ -671,7 +674,6 @@ export const ContextProvider = ({
     setUserId(id)
   }
   var socket: Socket<DefaultEventsMap, DefaultEventsMap>
-  var selectedChatCompere
 
   const [chatRoom, setChatRoomInfo] = useState<any>()
   const [messages, setMessages] = useState<any>([])

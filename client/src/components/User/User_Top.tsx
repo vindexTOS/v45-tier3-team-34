@@ -58,7 +58,7 @@ const User_Top = ({
         <div
           className={`${
             !PhotoEdit && 'hidden'
-          } absolute w-[100%] h-[100%] top-20 right-0`}
+          } absolute w-[100%] h-[100%] top-20 right-0 `}
         >
           {PhotoEdit && <Edit_Profile_Photo setPhotoEdit={setPhotoEdit} />}
         </div>
@@ -85,11 +85,11 @@ const User_Top = ({
               <input />
             )}
             <div className="flex flex-col sm:flex-row gap-1 text-muted dark:text-gray-400 items-center justify-center">
-              <div className="flex gap-1 items-center text-xs">
+              <div className="flex gap-1 items-center text-sm">
                 <FaMapMarkerAlt />
                 <p>{userTimeZone}</p>
               </div>
-              <p className="text-xs">{currentTime.slice(10, 16)} local time</p>
+              <p className="text-sm">{currentTime.slice(10, 16)} local time</p>
             </div>
           </div>
         </div>

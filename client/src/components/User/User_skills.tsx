@@ -16,7 +16,9 @@ const User_skills = ({
   return (
     <div className={style.mainDiv}>
       <div className="flex w-full items-center px-2 justify-start">
-        <h1 className="text-lg font-semibold text-green-800 dark:text-green-500  px-2">Skills</h1>
+        <h1 className="text-lg font-semibold text-green-800 dark:text-green-500  px-2">
+          Skills
+        </h1>
         <div
           onClick={() => setEditSkills(!editSkills)}
           className={` ${
@@ -29,11 +31,16 @@ const User_skills = ({
       <div className="flex pr-2 sm:pr-4  items-center px-30 flex-wrap    w-[90%]   gap-2 ">
         {userInfo.skills.map((val: string) => {
           return (
-            <div key={val} className="bg-gray-200 dark:bg-slate-800 text-sm text-gray-700 dark:text-gray-400 font-thin shadow-md  p-1 px-2 rounded-lg pb-2 border border-gray-600/20 dark:border-gray-600/50">{val}</div>
+            <div
+              key={val}
+              className="bg-gray-200 s asfasfsa fsa dark:bg-slate-800 text-sm text-gray-700 dark:text-gray-400 font-thin shadow-md  p-1 px-2 rounded-lg pb-2 border border-gray-600/20 dark:border-gray-600/50"
+            >
+              {val}
+            </div>
           )
         })}
       </div>
-      <SkillSelection />
+      {/* <SkillSelection /> */}
     </div>
   )
 }
