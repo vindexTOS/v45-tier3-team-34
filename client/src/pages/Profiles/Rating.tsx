@@ -63,7 +63,7 @@ export default function Rating({
   if (userRating && userRating.rating_review && userRating.rating_score) {
     const { rating_review, rating_score } = userRating
     return (
-      <div className="bg-white w-[100%] p-6 rounded-lg shadow-md">
+      <div className="border border-gray-600/20 dark:border-gray-600/50 w-full  p-1 sm:p-2 rounded-md shadow-sm  bg-white/20 dark:bg-slate-800 text-gray-800 dark:text-gray-300">
         <h1 className="text-2xl font-semibold mb-4">Your review</h1>
         <div
           className="w-full p-2 border rounded-md mb-4"
@@ -75,7 +75,7 @@ export default function Rating({
           {new Array(rating_score).fill('aha').map((star, i: number) => (
             <span
               key={i}
-              className={`cursor-pointer text-3xl ${'text-yellow-400'}`}
+              className={`cursor-pointer text-xl ${'text-yellow-400'}`}
             >
               ★
             </span>
@@ -103,7 +103,7 @@ export default function Rating({
             <span
               key={star}
               onClick={() => handleRate(star)}
-              className={`cursor-pointer text-3xl ${
+              className={`cursor-pointer text-xl ${
                 star <= rating ? 'text-yellow-400' : 'text-gray-300'
               }`}
             >
@@ -126,7 +126,9 @@ export default function Rating({
     UserState.userData.user.role &&
     UserState.userData.user.role === 'Developer'
   ) {
-    return <div>Developers cannot rate other developers </div>
+    return <div
+      className='text-red-500 text-xs font-thin px-2'
+    >Developers cannot rate other developers </div>
   } else {
     return <div>Login or register to rate this user </div>
   }
