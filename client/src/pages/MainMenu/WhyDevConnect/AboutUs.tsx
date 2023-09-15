@@ -1,5 +1,6 @@
 // import React from 'react'
 
+import Team from "../../../components/MainMenuPages/WhyDevConnectPage/Team";
 import StartJourney from "./StartJourney";
 
 export default function AboutUs() {
@@ -66,6 +67,7 @@ export default function AboutUs() {
           </p>
         </div>
         <StartJourney />
+        <Team />
       </div>
     </div>
   );

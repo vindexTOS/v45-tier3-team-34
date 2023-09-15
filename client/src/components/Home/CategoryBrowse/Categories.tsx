@@ -33,21 +33,6 @@ const Categories = () => {
           </p>
         </article>
         {/* categories */}
-        {/* <article className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-between mb-5">
-          {categories_temp.map(
-            ({ title, rating, skills }) => (
-              <CategoryCard
-                //have to be changed
-
-                key={title}
-                rating={rating}
-                skills={skills}
-                title={title}
-              />
-            )
-          )}
-        </article> */}
-
         <CatFramer />
       </div>
     </section>

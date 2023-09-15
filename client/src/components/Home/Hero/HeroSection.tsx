@@ -71,10 +71,7 @@ const HeroSection = () => {
         </motion.div>
       </article>
       {/* Image section */}
-      <motion.article
-        style={{ scale }}
-        className="flex-1 flex items-center justify-center"
-      >
+      <motion.article className="flex-1 flex items-center justify-center">
         <Lottie
           className="w-[80%] h-auto"
           animationData={animationData}
