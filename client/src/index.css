@@ -7,7 +7,7 @@
     @apply m-0 flex flex-nowrap whitespace-nowrap font-header text-tersiary;
   }
 .parallax .scroller {
-    @apply text-9xl flex flex-nowrap whitespace-nowrap text-tersiary dark:text-muted;
+    @apply text-9xl flex flex-nowrap whitespace-nowrap text-tersiary font-bold dark:text-muted;
   }
 .parallax span {
     @apply block mr-8;
