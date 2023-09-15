@@ -90,10 +90,10 @@ export default function Rating({
     UserState.userData.user.role === 'Company/Startup'
   ) {
     return (
-      <div className="bg-white w-[100%] p-6 rounded-lg shadow-md">
+      <div className="border border-gray-600/20 dark:border-gray-600/50 w-full  p-1 sm:p-2 rounded-md shadow-sm  bg-white/20 dark:bg-slate-800 text-gray-800 dark:text-gray-300">
         <h1 className="text-2xl font-semibold mb-4">Your rating</h1>
         <textarea
-          className="w-full p-2 border rounded-md mb-4"
+          className="w-full p-2 border rounded-md mb-4 text-secondary"
           placeholder="Write your review..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
