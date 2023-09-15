@@ -112,16 +112,14 @@ const UserProflieNav = () => {
                           String(val.sender)
                         )
                       }
-                      className="bg-gray-200 py-2 px-4 rounded-lg text-muted hover:bg-[#F7FAF7]  dark:bg-slate-950 hover:dark:bg-slate-900"
+                      className="bg-white dark:bg-slate-700 p-2 rounded-lg text-muted hover:bg-primary dark:hover:bg-primary  hover:text-white text-sm"
                       key={val._id}
                     >
-                      {content.slice(0, 40)}...
-
+                      {content.slice(0, 50)}...
                     </div>
                   );
                 }
               )}
-
             </div>
           ) : (
             <div className="flex gap-3 items-center justify-center text-primary z-10">

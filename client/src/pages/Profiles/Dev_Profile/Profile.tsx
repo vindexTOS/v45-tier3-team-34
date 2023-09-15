@@ -1,5 +1,4 @@
 import { UseMainContext } from '../../../context'
-import { Link } from 'react-router-dom'
 import Succsess from '../../../components/Status/Success'
 import User_Side from '../../../components/User/User_Side'
 import User_main from '../../../components/User/User_main'
@@ -7,6 +6,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import User_layout from '../../../components/User/User_layout'
 import User_Top from '../../../components/User/User_Top'
+import LoginRegButton from '../../../components/Buttons/LoginRegButton'
 
 const Profile = () => {
   const { UserState, statusState } = UseMainContext()
@@ -20,7 +20,6 @@ const Profile = () => {
           }`,
         )
         const data = res.data
-        console.log(data)
       } catch (error) {
         console.log(error)
       }
@@ -35,7 +34,7 @@ const Profile = () => {
     //_id should not be accsasable on UI, _id will be used to create chat,update user infomration, post new projects etc
 
     return (
-      <div className="flex  flex-col gap-2 items-center justify-center  ">
+      <div className="flex flex-col gap-2 items-center justify-center  ">
         <User_Top
           isUser={false}
           userData={UserState.userData}
@@ -56,8 +55,7 @@ const Profile = () => {
   } else {
     return (
       <div>
-        please <Link to="/login">log in </Link>or
-        <Link to="/register">register </Link>
+        <LoginRegButton />
       </div>
     )
   }

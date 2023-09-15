@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import Portfolio_layout from '../../components/Dev_Portfolio/Portfolio_layout'
-import InputFieldGeneral from '../../components/Forms/InputFieldGeneral'
-import TextAreaGeneral from '../../components/Forms/TextAreaGeneral'
-import { UseMainContext } from '../../context'
-import SkillSelection from '../../components/Forms/SkillSelection'
-import axios from 'axios'
-import { globalUrl } from '../../global-vars/Api-url'
-import { useNavigate } from 'react-router-dom'
-import Error from '../../components/Status/Error'
-import Succsess from '../../components/Status/Success'
-import LoadingComponent from '../../components/Status/Loading'
+import React, { useState } from "react";
+import Portfolio_layout from "../../components/Dev_Portfolio/Portfolio_layout";
+import InputFieldGeneral from "../../components/Forms/InputFieldGeneral";
+import TextAreaGeneral from "../../components/Forms/TextAreaGeneral";
+import { UseMainContext } from "../../context";
+import SkillSelection from "../../components/Forms/SkillSelection";
+import axios from "axios";
+import { globalUrl } from "../../global-vars/Api-url";
+import { useNavigate } from "react-router-dom";
+import Error from "../../components/Status/Error";
+import Succsess from "../../components/Status/Success";
+import LoadingComponent from "../../components/Status/Loading";
 export default function User_info_form() {
   const {
     UserInfoState,
@@ -19,15 +19,16 @@ export default function User_info_form() {
     setError,
     setSuccess,
     statusState,
-  } = UseMainContext()
+  } = UseMainContext();
   const style = {
     mainDiv: ` w-[100vw] gap-3 max_xl:w-[100%] py-60 flex flex-col  items-center `,
     header: `text-gray-500 max_sm:hidden max_xml:text-[1rem]  flex items-center justify-center gap-2 font-bold text-[2rem]`,
     skip: `flex text-white text-[1.5rem] max_xml:text-[14px] items-center bg-blue-500 hover:bg-blue-400 cursor-pointer px-7 rounded-[1.5rem] text-ceneter`,
     btnWrapper: `w-[100%] flex justify-around py-4`,
-  }
+  };
 
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] =
+    useState<boolean>(false);
 
   const {
     title,
@@ -38,13 +39,18 @@ export default function User_info_form() {
     linkedin,
     website,
     hrPay,
-  } = UserInfoState
+  } = UserInfoState;
   const handleUpdateUserInfo = async () => {
-    if (UserState.userData.user && UserState.userData.user._id) {
-      setLoading(true)
+    if (
+      UserState.userData.user &&
+      UserState.userData.user._id
+    ) {
+      setLoading(true);
       try {
         const data = await axios.patch(
-          `${import.meta.env.VITE_GLOBAL_URL}/user/info/${
+          `${
+            import.meta.env.VITE_GLOBAL_URL
+          }/user/info/${
             UserState.userData.user._id
           }`,
           {
@@ -57,27 +63,32 @@ export default function User_info_form() {
             website,
             hrPay,
             skills: PortfolioState.technologies,
-          },
-        )
-        setSuccess(data.data.msg)
-        setLoading(false)
-        navigate('/profile')
+          }
+        );
+        setSuccess(data.data.msg);
+        setLoading(false);
+        navigate("/profile");
       } catch (error) {
-        const err: any = error
+        const err: any = error;
 
-        setError(err.response.data.msg)
-        setLoading(false)
+        setError(err.response.data.msg);
+        setLoading(false);
       }
     }
-  }
-  const navigate = useNavigate()
+  };
+  const navigate = useNavigate();
 
   return (
     <div className={style.mainDiv}>
-      <h1 className={style.header}>Tell us more about you</h1>
+      <h1 className={style.header}>
+        Tell us more about you
+      </h1>
       <p className={style.header}>
-        you can{' '}
-        <span className={style.skip} onClick={() => navigate('/profile')}>
+        you can{" "}
+        <span
+          className={style.skip}
+          onClick={() => navigate("/profile")}
+        >
           skip
         </span>
         this part and fill out later
@@ -152,13 +163,13 @@ export default function User_info_form() {
           <SkillSelection />
           <div className={style.btnWrapper}>
             <button
-              onClick={() => navigate('/profile')}
+              onClick={() => navigate("/profile")}
               className="bg-blue-500  px-10 p-2 rounded-[10px] text-white"
             >
               Skip
             </button>
             <button
-              className="bg-green-500 px-10 p-2 rounded-[10px] text-white"
+              className="bg-primary px-10 p-2 rounded-[10px] text-white"
               onClick={handleUpdateUserInfo}
             >
               Save info
@@ -170,5 +181,5 @@ export default function User_info_form() {
       <Succsess success={statusState.success} />
       <LoadingComponent loading={loading} />
     </div>
-  )
+  );
 }

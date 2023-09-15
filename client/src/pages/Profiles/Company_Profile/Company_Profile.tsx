@@ -1,24 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react'
-import User_layout from '../../../components/User/User_layout'
-import { MdModeEdit } from 'react-icons/md'
-import { DateTime } from 'luxon'
-import { UseMainContext } from '../../../context'
-import { FaMapMarkerAlt } from 'react-icons/fa'
-import { AiOutlineLinkedin } from 'react-icons/ai'
-import { SiWebmoney } from 'react-icons/si'
-import { IoIosAddCircleOutline } from 'react-icons/io'
-import Succsess from '../../../components/Status/Success'
-import LoadingComponent from '../../../components/Status/Loading'
-import User_info_update_input from '../../../components/User/User_Info_Update_Input'
-import { useNavigate } from 'react-router-dom'
-import Edit_Profile_Photo from '../../../components/Dev_Portfolio/Edit_Profile_Photo'
-import axios from 'axios'
-import useOutClick from '../../../hooks/useOutClick'
-import User_Top from '../../../components/User/User_Top'
-import User_Side from '../../../components/User/User_Side'
-import User_main from '../../../components/User/User_main'
+import React, {
+  useState,
+  useEffect,
+  useRef,
+} from "react";
+import User_layout from "../../../components/User/User_layout";
+import { MdModeEdit } from "react-icons/md";
+import { DateTime } from "luxon";
+import { UseMainContext } from "../../../context";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { AiOutlineLinkedin } from "react-icons/ai";
+import { SiWebmoney } from "react-icons/si";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import Succsess from "../../../components/Status/Success";
+import LoadingComponent from "../../../components/Status/Loading";
+import User_info_update_input from "../../../components/User/User_Info_Update_Input";
+import { useNavigate } from "react-router-dom";
+import Edit_Profile_Photo from "../../../components/Dev_Portfolio/Edit_Profile_Photo";
+import axios from "axios";
+import useOutClick from "../../../hooks/useOutClick";
+import User_Top from "../../../components/User/User_Top";
+import User_Side from "../../../components/User/User_Side";
+import User_main from "../../../components/User/User_main";
 const Company_Profile = () => {
-  const { UserState, statusState, UserStateUpdate } = UseMainContext()
+  const {
+    UserState,
+    statusState,
+    UserStateUpdate,
+  } = UseMainContext();
   const style = {
     section: `flex items-center justify-between w-[100%] i px-4 py-5 border-b-[1px] border-gray-300 `,
     img: `h-[80px] w-[80px] rounded-[50%]`,
@@ -26,37 +34,44 @@ const Company_Profile = () => {
     nameHeader: `text-gray-800 text-[1.6rem] font-bold`,
     timeZone: ` flex flex-col gap-2`,
     mainDiv: `w-[25%] border-r-[1px] border-gray-300  flex items-center justify-start py-10 flex-col gap-2 `,
-    aTeg: `flex items-center justify-center py-2  w-[15rem] border-2 border-orange-900/40 rounded-[39px] bg-yellow-600/10  gap-2 hover:bg-green-600/10`,
+    aTeg: `flex items-center justify-center py-2  w-[15rem] border-2 border-orange-900/40 rounded-[39px] bg-yellow-600/10  gap-2 hover:bg-primary-hover`,
     main: `w-[75%] h-[1000px]`,
     // headerDiv: `flex  justify-around text-gray-700 text-[1.3rem] font-bold py-3`,
     // topSection: ` border-b-[2px] px-4 py-6 flex flex-col  gap-5`,
     headerDiv: `w-full flex flex-wrap sm:flex-nowrap justify-between sm:justify-start gap-x-10 gap-y-4  items-start md:item-center text-green-800 dark:text-white text-[1.3rem] `,
     topSection: `w-full  px-4 py-6 flex flex-col  gap-5 `,
-  }
-  const navigate = useNavigate()
-  const [editName, setEditName] = useState(false)
+  };
+  const navigate = useNavigate();
+  const [editName, setEditName] = useState(false);
   function getUserTimezone() {
     // const userTimeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
     //   console.log("User's timezone:", userTimeZone)
 
     // Get the user's current time based on their timezone
-    const userCurrentTime = DateTime.now().setZone(
-      UserState.full_user_info.userTimeZone,
-    )
+    const userCurrentTime =
+      DateTime.now().setZone(
+        UserState.full_user_info.userTimeZone
+      );
 
-    const currentTime = `${userCurrentTime.toFormat('yyyy-MM-dd HH:mm:ss')}`
+    const currentTime = `${userCurrentTime.toFormat(
+      "yyyy-MM-dd HH:mm:ss"
+    )}`;
 
-    return currentTime
+    return currentTime;
   }
-  const currentTime = getUserTimezone()
-  const [PhotoEdit, setPhotoEdit] = useState<boolean>(false)
-  const photEditRef = useRef(null)
+  const currentTime = getUserTimezone();
+  const [PhotoEdit, setPhotoEdit] =
+    useState<boolean>(false);
+  const photEditRef = useRef(null);
   const PhotoEditFun = () => {
-    setPhotoEdit(false)
-  }
-  useOutClick(photEditRef, PhotoEditFun)
+    setPhotoEdit(false);
+  };
+  useOutClick(photEditRef, PhotoEditFun);
 
-  if (UserState.userData && UserState.full_user_info.user_info) {
+  if (
+    UserState.userData &&
+    UserState.full_user_info.user_info
+  ) {
     const {
       companyName,
       company_id,
@@ -65,15 +80,18 @@ const Company_Profile = () => {
       summary,
       userTimeZone,
       website,
-    } = UserState.full_user_info.user_info
+    } = UserState.full_user_info.user_info;
     const {
       avatar,
       date,
       email,
       role,
       userName,
-    } = UserState.full_user_info.user
-    console.log('role: ', UserState.full_user_info.user);
+    } = UserState.full_user_info.user;
+    console.log(
+      "role: ",
+      UserState.full_user_info.user
+    );
     return (
       // <div
       //   ref={photEditRef}
@@ -187,25 +205,37 @@ const Company_Profile = () => {
         <User_Top
           isUser={false}
           userData={UserState.userData}
-          userInfo={UserState.full_user_info.user_info}
+          userInfo={
+            UserState.full_user_info.user_info
+          }
         />
         <section className="flex flex-col md:flex-row w-full ">
-          <User_Side userInfo={UserState.full_user_info} />
-          <LoadingComponent loading={UserStateUpdate.loading} />
+          <User_Side
+            userInfo={UserState.full_user_info}
+          />
+          <LoadingComponent
+            loading={UserStateUpdate.loading}
+          />
           <section className={style.topSection}>
             <div className={style.headerDiv}>
               <User_info_update_input
                 isUser={false}
                 initialValue={role}
                 type="title"
-                obj={{ title: UserStateUpdate.title }}
+                obj={{
+                  title: UserStateUpdate.title,
+                }}
                 newValue={UserStateUpdate.title}
               />
               <User_info_update_input
                 isUser={false}
-                initialValue={`$${hrPay ?? "NAN"}.00/hr`}
+                initialValue={`$${
+                  hrPay ?? "NAN"
+                }.00/hr`}
                 type="hrPay"
-                obj={{ hrPay: UserStateUpdate.hrPay }}
+                obj={{
+                  hrPay: UserStateUpdate.hrPay,
+                }}
                 newValue={UserStateUpdate.hrPay}
                 style="w-[4rem]"
               />
@@ -215,7 +245,10 @@ const Company_Profile = () => {
                 isUser={false}
                 initialValue={summary}
                 type="summary"
-                obj={{ summary: UserStateUpdate.summary }}
+                obj={{
+                  summary:
+                    UserStateUpdate.summary,
+                }}
                 newValue={UserStateUpdate.summary}
                 textArea={true}
                 style=" w-[600px] h-[300px]"
@@ -224,13 +257,13 @@ const Company_Profile = () => {
           </section>
         </section>
       </div>
-    )
+    );
   } else {
-    return <div>Loadin..</div>
+    return <div>Loadin..</div>;
   }
-}
+};
 
-export default Company_Profile
+export default Company_Profile;
 function UpdateUserInfo(obj: any, arg1: any) {
-  throw new Error('Function not implemented.')
+  throw new Error("Function not implemented.");
 }

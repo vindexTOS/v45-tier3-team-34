@@ -36,10 +36,8 @@ const User_portfolio = ({
               navigate(`/dev_project_add/title`)
             }
             className={`${
-
               isUser && "hidden"
             }  text-green-600 text-[1.2rem] mt-1 cursor-pointer  p-1 rounded-[50%] outline outline-2 outline-gray-300  `}
-
           >
             <BsPlus />
           </div>
@@ -52,20 +50,27 @@ const User_portfolio = ({
             .map((val: any) => {
               return (
                 <section
-                key={val._id} className="pb-2 bg-white/40 dark:bg-slate-800 shadow-md hover:bg-green-500/10 hover:dark:bg-slate-700/50 rounded-md cursor-pointer flex flex-col justify-between gap-2  w-fit max-w-md min-h-full border border-gray-600/20 dark:border-gray-600/50">
-                <img className="w-52 h-25 object-contain rounded-t-md hover:rounded-b-md  mb-4 hover:shadow-xl" src={val.photo} />
-                <div
-                  className="text-gray-700 dark:text-gray-400 px-2 text-bold  text-[1.1rem] font-medium hover:text-gray-800 hover:underline cursor-pointer capitalize"
-                   onClick={() => navigate(`user/project/${val._id}`)}
+                  key={val._id}
+                  className="pb-2 bg-white/40 dark:bg-slate-800 shadow-md hover:bg-primary-hover hover:dark:bg-slate-700/50 rounded-md cursor-pointer flex flex-col justify-between gap-2  w-fit max-w-md min-h-full border border-gray-600/20 dark:border-gray-600/50"
                 >
-                  {val.title}
-                </div>
-              </section>
-
+                  <img
+                    className="w-52 h-25 object-contain rounded-t-md hover:rounded-b-md  mb-4 hover:shadow-xl"
+                    src={val.photo}
+                  />
+                  <div
+                    className="text-gray-700 dark:text-gray-400 px-2 text-bold  text-[1.1rem] font-medium hover:text-gray-800 hover:underline cursor-pointer capitalize"
+                    onClick={() =>
+                      navigate(
+                        `user/project/${val._id}`
+                      )
+                    }
+                  >
+                    {val.title}
+                  </div>
+                </section>
               );
             })}
         </div>
-
       </div>
     );
   } else {

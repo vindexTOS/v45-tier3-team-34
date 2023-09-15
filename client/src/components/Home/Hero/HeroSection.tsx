@@ -2,15 +2,12 @@ import { companies } from "../../../contants";
 import HeroCompany from "./HeroCompany";
 import Lottie from "lottie-react";
 import animationData from "../../../../src/assets/lottie/animation_llpgw5p0.json";
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import { buttonVariants } from "../../../Shadcn/components/ui/button";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
-
+import LoginRegButton from "../../Buttons/RegListButton";
+import { useScroll,useTransform } from "framer-motion";
 const HeroSection = () => {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -42,34 +39,7 @@ const HeroSection = () => {
             </p>
 
             {/* Buttons */}
-            <div className="flex gap-x-5 gap-y-2 sm:gap-5 w-full sm:w-max flex-wrap mt-5">
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.8 }}
-              >
-                <Link
-                  className={buttonVariants({
-                    variant: "default",
-                  })}
-                  to={"/register"}
-                >
-                  Get Started
-                </Link>{" "}
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Link
-                  className={buttonVariants({
-                    variant: "secondary",
-                  })}
-                  to={"#"}
-                >
-                  View Projects
-                </Link>{" "}
-              </motion.div>
-            </div>
+            <LoginRegButton />
           </div>
         </motion.div>
         <motion.div

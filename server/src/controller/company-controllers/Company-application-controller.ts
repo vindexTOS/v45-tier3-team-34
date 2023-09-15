@@ -223,6 +223,48 @@ export const InProgress = tryCatch(async (req: Request, res: any) => {
 
   return res.status(200).json(data)
 })
+
+export const InProgressDev = tryCatch(async (req: Request, res: any) => {
+  const { dev_id } = req.params
+
+  // Find projects with the specified criteria
+  const findAllCompanyProjects = await project_application_model.find({
+    dev_id: dev_id,
+    accepted: true,
+    projectFinnished: false,
+    projectFinnishSubmit: false,
+  })
+
+  if (!findAllCompanyProjects) {
+    return res.status(400).json({ msg: 'Application does not exist' })
+  }
+
+  const data = []
+
+  // Iterate through the found projects and fetch related information
+  for (let i = 0; i < findAllCompanyProjects.length; i++) {
+    const project = findAllCompanyProjects[i]
+
+    // Fetch user information for the dev_id from user_model
+    const user = await user_model
+      .findOne({ _id: project.dev_id })
+      .select('-password')
+    const applicationProject = await company_project_model.findById(
+      project.project_id,
+    )
+    // Create an object combining project and user information
+    const combinedProject = {
+      ...project.toObject(),
+      applicationProject,
+      userInfo: user ? user.toObject() : null,
+    }
+
+    data.push(combinedProject)
+  }
+
+  return res.status(200).json(data)
+})
+
 export const GetArchivedProjects = tryCatch(async (req: Request, res: any) => {
   const { company_id } = req.params
 
@@ -236,3 +278,17 @@ export const GetArchivedProjects = tryCatch(async (req: Request, res: any) => {
 
   return res.status(200).json(archivedProjects)
 })
+export const GetArchivedProjectsDev = tryCatch(
+  async (req: Request, res: any) => {
+    const { dev_id } = req.params
+
+    const archivedProjects = await project_application_model.find({
+      dev_id,
+    })
+    if (!archivedProjects) {
+      return res.status(406).json({ msg: 'Your archive is empity' })
+    }
+
+    return res.status(200).json({ data: archivedProjects })
+  },
+)
