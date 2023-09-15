@@ -60,8 +60,7 @@ We connect junior developers with clients seeking affordable software solutions,
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-![Before](/client/public/assets/img/epics-1.png)
-![Before](/client/public/assets/img/epics-2.png)
+![Before](/client/public/assets/img/homepage.png)
 ## Features
 
 - [x] Sign Up | Sign In
