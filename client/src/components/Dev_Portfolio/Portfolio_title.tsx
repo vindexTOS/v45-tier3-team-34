@@ -9,9 +9,9 @@ const Portfolio_title = () => {
   const { PortfolioState, PortfolioDispatch } =
     UseMainContext();
   const style = {
-    section: `flex flex-col items-start justify-around h-[500px] max_850:w-[100%]`,
-    mainHeader: `text-[1.2rem] font-bold text-gray-700`,
-    DatePicker: `appearance-none block max_850:w-[100%] w-[270px] ml-3   rounded-[9px] bg-white text-gray-700 border border-gray-200   py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`,
+    section: `flex flex-col items-start justify-around h-fit min-h-[500px] w-full `,
+    mainHeader: `text-sm font-semibold text-gray-700`,
+    DatePicker: `appearance-none block max_850:w-[100%]  ml-3   rounded-[9px] bg-white text-gray-700 border border-gray-200   py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500`,
   };
   return (
     <section className={style.section}>

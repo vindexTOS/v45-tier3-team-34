@@ -18,10 +18,10 @@ const Dev_Portfolio_Add = () => {
     PortfolioState,
   } = UseMainContext();
   const style = {
-    mainDiv: ` w-full flex flex-col  `,
-    header: `text-gray-500 max_sm:hidden   flex items-center justify-center gap-2 font-semibold text-lg`,
+    mainDiv: ` w-full flex flex-col `,
+    header: `text-gray-500 max_sm:hidden max-w-[250px] md:max-w-fit   flex items-center justify-center gap-2 font-semibold text-sm lg:text-lg`,
     skip: `flex text-secondary text-lg  items-center bg-accent cursor-pointer px-7 rounded-xl text-ceneter`,
-    section: `flex  gap-4  items-start  justify-center py-4  max_xl1500:px-0 px-80 max_xl:px-0 max_xl:w-[100%]`,
+    section: `w-90%  flex flex-col md:flex-row  gap-2  items-start  justify-center py-4`,
   };
   if (
     UserState.userData.user &&
@@ -29,7 +29,7 @@ const Dev_Portfolio_Add = () => {
   ) {
     return (
       <div className={style.mainDiv}>
-        <h1 className={style.header}>
+        <p className={style.header}>
           You can
           <span
             onClick={() => navigate("/profile")}
@@ -39,7 +39,7 @@ const Dev_Portfolio_Add = () => {
           </span>
           this step and come back any time to add
           more projects
-        </h1>
+        </p>
         <section className={style.section}>
           <Portfolio_Navigation />
           <Portfolio_layout>
