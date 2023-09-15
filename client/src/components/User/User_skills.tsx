@@ -33,7 +33,7 @@ const User_skills = ({
           )
         })}
       </div>
-      {/* <SkillSelection /> */}
+      <SkillSelection />
     </div>
   )
 }
