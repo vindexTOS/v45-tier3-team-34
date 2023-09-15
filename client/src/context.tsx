@@ -335,7 +335,7 @@ export const ContextProvider = ({
       return data
     } catch (error) {
       let err: any = error
-      setError(err.response.data.msg)
+      setError(err.response.msg)
       ImgDispatch({ type: 'set-img-url', payload: '' })
 
       setAuthLoading(false)
