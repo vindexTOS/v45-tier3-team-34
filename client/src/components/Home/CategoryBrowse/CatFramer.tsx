@@ -1,6 +1,6 @@
 import { HiStar } from "react-icons/hi";
 import { categories_temp } from "../../../contants/index.js";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 
 const imageAnimate = {
   offscreen: { y: 200, opacity: 0 },

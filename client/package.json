@@ -14,6 +14,8 @@
     "@heroicons/react": "^2.0.18",
     "@motionone/utils": "^10.15.1",
     "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-avatar": "^1.0.3",
+    "@radix-ui/react-hover-card": "^1.0.6",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-radio-group": "^1.1.3",
