@@ -5,6 +5,7 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 import Edit_Profile_Photo from '../Dev_Portfolio/Edit_Profile_Photo'
 import { MdModeEdit } from 'react-icons/md'
 import useOutClick from '../../hooks/useOutClick'
+import NotLogged from '../NotLogged'
 // Assuming you have retrieved user data including their timezone from the database
 
 const User_Top = ({
@@ -95,7 +96,7 @@ const User_Top = ({
       </section>
     )
   } else {
-    return <div>Login </div>
+    return <div>Loading...</div>
   }
 }
 

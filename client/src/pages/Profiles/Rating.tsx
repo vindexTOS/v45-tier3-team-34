@@ -5,6 +5,7 @@ import { RatingTypes } from '../../common.types'
 import LoadingComponent from '../../components/Status/Loading'
 import Succsess from '../../components/Status/Success'
 import Error from '../../components/Status/Error'
+import NotLogged from '../../components/NotLogged'
 export default function Rating({
   data,
   dev_id,
@@ -126,10 +127,12 @@ export default function Rating({
     UserState.userData.user.role &&
     UserState.userData.user.role === 'Developer'
   ) {
-    return <div
-      className='text-red-500 text-xs font-thin px-2'
-    >Developers cannot rate other developers </div>
+    return (
+      <div className="text-red-500 text-xs font-thin px-2">
+        Developers cannot rate other developers{' '}
+      </div>
+    )
   } else {
-    return <div>Login or register to rate this user </div>
+    return <NotLogged text="Please login or register to rate this user" />
   }
 }

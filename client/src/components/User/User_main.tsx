@@ -72,7 +72,7 @@ const User_main = ({
       </div>
     )
   } else {
-    return <div onClick={() => console.log(userInfo)}>login</div>
+    return <div className={style.mainDiv}>Loading...</div>
   }
 }
 
