@@ -18,21 +18,21 @@ const RatesStars = ({
   const stars = new Array(5).fill("num");
   return (
     <div className="flex justify-between max-w-fit items-center gap-3">
-      <div className="flex gap-0">
+      <div className="flex gap-0 ">
         {stars.map((st, i) => (
           <p
             className={`${
               i < num
                 ? "text-green-600"
                 : "text-slate-500"
-            } text-xl`}
+            } text-lg`}
             key={i}
           >
             <HiStar />
           </p>
         ))}
       </div>
-      <div className="text-green-900 dark:text-green-100">
+      <div className="text-primary text-sm dark:text-green-100">
         {data.length} reviews
       </div>
     </div>

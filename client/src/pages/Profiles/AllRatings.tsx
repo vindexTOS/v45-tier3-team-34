@@ -9,15 +9,15 @@ const AllRatings = ({
   const navigate = useNavigate();
 
   return (
-    <div className=" w-[100%]   grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+    <div className=" w-full    grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
       {data.map((rating, index) => {
         const { avatar, userName } = rating.user;
         return (
           <div
             key={index}
-            className="bg-white   w-[500px] shadow-lg p-4 rounded-lg hover:shadow-xl transition duration-300 ease-in-out"
+            className="bg-foreground w-fit md:min-w-[300px] shadow-lg p-4 rounded-lg hover:shadow-xl transition duration-300 ease-in-out"
           >
-            <p className="text-gray-700">{`Review: ${rating.rating_review}`}</p>
+            <p className="text-secondary">{`Review: ${rating.rating_review}`}</p>
             <div className="flex justify-between items-center mt-4">
               <div
                 onClick={() =>
@@ -36,13 +36,13 @@ const AllRatings = ({
                   {userName}
                 </p>
               </div>
-              <div className="flex items-center mb-4">
+              <div className="flex items-center ">
                 {new Array(rating.rating_score)
                   .fill("aha")
                   .map((star, i: number) => (
                     <span
                       key={i}
-                      className={`cursor-pointer text-3xl ${"text-yellow-400"}`}
+                      className={`cursor-pointer text-lg ${"text-yellow-400"}`}
                     >
                       ★
                     </span>

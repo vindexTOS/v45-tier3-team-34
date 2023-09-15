@@ -62,7 +62,7 @@ const Current_Project_Card = ({ data }: { data: any }) => {
     <div
       ref={ref}
       key={_id}
-      className="bg-white text-gray-700 dark:text-gray-400 dark:bg-slate-800 flex items-center flex-wrap relative   rounded-lg shadow-md mb-4 p-2 sm:p-4 "
+      className="h-fit bg-white text-gray-700 dark:text-gray-400 dark:bg-slate-800 flex items-center flex-wrap relative   rounded-lg shadow-md mb-4 p-2 sm:p-4 "
     >
       <img src={image} alt={title} className="w-[120px] h-[100px]   object-contain " />
       <div className="p-4 flex flex-col gap-1 justify-center">

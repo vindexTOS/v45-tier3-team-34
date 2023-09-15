@@ -11,6 +11,7 @@ import {
   InProgress,
   InProgressDev,
   GetArchivedProjects,
+  GetArchivedProjectsDev,
 } from '../controller/company-controllers/Company-application-controller'
 import { check_user_token } from '../middleware/user-token-check'
 import { errorHandler } from '../middleware/errorHandler'
@@ -40,6 +41,9 @@ applicationRouter.route('/inprogress/:company_id').get(InProgress, errorHandler)
 applicationRouter
   .route('/inprogressDev/:dev_id')
   .get(InProgressDev, errorHandler)
+applicationRouter
+  .route('/archived-dev/:dev_id')
+  .get(GetArchivedProjectsDev, errorHandler)
 applicationRouter.route('/archived/:company_id').get(GetArchivedProjects)
 
 export default applicationRouter

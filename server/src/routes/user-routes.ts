@@ -20,7 +20,7 @@ import { Check_user_id } from '../middleware/user-id-check'
 
 const userRouter = express.Router()
 
-userRouter.route('/register').post(Register, errorHandler)
+userRouter.route('/register').post(Register)
 userRouter.route('/login').post(Login, errorHandler)
 userRouter
   .route('/crud/:user_id')

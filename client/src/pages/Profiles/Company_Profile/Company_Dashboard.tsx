@@ -34,10 +34,10 @@ const Company_Dashboard = () => {
         // ?? profile link wont change ??
         
         <div
-          className={` z-10 cursor-pointer group flex items-center px-2 md:px-10 gap-2 hover:text-blue-300 cursor-pointer font-thin text-sm sm:text-base ${
+          className={` z-10 cursor-pointer group flex items-center px-2 md:px-10 gap-2 hover:text-muted  font-thin text-sm sm:text-base ${
             location.pathname === `/company_profile/${val.link}`
-              ? 'text-blue-400 dark:text-blue-400 underline'
-              : 'text-green-800 dark:text-green-500'
+              ? 'text-accent dark:text-muted-foreground underline'
+              : 'text-primary dark:text-primary'
           }  `}
           key={`${val.link}`}
           onClick={() => navigate(val.link)}
