@@ -45,7 +45,7 @@ export default function CatFramer() {
         <motion.div
           initial={"offscreen"}
           whileInView={"onscreen"}
-          viewport={{ once: false, amount: 0.5 }}
+          viewport={{ once: true }}
           transition={{ staggerChildren: 0.2 }}
           key={index}
         >
