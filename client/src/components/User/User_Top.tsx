@@ -82,7 +82,7 @@ const User_Top = ({
             <div
               className={` ${
                 isUser && "hidden"
-              } absolute text-green-600 text-[1.2rem] bg-white p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px]`}
+              } absolute text-primary text-[1.2rem] bg-secondary p-1 rounded-[50%] outline outline-2 outline-gray-300 top-[-5px] left-[-5px] cursor-pointer`}
               onClick={() =>
                 setPhotoEdit(!PhotoEdit)
               }
