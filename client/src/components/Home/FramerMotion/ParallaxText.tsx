@@ -98,7 +98,7 @@ function ParallaxText({
 
 export default function App2() {
   return (
-    <section className="h-[100vh] flex flex-col justify-center relative">
+    <section className="h-[100vh] lg:flex flex-col justify-center relative hidden">
       <div className="">
         <div className="justify-center mx-auto bg-tersiary dark:bg-slate-900 w-[30%] p-3 rounded-3xl mb-[20rem] shadow-lg shadow-green-100 dark:shadow-tersiary dark:border dark:border-primary">
           <p className=" text-center font-header text-secondary dark:text-muted animate-pulse">

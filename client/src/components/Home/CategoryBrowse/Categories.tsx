@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import { categories_temp } from "../../../contants";
-import CategoryCard from "./CategoryCard";
+
 import { buttonVariants } from "../../../Shadcn/components/ui/button";
 import { useRef } from "react";
 import CatFramer from "./CatFramer";
-import { motion } from "framer-motion";
 
 const Categories = () => {
   const targetRef = useRef<HTMLDivElement>(null);
