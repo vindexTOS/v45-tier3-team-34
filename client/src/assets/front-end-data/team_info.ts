@@ -32,7 +32,7 @@ export const greenInfo = [
     {
         title: "Robert Varchodi",
         role: "Software Developer",
-        image: "/assets/img/edris.png",
+        image: "/assets/img/green.jpg",
         linkName: "LinkedIn",
         link: "https://www.linkedin.com/in/robert-varchodi-633515217"
     }
