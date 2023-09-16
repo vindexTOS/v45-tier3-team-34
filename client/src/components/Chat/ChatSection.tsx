@@ -1,48 +1,38 @@
-import React, { useEffect, useRef } from "react";
-import { UseMainContext } from "../../context";
-import axios from "axios";
-export default function ChatSection({
-  messages,
-}: {
-  messages: any;
-}) {
-  const { UserState, isUserLoggedIn } =
-    UseMainContext();
-  const chatContainerRef: React.RefObject<HTMLSpanElement> =
-    useRef(null); // Define the type of the ref
-  const element =
-    chatContainerRef?.current as HTMLDivElement;
+import React, { useEffect, useRef } from 'react'
+import { UseMainContext } from '../../context'
+import axios from 'axios'
+export default function ChatSection({ messages }: { messages: any }) {
+  const { UserState, isUserLoggedIn } = UseMainContext()
+  const chatContainerRef: React.RefObject<HTMLSpanElement> = useRef(null) // Define the type of the ref
+  const element = chatContainerRef?.current as HTMLDivElement
   useEffect(() => {
     if (element) {
       setTimeout(() => {
         element.scrollIntoView({
-          behavior: "smooth",
-          block: "end",
-        }); // Scroll to the end of the chat container
-      }, 500);
+          behavior: 'smooth',
+          block: 'end',
+        }) // Scroll to the end of the chat container
+      }, 500)
     }
-  }, [messages]);
+  }, [messages])
   const SeeNotifications = async () => {
     if (isUserLoggedIn) {
       try {
         const res = await axios.post(
-          `${
-            import.meta.env.VITE_GLOBAL_URL
-          }/chat/see-notifications`,
+          `${import.meta.env.VITE_GLOBAL_URL}/chat/see-notifications`,
           {
-            receiverId:
-              UserState.userData.user._id,
-          }
-        );
-        console.log(res);
+            receiverId: UserState.userData.user._id,
+          },
+        )
+        console.log(res)
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
     }
-  };
+  }
   useEffect(() => {
-    SeeNotifications();
-  }, []);
+    SeeNotifications()
+  }, [])
   return (
     <div
       // style={{ overflowY: 'scroll', maxHeight: '390px' }}
@@ -51,33 +41,29 @@ export default function ChatSection({
       {messages &&
         messages.length > 0 &&
         messages.map((val: any) => {
-          const { sender, content } = val;
+          const { sender, content } = val
 
           // Determine if the message is sent by the user or received from others
-          const isUserMessage =
-            sender ===
-            UserState.userData.user._id;
+          const isUserMessage = sender === UserState.userData.user._id
 
           // Apply different styles based on the sender
-          const messageClasses = `px-10 max-h-[500px] max-w-[250px] w-fit rounded-[50px] break-all py-2 ${
+          const messageClasses = `px-10 max-h-[500px] max-w-[250px] w-fit rounded-[50px]  break-normal py-2 ${
             isUserMessage
-              ? "bg-primary dark:bg-primary text-white self-start rounded-bl-none"
-              : "bg-gray-200 dark:bg-slate-900 text-right self-end rounded-br-none"
-          }`;
+              ? 'bg-primary dark:bg-primary text-white self-start rounded-bl-none'
+              : 'bg-gray-200 dark:bg-slate-900 text-right self-end rounded-br-none'
+          }`
 
           return (
             <div
-              onClick={() =>
-                console.log(messages)
-              }
+              onClick={() => console.log(messages)}
               className={messageClasses}
               key={val._id}
             >
               <h1>{content}</h1>
             </div>
-          );
+          )
         })}
       <span ref={chatContainerRef}></span>
     </div>
-  );
+  )
 }
