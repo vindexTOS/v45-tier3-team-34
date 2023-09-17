@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { UseMainContext } from '../../context'
 import { storage } from '../../firebase/firebase'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-
+import LoadingComponent from '../Status/Loading'
 const DropeZone = () => {
   const { ImgState, ImgDispatch } = UseMainContext()
 
@@ -43,12 +43,9 @@ const DropeZone = () => {
         ImgDispatch({ type: 'set-img-url', payload: downloadURL })
         ImgDispatch({ type: 'set-img-loading', payload: false })
 
-        console.log('succsess')
-        console.log(downloadURL)
         removeImgFromHtml()
       } catch (error) {
         console.log(error)
-        console.log('ერრორ')
       }
     } else {
       ImgDispatch({ type: 'set-img-error', payload: 'Please Select The File!' })
@@ -90,6 +87,7 @@ const DropeZone = () => {
       onClick={() => console.log(ImgState)}
       className="flex items-center  bg-gray justify-center w-[100%]"
     >
+      <LoadingComponent loading={ImgState.imgLoading} />
       <label
         onDragLeave={(e) => handleDragLeave(e)}
         onDragOver={(e) => handleDragOver(e)}
@@ -104,7 +102,7 @@ const DropeZone = () => {
         <div className="flex flex-col w-[100%] h-[500px] items-center justify-center pt-5 pb-6">
           {ImgState.imgUrl ? (
             <img
-              className="w-[100%] h-[100%] rounded-[9px] "
+              className="w-[100%] h-[100%] rounded-[9px] object-contain"
               src={ImgState.imgUrl}
             />
           ) : (
@@ -117,9 +115,9 @@ const DropeZone = () => {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
               />
             </svg>

@@ -1,0 +1,58 @@
+import { ProjectCardType } from "../../../common.types";
+
+export const SuccessStoryDummy:ProjectCardType[] = [
+    {
+    _id: "ss1",
+    title: "Success Story 1",
+    reviews: 8,
+    price: 99,
+    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis eveniet deserunt repellendus aperiam saepe nemo alias optio cumque, molestiae, ",
+    stars: 3,
+    image: "/assets/img/sucess_story1.png",
+    },
+    {
+      _id: "ss2",
+      title: "Success Story 2",
+      reviews: 8,
+      price: 99,
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis eveniet deserunt repellendus aperiam saepe nemo alias optio cumque, molestiae, ",
+      stars: 3,
+      image: "/assets/img/sucess_story2.jpg",
+    },
+    {
+      _id: "ss3",
+      title: "Success Story 3",
+      reviews: 8,
+      price: 99,
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis eveniet deserunt repellendus aperiam saepe nemo alias optio cumque, molestiae, ",
+      stars: 3,
+      image: "/assets/img/sucess_story3.png",
+    },
+    {
+      _id: "ss4",
+      title: "Success Story 4",
+      reviews: 8,
+      price: 99,
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis eveniet deserunt repellendus aperiam saepe nemo alias optio cumque, molestiae, ",
+      stars: 3,
+      image: "/assets/img/sucess_story4.png",
+    },
+    {
+      _id: "ss5",
+      title: "Success Story 5",
+      reviews: 8,
+      price: 99,
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis eveniet deserunt repellendus aperiam saepe nemo alias optio cumque, molestiae, ",
+      stars: 3,
+      image: "/assets/img/sucess_story5.png",
+    },
+    {
+      _id: "ss6",
+      title: "Success Story 6",
+      reviews: 8,
+      price: 99,
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis eveniet deserunt repellendus aperiam saepe nemo alias optio cumque, molestiae, ",
+      stars: 3,
+      image: "/assets/img/sucess_story6.jpg",
+  },
+  ]

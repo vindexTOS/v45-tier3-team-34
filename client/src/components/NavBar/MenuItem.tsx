@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { menuItems } from "../../assets/front-end-data/menu_items";
 import { useState } from "react";
 
@@ -5,12 +6,15 @@ const MenuItem = () => {
   const [hoveredMenu, setHoveredMenu] = useState<
     string | null
   >(null);
+  const [activeMenu, setActiveMenu] = useState<
+    string | null
+  >(null);
 
   return (
     <div className="group relative hidden lg:block">
       <div className="flex">
-        {menuItems.map((menu, index) => (
-          <div className="" key={index}>
+        {menuItems.map((menu, global) => (
+          <div className="" key={global}>
             <div
               className="group relative cursor-pointer"
               onMouseEnter={() =>
@@ -19,29 +23,41 @@ const MenuItem = () => {
               onMouseLeave={() =>
                 setHoveredMenu(null)
               }
+              onClick={() =>
+                setActiveMenu(menu.name)
+              }
             >
-              <button className="p-3 text-sm text-green-900 dark:text-slate-400 hover:text-green-700 dark:hover:text-green-500">
+              <button
+                className={`p-2 text-sm ${
+                  menu.name === hoveredMenu
+                    ? "text-primary dark:text-primary hover:text-primary-hover dark:hover:text-primary-hover font-bold"
+                    : menu.name === activeMenu
+                    ? "text-primary dark:text-primary hover:text-primary-hover dark:hover:text-primary-hover font-bold"
+                    : "text-muted dark:text-muted hover:text-muted-hover dark:hover:text-muted-hover"
+                }`}
+              >
                 {menu.name}
               </button>
+
               <div className="group relative">
                 {menu.subMenus &&
                   menu.subMenus.length > 0 &&
                   hoveredMenu === menu.name && (
-                    <div className="absolute -top-6 -left-10 transition group-hover:translate-y-5 translate-y-0 opacity-0 group-hover:opacity-100 group-hover:visible duration-500 ease-in-out group-hover:transform z-50 min-w-[500px] transform">
-                      <div className="relative p-6 bg-[#F3F4F6] rounded-xl shadow-xl">
-                        <div className="w-10 h-10 bg-[#F3F4F6] transform rotate-45 absolute top-0 -z-10 translate-x-0 transition-transform group-hover:translate-x-[3rem] duration-500 ease-in-out rounded-sm"></div>
+                    <div className="absolute -top-5 -left-5 group-hover:translate-y-5 translate-y-0 opacity-0 group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out group-hover:transform z-50 min-w-[500px] transform">
+                      <div className="relative group p-6 bg-[#f2f2f2] dark:bg-slate-800 rounded-xl shadow-xl">
+                        <div className="w-10 h-10 transform rotate-45 absolute top-0 rounded-sm bg-[#f2f2f2] dark:bg-slate-800"></div>
                         <ul className="space-y-2">
                           {menu.subMenus.map(
                             (
                               submenu,
-                              subIndex
+                              subglobal
                             ) => (
                               <li
-                                key={subIndex}
-                                className="p-2 hover:bg-white rounded-md relative group"
+                                key={subglobal}
+                                className="p-2 hover:bg-white hover:dark:bg-slate-950 rounded-md relative group"
                               >
-                                <a
-                                  href={
+                                <Link
+                                  to={
                                     submenu.link
                                   }
                                   className="relative group"
@@ -51,7 +67,7 @@ const MenuItem = () => {
                                       submenu.title
                                     }
                                   </h3>
-                                  <p className="text-xs font-light text-green-900">
+                                  <p className="text-xs font-light text-primary">
                                     {
                                       submenu.description
                                     }
@@ -72,7 +88,7 @@ const MenuItem = () => {
                                       />
                                     </svg>
                                   </div>
-                                </a>
+                                </Link>
                               </li>
                             )
                           )}

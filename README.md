@@ -60,27 +60,26 @@ We connect junior developers with clients seeking affordable software solutions,
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-![Before](/client/public/assets/img/epics-1.png)
-![Before](/client/public/assets/img/epics-2.png)
+![Before](/client/public/assets/img/homepage.png)
 ## Features
 
 - [x] Sign Up | Sign In
 - [x] Demo login Developer/Client
 - [x] Edit user profiles
-- [ ] Search open Projects
-- [ ] Apply for Projects
-- [ ] Complete and Submit Projects
-- [ ] Get Reviews
-- [ ] Closed/Archive Projects
-- [ ] Chat integration
-- [ ] Ai Chatbot integration
-- [ ] Video Call
+- [x] Search open Projects
+- [x] Apply for Projects
+- [x] Complete and Submit Projects
+- [x] Get Reviews
+- [ ] Closed/Archive Project
+- [x] Chat integration
+- [x] Notification
+
 
 ## Goals
 
-- [ ] Functionality to assign Projects to Developers by Clients
-- [ ] Functionality for Developers to connect with Clients
-- [ ] Mobile Responsiveness
+- [x] Functionality to assign Projects to Developers by Company/Startup
+- [x] Functionality for Developers to connect with Clients
+- [x] Mobile Responsiveness
 - [ ] Include DevOps
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -91,7 +90,7 @@ We connect junior developers with clients seeking affordable software solutions,
 <br>
 
 ### Contact
-- Ali Mora - [LinkedIn](https://www.linkedin.com/in/daurius-ali-swarts-1b151420b/)
+- Ali Mora - [LinkedIn](https://www.linkedin.com/in/daurius-ali-swarts/)
 - Mohamed Edris - [LinkedIn](https://www.linkedin.com/in/edriso)
 - Giorgi Kutateladze - [LinkedIn](https://www.linkedin.com/in/giorgi-kutateladze-65a83919a/)
 - Robert varchodi - [LinkedIn](https://www.linkedin.com/in/robert-varchodi-633515217)
