@@ -1,6 +1,6 @@
-import React from "react";
+// import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "../src/globals.css";
 import { ContextProvider } from "./context.tsx";
 //del hash router , updated with createBrowserRouter in App
 import { HashRouter } from "react-router-dom";
@@ -12,12 +12,10 @@ import ScrollToTop from "./components/Buttons/ScrollToTop";
 ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 ).render(
-  <React.StrictMode>
-    <HashRouter>
-      <ContextProvider>
-        <App />
-        <ScrollToTop />
-      </ContextProvider>
-    </HashRouter>
-  </React.StrictMode>
+  <HashRouter>
+    <ContextProvider>
+      <App />
+      <ScrollToTop />
+    </ContextProvider>
+  </HashRouter>
 );

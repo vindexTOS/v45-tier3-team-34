@@ -27,26 +27,23 @@ const Login = () => {
     <main className="flex items-center justify-center relative">
       <Error error={statusState.error} />
       <Loading loading={Authloading} />
-      <section className="w-full lg:w-[30%] flex flex-col py-10 px-5 sm:px-12 text-center border border-slate-500/50 dark:border-green-500/50 bg-white rounded-2xl dark:bg-slate-800">
-        {/* Kinda logo */}
-        <article className="pb-20 sm:mb-auto">
-          <a
-            href="/"
+      <section className="w-[90%] lg:w-[30%] h-[60vh] flex flex-col py-10 px-5 sm:px-12 text-center border border-slate-500/50 dark:border-green-500/50 bg-white rounded-2xl dark:bg-slate-800 justify-between">
+        {/* Title */}
+        <article className="">
+          <h1 className="text-md font-sm text-light-text dark:text-dark-text mb-2">
+            Log in to
+          </h1>
+          <Link
+            to="/"
             className="text-2xl font-extrabold text-green-700 dark:text-green-500"
           >
             DevConnect
-          </a>
+          </Link>
         </article>
 
-        {/* Title */}
-        <article className="sm:my-6 my-12 mb-10 md:mb-16">
-          <h1 className="text-xl font-normal dark:text-gray-300">
-            Log in to DevConnect
-          </h1>
-        </article>
         {/* Form here  */}
-        <article className="flex flex-col gap-y-2 justify-center">
-          <div className="mb-10">
+        <article className="flex flex-col justify-center items-center">
+          <div className="space-y-3 w-[80%]">
             <InputField
               data={formData}
               setData={setFormData}
@@ -63,8 +60,10 @@ const Login = () => {
               setData={setFormData}
             />
           </div>
-          {/* Create account button */}
+        </article>
 
+        {/* Create account button */}
+        <article>
           <div className="my-8 text-center flex items-center justify-center">
             <div className="border-t border-gray-200 flex-grow"></div>
             <Link
@@ -78,7 +77,7 @@ const Login = () => {
 
           <button
             onClick={handleSubmit}
-            className="mt-2 mx-auto py-2 px-16 border-2 border-green-700 rounded-2xl font-semibold text-base text-green-700 hover:bg-green-400/30  hover:border-green-600 transition-all duration-300"
+            className="mt-2 mx-auto py-2 px-16 border-2 border-green-700 rounded-2xl font-semibold text-base text-green-700 hover:bg-primary-hover  hover:border-green-600 transition-all duration-300"
           >
             Login
           </button>

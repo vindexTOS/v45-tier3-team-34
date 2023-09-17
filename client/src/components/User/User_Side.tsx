@@ -3,43 +3,49 @@ import { UseMainContext } from '../../context'
 import { DiGithubAlt } from 'react-icons/di'
 import { AiOutlineLinkedin } from 'react-icons/ai'
 import { SiWebmoney } from 'react-icons/si'
-const User_Side = () => {
+const User_Side = ({
+  userInfo,
+  isUser,
+}: {
+  userInfo: any
+  isUser?: boolean
+}) => {
   const { UserState } = UseMainContext()
 
   const style = {
-    mainDiv: `w-[25%] border-r-[1px] border-gray-300  flex items-center justify-start py-10 flex-col gap-2 `,
-    aTeg: `flex items-center justify-center py-2  w-[15rem] border-2 border-orange-900/40 rounded-[39px] bg-yellow-600/10  gap-2 hover:bg-green-600/10`,
+    mainDiv: `w-full md:w-fit px-8 md:border-r-[1px] border-gray-300  flex items-center justify-center md:justify-start py-10 flex-col gap-2 `,
+    aTeg: `flex items-center justify-center py-2 w-full md:w-fit min-w-[120px] border-2 border-green-900/40 dark:border-gray-600 rounded-3xl bg-primary dark:bg-gray-300/10 dark:hover:bg-gray-400/40  gap-2 hover:bg-green-700/50  hover:shadow-sm dark:shadow-gray-100/50 text-secondary hover:text-slate-200 dark:text-green-600 hover:dark:text-gray-300 hover:scale-x-105`,
   }
-  if (UserState.full_user_info && UserState.full_user_info.user_info) {
-    const { website, linkedin, github } = UserState.full_user_info.user_info
+  if (userInfo && userInfo.user_info) {
+    const { website, linkedin, github } = userInfo.user_info
 
     return (
       <div className={style.mainDiv}>
         {github && (
           <a href={github} target="_blank" className={style.aTeg}>
-            <DiGithubAlt className="text-[1.2rem] text-yellow-900" />
+            <DiGithubAlt className="text-[1.2rem]" />
 
-            <h1 className="text-yellow-900 text-[1rem]">GitHub</h1>
+            <h1 className=" text-sm ">GitHub</h1>
           </a>
         )}
         {linkedin && (
           <a href={linkedin} target="_blank" className={style.aTeg}>
-            <AiOutlineLinkedin className="text-[1.2rem] text-yellow-900" />
+            <AiOutlineLinkedin className="text-[1.2rem]" />
 
-            <h1 className="text-yellow-900 text-[1rem]">Linkedin</h1>
+            <h1 className=" text-sm">Linkedin</h1>
           </a>
         )}
         {website && (
           <a href={website} target="_blank" className={style.aTeg}>
-            <SiWebmoney className="text-[1.2rem] text-yellow-900" />
+            <SiWebmoney className="text-lg " />
 
-            <h1 className="text-yellow-900 text-[1rem]">Personal Website</h1>
+            <h1 className=" text-sm"> Website</h1>
           </a>
         )}
       </div>
     )
   } else {
-    return <div>Login</div>
+    return <div className={style.mainDiv}>Loading...</div>
   }
 }
 

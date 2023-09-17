@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { verifyToken } from '../functions/verifyToken'
-import user_model from '../model/user_model'
+import user_model from '../model/User_models/user_model'
 // checking if user who is trying to change information is same user, or if user is even registered or loged in
 
 export const check_user_token = async (
