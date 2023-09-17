@@ -468,10 +468,36 @@ export const ContextProvider = ({
 
   const UpdateUserInfo = async (obj: any, link: string) => {
     UserStateUpdateDispatch({ type: 'loading', payload: true })
-    if (UserState.userData.user && UserState.userData.user?._id) {
+    if (
+      UserState.userData.user &&
+      UserState.userData.user?._id &&
+      UserState.userData.user.role === 'Developer'
+    ) {
       try {
         const res = await axios.patch(
-          `${import.meta.env.VITE_GLOBAL_URL}/${link}/info/${
+          `${import.meta.env.VITE_GLOBAL_URL}/user/info/${
+            UserState.userData.user?._id
+          }`,
+          obj,
+        )
+        UserStateUpdateDispatch({ type: 'loading', payload: false })
+
+        setSuccess(res.data.msg)
+        setIsUpdate(!isUpdate)
+      } catch (error) {
+        const err: any = error
+        UserStateUpdateDispatch({ type: 'loading', payload: false })
+
+        setError(err.message)
+      }
+    } else if (
+      UserState.userData.user &&
+      UserState.userData.user?._id &&
+      UserState.userData.user.role === 'Company/Startup'
+    ) {
+      try {
+        const res = await axios.patch(
+          `${import.meta.env.VITE_GLOBAL_URL}/company/info/${
             UserState.userData.user?._id
           }`,
           obj,
