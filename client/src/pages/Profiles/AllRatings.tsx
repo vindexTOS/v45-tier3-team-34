@@ -9,30 +9,30 @@ const AllRatings = ({
   const navigate = useNavigate();
 
   return (
-    <div className=" w-full    grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+    <div className=" w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
       {data.map((rating, index) => {
         const { avatar, userName } = rating.user;
         return (
           <div
             key={index}
-            className="bg-foreground w-fit md:min-w-[300px] shadow-lg p-4 rounded-lg hover:shadow-xl transition duration-300 ease-in-out"
+            className="bg-tersiary dark:bg-slate-950 w-fit md:min-w-[300px] shadow-lg p-4 rounded-lg hover:shadow-xl transition duration-300 ease-in-out"
           >
-            <p className="text-secondary">{`Review: ${rating.rating_review}`}</p>
-            <div className="flex justify-between items-center mt-4">
+            <p className="text-secondary dark:text-primary text-xs">{`Review: ${rating.rating_review}`}</p>
+            <div className="flex justify-between items-center mt-2">
               <div
                 onClick={() =>
                   navigate(
                     `/company/page/${rating.rater_id}`
                   )
                 }
-                className="flex  items-center justify-center gap-2 cursor-pointer"
+                className="flex items-center justify-center gap-2 cursor-pointer"
               >
                 <img
                   src={avatar}
                   alt={`${userName}'s avatar`}
-                  className="w-10 h-10 rounded-full"
+                  className="w-14 h-14 rounded-full"
                 />
-                <p className="text-muted">
+                <p className="text-white">
                   {userName}
                 </p>
               </div>

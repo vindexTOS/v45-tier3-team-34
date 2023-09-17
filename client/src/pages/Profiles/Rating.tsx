@@ -153,7 +153,7 @@ export default function Rating({
     UserState.userData.user.role === "Developer"
   ) {
     return (
-      <div className="text-red-500 text-xs font-thin px-2">
+      <div className="text-destrutive text-xs px-2">
         Developers cannot rate other developers{" "}
       </div>
     );

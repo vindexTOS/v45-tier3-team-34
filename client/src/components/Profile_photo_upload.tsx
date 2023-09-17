@@ -152,7 +152,7 @@ const ImgUpload = ({ avatar }: { avatar: string }) => {
           placeholder="Photo"
           onChange={(e) => imgUpload(e)}
           id="photo"
-          className=" hidden  w-full text-sm  text-green-600  boxshaddow  border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none bg-[#2e2d2d]   dark:border-gray-600 dark:placeholder-gray-400"
+          className=" hidden  w-full text-sm  text-primary  boxshadow  border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none bg-[#2e2d2d]   dark:border-gray-600 dark:placeholder-gray-400"
           type="file"
         />
       </label>
