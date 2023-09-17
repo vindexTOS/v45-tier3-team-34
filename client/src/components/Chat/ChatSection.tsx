@@ -8,7 +8,10 @@ export default function ChatSection({ messages }: { messages: any }) {
   useEffect(() => {
     if (element) {
       setTimeout(() => {
-        element.scrollIntoView({ behavior: 'smooth', block: 'end' }) // Scroll to the end of the chat container
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+        }) // Scroll to the end of the chat container
       }, 500)
     }
   }, [messages])
@@ -17,7 +20,9 @@ export default function ChatSection({ messages }: { messages: any }) {
       try {
         const res = await axios.post(
           `${import.meta.env.VITE_GLOBAL_URL}/chat/see-notifications`,
-          { receiverId: UserState.userData.user._id },
+          {
+            receiverId: UserState.userData.user._id,
+          },
         )
         console.log(res)
       } catch (error) {
@@ -30,8 +35,8 @@ export default function ChatSection({ messages }: { messages: any }) {
   }, [])
   return (
     <div
-      style={{ overflowY: 'scroll', maxHeight: '390px' }}
-      className="  py-10 w-[100%] bg-white flex flex-col items-center gap-2  "
+      // style={{ overflowY: 'scroll', maxHeight: '390px' }}
+      className="h-full py-2  px-2 overflow-y-auto w-full  flex flex-col items-center gap-2  "
     >
       {messages &&
         messages.length > 0 &&
@@ -42,10 +47,10 @@ export default function ChatSection({ messages }: { messages: any }) {
           const isUserMessage = sender === UserState.userData.user._id
 
           // Apply different styles based on the sender
-          const messageClasses = `px-10 max-h-[500px] max-w-[250px] rounded-[50px] break-all py-2 ${
+          const messageClasses = `px-10 max-h-[500px] max-w-[250px] w-fit rounded-[50px]  break-normal py-2 ${
             isUserMessage
-              ? 'bg-green-400 text-white self-start'
-              : 'bg-gray-200 text-right self-end'
+              ? 'bg-primary dark:bg-primary text-white self-start rounded-bl-none'
+              : 'bg-gray-200 dark:bg-slate-900 text-right self-end rounded-br-none'
           }`
 
           return (

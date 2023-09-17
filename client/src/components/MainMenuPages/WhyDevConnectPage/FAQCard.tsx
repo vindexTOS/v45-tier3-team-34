@@ -10,7 +10,7 @@ export default function FAQCard() {
         <h2 id="accordion-open-heading-1">
           <button
             type="button"
-            className="flex items-center justify-between w-full p-5 font-medium text-left  border border-b-0 border-white rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700  hover:bg-gray-100 dark:hover:bg-gray-800  text-light-primary dark:text-dark-primary"
+            className="flex items-center justify-between w-full p-5 font-medium text-left  border border-b-0 border-white rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700  hover:bg-gray-100 dark:hover:bg-gray-800  text-primary dark:text-primary"
             data-accordion-target="#accordion-open-body-1"
             aria-expanded="true"
             aria-controls="accordion-open-body-1"

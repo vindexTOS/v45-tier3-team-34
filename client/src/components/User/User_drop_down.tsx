@@ -9,11 +9,11 @@ export default function User_drop_down() {
   const { UserState } = UseMainContext();
   const cookies = new Cookies();
   const style = {
-    mainDiv: `flex flex-col items-center justify-between py-8 w-[225px] bg-[#F3F4F6] shadow-md rounded-[10px] absolute right-0 top-[3.5rem]`,
+    mainDiv: `flex flex-col items-center justify-between py-8 w-[225px] bg-[#F3F4F6] dark:bg-slate-900 shadow-md rounded-[10px] absolute right-0 top-[3.5rem]`,
     imgWrapper: `flex flex-col items-center w-[100%]`,
     img: `w-[70px] h-[70px] rounded-[50%]`,
     btnWrapper: `flex flex-col pt-2 items-start w-[100%]`,
-    btn: `flex items-center justify-start text-[1rem] gap-4  w-[90%] mx-auto px-4 py-1 hover:bg-white hover:text-light-primary hover:font-semibold`,
+    btn: `flex items-center justify-start text-[1rem] gap-4 w-[90%] mx-auto px-4 py-1 hover:bg-white dark:hover:bg-gray-950 hover:text-primary dark:text-muted dark:hover:text-primary hover:font-semibold`,
   };
   const navigate = useNavigate();
   const logOut = () => {
@@ -59,11 +59,11 @@ export default function User_drop_down() {
           <h1 className="font-semibold mt-3">
             {userName}
           </h1>
-          <p className="text-xs text-light-primary">
+          <p className="text-xs text-primary">
             {role}
           </p>
         </div>
-        <div className="border border-t-green-600 my-4 w-[90%]"></div>
+        <div className="border border-t-primary my-4 w-[90%]"></div>
         <div className={style.btnWrapper}>
           <button
             onClick={navigateToProfile}

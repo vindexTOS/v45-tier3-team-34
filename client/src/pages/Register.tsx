@@ -1,12 +1,16 @@
-import { useState, useEffect } from 'react'
-import InputField from '../components/Forms/InputField'
-import { RegisterFormType } from '../common.types'
-import ImgUpload from '../components/Profile_photo_upload'
-import DropDownSelect from '../components/Forms/dropDownSelect'
-import { UseMainContext } from '../context'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-import Error from '../components/Status/Error'
-import Loading from '../components/Status/Loading'
+import { useState, useEffect } from "react";
+import InputField from "../components/Forms/InputField";
+import { RegisterFormType } from "../common.types";
+import ImgUpload from "../components/Profile_photo_upload";
+import DropDownSelect from "../components/Forms/dropDownSelect";
+import { UseMainContext } from "../context";
+import {
+  Link,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
+import Error from "../components/Status/Error";
+import Loading from "../components/Status/Loading";
 const Register = () => {
   const {
     hanldeAuth,
@@ -14,20 +18,27 @@ const Register = () => {
     statusState,
     Authloading,
     UserState,
-  } = UseMainContext()
+  } = UseMainContext();
 
-  const [formData, setFormData] = useState<RegisterFormType>({
-    email: '',
-    userName: '',
-    password: '',
-    confirmPassword: '',
-    role: 'Developer',
-  })
+  const [formData, setFormData] =
+    useState<RegisterFormType>({
+      email: "",
+      userName: "",
+      password: "",
+      confirmPassword: "",
+      role: "Developer",
+    });
 
   //submit data
   async function handleSubmit() {
     // avatar:ImgState.imgUrl
-    const { email, userName, password, confirmPassword, role } = formData
+    const {
+      email,
+      userName,
+      password,
+      confirmPassword,
+      role,
+    } = formData;
 
     hanldeAuth(
       {
@@ -38,8 +49,8 @@ const Register = () => {
         avatar: ImgState.imgUrl,
         role,
       },
-      'register',
-    )
+      "register"
+    );
   }
 
   return (
@@ -64,7 +75,7 @@ const Register = () => {
 
         {/* title */}
         <article className="">
-          <h1 className="text-[1.4rem] text-gray-600 dark:text-dark-text font-light">
+          <h1 className="text-[1.4rem] text-muted dark:text-dark-text font-light">
             Create a free account
           </h1>
         </article>
@@ -128,7 +139,7 @@ const Register = () => {
 
           <button
             onClick={handleSubmit}
-            className="mt-2 mx-auto py-2 px-16 border-2 border-green-700 rounded-2xl font-semibold text-base text-green-700 hover:bg-green-400/30  hover:border-green-600 transition-all duration-300"
+            className="mt-2 mx-auto py-2 px-16 border-2 border-green-700 rounded-2xl font-semibold text-base text-green-700 hover:bg-primary-hover  hover:border-green-600 transition-all duration-300"
           >
             Create account
           </button>
@@ -138,7 +149,7 @@ const Register = () => {
         © 2023 DevConnect
       </span>
     </main>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;

@@ -105,7 +105,7 @@ const DropeZone = () => {
         <div className="flex flex-col w-[100%] h-[500px] items-center justify-center pt-5 pb-6">
           {ImgState.imgUrl ? (
             <img
-              className="w-[100%] h-[100%] rounded-[9px] "
+              className="w-[100%] h-[100%] rounded-[9px] object-contain"
               src={ImgState.imgUrl}
             />
           ) : (

@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { GrInProgress } from 'react-icons/gr'
 const Company_Dashboard = () => {
   const style = {
-    mainDiv: `w-[300px] outline  outline-[1px] outline-gray-300 rounded-[23px] h-[500px] flex flex-col py-10 gap-5 mt-40`,
+    mainDiv: `w-fit dark:outline  dark:outline-[1px] shadow-sm shadow-green-800 bg-green-200/10 dark:bg-slate-800 dark:outline-gray-300 rounded-md h-[500px] flex flex-col py-10 gap-5 mt-2 md:mt-8 `,
   }
   const navigate = useNavigate()
   const location = useLocation()
@@ -29,22 +29,21 @@ const Company_Dashboard = () => {
     { title: 'Reviews', Icon: MdOutlineReviews, link: 'reviews' },
   ]
   return (
-    <div
-      onClick={() => console.log(location.pathname)}
-      className={style.mainDiv}
-    >
+    <div className={style.mainDiv}>
       {NavigationLinks.map((val: any) => (
+        // ?? profile link wont change ??
+        
         <div
-          className={` flex items-center px-10 gap-2 hover:text-blue-300 cursor-pointer ${
+          className={` z-10 cursor-pointer group flex items-center px-2 md:px-10 gap-2 hover:text-muted  font-thin text-sm sm:text-base ${
             location.pathname === `/company_profile/${val.link}`
-              ? 'text-blue-400'
-              : 'text-gray-400 '
+              ? 'text-accent dark:text-muted-foreground underline'
+              : 'text-primary dark:text-primary'
           }  `}
           key={`${val.link}`}
           onClick={() => navigate(val.link)}
         >
-          <val.Icon className="text-[2rem] text-gray-400" />
-          <h1>{val.title}</h1>
+          <val.Icon className={`text-2xl md:text-3xl `} />
+          <h1 className="hidden md:block">{val.title}</h1>
         </div>
       ))}
     </div>

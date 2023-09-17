@@ -9,6 +9,7 @@ import rating_model from '../../model/rating_model'
 
 export const Register = tryCatch(async (req: Request, res: any) => {
   const { password, confirmPassword, email, userName, avatar, role } = req.body
+  console.log(req.body)
   let user = {}
 
   const userExist = await User_model.findOne({ email: email })
@@ -35,6 +36,7 @@ export const Register = tryCatch(async (req: Request, res: any) => {
       user_id: userFromDb._id,
       rater_id: userFromDb._id,
       rating_score: 0,
+      user: { ...req.body },
     })
   } else if (userFromDb.role === 'Developer') {
     await user_info_model.create({ user_id: userFromDb._id })
@@ -42,6 +44,7 @@ export const Register = tryCatch(async (req: Request, res: any) => {
       user_id: userFromDb._id,
       rater_id: userFromDb._id,
       rating_score: 0,
+      user: { ...req.body },
     })
   }
 

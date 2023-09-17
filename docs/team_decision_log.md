@@ -8,7 +8,7 @@ To set this up add each teammates name in the `teammate name` column. Each
 team member should Place an 'X' under their name to vote for the ideas 
 you like the best.
 
-| No. | Question/Option | Robert | Ali Mora | Henok | Vindex | Edris |
+| No. | Question/Option | Robert | Ali Mora | Henok | Vglobal | Edris |
 | :--- | :--- | :--- | :--- |  :--- |  :--- |  :--- | 
 | 1 | Team meeting schedule | | | | | |
 |   |	- Sprint Planning Sunday@3:00 PM GMT | | |x| |✅|

@@ -77,7 +77,7 @@ const Login = () => {
 
           <button
             onClick={handleSubmit}
-            className="mt-2 mx-auto py-2 px-16 border-2 border-green-700 rounded-2xl font-semibold text-base text-green-700 hover:bg-green-400/30  hover:border-green-600 transition-all duration-300"
+            className="mt-2 mx-auto py-2 px-16 border-2 border-green-700 rounded-2xl font-semibold text-base text-green-700 hover:bg-primary-hover  hover:border-green-600 transition-all duration-300"
           >
             Login
           </button>

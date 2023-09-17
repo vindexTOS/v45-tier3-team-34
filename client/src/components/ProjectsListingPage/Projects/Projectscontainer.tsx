@@ -13,15 +13,6 @@ const ProjectsContainer = ({
   id: string;
   //projects?: any[]
 }) => {
-  //fetch here if id given,
-  //if not (projects parsed ) , no need to fetch,use directly;
-
-  //dummy data
-
-  // may add same conditional stuff here if no pojects ???
-
-  //if projects ??...
-
   const [projects, setProjects] = useState<any>();
   const GetAllProjects = async () => {
     try {
@@ -44,12 +35,12 @@ const ProjectsContainer = ({
     return (
       <div className="my-10">
         <section className="my-5">
-          <h1 className="text-[1.5rem] font-semibold text-light-primary dark:text-dark-primary">
+          <h1 className="text-[1.5rem] font-semibold text-primary dark:text-primary">
             Browse available projects
           </h1>
           <p className="text-[1rem] font-light text-light-muted dark:text-dark-muted">
             Currently{" "}
-            <span className="text-light-green font-semibold hover:underline cursor-pointer">
+            <span className="text-primary font-semibold hover:underline cursor-pointer">
               {projects.length} Projects
             </span>{" "}
             are open
