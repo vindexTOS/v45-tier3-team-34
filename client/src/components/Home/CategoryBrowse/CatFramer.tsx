@@ -1,6 +1,7 @@
 import { HiStar } from "react-icons/hi";
 import { categories_temp } from "../../../contants/index.js";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const imageAnimate = {
   offscreen: { y: 200, opacity: 0 },
@@ -16,7 +17,12 @@ const imageAnimate = {
   },
 };
 
-function Card({ title, rating, skills, id }) {
+function Card({
+  title,
+  rating,
+  skills,
+  id,
+}: any) {
   return (
     <motion.div
       variants={imageAnimate}
@@ -39,10 +45,14 @@ function Card({ title, rating, skills, id }) {
 }
 
 export default function CatFramer() {
+  const navigate = useNavigate();
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {categories_temp.map((item, index) => (
         <motion.div
+          onClick={() =>
+            navigate(`/ForDeveloper/ListProjects`)
+          }
           initial={"offscreen"}
           whileInView={"onscreen"}
           viewport={{ once: true }}
