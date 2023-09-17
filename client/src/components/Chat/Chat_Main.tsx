@@ -6,7 +6,7 @@ import io, { Socket } from 'socket.io-client'
 import { IoSendSharp } from 'react-icons/io5'
 import { DefaultEventsMap } from '@socket.io/component-emitter'
 import ChatSection from './ChatSection'
-import classNames from 'classnames'
+
 const ENDPOINT = import.meta.env.VITE_GLOBAL_URL
 
 const Chat = ({ userId }: { userId: string }) => {
@@ -110,7 +110,6 @@ const Chat = ({ userId }: { userId: string }) => {
         {/* Chat body */}
         <div className="w-full py-2 flex justify-center items-center border-t border-t-gray-300">
           <div className="w-full py-1 px-6 pr-1 flex my-auto justify-around bg-white dark:bg-slate-800 rounded-lg">
-            {' '}
             {/* Make this container full width */}
             <input
               value={messageContent}
