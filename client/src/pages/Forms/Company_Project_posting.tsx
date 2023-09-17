@@ -112,7 +112,7 @@ const CompanyProjectForm = () => {
     initialCompanyProjectState,
   )
   // const [value, onChange] = React.useState(new Date())
-  const value = new Date();
+  const value = new Date()
 
   const HandleDeliveryCalendar = (e: Date) => {
     companyProjectDispatch({
@@ -138,7 +138,6 @@ const CompanyProjectForm = () => {
   }, [PortfolioState.technologies])
 
   const handleProjectPosting = async () => {
-    console.log(companyProjectState)
     try {
       if (UserState.userTokenData.user && UserState.userTokenData.user._id) {
         const res = await axios.post(
@@ -162,10 +161,9 @@ const CompanyProjectForm = () => {
   return (
     <div className="max-w-md lg:max-w-full mx-auto mt-8 p-6 bg-white rounded shadow-lg">
       <h2 className="text-2xl font-semibold mb-4">Create a Company Project</h2>
-        <div className="flex flex-col lg:flex-row lg:gap-6 flex-wrap">
-
+      <div className="flex flex-col lg:flex-row lg:gap-6 flex-wrap">
         {/* Title and Country */}
-        <section className='flex flex-col lg:w-full'>
+        <section className="flex flex-col lg:w-full">
           <FormField
             label="Title"
             id="title"
@@ -175,7 +173,7 @@ const CompanyProjectForm = () => {
             placeholder="Title"
             required
           />
-    
+
           <FormField
             label="Country"
             id="country"
@@ -188,7 +186,7 @@ const CompanyProjectForm = () => {
         </section>
 
         {/* Description, Category, DropeZone & Difficulty */}
-        <section className='lg:grow'>
+        <section className="lg:grow">
           <FormField
             label="Description"
             id="description"
@@ -198,7 +196,7 @@ const CompanyProjectForm = () => {
             placeholder="Description"
             required
           />
-    
+
           <FormField
             label="Category"
             id="category"
@@ -208,9 +206,12 @@ const CompanyProjectForm = () => {
             placeholder="Category"
             required
           />
-    
+
           <div className="mb-4 flex items-center justify-between">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="difficulty">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="difficulty"
+            >
               Difficulty
             </label>
             <select
@@ -234,10 +235,18 @@ const CompanyProjectForm = () => {
         </section>
 
         {/* Checkmark Fields, Price & Revisions */}
-        <section className='lg:grow'>
-          {['Urgent', 'Design Customization', 'Content Upload', 'Responsive'].map((field) => (
+        <section className="lg:grow">
+          {[
+            'Urgent',
+            'Design Customization',
+            'Content Upload',
+            'Responsive',
+          ].map((field) => (
             <div className="mb-4 flex items-center justify-between" key={field}>
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={field}>
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor={field}
+              >
                 {field}
               </label>
               <input
@@ -253,7 +262,7 @@ const CompanyProjectForm = () => {
               />
             </div>
           ))}
-    
+
           <FormField
             label="Price"
             id="price"
@@ -263,7 +272,7 @@ const CompanyProjectForm = () => {
             placeholder="Price"
             required
           />
-    
+
           <FormField
             label="Revisions"
             id="revisions"
@@ -275,9 +284,8 @@ const CompanyProjectForm = () => {
           />
         </section>
 
-
         {/* Calendar Fields */}
-        <section className='w-full flex flex-col lg:flex-row mb-4 gap-6 items-center justify-around'>
+        <section className="w-full flex flex-col lg:flex-row mb-4 gap-6 items-center justify-around">
           <div>
             Delivery Date
             <Calendar onChange={() => HandleDeliveryCalendar} value={value} />
@@ -288,30 +296,26 @@ const CompanyProjectForm = () => {
           </div>
         </section>
 
-
         {/* Skills & Submit + Statuses */}
-        <section className='mb-4 w-full flex flex-col items-center justify-between'>
+        <section className="mb-4 w-full flex flex-col items-center justify-between">
+          <SkillSelection />
 
-        <SkillSelection />
-  
-        <div className="mt-8">
-          <button
-            onClick={handleProjectPosting}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Create Project
-          </button>
-        </div>
-  
-        <Succsess success={statusState.success} />
-        <Error error={statusState.error} />
-      </section>
+          <div className="mt-8">
+            <button
+              onClick={handleProjectPosting}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              type="submit"
+            >
+              Create Project
+            </button>
+          </div>
 
+          <Succsess success={statusState.success} />
+          <Error error={statusState.error} />
+        </section>
       </div>
     </div>
-  );
-  
+  )
 }
 
 export default CompanyProjectForm

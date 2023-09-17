@@ -17,7 +17,6 @@ const Archived_Projects = () => {
         )
 
         setData(res.data)
-        console.log(res)
       }
     } catch (error) {
       console.log(error)

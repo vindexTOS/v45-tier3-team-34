@@ -48,8 +48,9 @@ const ProjectCard = ({
             {title}
           </h1>
           {/* description */}
-          <p className="text-gray-500 text-[0.8rem]">
-            {description.slice(0, 96)}...
+          <p className="text-muted text-[0.8rem]">
+            {/* {description.slice(0, 42)}... */}
+            <p>Test 2</p>
           </p>
           {/* price and linke */}
         </div>
@@ -58,11 +59,11 @@ const ProjectCard = ({
       {/* price and like btn */}
       <div className=" dark:text-gray-200 flex justify-between p-4">
         {/* price */}
-        <p className="flex items-center text-light-muted dark:text-dark-muted text-[.8rem]">
+        <p className="flex text-muted dark:text-muted text-[.8rem]">
           <span className="text-[1rem] font-semibold text-primary dark:text-primary mr-2">
             ${price}
           </span>
-          project Budjet
+          Project Budget
         </p>
         {/* like btn add same features if needed */}
         <button
@@ -72,8 +73,8 @@ const ProjectCard = ({
           }
           className={`${
             isLinked
-              ? "bg-green-200 dark:bg-green-800 text-green-600 dark:text-green-200 "
-              : "bg-slate-300 dark:bg-slate-700 text-slate-500  "
+              ? "bg-secondary dark:bg-primary text-primary dark:text-muted"
+              : "bg-slate-300 dark:bg-slate-700 text-muted"
           } text-lg p-2 rounded-md `}
         >
           <AiTwotoneHeart />

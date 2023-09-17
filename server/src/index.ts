@@ -38,15 +38,13 @@ app.use((req, res) => {
 })
 
 const server = http.createServer(app)
-
+const port = 8080
 const io = socketIo(server, {
   pingTimeout: 60000,
   cors: {
-    origin: '*',
+    origin: port,
   },
 })
-
-const port = 8080 || process.env.ENV_PORT
 
 const start = async () => {
   try {

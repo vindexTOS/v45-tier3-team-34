@@ -66,20 +66,20 @@ We connect junior developers with clients seeking affordable software solutions,
 - [x] Sign Up | Sign In
 - [x] Demo login Developer/Client
 - [x] Edit user profiles
-- [ ] Search open Projects
-- [ ] Apply for Projects
-- [ ] Complete and Submit Projects
-- [ ] Get Reviews
-- [ ] Closed/Archive Projects
-- [ ] Chat integration
-- [ ] Ai Chatbot integration
-- [ ] Video Call
+- [x] Search open Projects
+- [x] Apply for Projects
+- [x] Complete and Submit Projects
+- [x] Get Reviews
+- [ ] Closed/Archive Project
+- [x] Chat integration
+- [x] Notification
+
 
 ## Goals
 
-- [ ] Functionality to assign Projects to Developers by Clients
-- [ ] Functionality for Developers to connect with Clients
-- [ ] Mobile Responsiveness
+- [x] Functionality to assign Projects to Developers by Company/Startup
+- [x] Functionality for Developers to connect with Clients
+- [x] Mobile Responsiveness
 - [ ] Include DevOps
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

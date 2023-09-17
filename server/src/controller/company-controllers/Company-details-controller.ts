@@ -7,9 +7,9 @@ export const update_company_detail_info = tryCatch(
   async (req: Request, res: any) => {
     const { user_id } = req.params
     let company_id = user_id
-    
+    // console.log(company_id)
     const userExists = await company_user_model.findOne({ company_id })
-    console.log(userExists)
+
     if (!userExists) {
       return res.status(403).json({ msg: 'User Does not have info' })
     }
