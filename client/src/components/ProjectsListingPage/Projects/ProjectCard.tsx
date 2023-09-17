@@ -49,7 +49,8 @@ const ProjectCard = ({
           </h1>
           {/* description */}
           <p className="text-muted text-[0.8rem]">
-            {description.slice(0, 44)}...
+            {/* {description.slice(0, 42)}... */}
+            <p>Test 2</p>
           </p>
           {/* price and linke */}
         </div>
