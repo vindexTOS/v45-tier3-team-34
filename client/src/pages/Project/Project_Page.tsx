@@ -286,8 +286,8 @@ const Project_Page = () => {
         </article>
 
         <article className="lg:flex-1 flex flex-col gap-4">
-          <div className=" border border-green-500 bg-green-100/20 rounded-2xl dark:bg-slate-900 dark:border-slate-600 text-green-800 dark:text-green-300 p-4 md:p-10">
-            <section className="flex justify-between items-center flex-wrap gap-y-2 border-b border-b-green-600 dark:border-slate-600 pb-8">
+          <div className=" border border-white bg-[#f2f2f2] rounded-2xl dark:bg-slate-900 dark:border-slate-600 text-tersiary dark:text-green-300 p-4 md:p-10">
+            <section className="flex justify-between items-center flex-wrap gap-y-2 border-b border-b-primary dark:border-slate-600 pb-8">
               <h1 className="text-lg">
                 Select Tier
               </h1>
@@ -300,7 +300,7 @@ const Project_Page = () => {
                   <button
                     className={`text-white ${
                       selectedTier === tier
-                        ? "bg-green-800"
+                        ? "bg-tersiary"
                         : "bg-primary"
                     } px-2 sm:px-4 py-1 sm:py-2 text-sm rounded-md shadow-lg capitalize`}
                     key={tier}
@@ -327,7 +327,7 @@ const Project_Page = () => {
                     `/company/project/application/${_id}/${user_id}`
                   )
                 }
-                className="bg-primary disabled:bg-red-600  text-white p-2 text-center min-w-fit w-3/4 rounded-full shadow-md hover:bg-primary"
+                className="bg-primary disabled:bg-destructive  text-white p-2 text-center min-w-fit w-3/4 rounded-full shadow-md hover:bg-primary"
               >
                 {!isUserApplication
                   ? "Apply"
@@ -336,7 +336,7 @@ const Project_Page = () => {
 
               {/* message the company or publisher */}
               <button
-                className="border-2 border-light-green  text-primary p-2 text-center min-w-fit w-3/4 rounded-full shadow-md hover:bg-slate-200 dark:hover:bg-slate-800"
+                className="border-2 border-primary  text-primary p-2 text-center min-w-fit w-3/4 rounded-full shadow-md hover:bg-white dark:hover:bg-slate-800"
                 onClick={() =>
                   GoToUserChat(user_id)
                 }
@@ -350,7 +350,7 @@ const Project_Page = () => {
             {/* publisher image */}
             <section className=" w-36 h-auto">
               <img
-                className="w-full h-full object-contain rounded-lg"
+                className="w-full h-full object-cover rounded-lg"
                 src={avatar}
                 alt="publisher profile"
               />
@@ -369,7 +369,7 @@ const Project_Page = () => {
                 </div>
               </article>
 
-              <p className=" text-light-muted dark:text-dark-muted text-sm">
+              <p className=" text-muted dark:text-muted text-sm">
                 {publisher.description
                   .split("")
                   .slice(0, 200)}{" "}
@@ -377,7 +377,7 @@ const Project_Page = () => {
               </p>
 
               <article
-                className={`flex items-center gap-1 p-1 pr-2 py-2 shadow  rounded-lg hover:shadow-md hover:bg-primary-hover dark:hover:bg-slate-800  max-w-fit cursor-pointer ${
+                className={`flex items-center gap-1 p-1 pr-2 py-2 shadow  rounded-lg hover:shadow-md hover:bg-[#f2f2f2] dark:hover:bg-slate-800  max-w-fit cursor-pointer ${
                   isFollowed ? "" : ""
                 }`}
                 onClick={follow}
@@ -385,8 +385,8 @@ const Project_Page = () => {
                 <p
                   className={`text-lg  ${
                     !isFollowed
-                      ? "text-green-700 text-lg"
-                      : "text-red-500 text-lg"
+                      ? "text-primary text-lg"
+                      : "text-destructive text-lg"
                   } `}
                 >
                   {!isFollowed && (
@@ -398,8 +398,8 @@ const Project_Page = () => {
                 <p
                   className={`text-sm ${
                     !isFollowed
-                      ? "text-green-700  dark:text-green-700"
-                      : "text-red-500"
+                      ? "text-primary  dark:text-primary"
+                      : "text-destructive"
                   } `}
                 >
                   {!isFollowed
