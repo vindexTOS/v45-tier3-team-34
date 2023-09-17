@@ -184,10 +184,27 @@ const Company_Profile = () => {
 
       //   <Succsess success={statusState.success} />
       // </div>
-      <div
-        onClick={() => console.log(UserState.full_user_info.user_info)}
-        className="flex  flex-col gap-2 items-center justify-center  "
-      >
+      <div className="flex  flex-col gap-2 items-center justify-center  relative ">
+        <button
+          onClick={() => navigate(`/company_project`)}
+          className="bg-primary hover:bg-primary-hover text-white font-semibold py-2 px-4 rounded-lg flex items-center absolute top-4 right-3 "
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+            />
+          </svg>
+          Add project
+        </button>
         <User_Top
           isUser={false}
           userData={UserState.userData}

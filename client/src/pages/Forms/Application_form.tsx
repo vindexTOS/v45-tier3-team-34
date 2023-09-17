@@ -42,7 +42,7 @@ export default function Application_form() {
       }
     } catch (error) {
       const err: any = error
-      console.log(err)
+
       setError(err.response.data.msg)
       setLoading(false)
     }
@@ -61,7 +61,6 @@ export default function Application_form() {
             receiverId: company_id,
           },
         )
-        console.log(res)
       }
     } catch (error) {
       console.log(error)

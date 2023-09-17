@@ -37,8 +37,6 @@ const Chat = ({ userId }: { userId: string }) => {
             receiverId: userId,
           },
         )
-        console.log(res)
-        console.log('message sent')
 
         socket.emit('message', {
           messageContent,
@@ -58,8 +56,6 @@ const Chat = ({ userId }: { userId: string }) => {
         `${import.meta.env.VITE_GLOBAL_URL}/user/info/${userId}`,
       )
       setUserInfo(res.data)
-
-      console.log(res.data)
     } catch (error) {
       console.log(error)
     }
@@ -85,16 +81,18 @@ const Chat = ({ userId }: { userId: string }) => {
   if (userInfo && userInfo.user && userInfo.user.userName) {
     return (
       <div
-        className="flex-1 flex rounded-r-2xl items-center bg-slate-100 dark:bg-slate-700 justify-between"
+        className="flex-1 flex rounded-r-2xl items-center bg-slate-100 dark:bg-slate-700 justify-between "
         style={{
-          height: '600px',
-          width: '500px',
+          height: '100%', // Change the height to 100% to fill the viewport
+          width: '100%', // Change the width to 100% to fill the viewport
           display: 'flex',
           flexDirection: 'column',
         }}
       >
         {/* Chat top */}
-        <div className="flex items-center justify-start px-5   gap-5 bg-green-300/10 rounded-tr-2xl w-[100%] py-5">
+        <div className="flex items-center justify-start px-5 gap-5 bg-green-300/10 rounded-tr-2xl w-full py-5">
+          {' '}
+          {/* Make this container full width */}
           <img
             className="w-[50px] h-[50px] rounded-[50%]"
             src={userInfo.user.avatar}
@@ -111,10 +109,12 @@ const Chat = ({ userId }: { userId: string }) => {
         <ChatSection messages={messages} />
         {/* Chat body */}
         <div className="w-full py-2 flex justify-center items-center border-t border-t-gray-300">
-          <div className="w-[95%]  py-1 px-6 pr-1 flex my-auto justify-around bg-white dark:bg-slate-800 rounded-lg">
+          <div className="w-full py-1 px-6 pr-1 flex my-auto justify-around bg-white dark:bg-slate-800 rounded-lg">
+            {' '}
+            {/* Make this container full width */}
             <input
               value={messageContent}
-              className="outline-0 bg-transparent  w-full text-sm"
+              className="outline-0 bg-transparent w-full text-sm"
               onChange={(e) => setMessagesContent(e.target.value)}
               placeholder="start typing here ..."
             />
