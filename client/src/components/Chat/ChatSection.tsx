@@ -36,7 +36,7 @@ export default function ChatSection({ messages }: { messages: any }) {
   return (
     <div
       // style={{ overflowY: 'scroll', maxHeight: '390px' }}
-      className="h-full py-2  px-2 overflow-y-auto w-full  flex flex-col items-center gap-2  "
+      className=" h-[500px] overflow-y-scroll  py-2  px-2 overflow-y-auto w-full  flex flex-col items-center gap-2  "
     >
       {messages &&
         messages.length > 0 &&
@@ -47,7 +47,7 @@ export default function ChatSection({ messages }: { messages: any }) {
           const isUserMessage = sender === UserState.userData.user._id
 
           // Apply different styles based on the sender
-          const messageClasses = `px-10 max-h-[500px] max-w-[250px] w-fit rounded-[50px]  break-normal py-2 ${
+          const messageClasses = `px-10 max-h-[500px] max-w-[250px] w-fit rounded-[50px]  break-normal py-2  ${
             isUserMessage
               ? 'bg-primary dark:bg-primary text-white self-start rounded-bl-none'
               : 'bg-gray-200 dark:bg-slate-900 text-right self-end rounded-br-none'
