@@ -69,7 +69,7 @@ function TeamHoverCard({
                 <h4 className="font-semibold text-tersiary dark:text-muted dark:hover:text-primary">
                   {title}
                 </h4>
-                <p className="text-sm text-muted">
+                <p className="text-xs text-muted">
                   {role}
                 </p>
                 <p className="text-xs text-primary">
