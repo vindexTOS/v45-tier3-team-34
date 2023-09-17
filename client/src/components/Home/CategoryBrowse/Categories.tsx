@@ -10,7 +10,7 @@ const Categories = () => {
   return (
     <section
       ref={targetRef}
-      className="bg-white/30 dark:bg-gray-900 border border-gray-50 dark:border-green-900 gap-y-2 p-10 rounded-lg h-[80vh]"
+      className="bg-white/30 dark:bg-gray-900 border border-gray-50 dark:border-green-900 gap-y-2 p-10 rounded-lg h-fit"
     >
       <div className="sticky top-[20vh]">
         <article className="flex flex-col gap-y-2 mb-5">

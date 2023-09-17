@@ -40,7 +40,7 @@ function Card({ title, rating, skills, id }) {
 
 export default function CatFramer() {
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {categories_temp.map((item, index) => (
         <motion.div
           initial={"offscreen"}
