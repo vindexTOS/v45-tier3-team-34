@@ -1,3 +1,4 @@
+ 
 import React, { useEffect, useState } from 'react'
 import { UseMainContext } from '../../../context'
 import axios from 'axios'
@@ -38,4 +39,7 @@ const Reviews = () => {
   }
 }
 
-export default Reviews
+ 
+ 
+export default Reviews;
+ 
