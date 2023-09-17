@@ -1,4 +1,3 @@
-import { LinkedInLogoIcon } from "@radix-ui/react-icons";
 import {
   Avatar,
   AvatarFallback,
@@ -52,7 +51,11 @@ function TeamHoverCard({
         </Avatar>
       </HoverCardTrigger>
       <HoverCardContent className="w-60 cursor-pointer">
-        <a href={link} className="">
+        <a
+          href={link}
+          target="_blank"
+          className=""
+        >
           <div className="flex justify-center space-x-4 items-center">
             <Avatar className="">
               <AvatarImage
@@ -68,7 +71,7 @@ function TeamHoverCard({
                 <h4 className="font-semibold text-tersiary dark:text-muted dark:hover:text-primary">
                   {title}
                 </h4>
-                <p className="text-sm text-muted">
+                <p className="text-xs text-muted">
                   {role}
                 </p>
                 <p className="text-xs text-primary">
