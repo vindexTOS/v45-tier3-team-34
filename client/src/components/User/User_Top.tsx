@@ -28,7 +28,6 @@ const User_Top = ({
   }
   function getUserTimezone(time: string) {
     // const userTimeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
-    //   console.log("User's timezone:", userTimeZone)
 
     // Get the user's current time based on their timezone
     const userCurrentTime = DateTime.now().setZone(time)

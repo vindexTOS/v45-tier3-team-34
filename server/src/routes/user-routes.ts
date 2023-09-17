@@ -17,6 +17,7 @@ import {
 } from '../controller/user-controllers/User-details-controller'
 import { check_user_token } from '../middleware/user-token-check'
 import { Check_user_id } from '../middleware/user-id-check'
+import { update_company_detail_info } from 'controller/company-controllers/Company-details-controller'
 
 const userRouter = express.Router()
 
@@ -31,5 +32,6 @@ userRouter
   .route('/user/info/:user_id')
   .get(get_user_detail_info)
   .patch(check_user_token, Check_user_id, update_user_detail_info, errorHandler)
+
 userRouter.route('/all_devs').get(get_all_devs)
 export default userRouter

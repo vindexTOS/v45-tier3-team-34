@@ -33,7 +33,7 @@ export default function AboutTeam() {
                       alt=""
                     />
                     <div>
-                      <h3 className="font-semibold leading-2 tracking-tight text-tersiary">
+                      <h3 className="font-semibold leading-2 tracking-tight text-tersiary dark:text-muted">
                         {person.title}
                       </h3>
                       <p className="text-xs text-primary">

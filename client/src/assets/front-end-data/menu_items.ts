@@ -12,11 +12,11 @@ export const menuItems = [
           "description": "Follow these easy steps to get started",
           "link": "/ForCompany/PostProjects"
         },
-        {
-          "title": "View/Buy Completed Projects",
-          "description": "Browse our list of all Completed Projects",
-          "link": "/ForCompany/ViewProjects"
-        },
+        // {
+        //   "title": "View/Buy Completed Projects",
+        //   "description": "Browse our list of all Completed Projects",
+        //   "link": "/ForCompany/ViewProjects"
+        // },
         {
           "title": "Need Help",
           "description": "Feel free to contact us for more info",
@@ -37,11 +37,11 @@ export const menuItems = [
           "description": "Follow these easy steps to get started",
           "link": "/ForDeveloper/ResourceTools"
         },
-        {
-          "title": "View my Projects",
-          "description": "Browse our list of all Active/Completed Projects",
-          "link": "/ForDeveloper/MyProjects"
-        },
+        // {
+        //   "title": "View my Projects",
+        //   "description": "Browse our list of all Active/Completed Projects",
+        //   "link": "/ForDeveloper/MyProjects"
+        // },
         {
           "title": "Need Help",
           "description": "Feel free to contact us for more info",
