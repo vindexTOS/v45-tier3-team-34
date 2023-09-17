@@ -9,7 +9,7 @@ import rating_model from '../../model/rating_model'
 
 export const Register = tryCatch(async (req: Request, res: any) => {
   const { password, confirmPassword, email, userName, avatar, role } = req.body
-  console.log(req.body)
+  // console.log(req.body)
   let user = {}
 
   const userExist = await User_model.findOne({ email: email })

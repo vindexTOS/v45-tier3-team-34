@@ -1,25 +1,21 @@
-import { companies } from "../../../contants";
-import HeroCompany from "./HeroCompany";
-import Lottie from "lottie-react";
-import animationData from "../../../../src/assets/lottie/animation_llpgw5p0.json";
-import { motion } from "framer-motion";
-import { buttonVariants } from "../../../Shadcn/components/ui/button";
-import { Link } from "react-router-dom";
-import { useRef } from "react";
-import LoginRegButton from "../../Buttons/RegListButton";
-import { useScroll,useTransform } from "framer-motion";
+import { companies } from '../../../contants'
+import HeroCompany from './HeroCompany'
+import Lottie from 'lottie-react'
+import animationData from '../../../../src/assets/lottie/animation_llpgw5p0.json'
+import { motion } from 'framer-motion'
+import { buttonVariants } from '../../../Shadcn/components/ui/button'
+import { Link } from 'react-router-dom'
+import { useRef } from 'react'
+import LoginRegButton from '../../Buttons/RegListButton'
+import { useScroll, useTransform } from 'framer-motion'
 const HeroSection = () => {
-  const targetRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["end end", "end start"],
-  });
+    offset: ['end end', 'end start'],
+  })
 
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.5],
-    [1.5, 0.8]
-  );
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1.5, 0.8])
 
   return (
     <motion.section
@@ -33,8 +29,7 @@ const HeroSection = () => {
               DevConnect
             </h1>
             <p className="text-muted dark:text-muted">
-              We connect junior developers with{" "}
-              <br />
+              We connect junior developers with <br />
               low-paid real-world projects
             </p>
 
@@ -42,25 +37,19 @@ const HeroSection = () => {
             <LoginRegButton />
           </div>
         </motion.div>
-        <motion.div
-          style={{ scale }}
-          className="flex flex-col gap-4"
-        >
+        <motion.div style={{ scale }} className="flex flex-col gap-4">
           <h2 className="text-sm text-muted dark:text-muted">
             Working with the best
           </h2>
           {/* socials */}
           <div className="flex gap-8 text-muted dark:text-muted">
-            {companies.map(({ name, icon }) => (
+            {companies.map(({ name, icon }, i: number) => (
               <motion.div
+                key={i}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <HeroCompany
-                  key={name}
-                  title={name}
-                  icon={icon}
-                />
+                <HeroCompany key={name} title={name} icon={icon} />
               </motion.div>
             ))}
           </div>
@@ -68,13 +57,10 @@ const HeroSection = () => {
       </article>
       {/* Image section */}
       <motion.article className="flex-1 flex items-center justify-center">
-        <Lottie
-          className="w-[80%] h-auto"
-          animationData={animationData}
-        />
+        <Lottie className="w-[80%] h-auto" animationData={animationData} />
       </motion.article>
     </motion.section>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection

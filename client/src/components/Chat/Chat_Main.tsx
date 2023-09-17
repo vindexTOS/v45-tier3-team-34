@@ -37,8 +37,6 @@ const Chat = ({ userId }: { userId: string }) => {
             receiverId: userId,
           },
         )
-        console.log(res)
-        console.log('message sent')
 
         socket.emit('message', {
           messageContent,
@@ -58,8 +56,6 @@ const Chat = ({ userId }: { userId: string }) => {
         `${import.meta.env.VITE_GLOBAL_URL}/user/info/${userId}`,
       )
       setUserInfo(res.data)
-
-      console.log(res.data)
     } catch (error) {
       console.log(error)
     }
@@ -85,7 +81,7 @@ const Chat = ({ userId }: { userId: string }) => {
   if (userInfo && userInfo.user && userInfo.user.userName) {
     return (
       <div
-        className="flex-1 flex rounded-r-2xl items-center bg-slate-100 dark:bg-slate-700 justify-between h-[500px] overflow-y-scroll"
+        className="flex-1 flex rounded-r-2xl items-center bg-slate-100 dark:bg-slate-700 justify-between "
         style={{
           height: '100%', // Change the height to 100% to fill the viewport
           width: '100%', // Change the width to 100% to fill the viewport

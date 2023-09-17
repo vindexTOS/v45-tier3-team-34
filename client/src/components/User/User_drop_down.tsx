@@ -34,10 +34,7 @@ export default function User_drop_down() {
   if (UserState.userData && UserState.userData.user) {
     const { avatar, userName, role } = UserState.userData.user
     return (
-      <div
-        onClick={() => console.log(UserState.userData)}
-        className={style.mainDiv}
-      >
+      <div className={style.mainDiv}>
         <div className={style.imgWrapper}>
           <img className={style.img} src={avatar} />
           <h1 className="font-semibold mt-3">{userName}</h1>

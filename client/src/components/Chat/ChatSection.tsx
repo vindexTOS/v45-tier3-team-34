@@ -24,7 +24,6 @@ export default function ChatSection({ messages }: { messages: any }) {
             receiverId: UserState.userData.user._id,
           },
         )
-        console.log(res)
       } catch (error) {
         console.log(error)
       }

@@ -28,7 +28,6 @@ const Current_Projects = () => {
 
         const data = res.data
         setProjectProgress(data)
-        console.log(data)
       }
     } catch (error) {
       console.log(error)

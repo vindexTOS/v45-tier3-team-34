@@ -23,19 +23,14 @@ export default function FAQCard() {
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke-width="2"
-                />
+                <circle cx="12" cy="12" r="10" strokeWidth="2" />
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M12 10v4m0 6h.01"
                 />
-              </svg>{" "}
+              </svg>{' '}
               What is DevConnect?
             </span>
             <svg
@@ -48,9 +43,9 @@ export default function FAQCard() {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M9 5 5 1 1 5"
               />
             </svg>
@@ -63,23 +58,19 @@ export default function FAQCard() {
         >
           <div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700 bg-gray-200 dark:bg-gray-900 text-base">
             <p className="mb-2 text-gray-500 dark:text-gray-400">
-              Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit.
-              Ratione, fugit? Aspernatur, ullam
-              enim, odit eaque quia rerum ipsum
-              voluptatem consequatur ratione,
-              doloremque debitis? Fuga labore
-              omnis minima, quisquam delectus
-              culpa!
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione,
+              fugit? Aspernatur, ullam enim, odit eaque quia rerum ipsum
+              voluptatem consequatur ratione, doloremque debitis? Fuga labore
+              omnis minima, quisquam delectus culpa!
             </p>
             <p className="text-gray-500 dark:text-gray-400">
-              Click here to{" "}
+              Click here to{' '}
               <a
                 href="/register"
                 className="text-blue-600 dark:text-blue-500 hover:underline"
               >
                 get started
-              </a>{" "}
+              </a>{' '}
               today
             </p>
           </div>
@@ -101,16 +92,11 @@ export default function FAQCard() {
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke-width="2"
-                />
+                <circle cx="12" cy="12" r="10" strokeWidth="2" />
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M12 10v4m0 6h.01"
                 />
               </svg>
@@ -126,9 +112,9 @@ export default function FAQCard() {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M9 5 5 1 1 5"
               />
             </svg>
@@ -141,23 +127,19 @@ export default function FAQCard() {
         >
           <div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700 bg-gray-200 dark:bg-gray-900 text-base">
             <p className="mb-2 text-gray-500 dark:text-gray-400">
-              Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit.
-              Ratione, fugit? Aspernatur, ullam
-              enim, odit eaque quia rerum ipsum
-              voluptatem consequatur ratione,
-              doloremque debitis? Fuga labore
-              omnis minima, quisquam delectus
-              culpa!
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione,
+              fugit? Aspernatur, ullam enim, odit eaque quia rerum ipsum
+              voluptatem consequatur ratione, doloremque debitis? Fuga labore
+              omnis minima, quisquam delectus culpa!
             </p>
             <p className="text-gray-500 dark:text-gray-400">
-              Click here to{" "}
+              Click here to{' '}
               <a
                 href="/register"
                 className="text-blue-600 dark:text-blue-500 hover:underline"
               >
                 get started
-              </a>{" "}
+              </a>{' '}
               today
             </p>
           </div>
@@ -179,19 +161,14 @@ export default function FAQCard() {
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke-width="2"
-                />
+                <circle cx="12" cy="12" r="10" strokeWidth="2" />
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M12 10v4m0 6h.01"
                 />
-              </svg>{" "}
+              </svg>{' '}
               What is question 3?
             </span>
             <svg
@@ -204,9 +181,9 @@ export default function FAQCard() {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M9 5 5 1 1 5"
               />
             </svg>
@@ -219,14 +196,10 @@ export default function FAQCard() {
         >
           <div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700 bg-gray-200 dark:bg-gray-900 text-base">
             <p className="mb-2 text-gray-500 dark:text-gray-400">
-              Lorem ipsum dolor, sit amet
-              consectetur adipisicing elit.
-              Ratione, fugit? Aspernatur, ullam
-              enim, odit eaque quia rerum ipsum
-              voluptatem consequatur ratione,
-              doloremque debitis? Fuga labore
-              omnis minima, quisquam delectus
-              culpa!
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ratione,
+              fugit? Aspernatur, ullam enim, odit eaque quia rerum ipsum
+              voluptatem consequatur ratione, doloremque debitis? Fuga labore
+              omnis minima, quisquam delectus culpa!
             </p>
 
             <p className="mb-2 text-gray-500 dark:text-gray-400">
@@ -255,5 +228,5 @@ export default function FAQCard() {
         </div>
       </div>
     </div>
-  );
+  )
 }

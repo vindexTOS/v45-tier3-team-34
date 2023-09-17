@@ -602,7 +602,7 @@ export const ContextProvider = ({
           }`,
         )
         const data = res.data
-        console.log
+
         PortfolioDispatch({ type: 'get-user-projects', payload: data })
         setSuccess(data.msg)
         PortfolioDispatch({ type: 'loading', payload: false })
@@ -626,8 +626,6 @@ export const ContextProvider = ({
         `${import.meta.env.VITE_GLOBAL_URL}/user/info/${dev_id}`,
       )
       setDevInfo(res.data)
-
-      console.log(res.data)
 
       navigate(`/Developer/${dev_id}`)
     } catch (error) {
@@ -716,7 +714,7 @@ export const ContextProvider = ({
         const data = res.data
         setMessages(data.messages)
         setChatRoomInfo(data)
-        console.log(res)
+
         socket.emit('join chat', userId)
       }
     } catch (error) {

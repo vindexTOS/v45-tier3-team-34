@@ -32,10 +32,7 @@ const User_main = ({
     // const { avatar, date, email, role, userName } = UserState.userData.user
     const { title, summary, hrPay } = userInfo
     return (
-      <div
-        onClick={() => console.log(userInfo.user_info)}
-        className={style.mainDiv}
-      >
+      <div className={style.mainDiv}>
         <LoadingComponent loading={UserStateUpdate.loading} />
         <section className={style.topSection}>
           <div className={style.headerDiv}>
