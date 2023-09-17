@@ -36,8 +36,9 @@ export default function ListProjects() {
     companyProjectsData.length > 0
   ) {
     return (
-      <div className="text-xl text-center text-light-muted dark:text-dark-muted transition-all duration-500 delay-100 ease-in-out">
-        <section className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-between">
+      <div className="text-xl text-muted dark:text-muted">
+   
+        <section className="grid grid-cols-2 md:grid-cols-4 gap-4 justify-between my-20">
           {companyProjectsData.map(
             (val: ProjectCardType) => {
               return (

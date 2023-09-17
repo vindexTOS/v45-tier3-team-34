@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { UseMainContext } from "../../../context";
 import DevListFilterPage from "../../../components/MainMenuPages/ForCompanyPage/DevListFilterPage";
+import NeedCard from "./NeedCard";
 const Developer_list = () => {
   const { GetSingleDev } = UseMainContext();
   const [devData, setDevData] = useState<any>();
@@ -31,6 +32,7 @@ const Developer_list = () => {
   if (devData && devData.devs) {
     return (
       <section className="my-10">
+        <NeedCard />
         <article className="my-10 pb-10 border-b border-slate-300 dark:border-slate-600">
           <h3 className="text-[1.5rem] font-semibold text-primary dark:text-primary">
             Hire the best jnr Developers
