@@ -1,41 +1,53 @@
-import axios from 'axios'
-import React, { useState, useEffect } from 'react'
-import { UseMainContext } from '../../../context'
-import AllRatings from '../AllRatings'
-import { RatingTypes } from '../../../common.types'
+import axios from "axios";
+import React, {
+  useState,
+  useEffect,
+} from "react";
+import { UseMainContext } from "../../../context";
+import AllRatings from "../AllRatings";
+import { RatingTypes } from "../../../common.types";
 
 const Reviews = () => {
-  const { UserState, isUserLoggedIn } = UseMainContext()
-  const [reviewsData, setReviewsData] = useState<RatingTypes[]>([])
+  const { UserState, isUserLoggedIn } =
+    UseMainContext();
+  const [reviewsData, setReviewsData] = useState<
+    RatingTypes[]
+  >([]);
   const GetReviews = async () => {
     if (isUserLoggedIn) {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_GLOBAL_URL}/rating/${
-            UserState.userData.user._id
-          }`,
-        )
-        setReviewsData(res.data.rating)
+          `${
+            import.meta.env.VITE_GLOBAL_URL
+          }/rating/${UserState.userData.user._id}`
+        );
+        setReviewsData(res.data.rating);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
-  }
+  };
 
   useEffect(() => {
-    GetReviews()
-  }, [])
+    GetReviews();
+  }, []);
 
-  if (isUserLoggedIn && reviewsData && reviewsData.length > 0) {
+  if (
+    isUserLoggedIn &&
+    reviewsData &&
+    reviewsData.length > 0
+  ) {
     return (
-      <div>
-        <h1>This are your ratings</h1>
+      <div className="p-10">
+        <h1 className="text-muted dark:text-muted">
+          These are your ratings
+        </h1>
         <AllRatings data={reviewsData} />
       </div>
-    )
+    );
   } else {
     return (
-      <div className="flex flex-col items-center justify-center  text-gray-500 w-[1000px] h-[500px]">
+      <div className="flex flex-col items-center justify-center  text-gray-500 w-[800px] h-[300px]">
         <svg
           className="w-16 h-16 mb-4 text-gray-300"
           xmlns="http://www.w3.org/2000/svg"
@@ -50,10 +62,12 @@ const Reviews = () => {
             d="M12 4v16m0-16s-8 0-8 8h16c0-8-8-8-8-8z"
           />
         </svg>
-        <div className="text-lg font-semibold">You have no reviews</div>
+        <div className="text-lg font-semibold p-10">
+          You have no reviews
+        </div>
       </div>
-    )
+    );
   }
-}
+};
 
-export default Reviews
+export default Reviews;
