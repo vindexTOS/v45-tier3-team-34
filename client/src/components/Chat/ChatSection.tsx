@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { UseMainContext } from "../../context";
 import axios from "axios";
+import classNames from "classnames";
 export default function ChatSection({
   messages,
 }: {

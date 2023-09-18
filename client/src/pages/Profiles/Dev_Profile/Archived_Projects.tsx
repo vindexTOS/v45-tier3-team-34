@@ -32,7 +32,7 @@ const Archived_Projects = () => {
     GetArchivedProjects();
   }, []);
   return (
-    <div className="flex flex-col items-center justify-center  text-muted w-[500px] h-[300px] lg:w-[800px] lg:h-[300px]">
+    <div className="flex flex-col items-center justify-center  text-muted w-fit h-[300px] lg:w-[800px] lg:h-[300px]">
       <svg
         className="w-16 h-16 mb-4 text-gray-300"
         xmlns="http://www.w3.org/2000/svg"
