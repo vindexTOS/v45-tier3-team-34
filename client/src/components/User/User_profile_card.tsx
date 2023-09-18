@@ -50,7 +50,7 @@ const UpdateInput: FC<UpdateInputType> = ({
         <input
           type="text"
           id={title}
-          className="w-[150px] text-green-400 outline-2 outline outline-green-300 p-1 rounded-[8px]"
+          className="w-[150px] text-primary outline-2 outline outline-primary p-1 rounded-[8px]"
           value={
             userUpdateState[
               state as keyof UpdateUserSateType
