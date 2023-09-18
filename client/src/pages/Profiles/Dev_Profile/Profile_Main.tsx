@@ -48,7 +48,7 @@ const Profile_Main = () => {
     UserState.userData.user.role === "Developer"
   ) {
     return (
-      <section className="flex md:justify-center gap-2 md:gap-10 sm:px-4 w-full ">
+      <section className="flex md:justify-center gap-2 md:gap-10 sm:px-4 w-full">
         <AiOutlineBars
           className="text-[2rem] absolute left-3 top-[7rem] z-50 sm:hidden text-primary"
           onClick={() =>
