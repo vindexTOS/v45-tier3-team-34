@@ -1,52 +1,74 @@
-import React from 'react'
-import { CgProfile } from 'react-icons/cg'
+// import React from 'react'
+import { CgProfile } from "react-icons/cg";
 
-import { AiOutlineProject } from 'react-icons/ai'
-import { GoArchive } from 'react-icons/go'
-import { TiMessages } from 'react-icons/ti'
-import { MdOutlineReviews } from 'react-icons/md'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { AiOutlineProject } from "react-icons/ai";
+import { GoArchive } from "react-icons/go";
+import { TiMessages } from "react-icons/ti";
+import { MdOutlineReviews } from "react-icons/md";
+import {
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 const Profile_Dashboard = () => {
-  const style = {
-    mainDiv: `w-fit px-4 md:p-auto dark:outline  dark:outline-[1px] shadow-sm shadow-green-800 bg-green-200/10 dark:bg-slate-800 dark:outline-gray-300 rounded-md h-[500px] flex flex-col py-10 gap-5 mt-2 md:mt-8 `,
-  }
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
   const NavigationLinks = [
     {
-      title: 'Profile',
+      title: "Profile",
       Icon: CgProfile,
-      link: '',
+      link: "",
     },
     {
-      title: 'Current Projects',
+      title: "Current Projects",
       Icon: AiOutlineProject,
-      link: 'applications',
+      link: "applications",
     },
-    { title: 'Archived Projects', Icon: GoArchive, link: 'archived_project' },
-    { title: 'Messages', Icon: TiMessages, link: 'messages' },
-    { title: 'Reviews', Icon: MdOutlineReviews, link: 'reviews' },
-  ]
+    {
+      title: "Archived Projects",
+      Icon: GoArchive,
+      link: "archived_project",
+    },
+    {
+      title: "Messages",
+      Icon: TiMessages,
+      link: "messages",
+    },
+    {
+      title: "Reviews",
+      Icon: MdOutlineReviews,
+      link: "reviews",
+    },
+  ];
+  const style = {
+    mainDiv: `flex flex-col py-10 gap-5 relative lg:w-[30%]`,
+  };
   return (
     <div className={style.mainDiv}>
-      {NavigationLinks.map((val: any) => (
-        // ?? profile link wont change ??
+      <div className="fixed left-3 md:left-10">
+        {NavigationLinks.map((val: any) => (
+          // ?? profile link wont change ??
 
-        <div
-          className={` z-10 group flex items-center px-2 md:px-10 gap-2 hover:text-blue-300 dark:hover:text-blue-200 cursor-pointer font-thin text-sm sm:text-base ${
-            location.pathname === `/profile/${val.link}`
-              ? 'text-blue-400 dark:text-blue-400 underline'
-              : 'text-green-800 dark:text-green-500'
-          }  `}
-          key={`${val.link}`}
-          onClick={() => navigate(val.link)}
-        >
-          <val.Icon className={`text-2xl md:text-3xl `} />
-          <h1 className="hidden md:block">{val.title}</h1>
-        </div>
-      ))}
+          <div
+            className={`z-10 group items-center flex gap-2 hover:text-primary dark:hover:text-primary cursor-pointer text-[1rem] lg:text-[3rem] font-extrabold leading-none whitespace-nowrap ${
+              location.pathname ===
+              `/profile/${val.link}`
+                ? "text-primary dark:text-primary"
+                : "hover:text-muted text-[#d8d9dc] dark:text-[#404255]"
+            }  `}
+            key={`${val.link}`}
+            onClick={() => navigate(val.link)}
+          >
+            <val.Icon
+              className={`lg:text-[3rem] text-[2.4rem]`}
+            />
+            <h1 className="hidden lg:block">
+              {val.title}
+            </h1>
+          </div>
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Profile_Dashboard
+export default Profile_Dashboard;
