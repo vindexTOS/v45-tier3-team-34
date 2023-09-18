@@ -40,16 +40,16 @@ const Profile_Dashboard = () => {
     },
   ];
   const style = {
-    mainDiv: `flex flex-col py-10 gap-5 relative w-[30%]`,
+    mainDiv: `flex flex-col py-10 gap-5 relative lg:w-[30%]`,
   };
   return (
     <div className={style.mainDiv}>
-      <div className="absolute top-8 -left-36">
+      <div className="fixed left-3 md:left-10">
         {NavigationLinks.map((val: any) => (
           // ?? profile link wont change ??
 
           <div
-            className={`z-10 group items-center flex gap-2 hover:text-primary dark:hover:text-primary cursor-pointer text-[3rem] font-extrabold leading-none whitespace-nowrap ${
+            className={`z-10 group items-center flex gap-2 hover:text-primary dark:hover:text-primary cursor-pointer text-[1rem] lg:text-[3rem] font-extrabold leading-none whitespace-nowrap ${
               location.pathname ===
               `/profile/${val.link}`
                 ? "text-primary dark:text-primary"
@@ -58,8 +58,10 @@ const Profile_Dashboard = () => {
             key={`${val.link}`}
             onClick={() => navigate(val.link)}
           >
-            <val.Icon className={`text-[3rem]`} />
-            <h1 className="hidden md:block">
+            <val.Icon
+              className={`lg:text-[3rem] text-[2.4rem]`}
+            />
+            <h1 className="hidden lg:block">
               {val.title}
             </h1>
           </div>

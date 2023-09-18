@@ -52,15 +52,13 @@ const Company_Dashboard = () => {
           className={` z-10 cursor-pointer group flex items-center px-2 md:px-10 gap-2 hover:text-muted  font-thin text-sm sm:text-base ${
             location.pathname ===
             `/company_profile/${val.link}`
-              ? "text-accent dark:text-muted-foreground underline"
-              : "text-primary dark:text-primary"
+              ? "text-red-500 dark:text-muted-foreground"
+              : "text-primary dark:text-primary underline"
           }  `}
           key={`${val.link}`}
           onClick={() => navigate(val.link)}
         >
-          <val.Icon
-            className={`text-2xl md:text-3xl `}
-          />
+          <val.Icon className={`text-[3rem] `} />
           <h1 className="hidden md:block">
             {val.title}
           </h1>

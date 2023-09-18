@@ -38,7 +38,7 @@ const Reviews = () => {
     reviewsData.length > 0
   ) {
     return (
-      <div className="p-10">
+      <div className="p-4 md:p-10">
         <h1 className="text-muted dark:text-muted">
           These are your ratings:
         </h1>

@@ -82,11 +82,11 @@ const Current_Projects = () => {
             >
               {" "}
               {val.projectFinnished ? (
-                <span className="ml-auto px-2 py-1 bg-green-500 text-white rounded-full text-xs">
+                <span className="ml-auto px-2 py-1 bg-primary text-white rounded-full text-xs">
                   Finished
                 </span>
               ) : (
-                <span className="ml-auto px-2 py-1 bg-red-500 text-white rounded-full text-xs">
+                <span className="ml-auto px-2 py-1 bg-ddestructive text-white rounded-full text-xs">
                   Not Finished
                 </span>
               )}
@@ -132,9 +132,9 @@ const Current_Projects = () => {
                   onClick={() =>
                     FinishProject(val._id)
                   }
-                  className="bg-green-400 px-2 rounded-[9px]  "
+                  className="bg-primary px-2 rounded-[9px]  "
                 >
-                  Finnish
+                  Finish
                 </button>
               </div>
             </div>
@@ -144,7 +144,7 @@ const Current_Projects = () => {
     );
   } else {
     return (
-      <div className="flex flex-col items-center justify-center  text-gray-500 w-[800px] h-[300px]">
+      <div className="flex flex-col items-center justify-center  text-muted w-[500px] h-[300px] lg:w-[800px] lg:h-[300px]">
         <svg
           className="w-16 h-16 mb-4 text-gray-300"
           xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +159,7 @@ const Current_Projects = () => {
             d="M12 4v16m0-16s-8 0-8 8h16c0-8-8-8-8-8z"
           />
         </svg>
-        <div className="text-lg font-semibold">
+        <div className="text-[0.9rem] font-semibold px-4">
           You have no current projects
         </div>
       </div>

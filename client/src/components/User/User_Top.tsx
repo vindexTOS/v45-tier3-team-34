@@ -18,14 +18,7 @@ const User_Top = ({
   isUser: boolean;
 }) => {
   const [editName, setEditName] = useState(false);
-  const style = {
-    section: `flex items-center justify-start  px-1 md:px-2 py-10 border-b border-gray-300 dark:border-slate-600 w-full`,
-    img: `h-12 w-12 md:h-16 md:w-16   lg:h-16 lg:w-16  rounded-full lg:object-cover border`,
 
-    imgDiv: `flex gap-1 items-center justify-center`,
-    nameHeader: `text-primary  text-[1.2rem] font-semibold `,
-    timeZone: ` flex flex-col  text-[0.8rem]`,
-  };
   function getUserTimezone(time: string) {
     // const userTimeZoneString = Intl.DateTimeFormat().resolvedOptions().timeZone
 
@@ -62,7 +55,14 @@ const User_Top = ({
     const currentTime =
       getUserTimezone(userTimeZone);
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const style = {
+      section: `flex items-center justify-center md:justify-start  px-1 md:px-2 py-10 border-b border-gray-300 dark:border-slate-600 w-full`,
+      img: `h-12 w-12 md:h-16 md:w-16   lg:h-16 lg:w-16  rounded-full lg:object-cover border`,
+
+      imgDiv: `flex gap-1 items-center justify-center`,
+      nameHeader: `text-primary  text-[1.2rem] font-semibold `,
+      timeZone: ` flex flex-col  text-[0.8rem]`,
+    };
 
     return (
       <section
