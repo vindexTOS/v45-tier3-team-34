@@ -15,8 +15,14 @@ const ImgUpload = ({ avatar }: { avatar: string }) => {
       if (e.target.files) {
         newImg = e.target.files[0]
         newHtmlImg = URL.createObjectURL(e.target.files[0])
-        ImgDispatch({ type: 'get-img', payload: newImg })
-        ImgDispatch({ type: 'get-html-img', payload: newHtmlImg })
+        ImgDispatch({
+          type: 'get-img',
+          payload: newImg,
+        })
+        ImgDispatch({
+          type: 'get-html-img',
+          payload: newHtmlImg,
+        })
       }
     }
   }
@@ -26,37 +32,65 @@ const ImgUpload = ({ avatar }: { avatar: string }) => {
     let newHtmlImg = ImgState.htmlImg
     newImg = e.dataTransfer.files[0]
     newHtmlImg = URL.createObjectURL(e.dataTransfer.files[0])
-    ImgDispatch({ type: 'get-img', payload: newImg })
-    ImgDispatch({ type: 'get-html-img', payload: newHtmlImg })
+    ImgDispatch({
+      type: 'get-img',
+      payload: newImg,
+    })
+    ImgDispatch({
+      type: 'get-html-img',
+      payload: newHtmlImg,
+    })
   }
 
   const removeImgFromHtml = () => {
-    ImgDispatch({ type: 'get-img', payload: null })
-    ImgDispatch({ type: 'get-html-img', payload: null })
+    ImgDispatch({
+      type: 'get-img',
+      payload: null,
+    })
+    ImgDispatch({
+      type: 'get-html-img',
+      payload: null,
+    })
   }
   const uploadFileToFirebaseStorage = async () => {
     if (ImgState.image) {
       const storageRef = ref(storage, 'connect-dev/' + ImgState.image.name)
-      ImgDispatch({ type: 'set-img-loading', payload: true })
-      ImgDispatch({ type: 'set-img-error', payload: '' })
+      ImgDispatch({
+        type: 'set-img-loading',
+        payload: true,
+      })
+      ImgDispatch({
+        type: 'set-img-error',
+        payload: '',
+      })
       try {
         const snapshot = await uploadBytesResumable(storageRef, ImgState.image)
         const downloadURL = await getDownloadURL(snapshot.ref)
-        ImgDispatch({ type: 'set-img-url', payload: downloadURL })
-        ImgDispatch({ type: 'set-img-loading', payload: false })
+        ImgDispatch({
+          type: 'set-img-url',
+          payload: downloadURL,
+        })
+        ImgDispatch({
+          type: 'set-img-loading',
+          payload: false,
+        })
 
-        console.log('succsess')
         console.log(downloadURL)
         removeImgFromHtml()
       } catch (error) {
         console.log(error)
-        console.log('ერრორ')
       }
     } else {
-      ImgDispatch({ type: 'set-img-error', payload: 'Please Select The File!' })
+      ImgDispatch({
+        type: 'set-img-error',
+        payload: 'Please Select The File!',
+      })
 
       setTimeout(() => {
-        ImgDispatch({ type: 'set-img-error', payload: '' })
+        ImgDispatch({
+          type: 'set-img-error',
+          payload: '',
+        })
       }, 5000)
     }
   }
@@ -99,18 +133,18 @@ const ImgUpload = ({ avatar }: { avatar: string }) => {
         htmlFor="photo"
       >
         {hover && (
-          <div className=" absolute  w-[200px] h-[200px] outline outline-2 p-2 rounded-[50%]  backdrop-blur-sm  bg-[#655c70]/40"></div>
+          <div className=" absolute  w-[130px] h-[130px] outline outline-1 outline-gray-300 p-2 rounded-[50%]  backdrop-blur-sm  bg-slate-100/40"></div>
         )}
         <div className="flex items-center justify-center">
           <img
-            className={`  w-[200px]  h-[200px]  outline outline-2 p-2 rounded-[50%]  `}
+            className={`  w-[130px]  h-[130px]  outline outline-1 outline-gray-300 p-2 rounded-[50%]  `}
             src={
               ImgState.imgUrl ? ImgState.imgUrl : avatar ? avatar : userDefault
             }
           />
           <MdCameraEnhance
-            className={`text-[4rem] absolute     ${
-              hover ? `text-[#fd5564]/70` : `text-[#fd5564]/40`
+            className={`text-[2.5rem] absolute     ${
+              hover ? `text-green-800/70` : `text-green-700/40`
             }`}
           />
         </div>
@@ -118,7 +152,7 @@ const ImgUpload = ({ avatar }: { avatar: string }) => {
           placeholder="Photo"
           onChange={(e) => imgUpload(e)}
           id="photo"
-          className=" hidden block w-full text-sm  text-[#ec2b58]  boxshaddow  border border-gray-300 rounded-lg cursor-pointer   bg-[#2e2d2d] dark:text-gray-400 focus:outline-none bg-[#2e2d2d]   dark:border-gray-600 dark:placeholder-gray-400"
+          className=" hidden  w-full text-sm  text-primary  boxshadow  border border-gray-300 rounded-lg cursor-pointer dark:text-gray-400 focus:outline-none bg-[#2e2d2d]   dark:border-gray-600 dark:placeholder-gray-400"
           type="file"
         />
       </label>

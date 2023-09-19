@@ -1,52 +1,96 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'class',
-  theme: {
-    extend: {
-      // colors: {
-      // },
-    },
+export const darkMode = ['class']
+export const content = [
+  './pages/**/*.{ts,tsx}',
+  './components/**/*.{ts,tsx}',
+  './app/**/*.{ts,tsx}',
+  './src/**/*.{ts,tsx}',
+]
+export const theme = {
+  container: {
+    center: true,
+    padding: '2rem',
     screens: {
-      // heights
-      laptop: { raw: '(max-height:900px)' },
-      // => @media (max-height: 900px) { ...
-      //widths
-      xm: '500px',
-      sm: '640px',
-      // => @media (min-width: 640px) { ... }
-
-      md: '768px',
-      // => @media (min-width: 768px) { ... }
-      mdxl: '901px',
-      lg: '1024px',
-      // => @media (min-width: 1024px) { ... }
-
-      xl: '1280px',
-      // => @media (min-width: 1280px) { ... }
-      '1xl': '1361px',
-      '2xl': '1536px',
-
-      // => @media (min-width: 1536px) { ... }
-      max_xl1500: { max: '1500px' },
-      max_xl: { max: '1287px' },
-      max_xml: { max: '1270px' },
-      // => @media (max-width: 1279px) { ... }
-      max_x: { max: '1150px' },
-
-      max_lg: { max: '1050px' },
-      // => @media (max-width: 1050px) { ... }
-      max_850: { max: '850px' },
-      max_md: { max: '767px' },
-      // => @media (max-width: 767px) { ... }
-
-      max_sm: { max: '640px' },
-
-      // => @media (max-width: 639px) { ... }
-
-      max_smm: { max: '500px' },
-      // => @media (max-width:500px) { ... }
+      sm: '640px', // Small screens
+      md: '768px', // Medium screens
+      lg: '1024px', // Large screens
+      xl: '1280px', // Extra-large screens
+      '2xl': '1400px', // 2x extra-large screens
     },
   },
-  plugins: [],
+  extend: {
+    fontFamily: {
+      header: ['DM Serif Display', 'serif'],
+      title: ['Lisu Bosa', 'serif'],
+    },
+    colors: {
+      border: 'hsl(var(--border))',
+      input: 'hsl(var(--input))',
+      ring: 'hsl(var(--ring))',
+      background: 'hsl(var(--background))',
+      foreground: 'hsl(var(--foreground))',
+      primary: {
+        DEFAULT: 'hsl(var(--primary))',
+        hover: 'hsl(var(--primary-hover))',
+        foreground: 'hsl(var(--primary-foreground))',
+      },
+      secondary: {
+        DEFAULT: 'hsl(var(--secondary))',
+        hover: 'hsl(var(--secondary-hover))',
+        foreground: 'hsl(var(--secondary-foreground))',
+      },
+      tersiary: {
+        DEFAULT: 'hsl(var(--tersiary))',
+        foreground: 'hsl(var(--tersiary-foreground))',
+      },
+      destructive: {
+        DEFAULT: 'hsl(var(--destructive))',
+        foreground: 'hsl(var(--destructive-foreground))',
+      },
+      muted: {
+        DEFAULT: 'hsl(var(--muted))',
+        foreground: 'hsl(var(--muted-foreground))',
+      },
+      accent: {
+        DEFAULT: 'hsl(var(--accent))',
+        accentdrk: 'hsl(var(--accentdrk))',
+        foreground: 'hsl(var(--accent-foreground))',
+      },
+      popover: {
+        DEFAULT: 'hsl(var(--popover))',
+        foreground: 'hsl(var(--popover-foreground))',
+      },
+      card: {
+        DEFAULT: 'hsl(var(--card))',
+        foreground: 'hsl(var(--card-foreground))',
+      },
+    },
+    borderRadius: {
+      lg: 'var(--radius)',
+      md: 'calc(var(--radius) - 2px)',
+      sm: 'calc(var(--radius) - 4px)',
+    },
+    keyframes: {
+      'accordion-down': {
+        from: { height: 0 },
+        to: {
+          height: 'var(--radix-accordion-content-height)',
+        },
+      },
+      'accordion-up': {
+        from: {
+          height: 'var(--radix-accordion-content-height)',
+        },
+        to: { height: 0 },
+      },
+    },
+    animation: {
+      'accordion-down': 'accordion-down 0.2s ease-out',
+      'accordion-up': 'accordion-up 0.2s ease-out',
+    },
+  },
 }
+export const plugins = [
+  // eslint-disable-next-line no-undef
+  require('tailwindcss-animate'),
+]

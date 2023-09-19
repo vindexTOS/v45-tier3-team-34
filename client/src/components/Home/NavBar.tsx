@@ -3,6 +3,7 @@ import { useState } from "react";
 import ThemeToggle from "../Buttons/ThemeTogglerBtn";
 import Search from "../Buttons/Search";
 import { Dialog } from "@headlessui/react";
+import { BsBell } from "react-icons/bs";
 import {
   XMarkIcon,
   Bars3Icon,
@@ -13,33 +14,37 @@ import {
 } from "react-router-dom";
 import { UseMainContext } from "../../context";
 import MenuItem from "../NavBar/MenuItem";
-
+import useOutClick from "../../hooks/useOutClick";
+import User_drop_down from "../User/User_drop_down";
+import UserProflieNav from "./UserProflieNav";
+import { buttonVariants } from "../../Shadcn/components/ui/button";
 export default function NavBar() {
-  const { UserState } = UseMainContext();
+  const { UserState, chatRoom } =
+    UseMainContext();
   const [mobileMenuOpen, setMobileMenuOpen] =
     useState(false);
-
   const location = useLocation();
   const navigate = useNavigate();
+
   return (
     <>
       <header
-        className={`container ${
+        className={`fixed top-0 left-0 right-0 z-50 flex justify-center ${
           location.pathname === "/login" ||
           location.pathname === "/register"
             ? "hidden"
             : ""
         }`}
       >
-        <nav className="bg-white border-gray-200 rounded-lg my-5 shadow-lg dark:bg-gray-950 dark:border-gray-700 transition-all duration-500 delay-100 ease-in-out">
-          <div className="max-w-screen-2xl flex items-center justify-between mx-auto p-4 lg:p-6">
+        <nav className="w-[95%] bg-white rounded-lg my-5 bg-opacity-90 backdrop-blur-md dark:bg-opacity-80 dark:backdrop-blur-md shadow-lg dark:bg-gray-950 dark:border-gray-700 whitespace-nowrap">
+          <div className="flex items-center justify-between mx-auto p-5">
             <div className="flex items-center space-x-10">
               <div>
                 <a
                   href="/"
                   className="flex items-center"
                 >
-                  <span className="text-xl font-semibold text-green-700 lg:dark:text-green-500">
+                  <span className="text-lg font-semibold text-primary hover:text-primary-hover">
                     DevConnect
                   </span>
                 </a>
@@ -53,32 +58,24 @@ export default function NavBar() {
               <Search />
               {UserState.userData &&
               UserState.userData.user ? (
-                <div
-                  onClick={() =>
-                    navigate("/profile")
-                  }
-                >
-                  <img
-                    className="w-[50px] h-[50px] rounded-[50%]"
-                    src={
-                      UserState.userData.user
-                        .avatar
-                    }
-                  />
-                </div>
+                <UserProflieNav />
               ) : (
-                <div className="hidden lg:flex lg:flex-1 lg:justify-end ml-10">
+                <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-3">
                   <Link
+                    className={buttonVariants({
+                      variant: "outline",
+                    })}
                     to={"/login"}
-                    className="text-sm text-gray-700 dark:text-gray-300 py-2 lg:hover:text-green-700 lg:p-2 lg:dark:hover:text-green-500 dark:hover:text-white"
                   >
                     Log in
                   </Link>
                   <Link
-                    className="rounded-lg py-2 px-4 ml-5 text-sm text-white bg-green-600"
-                    to="/register"
+                    className={buttonVariants({
+                      variant: "default",
+                    })}
+                    to={"/register"}
                   >
-                    SignUp
+                    Sign up
                   </Link>
                 </div>
               )}
@@ -125,7 +122,7 @@ export default function NavBar() {
                     href="/"
                     className="flex items-center"
                   >
-                    <span className="self-center text-xl font-semibold whitespace-nowrap text-green-700 lg:dark:text-green-500">
+                    <span className="self-center text-xl font-semibold whitespace-nowrap textprimary lg:dark:text-primary">
                       DevConnect
                     </span>
                   </a>
@@ -155,7 +152,7 @@ export default function NavBar() {
                     <li>
                       <a
                         href="#"
-                        className="block py-2 pl-3 pr-4 text-white bg-green-700 rounded lg:bg-transparent lg:text-green-700 lg:p-0 lg:dark:text-green-500 dark:bg-green-600 lg:dark:bg-transparent"
+                        className="block py-2 pl-3 pr-4 text-white bg-green-700 rounded lg:bg-transparent lg:text-green-700 lg:p-0 lg:dark:text-green-500 dark:bg-primary lg:dark:bg-transparent"
                         aria-current="page"
                       >
                         Find Developer

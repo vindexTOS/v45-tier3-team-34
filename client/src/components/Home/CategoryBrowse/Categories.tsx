@@ -1,38 +1,40 @@
-import { Link } from 'react-router-dom'
-import { categories_temp } from '../../../contants'
-import CategoryCard from './CategoryCard'
+import { Link } from "react-router-dom";
+
+import { buttonVariants } from "../../../Shadcn/components/ui/button";
+import { useRef } from "react";
+import CatFramer from "./CatFramer";
 
 const Categories = () => {
-  return (
-    <section className='bg-gray-100 dark:bg-gray-900 dark:text-gray-300 flex flex-col gap-y-4 sm:gap-y-12 p-2 md:p-0'>
-        <article className='flex flex-col gap-y-0'>
-              <h1 className='text-3xl md:text-5xl font-semibold'>Browse talent by category</h1>
-              <p className='text-lg font-light'>
-                  Looking for work? {" "}
-                  {/* links to jobs */}
-                  <Link
-                      className='text-green-600 font-semibold hover:underline cursor-pointer'
-                      to={'/'}>browse jobs</Link>
-              </p>
-          </article>
-          {/* categories */}
-          <article className='grid grid-cols-2 md:grid-cols-4 gap-4 justify-between'>
-              {
-                  categories_temp.map(({ title, rating, skills }) => (
-                      <CategoryCard
-                          //have to be changed
-                          
-                          link='/'
-                          key={title}
-                          rating={rating}
-                          skills={skills}
-                          title={title}
-                      />
-                  ))
-              }
-      </article>
-    </section>
-  )
-}
+  const targetRef = useRef<HTMLDivElement>(null);
 
-export default Categories
+  return (
+    <section
+      ref={targetRef}
+      className="bg-white/30 dark:bg-gray-900 border border-gray-50 dark:border-green-900 gap-y-2 p-10 rounded-lg h-fit"
+    >
+      <div className="sticky top-[20vh]">
+        <article className="flex flex-col gap-y-2 mb-5">
+          <h1 className="text-[1.5rem] font-semibold text-primary dark:text-primary font-title">
+            Browse projects by category
+          </h1>
+          <p className="text-[1rem] font-light text-muted dark:text-muted">
+            Looking for work?{" "}
+            {/* links to jobs */}
+            <Link
+              className={buttonVariants({
+                variant: "link",
+              })}
+              to={"#"}
+            >
+              browse projects
+            </Link>
+          </p>
+        </article>
+        {/* categories */}
+        <CatFramer />
+      </div>
+    </section>
+  );
+};
+
+export default Categories;

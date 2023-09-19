@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { UseMainContext } from '../../context'
 import axios from 'axios'
 import { globalUrl } from '../../global-vars/Api-url'
+import LoadingComponent from '../Status/Loading'
 const Portfolio_Buttons = ({
   nextbtn,
   backbtn,
@@ -18,6 +19,8 @@ const Portfolio_Buttons = ({
     PortfolioDispatch,
     UserState,
     ImgState,
+    setError,
+    setSuccess,
   } = UseMainContext()
   const navigate = useNavigate()
   const {
@@ -32,9 +35,12 @@ const Portfolio_Buttons = ({
   } = PortfolioState
   const submitProject = async () => {
     if (UserState.userData.user) {
+      PortfolioDispatch({ type: 'loading', payload: true })
       try {
         const res = await axios.post(
-          `${globalUrl}/projects/${UserState.userData.user._id}`,
+          `${import.meta.env.VITE_GLOBAL_URL}/projects/${
+            UserState.userData.user._id
+          }`,
           {
             user_id: UserState.userData.user._id,
             title,
@@ -49,10 +55,17 @@ const Portfolio_Buttons = ({
           },
         )
         const data = res.data
-        console.log(data)
+        PortfolioDispatch({ type: 'technologies', payload: [] })
+
+        setSuccess(data.msg)
+        PortfolioDispatch({ type: 'loading', payload: false })
+        navigate('/profile')
         return data
       } catch (error) {
-        console.log(error)
+        const err: any = error
+        setError(err.response.data.msg)
+
+        PortfolioDispatch({ type: 'loading', payload: false })
       }
     }
   }
@@ -118,6 +131,7 @@ const Portfolio_Buttons = ({
       >
         {nextbtn}
       </button>
+      <LoadingComponent loading={PortfolioState.loading} />
     </div>
   )
 }

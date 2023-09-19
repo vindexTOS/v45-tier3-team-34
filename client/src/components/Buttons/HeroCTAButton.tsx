@@ -5,16 +5,16 @@ const HeroCTAButton = ({
   color,
 }: {
   title: string;
-  color: "red" | "white";
+  color: "green" | "white";
 }) => {
   return (
     <Link
-      to={"/"}
-      className={`px-6 py-3 ${
-        color == "red"
-          ? "bg-green-600 hover:bg-green-700 text-white"
-          : "text-black bg-white hover:bg-gray-200 dark:bg-gray-200 dark:hover:bg-gray-500"
-      } shadow-lg hover:shadow-xl transition-shadow delay-100 rounded-md font-bold text-sm`}
+      to={"/register"}
+      className={`px-4 py-2 ${
+        color == "green"
+          ? "hover:bg-primary-hover text-white dark:text-tersiary bg-primary"
+          : "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary-hover"
+      } shadow-lg hover:shadow-xl transition-shadow delay-100 rounded-md font-semibold text-sm`}
     >
       {title}
     </Link>
