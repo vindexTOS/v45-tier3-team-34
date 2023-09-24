@@ -8,7 +8,7 @@
   We connect junior developers with low-paid real-world projects.
     <br />
     <br /> 
-    <a href="https://devconnectchingu.netlify.app" target="_blank">Live Site</a>
+    <a href="https://devconnect-v2.netlify.app/" target="_blank">Live Site</a>
     ·
     <a href="https://github.com/chingu-voyages/v45-tier3-team-34/issues" target="_blank">Report Bug</a>
        ·
