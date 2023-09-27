@@ -1,7 +1,7 @@
 export const aliInfo = [
     {
         title: "Ali Mora",
-        role: "Software Developer",
+        role: "PO and FE Lead",
         image: "/assets/img/ali.jpeg",
         linkName: "LinkedIn",
         link: "https://www.linkedin.com/in/daurius-ali-swarts/"
@@ -41,7 +41,7 @@ export const greenInfo = [
 export const teamInfo = [
         {
         title: "Ali Mora",
-        role: "Software Developer",
+        role: "PO and FE Lead",
         image: "/assets/img/ali.jpeg",
         linkName: "LinkedIn",
         link: "https://www.linkedin.com/in/daurius-ali-swarts/",
