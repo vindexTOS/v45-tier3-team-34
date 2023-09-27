@@ -17,7 +17,7 @@
 
 ### About the Project
 
-We connect junior developers with clients seeking affordable software solutions, promoting growth through real-world projects and practical learning. Our platform empowers both developers and clients in a symbiotic partnership.
+We connect junior developers with clients seeking affordable software solutions, promoting growth through real-world projects and practical learning. Our platform empowers both developers and clients in a mutually beneficial partnership.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <br>
@@ -91,7 +91,7 @@ We connect junior developers with clients seeking affordable software solutions,
 - Ali Mora - [LinkedIn](https://www.linkedin.com/in/daurius-ali-swarts/)
 - Mohamed Edris - [LinkedIn](https://www.linkedin.com/in/edriso)
 - Giorgi Kutateladze - [LinkedIn](https://www.linkedin.com/in/giorgi-kutateladze-65a83919a/)
-- Robert varchodi - [LinkedIn](https://www.linkedin.com/in/robert-varchodi-633515217)
+- Robert Varchodi - [LinkedIn](https://www.linkedin.com/in/robert-varchodi-633515217)
 
 <br>
 <br>
